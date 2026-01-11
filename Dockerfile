@@ -14,3 +14,14 @@ FROM node:24-trixie
 # docker run コマンドの -w オプションと同じ。
 WORKDIR /app
 
+# ホストマシンの package*.json をコンテナの /app ディレクトリにコピー。
+COPY package*.json ./
+
+# ホストマシンの Angular プロジェクトの依存関係をコンテナにインストール。
+RUN npm ci
+
+# ホストマシンの現在のディレクトリの内容をコンテナの /app ディレクトリにコピー。
+COPY . .
+
+# コンテナ起動時に実行されるコマンドを指定。
+CMD ["npm", "run", "start"]

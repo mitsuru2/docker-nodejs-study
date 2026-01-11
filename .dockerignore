@@ -1,0 +1,25 @@
+# 依存関係（コンテナ内の npm ci で再作成するため）
+node_modules
+npm-debug.log
+
+# ビルド成果物
+dist/
+.angular/
+
+# Git関連（コンテナ内には不要）
+.git
+.gitignore
+
+# OS・エディタの一時ファイル
+.vscode/
+.editorconfig
+.DS_Store
+Thumbs.db
+
+# 環境変数（セキュリティのため）
+.env
+
+# Docker自体
+Dockerfile
+docker-compose.yml
+.dockerignore
