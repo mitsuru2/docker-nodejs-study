@@ -1,0 +1,20 @@
+services:
+  web:
+    # 1. カレントディレクトリの Dockerfile を使ってビルドする
+    build: .
+    
+    # 2. ポート転送 (ホスト:コンテナ)
+    ports:
+      - "4200:4200"
+    
+    # 3. ホストのファイルをコンテナに同期 (ホットリロードに必須)
+    volumes:
+      - .:/app
+      # node_modulesだけはホスト側で上書きされないよう保護（名前付きボリューム）
+      - /app/node_modules
+    
+    # 4. コンテナ起動時のコマンド (package.jsonのstartスクリプトを実行)
+    command: npm run start
+    
+    # 5. コンテナに名前を付ける (管理しやすくなる)
+    container_name: nodejs-study-container
