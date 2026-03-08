@@ -1,0 +1,38 @@
+# Docker ignore file/directory list.
+
+# Node packages.
+# They are installed in Docker image.
+node_modules
+
+# Build output is not required.
+dist
+.angular/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# OS-specific files
+# macOS and Windows specific files
+.DS_Store
+Thumbs.db
+
+# Git related files.
+# Version history is not required.
+.git
+.github
+.gitignore
+
+# Docker.
+# Don't include docker itself.
+Dockerfile
+.dockerignore
+docker-compose.yml
+.devcontainer/
+
+# VSCode configuration files.
+# Production: Editor is not required.
+# Develop: VSCode refers to configuration files on host FS.
+.vscode
+
