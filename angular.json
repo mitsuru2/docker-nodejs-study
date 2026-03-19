@@ -58,6 +58,11 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "ui-catalog": {
+              "browser": "src/app/sub-module/ui-catalog/ui-catalog.main.ts",
+              "server": "src/app/sub-module/ui-catalog/ui-catalog.main.server.ts",
+              "outputPath": "dist/ui-catalog"
             }
           },
           "defaultConfiguration": "production"
@@ -67,9 +72,7 @@
           "options": {
             "host": "0.0.0.0",
             "port": 4200,
-            "allowedHosts": [
-              "localhost"
-            ]
+            "allowedHosts": ["localhost"]
           },
           "configurations": {
             "production": {
@@ -77,6 +80,9 @@
             },
             "development": {
               "buildTarget": "docker-nodejs-study:build:development"
+            },
+            "ui-catalog": {
+              "buildTarget": "docker-nodejs-study:build:ui-catalog"
             }
           },
           "defaultConfiguration": "development"

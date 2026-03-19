@@ -9,7 +9,8 @@
     "test": "ng test",
     "new-page": "./script/new-page.sh",
     "new-ui": "./script/new-ui.sh",
-    "serve:ssr:docker-nodejs-study": "node dist/docker-nodejs-study/server/server.mjs"
+    "serve:ssr:docker-nodejs-study": "node dist/docker-nodejs-study/server/server.mjs",
+    "ui-catalog": "ng run docker-nodejs-study:serve:ui-catalog"
   },
   "private": true,
   "packageManager": "npm@11.9.0",
