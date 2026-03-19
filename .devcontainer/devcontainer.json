@@ -22,7 +22,7 @@
   // "customizations": {},
   "customizations": {
     "vscode": {
-      "extensions": ["google.geminicodeassist", "esbenp.prettier-vscode"]
+      "extensions": ["Angular.ng-template", "google.geminicodeassist", "esbenp.prettier-vscode"]
     }
   }
 
