@@ -20,6 +20,8 @@
     <div class="content-area">
       @if (selectedId === '') {
         <span>No component selected.</span>
+      } @else if (selectedId === 'circle-image') {
+        <app-test-circle-image></app-test-circle-image>
       } @else if (selectedId === 'button') {
         <app-test-button></app-test-button>
       }
