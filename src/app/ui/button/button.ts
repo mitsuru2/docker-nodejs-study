@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input, computed, Output, EventEmitter } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { ButtonConfigData, ButtonOutputData } from './button.interface';
 
 @Component({
   selector: 'app-button',
@@ -7,4 +8,25 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './button.html',
   styleUrl: './button.scss',
 })
-export class Button {}
+export class Button {
+  private readonly className = 'Button';
+
+  // 入力パラメータ
+  config = input.required<ButtonConfigData>();
+
+  // ボタンプロパティ
+  protected readonly id = computed(() => this.config().id);
+  protected label = computed(() => this.config().label);
+  protected icon = computed(() => this.config().icon);
+  protected round = computed(() => this.config().round);
+  protected outline = computed(() => this.config().outline);
+  protected width = computed(() => this.config().width);
+  protected severity = computed(() => this.config().severity);
+
+  // 出力イベント
+  @Output() onClick = new EventEmitter<ButtonOutputData>();
+
+  protected onClickHandler($event: MouseEvent) {
+    this.onClick.emit({ id: this.id() });
+  }
+}

@@ -1,1 +1,28 @@
-<p>ui-catalog works!</p>
+<div class="base">
+  <div class="header"><h2>My UI Catalog</h2></div>
+  <div class="main">
+    <div class="menu-area">
+      <p-accordion [(value)]="activeValue">
+        <p-accordion-panel [value]="ComponentType.UI">
+          <p-accordion-header><i class="pi pi-box"></i>UI</p-accordion-header>
+          <p-accordion-content>
+            <p-menu [model]="uiItems"></p-menu>
+          </p-accordion-content>
+        </p-accordion-panel>
+        <p-accordion-panel [value]="ComponentType.Feature">
+          <p-accordion-header><i class="pi pi-th-large"></i>Features</p-accordion-header>
+          <p-accordion-content>
+            <p-menu [model]="featureItems"></p-menu>
+          </p-accordion-content>
+        </p-accordion-panel>
+      </p-accordion>
+    </div>
+    <div class="content-area">
+      @if (selectedId === '') {
+        <span>No component selected.</span>
+      } @else if (selectedId === 'button') {
+        <app-test-button></app-test-button>
+      }
+    </div>
+  </div>
+</div>

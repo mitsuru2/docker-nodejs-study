@@ -36,7 +36,7 @@
 
     --pill-accent: var(--bright-blue);
 
-    font-family:
+    /* font-family:
       'Inter',
       -apple-system,
       BlinkMacSystemFont,
@@ -47,7 +47,7 @@
       sans-serif,
       'Apple Color Emoji',
       'Segoe UI Emoji',
-      'Segoe UI Symbol';
+      'Segoe UI Symbol'; */
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -202,7 +202,21 @@
   }
 </style>
 
-<app-button></app-button>
+<div>
+  <div>
+    <p-checkbox inputId="ingredient1" name="pizza" value="Cheese" [(ngModel)]="pizza" />
+    <label for="ingredient1" class="ml-2"> Cheese </label>
+  </div>
+  <div>
+    <p-checkbox inputId="ingredient3" name="pizza" value="Pepper" [(ngModel)]="pizza" />
+    <label for="ingredient3" class="ml-2"> Pepper </label>
+  </div>
+</div>
+<div>
+  <p>Hello, world.</p>
+  <p>こんにちは</p>
+</div>
+
 <main class="main">
   <div class="content">
     <div class="left-side">

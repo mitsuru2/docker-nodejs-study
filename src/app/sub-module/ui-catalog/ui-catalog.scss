@@ -1,0 +1,43 @@
+.base {
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+:host {
+  --bright-blue: oklch(51.01% 0.274 263.83);
+  --blue-to-purple-horizontal-gradient: linear-gradient(90deg, var(--bright-blue) 0%, fuchsia 100%);
+}
+
+.header {
+  flex-shrink: 0;
+  padding: var(--margin-xs) var(--margin-s);
+
+  border-top: 4px solid;
+  border-image-source: var(--blue-to-purple-horizontal-gradient);
+  border-image-slice: 1;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  flex: 1; // 残り全ての高さ
+  min-width: 0;
+  overflow-y: hidden; // 子要素によって高さが引き伸ばされるのを防ぐ
+}
+
+.menu-area,
+.content-area {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.menu-area {
+  width: 20rem;
+}
+
+.content-area {
+  flex: 1; // 残り全ての幅
+  padding: var(--margin-s) var(--margin-m);
+}

@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'primeicons/primeicons.css';
+
+:root {
+  --primary-font-color: #495057;
+  --base-font-size: 16px;
+  --serif-font: 'Century', 'Times New Roman', Times, serif;
+  --sans-serif-font: 'Arial', 'Helvetica', 'sans-serif';
+
+  --margin-xs: 2px;
+  --margin-s: 0.5rem;
+  --margin-m: 1rem;
+  --margin-l: 2rem;
+}
+
+html,
+body {
+  margin: 0; // Disable user agent stylesheet.
+  padding: 0; // Disable user agent stylesheet.
+  font-family: var(--serif-font);
+  font-size: var(--base-font-size);
+  color: var(--primary-font-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--sans-serif-font);
+}
+
+h2 {
+  margin: var(--margin-s) 0;
+}
