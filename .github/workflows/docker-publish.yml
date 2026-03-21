@@ -5,7 +5,9 @@ on:
     branches: ['main'] # mainブランチにpushされたら実行
     paths:
       - 'Dockerfile'
-      - 'package*.json'
+      - '.dockerignore'
+      - 'package.json'
+      - 'package-lock.json'
 
 env:
   REGISTRY: ghcr.io
