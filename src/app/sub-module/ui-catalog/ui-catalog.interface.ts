@@ -1,10 +1,10 @@
-import { NamedId } from '../../model/named-id';
+import { NamedIdData } from '../../model/named-id';
 
 export enum PresentationalComponentType {
   UI,
   Feature,
 }
 
-export interface UiCatalogItemData extends NamedId {
+export interface UiCatalogItemData extends NamedIdData {
   type: PresentationalComponentType;
 }

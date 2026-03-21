@@ -4,13 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { PresentationalComponentType, UiCatalogItemData } from './ui-catalog.interface';
-import { TestCircleImage } from '../../ui/circle-image/test-circle-image/test-circle-image';
+import { TestCircularProgressBar } from '../../ui/circular-progress-bar/test-circular-progress-bar/test-circular-progress-bar';
+import { TestCircularImage } from '../../ui/circular-image/test-circular-image/test-circular-image';
 import { TestButton } from '../../ui/button/test-button/test-button';
 
 @Component({
   selector: 'app-root', // index.htmlを共通としているためセレクタを修正。
   imports: [
-    TestCircleImage,
+    TestCircularProgressBar,
+    TestCircularImage,
     TestButton,
     MenuModule,
     FormsModule,
@@ -33,7 +35,12 @@ export class UiCatalog {
 
   // UIパーツリスト
   protected readonly items: UiCatalogItemData[] = [
-    { type: PresentationalComponentType.UI, name: 'Circle Image', id: 'circle-image' },
+    {
+      type: PresentationalComponentType.UI,
+      name: 'Circular Progress Bar',
+      id: 'circular-progress-bar',
+    },
+    { type: PresentationalComponentType.UI, name: 'Circular Image', id: 'circular-image' },
     { type: PresentationalComponentType.UI, name: 'Button', id: 'button' },
   ];
   protected readonly uiItems: MenuItem[] = this.items

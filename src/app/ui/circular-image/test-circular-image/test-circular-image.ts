@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { CircleImageConfigData } from '../circle-image.interface';
-import { CircleImage } from '../circle-image';
+import { CircularImageConfigData } from '../circular-image.interface';
+import { CircularImage } from '../circular-image';
 
 @Component({
-  selector: 'app-test-circle-image',
-  imports: [CircleImage],
-  templateUrl: './test-circle-image.html',
-  styleUrl: './test-circle-image.scss',
+  selector: 'app-test-circular-image',
+  imports: [CircularImage],
+  templateUrl: './test-circular-image.html',
+  styleUrl: './test-circular-image.scss',
 })
-export class TestCircleImage {
+export class TestCircularImage {
   private readonly hamster = 'images/hamster_1x1.png';
 
-  protected testCases: { title: string; config: CircleImageConfigData }[] = [
+  protected testCases: { title: string; config: CircularImageConfigData }[] = [
     {
       title: '原寸表示',
       config: {
@@ -41,8 +41,9 @@ export class TestCircleImage {
       },
     },
     {
-      title: 'alt指定',
+      title: 'ID, alt指定',
       config: {
+        id: 'circular-image-test',
         path: this.hamster,
         width: '100px',
         alt: 'テスト画像',

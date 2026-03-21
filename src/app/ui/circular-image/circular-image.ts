@@ -1,19 +1,20 @@
 import { Component, computed, input } from '@angular/core';
-import { CircleImageConfigData } from './circle-image.interface';
+import { CircularImageConfigData } from './circular-image.interface';
 
 @Component({
-  selector: 'app-circle-image',
+  selector: 'app-circular-image',
   imports: [],
-  templateUrl: './circle-image.html',
-  styleUrl: './circle-image.scss',
+  templateUrl: './circular-image.html',
+  styleUrl: './circular-image.scss',
 })
-export class CircleImage {
-  private readonly className = 'CircleImage';
+export class CircularImage {
+  private readonly className = 'CircularImage';
 
   // 入力パラメータ
-  config = input.required<CircleImageConfigData>();
+  config = input.required<CircularImageConfigData>();
 
   // 画像制御
+  protected readonly id = computed(() => this.config().id);
   protected readonly path = computed(() => this.config().path!);
   protected readonly width = computed(() => this.config().width ?? 'auto');
   protected readonly height = computed(() => this.config().height ?? 'auto');

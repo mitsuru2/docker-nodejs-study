@@ -1,0 +1,21 @@
+.circular-progress {
+  display: block;
+}
+
+.progress-background {
+  fill: none;
+  stroke: #e6e6e6; /* 背景の色 */
+}
+
+.progress-bar {
+  fill: none;
+  stroke-linecap: round; /* 先端を丸くする */
+  transition: stroke-dashoffset 0.35s; /* 進捗変更時のアニメーション */
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

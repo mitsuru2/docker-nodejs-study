@@ -1,0 +1,46 @@
+<svg
+  class="circular-progress"
+  [id]="id()"
+  [attr.viewBox]="viewBox()"
+  [attr.width]="size()"
+  [attr.height]="size()"
+>
+  <defs>
+    <linearGradient [id]="'progressGradient-' + id()" x1="0%" y1="0%" x2="100%" y2="0%">
+      @for (stop of gradientStops(); track $index) {
+        <stop [attr.offset]="stop.offset + '%'" [attr.stop-color]="stop.color"></stop>
+      }
+    </linearGradient>
+  </defs>
+
+  <foreignObject
+    [attr.x]="strokeWidth()"
+    [attr.y]="strokeWidth()"
+    [attr.width]="size() - strokeWidth() * 2"
+    [attr.height]="size() - strokeWidth() * 2"
+  >
+    <xhtml:div class="image-container">
+      <app-circular-image [config]="imageConfig()"> </app-circular-image>
+    </xhtml:div>
+  </foreignObject>
+
+  <circle
+    class="progress-background"
+    [attr.cx]="center()"
+    [attr.cy]="center()"
+    [attr.r]="radius()"
+    [attr.stroke-width]="strokeWidth()"
+  />
+
+  <circle
+    class="progress-bar"
+    [attr.cx]="center()"
+    [attr.cy]="center()"
+    [attr.r]="radius()"
+    [attr.stroke-width]="strokeWidth()"
+    [attr.stroke]="'url(#progressGradient-' + id() + ')'"
+    [attr.stroke-dasharray]="circumference()"
+    [style.stroke-dashoffset.px]="offset()"
+    [attr.transform]="'rotate(-90 ' + center() + ' ' + center() + ')'"
+  />
+</svg>
