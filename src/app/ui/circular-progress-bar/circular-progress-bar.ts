@@ -2,7 +2,6 @@ import { Component, computed, input, Signal } from '@angular/core';
 import { CircularProgressBarConfigData } from './circular-progress-bar.interface';
 import { CircularImage } from '../circular-image/circular-image';
 import { CircularImageConfigData } from '../circular-image/circular-image.interface';
-import { GradientStopData } from '../../model/gradient-stop';
 
 @Component({
   selector: 'app-circular-progress-bar',
