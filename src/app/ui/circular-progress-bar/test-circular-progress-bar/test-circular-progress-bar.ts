@@ -22,7 +22,6 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
         id: 'cpb1',
         path: this.hamster,
         size: this.size,
-        strokeWidth: 10,
       },
     },
     {
@@ -31,7 +30,6 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
         id: 'cpb2',
         path: this.hamster,
         size: this.size,
-        strokeWidth: 10,
       },
     },
     {
@@ -39,7 +37,6 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
       config: {
         id: 'cpb3',
         size: this.size,
-        strokeWidth: 10,
       },
     },
     {

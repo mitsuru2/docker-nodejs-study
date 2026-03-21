@@ -29,8 +29,8 @@
   <foreignObject
     [attr.x]="strokeWidth()"
     [attr.y]="strokeWidth()"
-    [attr.width]="size() - strokeWidth() * 2"
-    [attr.height]="size() - strokeWidth() * 2"
+    [attr.width]="size() - strokeWidth() * 2 + 2"
+    [attr.height]="size() - strokeWidth() * 2 + 2"
   >
     <xhtml:div class="image-container">
       <app-circular-image [config]="imageConfig()"> </app-circular-image>
