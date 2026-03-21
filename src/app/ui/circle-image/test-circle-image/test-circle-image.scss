@@ -1,0 +1,6 @@
+.container {
+  display: flex;
+  row-gap: var(--margin-m);
+  column-gap: var(--margin-m);
+  flex-wrap: wrap;
+}
