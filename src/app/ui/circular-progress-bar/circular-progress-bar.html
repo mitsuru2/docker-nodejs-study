@@ -1,3 +1,4 @@
+<!-- SVGコンテナ: 円形プログレスバーの描画領域 -->
 <svg
   class="circular-progress"
   [id]="id()"
@@ -6,13 +7,25 @@
   [attr.height]="size()"
 >
   <defs>
-    <linearGradient [id]="'progressGradient-' + id()" x1="0%" y1="0%" x2="100%" y2="0%">
-      @for (stop of gradientStops(); track $index) {
-        <stop [attr.offset]="stop.offset + '%'" [attr.stop-color]="stop.color"></stop>
-      }
-    </linearGradient>
+    <!-- マスク定義: グラデーション背景を円弧状に切り抜くための形状 -->
+    <mask [id]="'progressMask-' + id()">
+      <circle
+        [attr.cx]="center()"
+        [attr.cy]="center()"
+        [attr.r]="radius()"
+        [attr.stroke-width]="strokeWidth()"
+        fill="none"
+        stroke="white"
+        stroke-linecap="round"
+        [attr.stroke-dasharray]="circumference()"
+        [attr.stroke-dashoffset]="offset()"
+        [attr.transform]="'rotate(-90 ' + center() + ' ' + center() + ')'"
+        style="transition: stroke-dashoffset 0.5s ease-in-out"
+      ></circle>
+    </mask>
   </defs>
 
+  <!-- 中央の画像コンテナ: 円の内側に画像を表示 -->
   <foreignObject
     [attr.x]="strokeWidth()"
     [attr.y]="strokeWidth()"
@@ -24,6 +37,7 @@
     </xhtml:div>
   </foreignObject>
 
+  <!-- 背景の円: プログレスバーの下地 -->
   <circle
     class="progress-background"
     [attr.cx]="center()"
@@ -32,15 +46,14 @@
     [attr.stroke-width]="strokeWidth()"
   />
 
-  <circle
-    class="progress-bar"
-    [attr.cx]="center()"
-    [attr.cy]="center()"
-    [attr.r]="radius()"
-    [attr.stroke-width]="strokeWidth()"
-    [attr.stroke]="'url(#progressGradient-' + id() + ')'"
-    [attr.stroke-dasharray]="circumference()"
-    [style.stroke-dashoffset.px]="offset()"
-    [attr.transform]="'rotate(-90 ' + center() + ' ' + center() + ')'"
-  />
+  <!-- グラデーションプログレスバー本体: conic-gradientの背景をマスクで円弧状に切り抜き -->
+  <foreignObject
+    x="0"
+    y="0"
+    [attr.width]="size()"
+    [attr.height]="size()"
+    [attr.mask]="'url(#progressMask-' + id() + ')'"
+  >
+    <xhtml:div [style.background]="conicGradient()" style="width: 100%; height: 100%"></xhtml:div>
+  </foreignObject>
 </svg>

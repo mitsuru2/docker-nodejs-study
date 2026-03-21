@@ -1,1 +1,11 @@
-<app-circular-progress-bar [config]="config" [progress]="progress()"></app-circular-progress-bar>
+<div class="container">
+  @for (test of testCases; track $index) {
+    <div>
+      <h3>{{ test.title }}</h3>
+      <app-circular-progress-bar
+        [config]="test.config"
+        [progress]="progress()"
+      ></app-circular-progress-bar>
+    </div>
+  }
+</div>

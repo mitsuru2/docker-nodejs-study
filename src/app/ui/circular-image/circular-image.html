@@ -1,4 +1,4 @@
-@if (path() !== null) {
+@if (path() !== undefined) {
   <div class="circular-container" [id]="id()" [style.width]="width()" [style.height]="height()">
     <img [src]="path()" [alt]="alt()" class="circular-image" />
   </div>

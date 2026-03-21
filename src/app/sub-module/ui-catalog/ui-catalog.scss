@@ -5,17 +5,12 @@
   flex-direction: column;
 }
 
-:host {
-  --bright-blue: oklch(51.01% 0.274 263.83);
-  --blue-to-purple-horizontal-gradient: linear-gradient(90deg, var(--bright-blue) 0%, fuchsia 100%);
-}
-
 .header {
   flex-shrink: 0;
   padding: var(--margin-xs) var(--margin-s);
 
   border-top: 4px solid;
-  border-image-source: var(--blue-to-purple-horizontal-gradient);
+  border-image-source: var(--blue-to-purple-hori-gradient);
   border-image-slice: 1;
 }
 

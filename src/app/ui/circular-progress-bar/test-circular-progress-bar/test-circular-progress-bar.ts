@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit, inject, ChangeDetectorRef, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { CircularProgressBarConfigData } from '../circular-progress-bar.interface';
 import { CircularProgressBar } from '../circular-progress-bar';
+import { getStyleVar, Styles } from '../../../../styles';
 
 @Component({
   selector: 'app-test-circular-progress-bar',
@@ -10,20 +11,62 @@ import { CircularProgressBar } from '../circular-progress-bar';
 })
 export class TestCircularProgressBar implements OnInit, OnDestroy {
   private readonly className = 'TestCircularProgressBar';
-  private readonly cdr = inject(ChangeDetectorRef);
 
   private readonly hamster = 'images/hamster_1x1.png';
 
-  protected readonly config: CircularProgressBarConfigData = {
-    id: 'cp1',
-    path: this.hamster,
-    size: 200,
-    strokeWidth: 10,
-    gradientStops: [
-      { offset: 0, color: 'blue' },
-      { offset: 100, color: 'red' },
-    ],
-  };
+  protected readonly testCases: { title: string; config: CircularProgressBarConfigData }[] = [
+    {
+      title: '基本形',
+      config: {
+        id: 'cpb1',
+        path: this.hamster,
+        size: 100,
+        strokeWidth: 10,
+        gradientStops: [
+          { offset: 0, color: getStyleVar(Styles.BrightBlue) },
+          { offset: 50, color: getStyleVar(Styles.BrightPurple) },
+          { offset: 100, color: getStyleVar(Styles.BrightBlue) },
+        ],
+      },
+    },
+    {
+      title: '単色',
+      config: {
+        id: 'cpb2',
+        path: this.hamster,
+        size: 100,
+        strokeWidth: 10,
+        strokeColor: getStyleVar(Styles.BrightBlue),
+      },
+    },
+    {
+      title: '画像無し',
+      config: {
+        id: 'cpb3',
+        size: 100,
+        strokeWidth: 10,
+        gradientStops: [
+          { offset: 0, color: getStyleVar(Styles.BrightBlue) },
+          { offset: 50, color: getStyleVar(Styles.BrightPurple) },
+          { offset: 100, color: getStyleVar(Styles.BrightBlue) },
+        ],
+      },
+    },
+    {
+      title: 'ストローク太さ変更',
+      config: {
+        id: 'cpb4',
+        path: this.hamster,
+        size: 100,
+        strokeWidth: 4,
+        gradientStops: [
+          { offset: 0, color: getStyleVar(Styles.BrightBlue) },
+          { offset: 50, color: getStyleVar(Styles.BrightPurple) },
+          { offset: 100, color: getStyleVar(Styles.BrightBlue) },
+        ],
+      },
+    },
+  ];
 
   // 進捗率自動更新
   protected progress = signal(0);
@@ -33,11 +76,11 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
     console.log(`${this.className}.ngOnInit()`);
     this.timer = setInterval(() => {
       this.progress.update((p) => {
-        let next = p + 10;
+        let next = p + 20;
         if (next > 100) {
           next = 0;
         }
-        console.log(`progress=${next}`);
+        console.log(`${this.className}.setInterval() progress=${next}`);
         return next;
       });
     }, 2000);

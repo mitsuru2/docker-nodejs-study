@@ -2,6 +2,7 @@ import { Component, computed, input, Signal } from '@angular/core';
 import { CircularProgressBarConfigData } from './circular-progress-bar.interface';
 import { CircularImage } from '../circular-image/circular-image';
 import { CircularImageConfigData } from '../circular-image/circular-image.interface';
+import { GradientStopData } from '../../model/gradient-stop';
 
 @Component({
   selector: 'app-circular-progress-bar',
@@ -22,12 +23,13 @@ export class CircularProgressBar {
   protected readonly size = computed(() => this.config().size);
   protected readonly strokeWidth = computed(() => this.config().strokeWidth);
   protected readonly gradientStops = computed(() => {
-    if (this.config().gradientStops) {
-      return this.config().gradientStops;
-    } else if (this.config().strokeColor) {
+    const config = this.config();
+    if (config.gradientStops) {
+      return config.gradientStops;
+    } else if (config.strokeColor) {
       return [
-        { offset: 0, color: this.config().strokeColor },
-        { offset: 100, color: this.config().strokeColor },
+        { offset: 0, color: config.strokeColor },
+        { offset: 100, color: config.strokeColor },
       ];
     } else {
       return [
@@ -44,6 +46,14 @@ export class CircularProgressBar {
     const progressOffset = (100 - this.progress()) / 100;
     return this.circumference() * progressOffset;
   });
+  // 円周グラデーション用のCSSスタイル (conic-gradient) を生成
+  protected readonly conicGradient = computed(() => {
+    const stops = this.gradientStops()
+      .map((stop) => `${stop.color} ${stop.offset}%`)
+      .join(', ');
+    return `conic-gradient(from 0deg, ${stops})`;
+  });
+  // 画像コンフィグ
   protected readonly imageConfig: Signal<CircularImageConfigData> = computed(() => ({
     path: this.config().path,
     width: `${this.size() - this.strokeWidth() * 2 + 2}px`,

@@ -12,6 +12,16 @@
   --margin-s: 0.5rem;
   --margin-m: 1rem;
   --margin-l: 2rem;
+
+  // Color palette
+  --bright-blue: oklch(51.01% 0.274 263.83);
+  --bright-purple: fuchsia;
+  --blue-to-purple-hori-gradient: linear-gradient(
+    90deg,
+    var(--bright-blue) 0%,
+    var(--bright-purple) 100%
+  );
+  --blue-to-purple-vert-gradient: linear-gradient(var(--bright-blue) 0%, var(--bright-purple) 100%);
 }
 
 html,
