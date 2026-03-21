@@ -24,9 +24,9 @@ export class Button {
   protected severity = computed(() => this.config().severity);
 
   // 出力イベント
-  @Output() onClick = new EventEmitter<ButtonOutputData>();
+  @Output() clicked = new EventEmitter<ButtonOutputData>();
 
-  protected onClickHandler($event: MouseEvent) {
-    this.onClick.emit({ id: this.id() });
+  protected onClickHandler() {
+    this.clicked.emit({ id: this.id() });
   }
 }

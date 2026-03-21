@@ -1,0 +1,62 @@
+name: Unit Test (Angular)
+
+# プッシュされるたびに実行。除外条件なし。
+on: push
+
+# 環境変数設定
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PATH: ghcr.io/${{ github.repository }}:main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      # ソースコードをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # GHCRへのログイン
+      - name: Log in to the Container registry
+        uses: docker/login-action@v4
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # mainタグのイメージを取得。
+      - name: Pull Docker image
+        run: docker pull ${{ env.IMAGE_PATH }}
+
+      # Lintコマンドの実行。
+      - name: Run Unit Test
+        # ホストのコードをコンテナ内の作業ディレクトリ(/app)にマウントして実行
+        # チェックアウトしたソースツリーでDockerイメージのnode_modulesが上書きされてしまうのを防止するために
+        # /app/node_modulesに対して匿名ボリュームをマウント。
+        run: |
+          docker run --rm \
+            --mount type=bind,source=${{ github.workspace }},target=/app \
+            --mount type=volume,target=/app/node_modules \
+            ${{ env.IMAGE_PATH }} \
+            npm run test -- --watch=false --reporters=default --reporters=junit --output-file=test-results.xml
+
+      # テストレポートの表示
+      - name: Test Report
+        uses: dorny/test-reporter@v2
+        if: always() # テストが失敗しても必ず実行してレポートを出す
+        with:
+          name: Vitest Unit Test Results
+          path: test-results.xml
+          reporter: java-junit
+
+      # テストレポートの保存
+      - name: Archive Test Report
+        uses: actions/upload-artifact@v6
+        if: always() # テストが失敗しても必ず実行してレポートを保存する
+        with:
+          name: vitest-junit-results
+          path: test-results.xml
+          retention-days: 7

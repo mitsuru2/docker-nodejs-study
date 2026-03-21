@@ -1,1 +1,3 @@
-export interface CircleImageConfigData {}
+export interface CircleImageConfigData {
+  path: string;
+}
