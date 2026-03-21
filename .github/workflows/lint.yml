@@ -11,6 +11,9 @@ env:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       # ソースコードをチェックアウト
       - name: Checkout repository
@@ -31,4 +34,11 @@ jobs:
       # Lintコマンドの実行。
       - name: Run Lint
         # ホストのコードをコンテナ内の作業ディレクトリ(/app)にマウントして実行
-        run: docker run --rm --mount type=bind,source=${{ github.workspace }},target=/app --mount type=volume,target=/app/node_modules ${{ env.IMAGE_PATH }} npm run lint
+        # チェックアウトしたソースツリーでDockerイメージのnode_modulesが上書きされてしまうのを防止するために
+        # /app/node_modulesに対して匿名ボリュームをマウント。
+        run: |
+          docker run --rm \
+            --mount type=bind,source=${{ github.workspace }},target=/app \
+            --mount type=volume,target=/app/node_modules \
+            ${{ env.IMAGE_PATH }} \
+            npm run lint
