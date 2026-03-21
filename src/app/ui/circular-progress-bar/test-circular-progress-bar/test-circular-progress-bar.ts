@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { CircularProgressBarConfigData } from '../circular-progress-bar.interface';
 import { CircularProgressBar } from '../circular-progress-bar';
-import { getStyleVar, Styles } from '../../../../styles';
+import { DesignTokens } from '../../../../styles';
 
 @Component({
   selector: 'app-test-circular-progress-bar',
@@ -23,9 +23,9 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
         size: 100,
         strokeWidth: 10,
         gradientStops: [
-          { offset: 0, color: getStyleVar(Styles.BrightBlue) },
-          { offset: 50, color: getStyleVar(Styles.BrightPurple) },
-          { offset: 100, color: getStyleVar(Styles.BrightBlue) },
+          { offset: 0, color: DesignTokens.semantic.custom.color.brightBlue },
+          { offset: 50, color: DesignTokens.semantic.custom.color.brightPurple },
+          { offset: 100, color: DesignTokens.semantic.custom.color.brightBlue },
         ],
       },
     },
@@ -36,7 +36,7 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
         path: this.hamster,
         size: 100,
         strokeWidth: 10,
-        strokeColor: getStyleVar(Styles.BrightBlue),
+        strokeColor: DesignTokens.semantic.custom.color.brightBlue,
       },
     },
     {
@@ -46,9 +46,9 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
         size: 100,
         strokeWidth: 10,
         gradientStops: [
-          { offset: 0, color: getStyleVar(Styles.BrightBlue) },
-          { offset: 50, color: getStyleVar(Styles.BrightPurple) },
-          { offset: 100, color: getStyleVar(Styles.BrightBlue) },
+          { offset: 0, color: DesignTokens.semantic.custom.color.brightBlue },
+          { offset: 50, color: DesignTokens.semantic.custom.color.brightPurple },
+          { offset: 100, color: DesignTokens.semantic.custom.color.brightBlue },
         ],
       },
     },
@@ -60,9 +60,9 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
         size: 100,
         strokeWidth: 4,
         gradientStops: [
-          { offset: 0, color: getStyleVar(Styles.BrightBlue) },
-          { offset: 50, color: getStyleVar(Styles.BrightPurple) },
-          { offset: 100, color: getStyleVar(Styles.BrightBlue) },
+          { offset: 0, color: DesignTokens.semantic.custom.color.brightBlue },
+          { offset: 50, color: DesignTokens.semantic.custom.color.brightPurple },
+          { offset: 100, color: DesignTokens.semantic.custom.color.brightBlue },
         ],
       },
     },

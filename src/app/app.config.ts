@@ -7,7 +7,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { providePrimeNG } from 'primeng/config';
-import { CustomPreset } from './primeng-theme';
+import { CustomPreset } from '../styles';
 
 export const appConfig: ApplicationConfig = {
   providers: [

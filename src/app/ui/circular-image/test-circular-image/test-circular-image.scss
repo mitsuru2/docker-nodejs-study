@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  row-gap: var(--margin-m);
-  column-gap: var(--margin-m);
+  row-gap: var(--p-custom-margin-m);
+  column-gap: var(--p-custom-margin-m);
   flex-wrap: wrap;
 }
