@@ -20,6 +20,8 @@
     <div class="content-area">
       @if (selectedId === '') {
         <span>No component selected.</span>
+      } @else if (selectedId === 'progress-bar') {
+        <app-test-progress-bar></app-test-progress-bar>
       } @else if (selectedId === 'circular-progress-bar') {
         <app-test-circular-progress-bar></app-test-circular-progress-bar>
       } @else if (selectedId === 'circular-image') {

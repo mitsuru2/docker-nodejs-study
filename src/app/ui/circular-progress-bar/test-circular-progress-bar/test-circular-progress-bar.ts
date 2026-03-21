@@ -13,6 +13,7 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
   private readonly className = 'TestCircularProgressBar';
 
   private readonly hamster = 'images/hamster_1x1.png';
+  private readonly size = 160;
 
   protected readonly testCases: { title: string; config: CircularProgressBarConfigData }[] = [
     {
@@ -20,13 +21,8 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
       config: {
         id: 'cpb1',
         path: this.hamster,
-        size: 100,
+        size: this.size,
         strokeWidth: 10,
-        gradientStops: [
-          { offset: 0, color: DesignTokens.semantic.custom.color.brightBlue },
-          { offset: 50, color: DesignTokens.semantic.custom.color.brightPurple },
-          { offset: 100, color: DesignTokens.semantic.custom.color.brightBlue },
-        ],
       },
     },
     {
@@ -34,22 +30,16 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
       config: {
         id: 'cpb2',
         path: this.hamster,
-        size: 100,
+        size: this.size,
         strokeWidth: 10,
-        strokeColor: DesignTokens.semantic.custom.color.brightBlue,
       },
     },
     {
       title: '画像無し',
       config: {
         id: 'cpb3',
-        size: 100,
+        size: this.size,
         strokeWidth: 10,
-        gradientStops: [
-          { offset: 0, color: DesignTokens.semantic.custom.color.brightBlue },
-          { offset: 50, color: DesignTokens.semantic.custom.color.brightPurple },
-          { offset: 100, color: DesignTokens.semantic.custom.color.brightBlue },
-        ],
       },
     },
     {
@@ -57,13 +47,8 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
       config: {
         id: 'cpb4',
         path: this.hamster,
-        size: 100,
+        size: this.size,
         strokeWidth: 4,
-        gradientStops: [
-          { offset: 0, color: DesignTokens.semantic.custom.color.brightBlue },
-          { offset: 50, color: DesignTokens.semantic.custom.color.brightPurple },
-          { offset: 100, color: DesignTokens.semantic.custom.color.brightBlue },
-        ],
       },
     },
   ];

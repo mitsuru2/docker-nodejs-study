@@ -4,13 +4,19 @@
 
 .progress-background {
   fill: none;
-  stroke: #e6e6e6; /* 背景の色 */
+  stroke: --p-custom-color-light-gray; /* 背景の色 */
 }
 
 .progress-bar {
   fill: none;
   stroke-linecap: round; /* 先端を丸くする */
   transition: stroke-dashoffset 0.35s; /* 進捗変更時のアニメーション */
+}
+
+.progress-gradient-fill {
+  width: 100%;
+  height: 100%;
+  background: var(--p-custom-circular-progress-bar-background);
 }
 
 .image-container {

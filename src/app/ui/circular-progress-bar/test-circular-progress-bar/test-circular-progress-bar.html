@@ -3,6 +3,7 @@
     <div>
       <h3>{{ test.title }}</h3>
       <app-circular-progress-bar
+        [class]="test.config.id"
         [config]="test.config"
         [progress]="progress()"
       ></app-circular-progress-bar>

@@ -2,6 +2,35 @@ import { definePreset } from '@primeuix/themes';
 import Aura from '@primeuix/themes/aura';
 
 export const DesignTokens = {
+  primitive: {
+    custom: {
+      color: {
+        brightBlue: 'oklch(51.01% 0.274 263.83)',
+        brightPurple: 'fuchsia',
+        lightGray: '#e6e6e6',
+      },
+      gradient: {
+        blueToPurpleHori:
+          'linear-gradient(90deg, var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 100%)',
+        blueToPurpleVert:
+          'linear-gradient(var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 100%)',
+        blueToPurpleCircular:
+          'conic-gradient(from 0deg, var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 50%, var(--p-custom-color-bright-blue) 100%)',
+      },
+      margin: {
+        xs: '2px',
+        s: '0.5rem',
+        m: '1rem',
+        l: '2rem',
+      },
+      font: {
+        size: '16px',
+        color: '#495057',
+        serif: "'Century', 'Times New Roman', Times, serif",
+        sansSerif: "'Arial', 'Helvetica', 'sans-serif'",
+      },
+    },
+  },
   semantic: {
     primary: {
       50: '{indigo.50}',
@@ -35,27 +64,8 @@ export const DesignTokens = {
       },
     },
     custom: {
-      color: {
-        brightBlue: 'oklch(51.01% 0.274 263.83)',
-        brightPurple: 'fuchsia',
-      },
-      gradient: {
-        blueToPurpleHori:
-          'linear-gradient(90deg, var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 100%)',
-        blueToPurpleVert:
-          'linear-gradient(var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 100%)',
-      },
-      margin: {
-        xs: '2px',
-        s: '0.5rem',
-        m: '1rem',
-        l: '2rem',
-      },
-      font: {
-        size: '16px',
-        color: '#495057',
-        serif: "'Century', 'Times New Roman', Times, serif",
-        sansSerif: "'Arial', 'Helvetica', 'sans-serif'",
+      circularProgressBar: {
+        background: 'var(--p-custom-gradient-blue-to-purple-circular)',
       },
     },
   },
