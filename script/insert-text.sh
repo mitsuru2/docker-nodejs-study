@@ -25,7 +25,15 @@ ESCAPED_TEXT=$(echo "$INSERT_TEXT" | sed ':a;N;$!ba;s/\n/\\n/g')
 # パターン内の特殊文字（[, ], |, \）をエスケープ
 ESCAPED_PATTERN=$(echo "$PATTERN" | sed 's/[]|[\\]/\\&/g')
 
-if [[ "$DELETE_ORIGINAL" == "true" ]]; then
+if [[ -z "$PATTERN" ]]; then
+    if [[ ! -s "$FILE_PATH" ]]; then
+        # ファイルが空の場合はそのまま書き込む
+        echo "$INSERT_TEXT" > "$FILE_PATH"
+    else
+        # ファイルが空でない場合は先頭行の前に挿入
+        sed -i "1s|^|$ESCAPED_TEXT\n|" "$FILE_PATH"
+    fi
+elif [[ "$DELETE_ORIGINAL" == "true" ]]; then
     # パターンに一致する最初の行を、新しいテキストで置換（元の行は消える）
     # 0,/pattern/ で「最初に見つけた1回目だけ」を対象にする
     sed -i "0,\|$ESCAPED_PATTERN| s|.*$ESCAPED_PATTERN.*|$ESCAPED_TEXT|" "$FILE_PATH"

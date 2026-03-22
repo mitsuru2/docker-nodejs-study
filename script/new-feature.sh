@@ -2,7 +2,7 @@
 
 # 引数チェック
 if [ -z "$1" ]; then
-    echo "Usage: ./new-ui.sh [page-name]"
+    echo "Usage: ./new-feature.sh [page-name]"
     exit 1
 fi
 
@@ -10,4 +10,4 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # 新しいコンポーネントを作成
-"$SCRIPT_DIR/new-component.sh" "ui" "$1"
+"$SCRIPT_DIR/new-component.sh" "feature" "$1"
