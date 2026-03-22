@@ -1,12 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  computed,
-  ElementRef,
-  input,
-  signal,
-  Signal,
-} from '@angular/core';
+import { Component, computed, input, Signal } from '@angular/core';
 import { CircularProgressBarConfigData } from './circular-progress-bar.interface';
 import { CircularImage } from '../circular-image/circular-image';
 import { CircularImageConfigData } from '../circular-image/circular-image.interface';

@@ -1,5 +1,3 @@
-import { GradientStopData } from '../../model/gradient-stop';
-
 export interface CircularProgressBarConfigData {
   id: string;
   path?: string; // 画像パス

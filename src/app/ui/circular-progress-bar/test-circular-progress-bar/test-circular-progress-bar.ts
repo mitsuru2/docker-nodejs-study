@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { CircularProgressBarConfigData } from '../circular-progress-bar.interface';
 import { CircularProgressBar } from '../circular-progress-bar';
-import { DesignTokens } from '../../../../styles';
 
 @Component({
   selector: 'app-test-circular-progress-bar',
