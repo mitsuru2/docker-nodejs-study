@@ -1,11 +1,15 @@
 import { Component, computed, input } from '@angular/core';
 import { ProgressBarConfigData } from './progress-bar.interface';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @Component({
   selector: 'app-progress-bar',
-  imports: [],
+  imports: [ProgressBarModule],
   templateUrl: './progress-bar.html',
   styleUrl: './progress-bar.scss',
+  host: {
+    '[style.--progress-value]': 'progress()',
+  },
 })
 export class ProgressBar {
   private readonly className = 'ProgressBar';
@@ -16,22 +20,7 @@ export class ProgressBar {
 
   // 制御パラメータ
   protected readonly id = computed(() => this.config().id);
-  protected readonly strokeWidth = computed(() => this.config().strokeWidth);
-  protected readonly fontSize = computed(() => this.config().fontSize);
-  protected readonly gradientStops = computed(() => {
-    const config = this.config();
-    if (config.gradientStops) {
-      return config.gradientStops;
-    } else if (config.strokeColor) {
-      return [
-        { offset: 0, color: config.strokeColor },
-        { offset: 100, color: config.strokeColor },
-      ];
-    } else {
-      return [
-        { offset: 0, color: 'black' },
-        { offset: 100, color: 'black' },
-      ];
-    }
-  });
+  protected readonly showValue = computed(() => this.config().showValue ?? false);
+  protected readonly strokeWidth = computed(() => this.config().strokeWidth ?? 2); // Default 2px.
+  protected readonly valueText = computed(() => `${Math.floor(this.progress())}%`);
 }

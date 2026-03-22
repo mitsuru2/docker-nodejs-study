@@ -1,1 +1,12 @@
-<p>progress-bar works!</p>
+<div class="container" [style.--progress]="valueText()" [style.--show-value]="showValue() ? 1 : 0">
+  @if (showValue()) {
+    <div class="progress-label">{{ valueText() }}</div>
+  }
+
+  <p-progressBar
+    [id]="id()"
+    [value]="progress()"
+    [showValue]="false"
+    [style]="{ height: strokeWidth() + 'px' }"
+  ></p-progressBar>
+</div>

@@ -1,0 +1,27 @@
+$container-padding-x: 1rem;
+
+.container {
+  width: 100%;
+  font-family: var(--p-custom-progress-bar-font-family);
+
+  position: relative;
+  padding-top: calc(var(--show-value) * 1rem);
+  padding-left: $container-padding-x;
+  padding-right: $container-padding-x;
+}
+
+.progress-label {
+  position: absolute;
+  top: 0;
+  /* 進捗に合わせて移動（中央揃え） */
+  left: calc(
+    #{$container-padding-x} + (100% - #{$container-padding-x} * 2) * var(--progress-value) / 100
+  );
+  transform: translateX(-50%);
+  transition: left 1s ease-in-out; // バーの動きに同期
+
+  /* デザイン調整 */
+  font-size: var(--p-custom-progress-bar-font-size);
+  font-weight: bold;
+  white-space: nowrap;
+}

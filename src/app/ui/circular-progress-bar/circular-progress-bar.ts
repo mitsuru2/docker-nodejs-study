@@ -32,7 +32,7 @@ export class CircularProgressBar {
   // 画像コンフィグ
   protected readonly imageConfig: Signal<CircularImageConfigData> = computed(() => ({
     path: this.config().path,
-    width: `${this.size() - this.strokeWidth() * 2 + 2}px`,
+    width: `${this.size() - this.strokeWidth() * 2 + 2}px`, // ちょうどにするとギャップができるので、左右1pxずつかさねる。
     height: `${this.size() - this.strokeWidth() * 2 + 2}px`,
   }));
 }

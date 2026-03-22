@@ -67,6 +67,18 @@ export const DesignTokens = {
       circularProgressBar: {
         background: 'var(--p-custom-gradient-blue-to-purple-circular)',
       },
+      progressBar: {
+        background: 'var(--p-custom-gradient-blue-to-purple-hori)',
+        fontSize: 'small',
+        fontFamily: 'var(--p-custom-font-sans-serif)',
+      },
+    },
+  },
+  components: {
+    progressbar: {
+      value: {
+        background: 'var(--p-custom-progress-bar-background)',
+      },
     },
   },
 } as const;

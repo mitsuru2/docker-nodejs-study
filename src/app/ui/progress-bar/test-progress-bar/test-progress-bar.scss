@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p-custom-margin-m);
+}
+
+.test-case {
+  width: calc(50% - var(--p-custom-margin-m));
+}
