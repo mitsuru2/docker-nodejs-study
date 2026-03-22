@@ -18,7 +18,10 @@ import { ProgressBarConfigData } from './progress-bar.interface';
   templateUrl: './progress-bar.html',
   styleUrl: './progress-bar.scss',
   host: {
-    '[style.--progress-value]': 'progress()',
+    role: 'progressbar',
+    '[attr.aria-valuenow]': 'progress()',
+    '[attr.aria-valuemin]': '0',
+    '[attr.aria-valuemax]': '100',
   },
 })
 export class ProgressBar implements AfterViewInit {

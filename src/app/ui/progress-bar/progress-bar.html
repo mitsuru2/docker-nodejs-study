@@ -1,7 +1,5 @@
 <div #container class="container" [style.--show-value]="showValue() ? 1 : 0">
-  @if (showValue()) {
-    <div #label class="progress-label"></div>
-  }
+  <div #label class="progress-label" [hidden]="!showValue()"></div>
 
   <div class="progress-track">
     <div class="progress-bar"></div>
