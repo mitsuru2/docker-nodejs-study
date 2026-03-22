@@ -1,13 +1,19 @@
-.circular-container {
+:host {
   display: inline-block;
+}
+
+.circular-container {
+  display: block;
   overflow: hidden;
   border-radius: 50%;
+  width: 100%;
+  height: 100%;
 }
 
 .circular-image {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
-  object-fit: conver;
+  object-fit: fill;
   object-position: center;
 }

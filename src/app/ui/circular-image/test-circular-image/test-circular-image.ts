@@ -21,31 +21,29 @@ export class TestCircularImage {
     {
       title: '幅指定 (100px)',
       config: {
+        id: 'ci2',
         path: this.hamster,
-        width: '100px',
       },
     },
     {
       title: '高さ指定 (100px)',
       config: {
+        id: 'ci3',
         path: this.hamster,
-        height: '100px',
       },
     },
     {
       title: '幅と高さ指定 (100px, 200px)',
       config: {
+        id: 'ci4',
         path: this.hamster,
-        width: '100px',
-        height: '200px',
       },
     },
     {
       title: 'ID, alt指定',
       config: {
-        id: 'circular-image-test',
+        id: 'ci5',
         path: this.hamster,
-        width: '100px',
         alt: 'テスト画像',
       },
     },

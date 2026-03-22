@@ -2,7 +2,7 @@
   @for (test of testCases; track $index) {
     <div>
       <h4>{{ test.title }}</h4>
-      <app-circular-image [config]="test.config"></app-circular-image>
+      <app-circular-image [class]="test.config.id" [config]="test.config"></app-circular-image>
     </div>
   }
 </div>
