@@ -18,10 +18,29 @@ $container-padding-x: 1rem;
     #{$container-padding-x} + (100% - #{$container-padding-x} * 2) * var(--progress-value) / 100
   );
   transform: translateX(-50%);
-  transition: left 1s ease-in-out; // バーの動きに同期
 
-  /* デザイン調整 */
+  /* テキスト */
   font-size: var(--p-custom-progress-bar-font-size);
-  font-weight: bold;
+  font-weight: var(--p-custom-progress-bar-font-weight);
   white-space: nowrap;
+}
+
+/* プログレスバー本体 */
+.progress-track {
+  position: relative;
+  width: 100%;
+  height: var(--p-custom-progress-bar-background-height);
+  // background-color: var(--p-surface-200);
+  background: var(--p-custom-progress-bar-background); /* styles.ts で定義されたグラデーション */
+  border-radius: 999px; /* 角丸 */
+  overflow: hidden;
+}
+
+.progress-bar {
+  position: absolute;
+  height: var(--p-custom-progress-bar-background-height);
+  width: calc((100 - var(--progress-value)) * 1%); /* JSで計算された値と同期 */
+  background-color: var(--p-surface-200);
+  right: 0; /* 右端に固定して、左側（完了部分）を露出させる */
+  // background: var(--p-custom-progress-bar-background); /* styles.ts で定義されたグラデーション */
 }

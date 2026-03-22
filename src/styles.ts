@@ -69,17 +69,13 @@ export const DesignTokens = {
       },
       progressBar: {
         background: 'var(--p-custom-gradient-blue-to-purple-hori)',
+        backgroundHeight: '4px',
         fontSize: 'small',
+        fontWeight: 'normal',
         fontFamily: 'var(--p-custom-font-sans-serif)',
       },
     },
   },
-  components: {
-    progressbar: {
-      value: {
-        background: 'var(--p-custom-progress-bar-background)',
-      },
-    },
-  },
+  components: {},
 } as const;
 export const CustomPreset = definePreset(Aura, DesignTokens);
