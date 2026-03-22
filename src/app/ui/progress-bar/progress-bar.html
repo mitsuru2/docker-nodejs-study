@@ -1,11 +1,6 @@
-<div
-  #container
-  class="container"
-  [style.--progress]="valueText()"
-  [style.--show-value]="showValue() ? 1 : 0"
->
+<div #container class="container" [style.--show-value]="showValue() ? 1 : 0">
   @if (showValue()) {
-    <div #label class="progress-label">{{ valueText() }}</div>
+    <div #label class="progress-label"></div>
   }
 
   <div class="progress-track">

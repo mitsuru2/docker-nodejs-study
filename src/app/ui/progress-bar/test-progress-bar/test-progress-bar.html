@@ -2,7 +2,11 @@
   @for (test of testCases; track $index) {
     <div class="test-case">
       <h3>{{ test.title }}</h3>
-      <app-progress-bar [config]="test.config" [progress]="progress()"></app-progress-bar>
+      <app-progress-bar
+        [class]="test.config.id"
+        [config]="test.config"
+        [progress]="progress()"
+      ></app-progress-bar>
     </div>
   }
 </div>

@@ -20,6 +20,14 @@ export class TestProgressBar implements OnInit, OnDestroy {
       title: 'ラベルあり',
       config: { id: 'pb2', showValue: true },
     },
+    {
+      title: '太さ変更 (CSS)',
+      config: { id: 'pb3' },
+    },
+    {
+      title: '色変更 (CSS)',
+      config: { id: 'pb4' },
+    },
   ];
 
   // 進捗制御

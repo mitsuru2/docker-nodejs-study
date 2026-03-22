@@ -7,3 +7,11 @@
 .test-case {
   width: calc(50% - var(--p-custom-margin-m));
 }
+
+.pb3 {
+  --p-custom-progress-bar-background-height: 20px;
+}
+
+.pb4 {
+  --p-custom-progress-bar-background: red;
+}

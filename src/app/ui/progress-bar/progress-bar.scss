@@ -29,18 +29,23 @@ $container-padding-x: 1rem;
 .progress-track {
   position: relative;
   width: 100%;
-  height: var(--p-custom-progress-bar-background-height);
-  // background-color: var(--p-surface-200);
-  background: var(--p-custom-progress-bar-background); /* styles.ts で定義されたグラデーション */
   border-radius: 999px; /* 角丸 */
   overflow: hidden;
+  height: var(--p-custom-progress-bar-background-height);
+  // 変動幅グラデーション
+  background-color: var(--p-surface-200);
+  // 固定幅グラデーション
+  // background: var(--p-custom-progress-bar-background); /* styles.ts で定義されたグラデーション */
 }
 
 .progress-bar {
   position: absolute;
   height: var(--p-custom-progress-bar-background-height);
-  width: calc((100 - var(--progress-value)) * 1%); /* JSで計算された値と同期 */
-  background-color: var(--p-surface-200);
-  right: 0; /* 右端に固定して、左側（完了部分）を露出させる */
-  // background: var(--p-custom-progress-bar-background); /* styles.ts で定義されたグラデーション */
+  // 変動幅グラデーション
+  background: var(--p-custom-progress-bar-background); /* styles.ts で定義されたグラデーション */
+  width: calc(var(--progress-value) * 1%); /* JSで計算された値と同期 */
+  // 固定幅グラデーション
+  // right: 0; /* 右端に固定して、左側（完了部分）を露出させる */
+  // background-color: var(--p-surface-200);
+  // width: calc((100 - var(--progress-value)) * 1%); /* JSで計算された値と同期 */
 }
