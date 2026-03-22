@@ -13,7 +13,7 @@ export class TestCircularProgressBar implements OnInit, OnDestroy {
   private readonly className = 'TestCircularProgressBar';
 
   private readonly hamster = 'images/hamster_1x1.png';
-  private readonly size = 160;
+  private readonly size = 320;
 
   protected readonly testCases: { title: string; config: CircularProgressBarConfigData }[] = [
     {

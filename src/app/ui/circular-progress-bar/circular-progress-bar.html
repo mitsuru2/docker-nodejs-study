@@ -29,11 +29,15 @@
   <foreignObject
     [attr.x]="strokeWidth()"
     [attr.y]="strokeWidth()"
-    [attr.width]="size() - strokeWidth() * 2 + 2"
-    [attr.height]="size() - strokeWidth() * 2 + 2"
+    [attr.width]="size() - strokeWidth() * 2 + 1"
+    [attr.height]="size() - strokeWidth() * 2 + 1"
   >
     <xhtml:div class="image-container">
-      <app-circular-image [config]="imageConfig()"> </app-circular-image>
+      <app-circular-image
+        [config]="imageConfig()"
+        [style]="'width: ' + (size() - strokeWidth() * 2 + 1) + 'px;'"
+      >
+      </app-circular-image>
     </xhtml:div>
   </foreignObject>
 

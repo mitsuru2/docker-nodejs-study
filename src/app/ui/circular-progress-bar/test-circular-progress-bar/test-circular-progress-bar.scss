@@ -4,5 +4,10 @@
   gap: var(--p-custom-margin-m);
 }
 .cpb2 {
-  --p-custom-circular-progress-bar-gradient: red;
+  --p-custom-circular-progress-bar-background: red;
+}
+
+.cpb-cmn {
+  width: 160px;
+  height: 160px;
 }

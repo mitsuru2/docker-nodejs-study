@@ -47,5 +47,12 @@ export class TestCircularImage {
         alt: 'テスト画像',
       },
     },
+    {
+      title: '拡大表示',
+      config: {
+        id: 'ci6',
+        path: this.hamster,
+      },
+    },
   ];
 }
