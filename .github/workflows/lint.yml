@@ -32,13 +32,40 @@ jobs:
         run: docker pull ${{ env.IMAGE_PATH }}
 
       # Lintコマンドの実行。
+      # ホストのコードをコンテナ内の作業ディレクトリ(/app)にマウントして実行
+      # チェックアウトしたソースツリーでDockerイメージのnode_modulesが上書きされてしまうのを防止するために
+      # /app/node_modulesに対して匿名ボリュームをマウント。
       - name: Run Lint
-        # ホストのコードをコンテナ内の作業ディレクトリ(/app)にマウントして実行
-        # チェックアウトしたソースツリーでDockerイメージのnode_modulesが上書きされてしまうのを防止するために
-        # /app/node_modulesに対して匿名ボリュームをマウント。
         run: |
           docker run --rm \
             --mount type=bind,source=${{ github.workspace }},target=/app \
             --mount type=volume,target=/app/node_modules \
             ${{ env.IMAGE_PATH }} \
-            npm run lint
+            npm run lint -- --format json --output-file eslint-report.json || true
+
+      # 結果のサマリー表示と判定
+      - name: Report Lint Results
+        run: |
+          # エラー数と警告数を取得 (jqを使用)
+          ERRORS=$(jq '[.[].errorCount] | add // 0' eslint-report.json)
+          WARNINGS=$(jq '[.[].warningCount] | add // 0' eslint-report.json)
+
+          # サマリー (Markdown) 出力
+          echo "## Lint Results" >> $GITHUB_STEP_SUMMARY
+          if [ "$ERRORS" -eq "0" ] && [ "$WARNINGS" -eq "0" ]; then
+             echo "No lint issues found." >> $GITHUB_STEP_SUMMARY
+          else
+             echo "Found **$ERRORS** errors and **$WARNINGS** warnings." >> $GITHUB_STEP_SUMMARY
+             echo "" >> $GITHUB_STEP_SUMMARY
+             echo "| File | Line | Type | Message |" >> $GITHUB_STEP_SUMMARY
+             echo "| --- | --- | --- | --- |" >> $GITHUB_STEP_SUMMARY
+             jq -r '.[] | select(.messages | length > 0) | .filePath as $path | .messages[] | "| " + ($path | sub("/app/"; "")) + " | " + (.line|tostring) + " | " + (if .severity == 2 then "Error" else "Warning" end) + " | " + .message + " |"' eslint-report.json >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # アノテーションの出力 (Files changedタブ等への統合)
+          jq -r '.[] | select(.messages | length > 0) | .filePath as $path | .messages[] | "::" + (if .severity == 2 then "error" else "warning" end) + " file=" + ($path | sub("/app/"; "")) + ",line=" + (.line|tostring) + ",col=" + (.column|tostring) + "::" + .message' eslint-report.json
+
+          # エラーがある場合はジョブを失敗させる
+          if [ "$ERRORS" -gt "0" ]; then
+            exit 1
+          fi
