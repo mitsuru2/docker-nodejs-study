@@ -1,7 +1,14 @@
 name: Unit Test (Angular)
 
-# プッシュされるたびに実行。除外条件なし。
-on: push
+on:
+  # プッシュされるたびに実行。
+  # mainブランチかつDocker関連ファイルに変更がある場合は実行をキャンセルし、Dockerイメージビルド完了後に再度実行する。
+  # on pushで複雑な条件を記述できないため。
+  push:
+  # Dockerイメージのビルドが完了してから実行
+  workflow_run:
+    workflows: ['Publish Docker Image (develop)']
+    types: [completed]
 
 # 環境変数設定
 env:
@@ -9,7 +16,47 @@ env:
   IMAGE_PATH: ghcr.io/${{ github.repository }}:main
 
 jobs:
-  lint:
+  # 事前条件判定 (workflow)
+  precond_workflow:
+    if: ${{ github.event_name == 'workflow_run' }}
+    runs-on: ubuntu-latest
+    steps:
+      # ワークフローが成功でなければ終了。
+      - name: Check if the trigger workflow is successful
+        run: |
+          if [ "${{ github.event.workflow_run.conclusion }}" != "success" ]; then
+            exit 1
+          fi
+
+  # 事前条件判定 (push && main branch)
+  precond_push:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      # mainブランチの場合、変更ファイルを調べるためにリポジトリをチェックアウト。
+      # メタデータだけでいいのでスパースチェックアウト。
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+          sparse-checkout: .
+
+      - name: Check if Docker related files changed
+        run: |
+          # 変更されたファイルの一覧を取得
+          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          # Docker関連ファイルが含まれているかチェック
+          if echo "$CHANGED_FILES" | grep -E 'Dockerfile|\.dockerignore|package\.json|package-lock\.json'; then
+            echo "Docker related files changed. Cancelling this workflow to wait for Docker build."
+            exit 1
+          fi
+
+  # テスト実行
+  test:
+    needs: precond
     runs-on: ubuntu-latest
     permissions:
       contents: read
