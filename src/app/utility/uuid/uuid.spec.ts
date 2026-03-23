@@ -1,6 +1,6 @@
 import { uuid } from './uuid';
 
-describe('Uuid', () => {
+describe('UUID', () => {
   it('should generate a valid v4 UUID', () => {
     const result = uuid();
 
