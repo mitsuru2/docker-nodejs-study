@@ -59,11 +59,8 @@ jobs:
              echo "" >> $GITHUB_STEP_SUMMARY
              echo "| File | Line | Type | Message |" >> $GITHUB_STEP_SUMMARY
              echo "| --- | --- | --- | --- |" >> $GITHUB_STEP_SUMMARY
-             jq -r '.[] | select(.messages | length > 0) | .filePath as $path | .messages[] | "| " + ($path | sub("/app/"; "")) + " | " + (.line|tostring) + " | " + (if .severity == 2 then "Error" else "Warning" end) + " | " + .message + " |"' eslint-report.json >> $GITHUB_STEP_SUMMARY
+             jq -r '.[] | select(.messages | length > 0) | .filePath as $path | .messages[] | "| " + ($path | sub("/app/"; "")) + " | " + (.line|tostring) + " | " + (if .severity == 2 then "Error" else "Warning" end) + " | " + (.message | gsub("\n"; "<br>")) + " |"' eslint-report.json >> $GITHUB_STEP_SUMMARY
           fi
-
-          # アノテーションの出力 (Files changedタブ等への統合)
-          jq -r '.[] | select(.messages | length > 0) | .filePath as $path | .messages[] | "::" + (if .severity == 2 then "error" else "warning" end) + " file=" + ($path | sub("/app/"; "")) + ",line=" + (.line|tostring) + ",col=" + (.column|tostring) + "::" + .message' eslint-report.json
 
           # エラーがある場合はジョブを失敗させる
           if [ "$ERRORS" -gt "0" ]; then
