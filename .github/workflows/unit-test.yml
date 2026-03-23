@@ -59,6 +59,11 @@ jobs:
     needs:
       - precond_workflow
       - precond_push
+    # 依存ジョブのいずれかがスキップされても、失敗やキャンセルがなければ実行する
+    if: >-
+      always() &&
+      !contains(needs.*.result, 'failure') &&
+      !contains(needs.*.result, 'cancelled')
     runs-on: ubuntu-latest
     permissions:
       contents: read
