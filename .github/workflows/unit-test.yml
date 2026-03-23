@@ -56,7 +56,9 @@ jobs:
 
   # テスト実行
   test:
-    needs: precond
+    needs:
+      - precond_workflow
+      - precond_push
     runs-on: ubuntu-latest
     permissions:
       contents: read
