@@ -1,0 +1,86 @@
+import { TestBed } from '@angular/core/testing';
+import { Logger } from './logger';
+
+describe('Logger', () => {
+  let service: Logger;
+  let consoleSpy: any;
+
+  beforeAll(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(Logger);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should log error message', () => {
+    consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    Logger.error('Test error message');
+
+    const logMessage = consoleSpy.mock.calls[0][0];
+    expect(logMessage).toMatch(
+      /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z \| \w{8}-\w{4}-\w{4}-\w{4}-\w{12} \| \/ \| ERROR \| Test error message/,
+    );
+    expect(consoleSpy).toHaveBeenCalledOnce();
+
+    consoleSpy.mockRestore();
+  });
+
+  it('should log warning message', () => {
+    consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    Logger.warn('Test warning message');
+
+    const logMessage = consoleSpy.mock.calls[0][0];
+    expect(logMessage).toMatch(
+      /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z \| \w{8}-\w{4}-\w{4}-\w{4}-\w{12} \| \/ \| WARN \| Test warning message/,
+    );
+    expect(consoleSpy).toHaveBeenCalledOnce();
+
+    consoleSpy.mockRestore();
+  });
+
+  it('should log info message', () => {
+    consoleSpy = vi.spyOn(console, 'info').mockImplementation(() => {});
+
+    Logger.info('Test info message');
+
+    const logMessage = consoleSpy.mock.calls[0][0];
+    expect(logMessage).toMatch(
+      /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z \| \w{8}-\w{4}-\w{4}-\w{4}-\w{12} \| \/ \| INFO \| Test info message/,
+    );
+    expect(consoleSpy).toHaveBeenCalledOnce();
+
+    consoleSpy.mockRestore();
+  });
+
+  it('should log debug message', () => {
+    consoleSpy = vi.spyOn(console, 'debug').mockImplementation(() => {});
+
+    Logger.debug('Test info message');
+
+    const logMessage = consoleSpy.mock.calls[0][0];
+    expect(logMessage).toMatch(
+      /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z \| \w{8}-\w{4}-\w{4}-\w{4}-\w{12} \| \/ \| DEBUG \| Test info message/,
+    );
+    expect(consoleSpy).toHaveBeenCalledOnce();
+
+    consoleSpy.mockRestore();
+  });
+
+  it('should log trace message', () => {
+    consoleSpy = vi.spyOn(console, 'trace').mockImplementation(() => {});
+
+    Logger.trace('Test info message');
+
+    const logMessage = consoleSpy.mock.calls[0][0];
+    expect(logMessage).toMatch(
+      /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z \| \w{8}-\w{4}-\w{4}-\w{4}-\w{12} \| \/ \| TRACE \| Test info message/,
+    );
+    expect(consoleSpy).toHaveBeenCalledOnce();
+
+    consoleSpy.mockRestore();
+  });
+});
