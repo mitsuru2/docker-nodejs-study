@@ -2,7 +2,7 @@
 
 # 引数チェック
 if [ -z "$1" ]; then
-    echo "Usage: ./new-ui.sh [page-name]"
+    echo "Usage: ./new-ui.sh [ui-name]"
     exit 1
 fi
 

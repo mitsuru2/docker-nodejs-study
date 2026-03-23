@@ -10,6 +10,7 @@
     "new-page": "./script/new-page.sh",
     "new-ui": "./script/new-ui.sh",
     "new-feature": "./script/new-feature.sh",
+    "new-utility": "./script/new-utility.sh",
     "serve:ssr:docker-nodejs-study": "node dist/docker-nodejs-study/server/server.mjs",
     "catalog": "ng run docker-nodejs-study:serve:ui-catalog",
     "lint": "ng lint"
