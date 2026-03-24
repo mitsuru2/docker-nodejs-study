@@ -6,9 +6,8 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-# 作成するページコンポーネントの名前を取得。
-PAGE_NAME=$1
+# スクリプトディレクトリを取得
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# Angularコマンド実行
-npx ng generate component "page/$PAGE_NAME" --skip-tests=false
-
+# 新しいコンポーネントを作成
+"$SCRIPT_DIR/new-component.sh" "page" "$1"

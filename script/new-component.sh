@@ -198,4 +198,29 @@ if [ ${COMPO_TYPE} = "ui" ] || [ ${COMPO_TYPE} = "feature" ]; then
         false
 fi
 
+# ページパスの登録
+if [ ${COMPO_TYPE} = "page" ]; then
+    MODEL_DIR=${SCRIPT_DIR}/../src/app/model
+    "$SCRIPT_DIR/insert-text.sh" "${MODEL_DIR}/page-path.ts" \
+        "export enum PagePath {" \
+        "  ${CLASS_NAME} = '${COMPO_NAME}'," \
+        false
+fi
+
+# ルーター設定修正
+if [ ${COMPO_TYPE} = "page" ]; then
+    APP_DIR=${SCRIPT_DIR}/../src/app
+    "$SCRIPT_DIR/insert-text.sh" "${APP_DIR}/app.routes.ts" \
+      "import { Routes } from '@angular/router';" \
+      "import { ${CLASS_NAME} } from './page/${COMPO_NAME}/${COMPO_NAME}';" \
+      false
+    "$SCRIPT_DIR/insert-text.sh" "${APP_DIR}/app.routes.ts" \
+      "export const routes: Routes = [" \
+      "  {
+    path: '${COMPO_NAME}',
+    component: ${CLASS_NAME},
+  }," \
+      false
+fi
+
 echo ""

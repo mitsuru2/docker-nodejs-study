@@ -8,6 +8,11 @@ export const DesignTokens = {
         brightBlue: 'oklch(51.01% 0.274 263.83)',
         brightPurple: 'fuchsia',
         lightGray: '#e6e6e6',
+        electricViolet: 'oklch(53.18% 0.28 296.97)',
+        frenchViolet: 'oklch(47.66% 0.246 305.88)',
+        vividPink: 'oklch(69.02% 0.277 332.77)',
+        hotRed: 'oklch(61.42% 0.238 15.34)',
+        orangeRed: 'oklch(63.32% 0.24 31.68)',
       },
       gradient: {
         blueToPurpleHori:
