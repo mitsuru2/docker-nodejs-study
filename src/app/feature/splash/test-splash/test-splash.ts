@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, Signal, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Splash } from '../splash';
-import { sleep } from '../../../utility/sleep/sleep';
 
 @Component({
   selector: 'app-test-splash',

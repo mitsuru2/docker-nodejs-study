@@ -1,4 +1,4 @@
-import { Component, computed, input, Signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CircularImage } from '../../ui/circular-image/circular-image';
 import { CircularImageConfigData } from '../../ui/circular-image/circular-image.interface';
 import { ProgressBar } from '../../ui/progress-bar/progress-bar';
