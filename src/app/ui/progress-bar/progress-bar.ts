@@ -11,6 +11,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ProgressBarConfigData } from './progress-bar.interface';
+import { Logger } from '../../utility/logger/logger';
 
 @Component({
   selector: 'app-progress-bar',
@@ -71,7 +72,7 @@ export class ProgressBar implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(`${this.className}.ngAfterViewInit()`);
+    Logger.debug(`${this.className}.ngAfterViewInit()`);
     this.updateDom(this.currentValue);
   }
 
