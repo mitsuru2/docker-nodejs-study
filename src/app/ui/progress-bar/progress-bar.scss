@@ -1,5 +1,9 @@
 $container-padding-x: 1rem;
 
+:host {
+  display: block;
+}
+
 .container {
   width: 100%;
   font-family: var(--p-custom-progress-bar-font-family);

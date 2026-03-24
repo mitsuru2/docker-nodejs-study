@@ -2,7 +2,9 @@
   @for (test of testCases; track $index) {
     <div>
       <h3>{{ test.title }}</h3>
-      <app-splash [config]="test.config"></app-splash>
+      <div>
+        <app-splash [class]="test.id" [progress]="progress()"></app-splash>
+      </div>
     </div>
   }
 </div>
