@@ -1,1 +1,7 @@
-<div>home works!</div>
+@if (showSplash()) {
+  <app-splash class="splash" animate.leave="fade-out" [progress]="initProgress()"></app-splash>
+}
+
+@if (showMain()) {
+  <div>home works!</div>
+}
