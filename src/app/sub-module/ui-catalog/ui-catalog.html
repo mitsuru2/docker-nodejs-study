@@ -20,6 +20,8 @@
     <div class="content-area">
       @if (selectedId === '') {
         <span>No component selected.</span>
+      } @else if (selectedId === 'app-shell') {
+        <app-test-app-shell></app-test-app-shell>
       } @else if (selectedId === 'splash') {
         <app-test-splash></app-test-splash>
       } @else if (selectedId === 'progress-bar') {

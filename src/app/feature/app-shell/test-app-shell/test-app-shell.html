@@ -1,0 +1,8 @@
+<div class="container">
+  @for (test of testCases; track $index) {
+    <div>
+      <h3>{{ test.title }}</h3>
+      <app-app-shell [config]="test.config"></app-app-shell>
+    </div>
+  }
+</div>
