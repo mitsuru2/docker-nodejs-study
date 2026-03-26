@@ -70,6 +70,11 @@ export const DesignTokens = {
       },
     },
     custom: {
+      carousel: {
+        image: {
+          width: '800px',
+        },
+      },
       circularProgressBar: {
         background: 'var(--p-custom-gradient-blue-to-purple-circular)',
       },

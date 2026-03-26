@@ -1,0 +1,22 @@
+<div class="carousel-viewport">
+  <div
+    class="carousel-track"
+    [style.transform]="'translateX(' + -currentIndex * 400 + 'px)'"
+    [style.transition]="isTransitioning ? 'transform 0.5s ease-in-out' : 'none'"
+    (transitionend)="onTransitionEnd()"
+  >
+    @for (item of displayItems(); track $index) {
+      <div class="carousel-item">
+        <!-- <div class="card"> -->
+        <img class="card" src="{{ item.path }}" alt="{{ item.id }}" />
+        <!-- </div> -->
+      </div>
+    }
+  </div>
+</div>
+
+<div class="dots">
+  @for (item of displayItems(); track $index) {
+    <span [class.active]="currentIndex === $index + 1" (click)="move($index + 1)"></span>
+  }
+</div>
