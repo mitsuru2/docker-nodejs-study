@@ -23,3 +23,11 @@ export function convTimestampTextToValue(timestamp: string): number {
   const date = new Date(timestamp);
   return date.getTime();
 }
+
+/**
+ * 現在の年を取得。
+ * @return 西暦年
+ */
+export function getCurrentYear(): number {
+  return new Date().getFullYear();
+}

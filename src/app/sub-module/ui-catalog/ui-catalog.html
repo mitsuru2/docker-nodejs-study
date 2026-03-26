@@ -1,5 +1,15 @@
 <div class="base">
-  <div class="header"><h2>My UI Catalog</h2></div>
+  <div class="header">
+    <h2>My UI Catalog</h2>
+    <p-menu #menu [model]="mobileItems" [popup]="true" />
+    <p-button
+      class="menu-button"
+      (click)="menu.toggle($event)"
+      icon="pi pi-bars"
+      size="small"
+      variant="outlined"
+    />
+  </div>
   <div class="main">
     <div class="menu-area">
       <p-accordion [(value)]="activeValue">

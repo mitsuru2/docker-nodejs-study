@@ -13,6 +13,7 @@ import { providePrimeNG } from 'primeng/config';
 import { CustomPreset } from '../styles';
 import { Logger } from './utility/logger/logger';
 import { isPlatformBrowser } from '@angular/common';
+import { MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -36,5 +37,6 @@ export const appConfig: ApplicationConfig = {
         Logger.info(`User Agent: ${ua}`);
       }
     }),
+    MessageService,
   ],
 };

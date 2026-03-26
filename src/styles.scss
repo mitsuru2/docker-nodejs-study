@@ -6,12 +6,18 @@ html,
 body {
   margin: 0; // Disable user agent stylesheet.
   padding: 0; // Disable user agent stylesheet.
-  font-family: var(--p-custom-font-serif);
+  font-family: var(--p-custom-font-sans-serif);
   font-size: var(--p-custom-font-size);
   color: var(--p-custom-font-color);
 }
 
-h1,
+h1 {
+  font-family: var(--p-custom-font-sans-serif);
+  font-weight: normal;
+  letter-spacing: 0.04em;
+  margin: 0;
+  font-size: var(--p-custom-font-size-h1);
+}
 h2,
 h3,
 h4,
@@ -23,4 +29,22 @@ h6 {
 h2,
 h3 {
   margin: var(--p-custom-margin-s) 0;
+}
+
+/**
+ * PrimeNG Font Control.
+ */
+p-menubar {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/**
+ * Mobil font config.
+ */
+@media screen and (max-width: 768px) {
+  html,
+  body {
+    font-size: 12px;
+  }
 }

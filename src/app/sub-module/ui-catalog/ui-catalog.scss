@@ -12,6 +12,10 @@
   border-top: 4px solid;
   border-image-source: var(--p-custom-gradient-blue-to-purple-hori);
   border-image-slice: 1;
+
+  .menu-button {
+    display: none;
+  }
 }
 
 .main {
@@ -35,4 +39,20 @@
 .content-area {
   flex: 1; // 残り全ての幅
   padding: var(--p-custom-margin-s) var(--p-custom-margin-m);
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    display: flex;
+    gap: var(--p-custom-margin-s);
+    align-items: center;
+
+    .menu-button {
+      display: block;
+    }
+  }
+
+  .menu-area {
+    display: none;
+  }
 }

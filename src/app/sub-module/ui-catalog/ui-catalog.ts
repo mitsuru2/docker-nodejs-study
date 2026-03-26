@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AccordionModule } from 'primeng/accordion';
 import { FormsModule } from '@angular/forms';
 import { MenuModule } from 'primeng/menu';
+import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 import { PresentationalComponentType, UiCatalogItemData } from './ui-catalog.interface';
 import { TestAppShell } from '../../feature/app-shell/test-app-shell/test-app-shell';
@@ -20,6 +21,7 @@ import { TestButton } from '../../ui/button/test-button/test-button';
     TestCircularProgressBar,
     TestCircularImage,
     TestButton,
+    ButtonModule,
     MenuModule,
     FormsModule,
     AccordionModule,
@@ -56,4 +58,14 @@ export class UiCatalog {
     .filter((item) => item.type === PresentationalComponentType.Feature)
     .sort((a, b) => a.name.localeCompare(b.name))
     .map((item) => ({ label: item.name, command: () => (this.selectedId = item.id) }));
+  protected readonly mobileItems = [
+    {
+      label: 'UI',
+      items: this.uiItems,
+    },
+    {
+      label: 'Feature',
+      items: this.featureItems,
+    },
+  ];
 }

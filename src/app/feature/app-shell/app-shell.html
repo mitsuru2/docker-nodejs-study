@@ -1,1 +1,17 @@
-<p>app-shell works!</p>
+<div class="header">
+  <h1>Mitsuru Takahashi Resume</h1>
+  <p-menubar [model]="menuItems" breakpoint="200px"></p-menubar>
+</div>
+
+<div class="main">
+  <ng-content></ng-content>
+</div>
+
+<div class="footer">
+  @if (firstYear === currentYear) {
+    <span>© {{ firstYear }} Mitsuru Takahashi</span>
+  } @else {
+    <span>© {{ firstYear }}-{{ currentYear }} Mitsuru Takahashi</span>
+  }
+</div>
+<p-scrolltop />

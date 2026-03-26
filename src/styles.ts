@@ -30,9 +30,10 @@ export const DesignTokens = {
       },
       font: {
         size: '16px',
+        sizeH1: '20px',
         color: '#495057',
         serif: "'Century', 'Times New Roman', Times, serif",
-        sansSerif: "'Arial', 'Helvetica', 'sans-serif'",
+        sansSerif: "'Noto Sans JP', 'Arial', 'Helvetica', 'sans-serif'",
       },
     },
   },
@@ -81,6 +82,17 @@ export const DesignTokens = {
       },
     },
   },
-  components: {},
+  components: {
+    menubar: {
+      root: {
+        padding: '0',
+        gap: '0',
+      },
+
+      baseItem: {
+        padding: '4px 8px',
+      },
+    },
+  },
 } as const;
 export const CustomPreset = definePreset(Aura, DesignTokens);

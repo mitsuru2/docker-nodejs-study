@@ -2,7 +2,10 @@
   @for (test of testCases; track $index) {
     <div>
       <h3>{{ test.title }}</h3>
-      <app-app-shell [config]="test.config"></app-app-shell>
+      <app-app-shell [class]="test.id" (clicked)="clickHandler($event)">
+        <div>Main contents here.</div>
+      </app-app-shell>
     </div>
   }
 </div>
+<p-toast></p-toast>

@@ -1,4 +1,9 @@
-import { getTimestamp, getTimestampText, convTimestampTextToValue } from './timestamp';
+import {
+  getTimestamp,
+  getTimestampText,
+  convTimestampTextToValue,
+  getCurrentYear,
+} from './timestamp';
 
 describe('Timestamp', () => {
   it('should return a valid timestamp', () => {
@@ -20,5 +25,10 @@ describe('Timestamp', () => {
     console.log(`value1: ${value1}`);
     console.log(`text2: ${text2}`);
     expect(text2).toEqual(text1);
+  });
+
+  it('can get current year', () => {
+    const year = getCurrentYear();
+    expect(year > 2025).toEqual(true);
   });
 });
