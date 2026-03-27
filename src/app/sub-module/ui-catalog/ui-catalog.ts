@@ -5,7 +5,7 @@ import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 import { PresentationalComponentType, UiCatalogItemData } from './ui-catalog.interface';
-import { TestCarousel } from '../../feature/carousel/test-carousel/test-carousel';
+import { TestCarousel } from '../../ui/carousel/test-carousel/test-carousel';
 import { TestAppShell } from '../../feature/app-shell/test-app-shell/test-app-shell';
 import { TestSplash } from '../../feature/splash/test-splash/test-splash';
 import { TestProgressBar } from '../../ui/progress-bar/test-progress-bar/test-progress-bar';
@@ -41,7 +41,7 @@ export class UiCatalog {
 
   // UIパーツリスト
   protected readonly items: UiCatalogItemData[] = [
-    { type: PresentationalComponentType.Feature, name: 'Carousel', id: 'carousel' },
+    { type: PresentationalComponentType.UI, name: 'Carousel', id: 'carousel' },
     { type: PresentationalComponentType.Feature, name: 'App Shell', id: 'app-shell' },
     { type: PresentationalComponentType.Feature, name: 'Splash', id: 'splash' },
     { type: PresentationalComponentType.UI, name: 'Progress Bar', id: 'progress-bar' },
