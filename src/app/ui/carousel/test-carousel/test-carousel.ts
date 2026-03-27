@@ -35,13 +35,21 @@ export class TestCarousel {
     },
     {
       id: 'crsl3',
-      title: 'viewport: 50vw, height: 200px',
+      title: 'viewport: 40vw, height: 200px',
       config: { images: this.images, interval: this.interval },
     },
     {
       id: 'crsl4',
       title: 'Show dots and overlay',
       config: { images: this.images, interval: this.interval, showDots: true, showOverlay: true },
+    },
+    {
+      id: 'crsl5',
+      title: 'Show title',
+      config: {
+        images: this.images.map((img) => ({ ...img, title: img.alt })),
+        interval: this.interval,
+      },
     },
   ];
 

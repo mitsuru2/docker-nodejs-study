@@ -83,6 +83,10 @@ export const DesignTokens = {
         image: {
           height: '100px',
           maxWidth: '100%',
+          overlay: {
+            fontSize: 'small',
+            fontWeight: 'normal',
+          },
         },
         overlay: {
           backgroundLeft: 'var(--p-custom-gradient-white-transparent-hori)',

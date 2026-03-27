@@ -4,7 +4,8 @@
   gap: var(--p-custom-margin-m);
 }
 
-.crsl1 {
+.crsl1,
+.crsl5 {
   --p-custom-carousel-width: 300px;
   --p-custom-carousel-image-max-width: 300px;
   --p-custom-carousel-image-height: 200px;
@@ -17,10 +18,15 @@
   --p-custom-carousel-track-gap: 10px;
 }
 .crsl3 {
-  --p-custom-carousel-width: 50vw;
+  --p-custom-carousel-width: 40vw;
   --p-custom-carousel-image-height: 200px;
 }
 
 .crsl4 {
   --p-custom-carousel-overlay-width: 100px;
+}
+
+.crsl5 {
+  --p-custom-carousel-image-overlay-font-size: x-small;
+  --p-custom-carousel-image-overlay-font-weight: bold;
 }

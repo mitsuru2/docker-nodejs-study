@@ -6,15 +6,19 @@
     (transitionend)="onTransitionEnd()"
   >
     @for (item of displayItems(); track $index) {
-      <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
-      <img
-        #imgElement
-        class="image"
-        [src]="item.path"
-        [alt]="item.alt"
-        (load)="refresh()"
-        (click)="imageClickHandler(item.id)"
-      />
+      <div #imgElement class="item-wrapper">
+        <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
+        <img
+          class="image"
+          [src]="item.path"
+          [alt]="item.alt"
+          (load)="refresh()"
+          (click)="imageClickHandler(item.id)"
+        />
+        @if (item.title) {
+          <div class="image-title-overlay">{{ item.title }}</div>
+        }
+      </div>
     }
   </div>
   @if (showOverlay()) {

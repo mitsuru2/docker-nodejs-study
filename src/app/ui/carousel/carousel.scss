@@ -16,12 +16,30 @@
    * 計算式: (-1) x 対象画像の中央までの長さ + ビューポートの幅の半分
    */
   transform: translateX(calc(-1 * var(--p-image-offset) + var(--p-custom-carousel-width) / 2));
-}
 
-.image {
-  max-width: var(--p-custom-carousel-image-max-width);
-  height: var(--p-custom-carousel-image-height);
-  object-fit: cover;
+  .item-wrapper {
+    position: relative;
+    display: block;
+  }
+
+  .image {
+    display: block;
+    max-width: var(--p-custom-carousel-image-max-width);
+    height: var(--p-custom-carousel-image-height);
+    object-fit: cover;
+  }
+
+  .image-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: var(--p-custom-margin-xs) 0;
+    background-color: rgb(from white r g b / 0.6);
+    font-size: var(--p-custom-carousel-image-overlay-font-size);
+    font-weight: var(--p-custom-carousel-image-overlay-font-weight);
+  }
 }
 
 .overlay {
