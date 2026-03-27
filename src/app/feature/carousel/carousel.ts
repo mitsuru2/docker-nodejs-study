@@ -15,7 +15,6 @@ import {
 } from '@angular/core';
 import { CarouselConfigData, CarouselOutputData } from './carousel.interface';
 import { Logger } from '../../utility/logger/logger';
-import { DesignTokens } from '../../../styles';
 
 @Component({
   selector: 'app-carousel',

@@ -6,6 +6,7 @@
     (transitionend)="onTransitionEnd()"
   >
     @for (item of displayItems(); track $index) {
+      <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
       <img
         #imgElement
         class="image"
@@ -27,13 +28,13 @@
 @if (showDots()) {
   <div class="dots">
     @for (_ of [].constructor(imageNum()); track $index) {
-      <span
-        [class.active]="currentIndex() - imageNum() === $index"
+      <button
+        type="button"
+        class="dot"
+        [class.active]="currentIndex() % imageNum() === $index"
+        [attr.aria-label]="$index + 1 + '枚目の画像を表示'"
         (click)="dotClickHandler($index + imageNum())"
-      ></span>
+      ></button>
     }
-    <!-- @for (item of displayItems(); track $index) {
-      <span [class.active]="currentIndex === $index + 1" (click)="move($index + 1)"></span>
-    } -->
   </div>
 }
