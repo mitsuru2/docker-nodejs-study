@@ -45,7 +45,8 @@ export class Carousel implements OnInit {
   protected isTransitioning = false; // アニメーション中を表すフラグ
   protected readonly showDots = computed(() => this.config().showDots ?? false);
   protected readonly imageNum = computed(() => this.config().images.length);
-  protected readonly showOverlay = computed(() => this.config().showOvelay ?? false);
+  protected readonly showOverlay = computed(() => this.config().showOverlay ?? false);
+  private requestAnimationRefId: number | null = null;
 
   // DOMエレメント
   @ViewChildren('imgElement') imageElements!: QueryList<ElementRef<HTMLImageElement>>;
@@ -75,9 +76,17 @@ export class Carousel implements OnInit {
     this.destroyRef.onDestroy(() => {
       clearInterval(timer);
     });
+
+    // コンポーネント破棄時にアニメーションフレーム要求をキャンセル
+    this.destroyRef.onDestroy(() => {
+      if (this.requestAnimationRefId !== null) {
+        cancelAnimationFrame(this.requestAnimationRefId);
+        this.requestAnimationRefId = null;
+      }
+    });
   }
 
-  next() {
+  private next() {
     this.isTransitioning = true; // アニメーションを有効にする
     this.currentIndex.update((index) => index + 1);
   }
@@ -90,8 +99,8 @@ export class Carousel implements OnInit {
     const location = `${this.className}.calcImageOffsetX()`;
     Logger.debug(`${location} index=${currentIndex}`);
 
-    if (!this.imageElements) {
-      Logger.warn(`transformStyle() imageElements is null`);
+    if (!this.imageElements || this.imageElements.length === 0) {
+      Logger.warn(`${location} imageElements is null`);
       return '0';
     }
 
@@ -99,7 +108,7 @@ export class Carousel implements OnInit {
     const targetImg = images[currentIndex]?.nativeElement;
 
     if (!targetImg) {
-      Logger.error(`transformStyle() targetImg is null`);
+      Logger.error(`${location} targetImg is null`);
       return '0';
     }
 
@@ -131,22 +140,36 @@ export class Carousel implements OnInit {
     }
   }
 
-  // 画像の読み込み完了時に座標を再計算させるためのトリガー
+  /**
+   * Angularの変更検知を走らせて transformStyle を再計算
+   * 関数呼び出し自体に意味があるので、基本は空関数でもいい。
+   * ここではtranslateXのスタイルを再計算している。画像準備完了のタイミングでオフセット初期値を設定するため。
+   */
   refresh() {
-    // Angularの変更検知を走らせて transformStyle を再計算
-    // 関数呼び出し自体に意味があるので、基本は空関数でもいい。
-    // ここではtranslateXのスタイルを再計算している。画像準備完了のタイミングでオフセット初期値を設定するため。
-    this.imageOffset.set(this.calcImageOffsetX(this.currentIndex()));
+    // すでに次フレームでリフレッシュ予定の場合は何もしない。
+    if (this.requestAnimationRefId !== null) {
+      return;
+    }
+
+    // アニメーションフレームを要求してオフセット計算を予約
+    this.requestAnimationRefId = requestAnimationFrame(() => {
+      this.requestAnimationRefId = null;
+      this.imageOffset.set(this.calcImageOffsetX(this.currentIndex()));
+    });
   }
 
   //----------------------------------------------------------------------------
   // ドットクリックイベント
   //
+  /**
+   * ドットインジケーターがクリックされた場合に表示する画像を変更する。
+   * @param index 画面上に表示されているドットのインデックス。
+   */
   protected dotClickHandler(index: number) {
     const location = `${this.className}.dotClickHandler()`;
     Logger.debug(`${location} index=${index}`);
 
-    this.currentIndex.set(index);
+    this.currentIndex.set(index + this.imageNum());
   }
 
   //----------------------------------------------------------------------------

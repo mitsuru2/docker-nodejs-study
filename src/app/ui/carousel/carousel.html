@@ -33,7 +33,7 @@
         class="dot"
         [class.active]="currentIndex() % imageNum() === $index"
         [attr.aria-label]="$index + 1 + '枚目の画像を表示'"
-        (click)="dotClickHandler($index + imageNum())"
+        (click)="dotClickHandler($index)"
       ></button>
     }
   </div>

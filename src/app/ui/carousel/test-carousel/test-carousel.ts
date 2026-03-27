@@ -41,7 +41,7 @@ export class TestCarousel {
     {
       id: 'crsl4',
       title: 'Show dots and overlay',
-      config: { images: this.images, interval: this.interval, showDots: true, showOvelay: true },
+      config: { images: this.images, interval: this.interval, showDots: true, showOverlay: true },
     },
   ];
 
