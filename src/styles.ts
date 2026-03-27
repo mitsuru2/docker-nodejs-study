@@ -71,8 +71,10 @@ export const DesignTokens = {
     },
     custom: {
       carousel: {
+        gap: '2px',
         image: {
-          width: '800px',
+          height: '100px',
+          maxWidth: '100%',
         },
       },
       circularProgressBar: {

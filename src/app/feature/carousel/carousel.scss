@@ -12,6 +12,45 @@
   flex: 0 0 100%; /* 横幅いっぱいに広げる */
 }
 
+// .viewport {
+// overflow: auto;
+// position: relative;
+// }
+
+// .track {
+//   display: flex;
+//   flex-wrap: nowrap;
+//   column-gap: var(--p-custom-carousel-gap);
+
+//   overflow: auto;
+//   scroll-behavior: smooth;
+//   scroll-snap-type: x mandatory;
+// }
+
+// .image {
+//   display: block;
+//   max-width: var(--p-custom-carousel-image-max-width);
+//   height: var(--p-custom-carousel-image-height);
+//   object-fit: cover;
+//   scroll-snap-align: center;
+// }
+
+.track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: max-content; /* 中身に合わせて広がるように */
+  will-change: transform;
+}
+
+.image {
+  flex: 0 0 auto; /* 幅を固定せず、画像本来のスケーリングに任せる */
+  max-width: var(--p-custom-carousel-image-max-width);
+  height: var(--p-custom-carousel-image-height);
+  object-fit: cover;
+  margin: 0 10px; /* 前後の画像との隙間 */
+}
+
 .card {
   width: 400px;
   //   background: #f0f0f0;

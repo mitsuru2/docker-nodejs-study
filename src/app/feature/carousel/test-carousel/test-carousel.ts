@@ -16,12 +16,13 @@ export class TestCarousel {
       title: '基本形',
       config: {
         images: [
-          { id: 'requirement', path: 'images/requirement.png' },
-          { id: 'system-design', path: 'images/system-design.png' },
-          { id: 'front-end', path: 'images/front-end.png' },
-          { id: 'ci', path: 'images/continuous-integration.png' },
-          { id: 'diag', path: 'images/vehicle-diagnostics.png' },
+          { id: 'requirement', path: 'images/requirement.png', alt: 'requirement analysis' },
+          { id: 'system-design', path: 'images/system-design.png', alt: 'system design' },
+          { id: 'front-end', path: 'images/front-end.png', alt: 'front-end development' },
+          { id: 'ci', path: 'images/continuous-integration.png', alt: 'continuous integration' },
+          { id: 'diag', path: 'images/vehicle-diagnostics.png', alt: 'vehicle diagnostics' },
         ],
+        interval: 2000,
       },
     },
   ];

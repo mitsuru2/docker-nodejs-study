@@ -63,7 +63,10 @@
             "ui-catalog": {
               "browser": "src/app/sub-module/ui-catalog/ui-catalog.main.ts",
               "server": "src/app/sub-module/ui-catalog/ui-catalog.main.server.ts",
-              "outputPath": "dist/ui-catalog"
+              "outputPath": "dist/ui-catalog",
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
