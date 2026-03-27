@@ -3,16 +3,19 @@ import {
   computed,
   DestroyRef,
   ElementRef,
+  EventEmitter,
   inject,
   input,
   linkedSignal,
   OnInit,
+  Output,
   QueryList,
   signal,
   ViewChildren,
 } from '@angular/core';
-import { CarouselConfigData } from './carousel.interface';
+import { CarouselConfigData, CarouselOutputData } from './carousel.interface';
 import { Logger } from '../../utility/logger/logger';
+import { DesignTokens } from '../../../styles';
 
 @Component({
   selector: 'app-carousel',
@@ -33,19 +36,26 @@ export class Carousel implements OnInit {
     const images = this.config().images;
     return [...images, ...images, ...images];
   });
-  private readonly intervalTime = computed(() => this.config().interval);
-  private currentIndex = signal<number>(0); // ngOnInitで初期化。
-  protected transformStyle = linkedSignal({
+  private readonly intervalTime = computed(() => this.config().interval); // 画像送りインターバル時間
+  protected currentIndex = signal<number>(0); // ngOnInitで初期化。
+  protected imageOffset = linkedSignal({
+    // trackのオフセット量計算に使用する対象画像中央までのオフセット
     source: this.currentIndex,
-    computation: (index) => this.updateTransformStyle(index),
+    computation: (index) => this.calcImageOffsetX(index),
   });
   protected isTransitioning = false; // アニメーション中を表すフラグ
+  protected readonly showDots = computed(() => this.config().showDots ?? false);
+  protected readonly imageNum = computed(() => this.config().images.length);
+  protected readonly showOverlay = computed(() => this.config().showOvelay ?? false);
 
   // DOMエレメント
   @ViewChildren('imgElement') imageElements!: QueryList<ElementRef<HTMLImageElement>>;
 
   // 依存サービス
   private destroyRef = inject(DestroyRef);
+
+  // 出力イベント
+  @Output() clicked = new EventEmitter<CarouselOutputData>();
 
   //----------------------------------------------------------------------------
   // ライフサイクル
@@ -77,28 +87,28 @@ export class Carousel implements OnInit {
   // アニメーション制御
   //
   // 現在のインデックスの画像が「中央」に来るようにtranslateXを計算
-  private updateTransformStyle(currentIndex: number) {
-    const location = `${this.className}.updateTransformStyle()`;
+  private calcImageOffsetX(currentIndex: number): string {
+    const location = `${this.className}.calcImageOffsetX()`;
     Logger.debug(`${location} index=${currentIndex}`);
 
     if (!this.imageElements) {
       Logger.warn(`transformStyle() imageElements is null`);
-      return 'translateX(0)';
+      return '0';
     }
 
     const images = this.imageElements.toArray();
     const targetImg = images[currentIndex]?.nativeElement;
-    const viewportWidth = 300; // viewportの幅
 
     if (!targetImg) {
       Logger.error(`transformStyle() targetImg is null`);
-      return 'translateX(0)';
+      return '0';
     }
 
-    // 計算式: (画像の位置) - (viewport中央までの余白)
-    // これにより、画像サイズがバラバラでも常にその画像が中央に来ます
-    const offset = targetImg.offsetLeft - viewportWidth / 2 + targetImg.offsetWidth / 2;
-    return `translateX(${-offset}px)`;
+    // 最終的なオフセット量はCSS側で計算。
+    // 計算に必要な対象画像のオフセットをここで計算。
+    const offsetExpr = `${targetImg.offsetLeft + targetImg.offsetWidth / 2}px`;
+    Logger.debug(`${location} offsetExpr=${offsetExpr}`);
+    return offsetExpr;
   }
 
   onTransitionEnd() {
@@ -127,6 +137,26 @@ export class Carousel implements OnInit {
     // Angularの変更検知を走らせて transformStyle を再計算
     // 関数呼び出し自体に意味があるので、基本は空関数でもいい。
     // ここではtranslateXのスタイルを再計算している。画像準備完了のタイミングでオフセット初期値を設定するため。
-    this.transformStyle.set(this.updateTransformStyle(this.currentIndex()));
+    this.imageOffset.set(this.calcImageOffsetX(this.currentIndex()));
+  }
+
+  //----------------------------------------------------------------------------
+  // ドットクリックイベント
+  //
+  protected dotClickHandler(index: number) {
+    const location = `${this.className}.dotClickHandler()`;
+    Logger.debug(`${location} index=${index}`);
+
+    this.currentIndex.set(index);
+  }
+
+  //----------------------------------------------------------------------------
+  // 画像クリックイベント
+  //
+  protected imageClickHandler(id: string) {
+    const location = `${this.className}.imageClickHandler()`;
+    Logger.debug(`${location} id=${id}`);
+
+    this.clicked.emit({ id });
   }
 }

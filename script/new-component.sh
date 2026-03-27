@@ -150,8 +150,8 @@ import { ${CLASS_NAME} } from '../${COMPO_NAME}';" false
         "export class ${TEST_CLASS_NAME} {
   private readonly className = '${TEST_CLASS_NAME}';
 
-  protected readonly testCases: { title: string; config: ${CONFIG_DATA_TYPE} }[] = [
-    { title: '基本形', config: {} }
+  protected readonly testCases: { id: string; title: string; config: ${CONFIG_DATA_TYPE} }[] = [
+    { id: 't1', title: '基本形', config: {} }
   ];
 }" true
 
@@ -162,7 +162,7 @@ import { ${CLASS_NAME} } from '../${COMPO_NAME}';" false
   @for (test of testCases; track \$index) {
     <div>
       <h3>{{ test.title }}</h3>
-      <${SELECTOR_NAME} [config]=\"test.config\"></${SELECTOR_NAME}>
+      <${SELECTOR_NAME} [class]=\"test.id\" [config]=\"test.config\"></${SELECTOR_NAME}>
     </div>
   }
 </div>" true

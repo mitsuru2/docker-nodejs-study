@@ -7,7 +7,6 @@ export const DesignTokens = {
       color: {
         brightBlue: 'oklch(51.01% 0.274 263.83)',
         brightPurple: 'fuchsia',
-        lightGray: '#e6e6e6',
         electricViolet: 'oklch(53.18% 0.28 296.97)',
         frenchViolet: 'oklch(47.66% 0.246 305.88)',
         vividPink: 'oklch(69.02% 0.277 332.77)',
@@ -16,11 +15,15 @@ export const DesignTokens = {
       },
       gradient: {
         blueToPurpleHori:
-          'linear-gradient(90deg, var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 100%)',
+          'linear-gradient(to right, var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 100%)',
         blueToPurpleVert:
-          'linear-gradient(var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 100%)',
+          'linear-gradient(to bottom, var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 100%)',
         blueToPurpleCircular:
           'conic-gradient(from 0deg, var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 50%, var(--p-custom-color-bright-blue) 100%)',
+        whiteTransparentHori:
+          'linear-gradient(to right, white 0%, rgb(from white r g b / 0.80) 50%, transparent 100%)',
+        whiteTransparentHoriReverse:
+          'linear-gradient(to left, white 0%, rgb(from white r g b / 0.80) 50%, transparent 100%)',
       },
       margin: {
         xs: '2px',
@@ -71,10 +74,20 @@ export const DesignTokens = {
     },
     custom: {
       carousel: {
-        gap: '2px',
+        root: {
+          width: '300px',
+        },
+        track: {
+          gap: '0',
+        },
         image: {
           height: '100px',
           maxWidth: '100%',
+        },
+        overlay: {
+          backgroundLeft: 'var(--p-custom-gradient-white-transparent-hori)',
+          backgroundRight: 'var(--p-custom-gradient-white-transparent-hori-reverse)',
+          width: '10%',
         },
       },
       circularProgressBar: {

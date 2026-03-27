@@ -1,18 +1,39 @@
-<div class="viewport" style="width: 300px; overflow: hidden; position: relative">
+<div class="viewport">
   <div
     class="track"
-    [style.transform]="transformStyle()"
+    [style.--p-image-offset]="imageOffset()"
     [style.transition]="isTransitioning ? 'transform 0.5s ease-out' : 'none'"
     (transitionend)="onTransitionEnd()"
   >
     @for (item of displayItems(); track $index) {
-      <img #imgElement class="image" [src]="item.path" [alt]="item.alt" (load)="refresh()" />
+      <img
+        #imgElement
+        class="image"
+        [src]="item.path"
+        [alt]="item.alt"
+        (load)="refresh()"
+        (click)="imageClickHandler(item.id)"
+      />
     }
   </div>
+  @if (showOverlay()) {
+    <div class="overlay">
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
+  }
 </div>
 
-<!-- <div class="dots">
-  @for (item of displayItems(); track $index) {
-    <span [class.active]="currentIndex === $index + 1" (click)="move($index + 1)"></span>
-  }
-</div> -->
+@if (showDots()) {
+  <div class="dots">
+    @for (_ of [].constructor(imageNum()); track $index) {
+      <span
+        [class.active]="currentIndex() - imageNum() === $index"
+        (click)="dotClickHandler($index + imageNum())"
+      ></span>
+    }
+    <!-- @for (item of displayItems(); track $index) {
+      <span [class.active]="currentIndex === $index + 1" (click)="move($index + 1)"></span>
+    } -->
+  </div>
+}

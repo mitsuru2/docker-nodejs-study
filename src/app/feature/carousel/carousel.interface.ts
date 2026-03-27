@@ -7,6 +7,8 @@ export interface CarouselImageData {
 export interface CarouselConfigData {
   images: CarouselImageData[];
   interval: number; // 画像送りインターバル (ms)
+  showDots?: boolean; // 画像の下にドットインジケーターを表示するかどうか。デフォルトfalse
+  showOvelay?: boolean; // ビューポートの左右に透過のグラデーションを表示するかどうか。デフォルトfalse。
 }
 
 export interface CarouselOutputData {
