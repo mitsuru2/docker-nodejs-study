@@ -1,5 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from '../../app.config';
 import { UiCatalog } from './ui-catalog';
+import { uiCatalogAppConfig } from './ui-catalog.config';
 
-bootstrapApplication(UiCatalog, appConfig).catch((err) => console.error(err));
+bootstrapApplication(UiCatalog, uiCatalogAppConfig).catch((err) => console.error(err));

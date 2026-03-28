@@ -38,6 +38,9 @@ export const DesignTokens = {
         serif: "'Century', 'Times New Roman', Times, serif",
         sansSerif: "'Noto Sans JP', 'Arial', 'Helvetica', 'sans-serif'",
       },
+      bp: {
+        mobile: '768px',
+      },
     },
   },
   semantic: {

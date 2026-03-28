@@ -4,10 +4,11 @@ import { filter, first } from 'rxjs';
 import { Logger } from './utility/logger/logger';
 import { AppManager } from './service/app-manager/app-manager';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, ScrollTopModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -18,10 +19,6 @@ export class App implements OnInit {
   private readonly router = inject(Router);
   private readonly appRef = inject(ApplicationRef);
   private readonly app = inject(AppManager);
-
-  // SSR -> CSR の切り替わりでの意図しないアニメーションへの対策。
-  // アプリケーションがCSRモードになるまでアニメーションを抑制するフラグ。
-  protected animationDisabled = true;
 
   //----------------------------------------------------------------------------
   // 生成・消滅
@@ -34,6 +31,7 @@ export class App implements OnInit {
     this.startRouterEventMonitoring();
 
     // アプリのハイドレーション完了タイミングの監視。
+    this.startHydrationStatusMonitoring();
   }
 
   ngOnInit(): void {
@@ -73,17 +71,14 @@ export class App implements OnInit {
   }
 
   private startHydrationStatusMonitoring() {
-    // ルーターイベントのフィルタリング
-    const observable = this.appRef.isStable.pipe(
-      first((stable) => stable), // 最初にtrueになった時にイベント発行
-      takeUntilDestroyed(), // コンポーネント破棄時にクリーンアップ
-    );
-
     // ルーターイベントの購読
-    // Appコンポーネントはアプリの生存期間中ずっと生きているのでunsubscribe()不要。
-    observable.subscribe(() => {
-      Logger.info(`AppRef > Hydration complete.}`);
-      this.animationDisabled = false;
-    });
+    this.appRef.isStable
+      .pipe(
+        first((stable) => stable), // 最初にtrueになった時にイベント発行
+        takeUntilDestroyed(), // コンポーネント破棄時にクリーンアップ
+      )
+      .subscribe(() => {
+        Logger.info(`AppRef > Hydration complete.`);
+      });
   }
 }

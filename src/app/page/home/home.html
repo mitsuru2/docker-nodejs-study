@@ -3,5 +3,12 @@
 }
 
 @if (showMain()) {
-  <div>home works!</div>
+  <app-app-shell>
+    <app-carousel
+      class="carousel"
+      [config]="carousel()"
+      (clicked)="carouselClickedHandler($event)"
+    ></app-carousel>
+    <div>home works!</div>
+  </app-app-shell>
 }

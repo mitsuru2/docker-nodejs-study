@@ -1,4 +1,4 @@
-$container-padding-x: 1rem;
+$container-padding-x: 1.6rem;
 
 :host {
   display: block;
@@ -8,19 +8,13 @@ $container-padding-x: 1rem;
   width: 100%;
   font-family: var(--p-custom-progress-bar-font-family);
 
-  position: relative;
-  padding-top: calc(var(--show-value) * 1rem);
   padding-left: $container-padding-x;
   padding-right: $container-padding-x;
 }
 
 .progress-label {
-  position: absolute;
-  top: 0;
-  /* 進捗に合わせて移動（中央揃え） */
-  left: calc(
-    #{$container-padding-x} + (100% - #{$container-padding-x} * 2) * var(--progress-value) / 100
-  );
+  display: inline-block;
+  margin-left: calc(var(--progress-value) * 1%);
   transform: translateX(-50%);
 
   /* テキスト */

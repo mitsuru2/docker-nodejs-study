@@ -1,3 +1,5 @@
+@use '../../../variables.scss' as v;
+
 .base {
   height: 100dvh;
   overflow: hidden;
@@ -41,7 +43,7 @@
   padding: var(--p-custom-margin-s) var(--p-custom-margin-m);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: v.$bp-mobile) {
   .header {
     display: flex;
     gap: var(--p-custom-margin-s);

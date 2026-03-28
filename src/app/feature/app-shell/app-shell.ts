@@ -2,12 +2,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { getCurrentYear } from '../../utility/timestamp/timestamp';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem, PrimeIcons } from 'primeng/api';
-import { ScrollTopModule } from 'primeng/scrolltop';
 import { AppShellOutputData, MenuItemId } from './app-shell.interface';
+import { PagePath } from '../../model/page-path';
 
 @Component({
   selector: 'app-app-shell',
-  imports: [MenubarModule, ScrollTopModule],
+  imports: [MenubarModule],
   templateUrl: './app-shell.html',
   styleUrl: './app-shell.scss',
 })
@@ -25,6 +25,7 @@ export class AppShell {
       command: () => {
         this.menuClicked(MenuItemId.Home);
       },
+      routerLink: '/' + PagePath.Home,
     },
     {
       label: 'Skills',
@@ -34,10 +35,10 @@ export class AppShell {
       },
     },
     {
-      label: 'Projects',
+      label: 'Career',
       icon: PrimeIcons.BRIEFCASE,
       command: () => {
-        this.menuClicked(MenuItemId.Projects);
+        this.menuClicked(MenuItemId.Career);
       },
     },
   ];

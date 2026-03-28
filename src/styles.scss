@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+@use './variables' as v;
 @import 'primeicons/primeicons.css';
 
 html,
@@ -42,7 +43,7 @@ p-menubar {
 /**
  * Mobil font config.
  */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: v.$bp-mobile) {
   html,
   body {
     font-size: 12px;

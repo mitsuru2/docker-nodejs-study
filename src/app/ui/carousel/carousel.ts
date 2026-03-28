@@ -47,6 +47,7 @@ export class Carousel implements OnInit {
   protected readonly imageNum = computed(() => this.config().images.length);
   protected readonly showOverlay = computed(() => this.config().showOverlay ?? false);
   private requestAnimationRefId: number | null = null;
+  protected isImageLoaded = signal(false); // 画像読み込み完了フラグ
 
   // DOMエレメント
   @ViewChildren('imgElement') imageElements!: QueryList<ElementRef<HTMLImageElement>>;
@@ -146,6 +147,9 @@ export class Carousel implements OnInit {
    * ここではtranslateXのスタイルを再計算している。画像準備完了のタイミングでオフセット初期値を設定するため。
    */
   refresh() {
+    // 画像読み込み完了フラグをセット
+    this.isImageLoaded.set(true);
+
     // すでに次フレームでリフレッシュ予定の場合は何もしない。
     if (this.requestAnimationRefId !== null) {
       return;

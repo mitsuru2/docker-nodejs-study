@@ -5,5 +5,5 @@ export interface AppShellOutputData {
 export enum MenuItemId {
   Home = 'home',
   Skills = 'skills',
-  Projects = 'projects',
+  Career = 'career',
 }
