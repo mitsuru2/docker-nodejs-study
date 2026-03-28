@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p-custom-margin-m);
+}
+
+app-country-flag {
+  border: 1px dashed blue;
+}
+
+.t1 {
+  width: 100px;
+}
+.t2 {
+  height: 4rem;
+}

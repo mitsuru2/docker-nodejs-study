@@ -1,0 +1,8 @@
+<div class="container">
+  @for (test of testCases; track $index) {
+    <div>
+      <h3>{{ test.title }}</h3>
+      <app-country-flag [class]="test.id" [locale]="test.config"></app-country-flag>
+    </div>
+  }
+</div>
