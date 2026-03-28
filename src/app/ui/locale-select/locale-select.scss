@@ -1,0 +1,28 @@
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+.select {
+  width: 100%;
+  --p-select-sm-font-size: var(--p-custom-locale-select-font-size);
+  font-size: var(--p-custom-locale-select-font-size);
+  font-weight: var(--p-custom-locale-select-font-weight);
+
+  --p-select-sm-padding-x: var(--p-custom-locale-select-padding-x);
+  --p-select-sm-padding-y: var(--p-custom-locale-select-padding-y);
+  --p-select-option-padding: var(--p-custom-locale-select-padding-y)
+    var(--p-custom-locale-select-padding-x);
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  column-gap: var(--p-custom-margin-s);
+  font-weight: var(--p-custom-locale-select-font-weight);
+
+  .flag {
+    height: var(--p-custom-locale-select-flag-height);
+    border: 1px solid var(--p-surface-200);
+  }
+}

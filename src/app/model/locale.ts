@@ -1,13 +1,21 @@
 export const appLocales = {
-  jp: {
+  jaJP: {
+    id: 'jaJP',
     locale: 'ja-JP',
     country: 'jp',
-    lang: 'ja',
+    language: 'ja',
+    countryName: '日本',
+    languageName: '日本語',
   },
-  us: {
-    locale: 'en-US',
-    country: 'us',
-    lang: 'en',
+  enGB: {
+    id: 'enGB',
+    locale: 'en-GB',
+    country: 'gb',
+    language: 'en',
+    countryName: 'United Kingdom',
+    languageName: 'English',
   },
 } as const;
 export type LocaleId = keyof typeof appLocales;
+export type LocaleData = (typeof appLocales)[LocaleId];
+export const appLocaleList: LocaleData[] = Object.values(appLocales);

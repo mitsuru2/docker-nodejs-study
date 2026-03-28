@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p-custom-margin-m);
+}
+
+.t1,
+.t2 {
+  width: 16rem;
+}
+
+.t3 {
+  width: 16rem;
+  --p-custom-locale-select-font-size: xx-large;
+  --p-custom-locale-select-font-weight: lighter;
+}
+.t4 {
+  width: 12rem;
+  --p-custom-locale-select-font-size: small;
+  --p-custom-locale-select-font-weight: bold;
+  --p-custom-locale-select-padding-x: 6px;
+  --p-custom-locale-select-padding-y: 2px;
+}

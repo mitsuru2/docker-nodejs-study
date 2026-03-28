@@ -100,6 +100,19 @@ export const DesignTokens = {
       circularProgressBar: {
         background: 'var(--p-custom-gradient-blue-to-purple-circular)',
       },
+      localeSelect: {
+        flag: {
+          height: '1.1em', // 文字サイズに追従
+        },
+        font: {
+          size: 'normal',
+          weight: 'normal',
+        },
+        padding: {
+          x: '0.5rem',
+          y: '0.75rem',
+        },
+      },
       progressBar: {
         background: 'var(--p-custom-gradient-blue-to-purple-hori)',
         backgroundHeight: '4px',

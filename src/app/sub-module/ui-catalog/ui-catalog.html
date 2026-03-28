@@ -30,6 +30,8 @@
     <div class="content-area">
       @if (selectedId === '') {
         <span>No component selected.</span>
+      } @else if (selectedId === 'locale-select') {
+        <app-test-locale-select></app-test-locale-select>
       } @else if (selectedId === 'country-flag') {
         <app-test-country-flag></app-test-country-flag>
       } @else if (selectedId === 'carousel') {

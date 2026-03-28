@@ -1,0 +1,31 @@
+<p-select
+  [options]="options"
+  [ngModel]="value()"
+  (ngModelChange)="value.set($event)"
+  [optionLabel]="type() === 'country' ? 'countryName' : 'languageName'"
+  size="small"
+  class="select"
+>
+  <ng-template #selectedItem let-option>
+    @if (option) {
+      <div class="option-item">
+        <app-country-flag [locale]="option.id" class="flag"></app-country-flag>
+        @if (type() === 'country') {
+          <span>{{ option.countryName }}</span>
+        } @else {
+          <span>{{ option.languageName }}</span>
+        }
+      </div>
+    }
+  </ng-template>
+  <ng-template #item let-option>
+    <div class="option-item">
+      <app-country-flag [locale]="option.id" class="flag"></app-country-flag>
+      @if (type() === 'country') {
+        <span>{{ option.countryName }}</span>
+      } @else {
+        <span>{{ option.languageName }}</span>
+      }
+    </div>
+  </ng-template>
+</p-select>

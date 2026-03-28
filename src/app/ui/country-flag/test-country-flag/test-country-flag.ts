@@ -12,7 +12,7 @@ export class TestCountryFlag {
   private readonly className = 'TestCountryFlag';
 
   protected readonly testCases: { id: string; title: string; config: LocaleId }[] = [
-    { id: 't1', title: 'width: 100px', config: 'us' },
-    { id: 't2', title: 'height: 4rem', config: 'jp' },
+    { id: 't1', title: 'width: 100px', config: 'enGB' },
+    { id: 't2', title: 'height: 4rem', config: 'jaJP' },
   ];
 }
