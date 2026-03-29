@@ -122,17 +122,5 @@ export const DesignTokens = {
       },
     },
   },
-  components: {
-    menubar: {
-      root: {
-        padding: '0',
-        gap: '0',
-      },
-
-      baseItem: {
-        padding: '4px 8px',
-      },
-    },
-  },
 } as const;
 export const CustomPreset = definePreset(Aura, DesignTokens);

@@ -18,6 +18,41 @@
   border-top: 4px solid;
   border-image-source: var(--p-custom-gradient-blue-to-purple-hori);
   border-image-slice: 1;
+
+  .right-side {
+    display: flex;
+    column-gap: var(--p-custom-margin-s);
+  }
+}
+
+p-menubar {
+  --p-menubar-gap: 0;
+  --p-menubar-padding: 0;
+  --p-menubar-base-item-padding: 4px 8px;
+}
+
+app-locale-select {
+  width: 8rem;
+  --p-custom-locale-select-font-size: small;
+  --p-custom-locale-select-font-weight: bold;
+  --p-custom-locale-select-padding-y: var(--p-custom-margin-xs);
+  --p-custom-locale-select-padding-x: var(--p-custom-margin-s);
+}
+
+.locale-button {
+  --p-button-outlined-primary-color: var(--p-custom-font-color);
+  --p-button-padding-y: 2px;
+}
+
+.locale-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--p-custom-margin-s);
+}
+
+.country-flag {
+  height: 1em;
+  border: 1px solid var(--p-surface-200);
 }
 
 .main {

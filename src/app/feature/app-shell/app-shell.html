@@ -1,6 +1,36 @@
 <div class="header">
+  <!-- 左側 -->
   <h1>Mitsuru Takahashi Resume</h1>
-  <p-menubar [model]="menuItems" breakpoint="200px"></p-menubar>
+
+  <!-- 右側 -->
+  <div class="right-side">
+    <p-menubar [model]="menuItems" breakpoint="200px"></p-menubar>
+    @if (!isMobile()) {
+      <app-locale-select
+        [config]="localeSelect"
+        [value]="locale()"
+        (valueChange)="localeChanged($event)"
+      ></app-locale-select>
+    } @else {
+      <p-menu #menu [model]="localeMenuItems" [popup]="true">
+        <ng-template #item let-item>
+          <div class="locale-menu-item">
+            <app-country-flag [locale]="item.id" class="country-flag"></app-country-flag>
+            <span>{{ item.label }}</span>
+            @if (locale().id === item.id) {
+              <i class="pi pi-check"></i>
+            }
+          </div>
+        </ng-template>
+      </p-menu>
+      <p-button
+        icon="pi pi-globe"
+        [outlined]="true"
+        class="locale-button"
+        (click)="menu.toggle($event)"
+      />
+    }
+  </div>
 </div>
 
 <div class="main">
