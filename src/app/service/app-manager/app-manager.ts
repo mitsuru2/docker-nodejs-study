@@ -54,7 +54,7 @@ export class AppManager {
     const location = `${this.className}.getDefaultLocale()`;
 
     // ブラウザの表示言語を取得
-    let browserLang: string | null = null;
+    let browserLang: string | null;
     if (isPlatformBrowser(this.platformId)) {
       browserLang = navigator.language;
     } else {

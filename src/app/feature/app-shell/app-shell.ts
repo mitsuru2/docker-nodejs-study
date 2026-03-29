@@ -11,7 +11,7 @@ import {
 import { getCurrentYear } from '../../utility/timestamp/timestamp';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem, PrimeIcons } from 'primeng/api';
-import { AppShellOutputData, MenuItemId } from './app-shell.interface';
+import { AppShellOutputData } from './app-shell.interface';
 import { PagePath } from '../../model/page-path';
 import { LocaleSelect } from '../../ui/locale-select/locale-select';
 import { appLocales, LocaleData } from '../../model/locale';
