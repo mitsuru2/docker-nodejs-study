@@ -24,6 +24,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Button } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { CountryFlag } from '../../ui/country-flag/country-flag';
+import { i18nLabels } from '../../../locale/_i18n_';
 
 @Component({
   selector: 'app-app-shell',
@@ -33,6 +34,9 @@ import { CountryFlag } from '../../ui/country-flag/country-flag';
 })
 export class AppShell implements OnInit {
   private readonly className = 'AppShell';
+
+  // テキストデータ
+  protected labels = i18nLabels;
 
   // 依存サービス
   private app = inject(AppManager);
@@ -60,7 +64,7 @@ export class AppShell implements OnInit {
   ];
 
   // 言語選択
-  protected locale = computed(() => appLocales[this.app.locale()]);
+  protected locale = computed(() => appLocales[this.app.localeId()]);
   protected localeSelect: LocaleSelectConfigData = { type: 'language' };
   protected readonly localeMenuItems: MenuItem[] = [
     {
@@ -100,6 +104,6 @@ export class AppShell implements OnInit {
   //
   protected localeChanged(locale: LocaleData) {
     Logger.debug(`${this.className}.localeChanged() locale=${locale.id}`);
-    this.app.setLocale(locale.id);
+    this.app.switchLocale(locale.id);
   }
 }

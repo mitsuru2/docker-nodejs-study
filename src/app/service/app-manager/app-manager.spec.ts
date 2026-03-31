@@ -1,40 +1,36 @@
-import { DOCUMENT, PLATFORM_ID, REQUEST } from '@angular/core';
+import { LOCALE_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { DomManager } from '../dom-manager/dom-manager';
 import { AppManager } from './app-manager';
 import { Logger } from '../../utility/logger/logger';
 import { appLocales } from '../../model/locale';
+import { WINDOW } from '../../model/custom-tokens';
+import { Location } from '@angular/common';
 
 describe('AppManager', () => {
   let service: AppManager;
-  let domManagerMock: { setAttribute: ReturnType<typeof vi.fn> };
-  let documentMock: { documentElement: any };
+  const mockWindow = {
+    location: {
+      href: '',
+    },
+  };
+  const mockLocation = {
+    path: () => '/en-GB/dashboard',
+  };
 
   beforeEach(() => {
     // タイマーを擬似化 (sleep関数の内部で使用されているsetTimeoutを制御)
     vi.useFakeTimers();
 
-    vi.spyOn(Logger, 'debug').mockImplementation(() => {});
-    vi.spyOn(Logger, 'info').mockImplementation(() => {});
-    vi.spyOn(Logger, 'error').mockImplementation(() => {});
-
-    domManagerMock = {
-      setAttribute: vi.fn(),
-    };
-
-    documentMock = {
-      documentElement: {},
-    };
-
     TestBed.configureTestingModule({
       providers: [
         AppManager,
-        { provide: DomManager, useValue: domManagerMock },
-        { provide: DOCUMENT, useValue: documentMock },
-        { provide: PLATFORM_ID, useValue: 'browser' },
+        { provide: LOCALE_ID, useValue: 'en-GB' },
+        { provide: WINDOW, useValue: mockWindow },
+        { provide: Location, useValue: mockLocation },
       ],
     });
+    service = TestBed.inject(AppManager);
   });
 
   afterEach(() => {
@@ -48,10 +44,8 @@ describe('AppManager', () => {
   });
 
   describe('initialize()', () => {
-    it('ブラウザ環境：日本語設定の場合、正しく初期化されること', async () => {
-      const langSpy = vi.spyOn(navigator, 'language', 'get').mockReturnValue('ja-JP');
-      service = TestBed.inject(AppManager);
-
+    it('ダミー処理 (2秒) 確認', async () => {
+      // 開始前の初期化フラグがfalse。
       expect(service.isInit()).toBe(false);
 
       // initializeを開始
@@ -61,90 +55,27 @@ describe('AppManager', () => {
       await vi.advanceTimersByTimeAsync(2000);
       await initTask;
 
+      // 終了後の初期化フラグがtrue。
       expect(service.isInit()).toBe(true);
-      expect(domManagerMock.setAttribute).toHaveBeenCalledWith(
-        documentMock.documentElement,
-        'lang',
-        appLocales['jaJP'].language,
-      );
-
-      langSpy.mockRestore();
-    });
-
-    it('ブラウザ環境：英語設定の場合、enGBがデフォルトになること', async () => {
-      const langSpy = vi.spyOn(navigator, 'language', 'get').mockReturnValue('en-US');
-      service = TestBed.inject(AppManager);
-
-      const initTask = service.initialize();
-      await vi.advanceTimersByTimeAsync(2000);
-      await initTask;
-
-      expect(domManagerMock.setAttribute).toHaveBeenCalledWith(
-        documentMock.documentElement,
-        'lang',
-        appLocales['enGB'].language,
-      );
-
-      langSpy.mockRestore();
-    });
-
-    it('サーバー環境(SSR)：ヘッダーのaccept-languageに基づいてロケールが決定されること', async () => {
-      // TestBedをサーバー環境として再構成
-      TestBed.resetTestingModule();
-      const requestMock = {
-        headers: {
-          get: vi.fn().mockReturnValue('ja-JP,ja;q=0.9'),
-        },
-      };
-
-      TestBed.configureTestingModule({
-        providers: [
-          AppManager,
-          { provide: DomManager, useValue: domManagerMock },
-          { provide: DOCUMENT, useValue: documentMock },
-          { provide: PLATFORM_ID, useValue: 'server' },
-          { provide: REQUEST, useValue: requestMock },
-        ],
-      });
-
-      service = TestBed.inject(AppManager);
-
-      const initTask = service.initialize();
-      await vi.advanceTimersByTimeAsync(2000);
-      await initTask;
-
-      expect(requestMock.headers.get).toHaveBeenCalledWith('accept-language');
-      expect(domManagerMock.setAttribute).toHaveBeenCalledWith(
-        documentMock.documentElement,
-        'lang',
-        appLocales['jaJP'].language,
-      );
     });
   });
 
-  describe('setLocale()', () => {
-    beforeEach(() => {
-      service = TestBed.inject(AppManager);
-    });
-
+  describe('switchLocale()', () => {
     it('jaJPを指定したとき、lang="ja"が設定されること', () => {
-      service.setLocale('jaJP');
-
-      expect(domManagerMock.setAttribute).toHaveBeenCalledWith(
-        documentMock.documentElement,
-        'lang',
-        'ja',
-      );
+      service.switchLocale('jaJP');
+      expect(mockWindow.location.href).toContain(appLocales.jaJP.locale);
     });
 
-    it('enGBを指定したとき、lang="en"が設定されること', () => {
-      service.setLocale('enGB');
+    it("現在のパスが'/'などの場合にロケールが付与されること", () => {
+      vi.spyOn(mockLocation, 'path').mockReturnValue('/');
+      service.switchLocale('jaJP');
+      expect(mockWindow.location.href).toBe(`/${appLocales.jaJP.locale}/`);
+    });
 
-      expect(domManagerMock.setAttribute).toHaveBeenCalledWith(
-        documentMock.documentElement,
-        'lang',
-        'en',
-      );
+    it('enGBを指定したとき、Do nothingがログに出力されること', () => {
+      const spy = vi.spyOn(Logger, 'info');
+      service.switchLocale('enGB');
+      expect(spy).toHaveBeenCalledWith(expect.stringContaining('Do nothing.'));
     });
   });
 });

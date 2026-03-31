@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "start-ja": "ng serve --configuration=ja-JP",
+    "build": "ng build --localize",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "new-page": "./script/new-page.sh",
@@ -14,7 +15,8 @@
     "new-service": "./script/new-service.sh",
     "serve:ssr:docker-nodejs-study": "node dist/docker-nodejs-study/server/server.mjs",
     "catalog": "ng run docker-nodejs-study:serve:ui-catalog",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "i18n": "ng extract-i18n --output-path src/locale"
   },
   "private": true,
   "packageManager": "npm@11.9.0",
@@ -39,6 +41,7 @@
     "@angular/build": "^21.2.3",
     "@angular/cli": "^21.2.3",
     "@angular/compiler-cli": "^21.2.5",
+    "@angular/localize": "^21.2.5",
     "@eslint/js": "^10.0.1",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",

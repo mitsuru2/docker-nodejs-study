@@ -13,7 +13,17 @@ FROM node:24-trixie AS build
 # Note: After installing packages, we clean up the apt cache to reduce the image size.
 RUN apt-get update && apt-get install -y \
     git \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
+
+# Enable sudo command to user 'node' w/o password.
+# mkdir -p: Create all intermediate directories at once.
+# /etc/sudoers.d: Directory to store configurations for each super user.
+# 0440: The 'sudo' command ignores files with permissions other than 0440.
+RUN echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/passwd-sudo-rules \
+    && mkdir -p /etc/sudoers.d \
+    && echo "node ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/node \
+    && chmod 0440 /etc/sudoers.d/node
 
 # Working directory in the container. This is where your application code will be located.
 # '/app' is a common convention, but you can choose any directory name you prefer.

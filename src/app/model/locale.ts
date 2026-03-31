@@ -1,7 +1,7 @@
 export const appLocales = {
   jaJP: {
     id: 'jaJP',
-    locale: 'ja-JP',
+    locale: 'ja', // Angular定義ではja-JPがなくてjaになっている。
     country: 'jp',
     language: 'ja',
     countryName: '日本',
