@@ -63,9 +63,11 @@ VS Code上で`F1`キーを押下し、コマンドパレットを開きます。
 
 コマンド候補の一覧から`Dev Containers: Open Folder in Container...`を選択。
 (表示されない場合はコマンドパレットに`Dev Containers`と入力。)
+
 <img src="public/images/readme/Pasted image 20260113225211.png">
 
 デフォルトでルートフォルダが選択されるので、そのままOKボタンをクリック。
+
 <img src="public/images/readme/Pasted image 20260113230003.png">
 
 VS Codeが再起動してDockerコンテナ上での操作が可能となります。Node.jsやAngular等のライブラリはDockerコンテナにインストール済なので、個別にインストールする必要はありません。
