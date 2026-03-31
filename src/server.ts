@@ -6,6 +6,7 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import { appLocales } from './app/model/locale';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -23,6 +24,30 @@ const angularApp = new AngularNodeAppEngine();
  * });
  * ```
  */
+
+/**
+ * 追加エンドポイント: ルートへのアクセスは ja または en-GB にリダイレクト。
+ */
+app.get('/', (req, res) => {
+  // ヘッダの accept-language が 'ja' を含んでいれば日本語、それ以外は英語。
+  const acceptLanguage = String(req.headers['accept-language'] ?? '').toLowerCase();
+  const targetLocale = acceptLanguage.includes(appLocales.jaJP.language)
+    ? appLocales.jaJP.locale
+    : appLocales.enGB.locale;
+
+  // デバッグ
+  console.log(`Root access is requested. Redirect to /${targetLocale}/`);
+
+  // 302でレスポンスを返してリダイレクトさせる。
+  return res.redirect(302, `/${targetLocale}/`);
+});
+
+/**
+ * 追加エンドポイント: ChromeのDevTools起因で発生するエラーを抑制するため。
+ */
+app.get('/.well-known/appspecific/com.chrome.devtools.json', (_req, res) => {
+  res.status(204).end();
+});
 
 /**
  * Serve static files from /browser

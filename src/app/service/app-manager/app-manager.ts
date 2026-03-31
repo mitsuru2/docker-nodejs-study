@@ -1,8 +1,8 @@
-import { inject, Injectable, LOCALE_ID, signal } from '@angular/core';
+import { inject, Injectable, LOCALE_ID, PLATFORM_ID, signal } from '@angular/core';
 import { Logger } from '../../utility/logger/logger';
 import { sleep } from '../../utility/sleep/sleep';
 import { appLocales, LocaleId } from '../../model/locale';
-import { Location } from '@angular/common';
+import { isPlatformBrowser, Location } from '@angular/common';
 import { NAVIGATOR, WINDOW } from '../../model/custom-tokens';
 
 @Injectable({
@@ -18,6 +18,7 @@ export class AppManager {
   private activeLocale = inject(LOCALE_ID);
   private window = inject(WINDOW);
   private navigator = inject(NAVIGATOR);
+  private platformId = inject(PLATFORM_ID);
 
   // 公開プロパティ
   isInit = signal(false); // 初期化フラグ
@@ -40,11 +41,14 @@ export class AppManager {
       `${location} Angular active locale: ${this.activeLocale}, Browser language: ${this.navigator.language}`,
     );
 
-    // ブラウザのデフォルト言語を基に自動判定
-    if (this.navigator.language.startsWith('ja')) {
-      this.switchLocale('jaJP');
-    } else {
-      this.switchLocale('enGB');
+    // ロケール自動変更はブラウザ動作時のみ実施。
+    if (isPlatformBrowser(this.platformId)) {
+      // ブラウザのデフォルト言語を基に自動判定
+      if (this.navigator.language.startsWith('ja')) {
+        this.switchLocale('jaJP');
+      } else {
+        this.switchLocale('enGB');
+      }
     }
 
     // ダミー処理

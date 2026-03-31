@@ -1,4 +1,5 @@
 import {
+  mergeApplicationConfig,
   ApplicationConfig,
   inject,
   PLATFORM_ID,
@@ -15,12 +16,11 @@ import { Logger } from './utility/logger/logger';
 import { isPlatformBrowser } from '@angular/common';
 import { MessageService } from 'primeng/api';
 
-export const appConfig: ApplicationConfig = {
+export const commonConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideClientHydration(withEventReplay()),
     providePrimeNG({
       ripple: true,
       theme: {
@@ -40,3 +40,7 @@ export const appConfig: ApplicationConfig = {
     MessageService,
   ],
 };
+
+export const appConfig = mergeApplicationConfig(commonConfig, {
+  providers: [provideClientHydration(withEventReplay())],
+});
