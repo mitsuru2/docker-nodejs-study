@@ -10,6 +10,70 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="common.home" datatype="html">
+        <source>Home</source>
+        <target>ホーム</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="common.skills" datatype="html">
+        <source>Skills</source>
+        <target>スキル</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="common.career" datatype="html">
+        <source>Career</source>
+        <target>キャリア</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.requirementAnalysis" datatype="html">
+        <source>Solution Definition &amp; Proposal</source>
+        <target>要件分析 &amp; ソリューション提案</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.systemDesign" datatype="html">
+        <source>System Architecture Design</source>
+        <target>システムアーキテクチャ設計</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.frontEndDevelopment" datatype="html">
+        <source>Front-End Development</source>
+        <target>フロントエンド開発</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.continuousIntegration" datatype="html">
+        <source>Development Workflow &amp; CI/CD</source>
+        <target>CI/CDワークフロー開発</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.vehicleDiagnostics" datatype="html">
+        <source>Vehicle Diagnostics &amp; AUTOSAR</source>
+        <target>車両診断 &amp; AUTOSAR</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

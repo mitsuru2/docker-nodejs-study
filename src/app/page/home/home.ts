@@ -10,6 +10,7 @@ import { Carousel } from '../../ui/carousel/carousel';
 import { CarouselConfigData, CarouselOutputData } from '../../ui/carousel/carousel.interface';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DesignTokens } from '../../../styles';
+import { i18nLabels } from '../../../locale/_i18n_';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ export class Home implements OnInit {
   private router = inject(Router);
   private bpObserver = inject(BreakpointObserver);
   private destroyRef = inject(DestroyRef);
+  private logger = inject(Logger);
 
   // スプラッシュ制御パラメータ
   protected initProgress = computed(() => {
@@ -45,33 +47,33 @@ export class Home implements OnInit {
     images: [
       {
         id: 'user-req',
-        alt: 'solution definition and proposal',
+        alt: i18nLabels.home.requirementAnalysis.toLowerCase(),
         path: 'images/requirement.png',
-        title: 'Solution Definition & Proposal',
+        title: i18nLabels.home.requirementAnalysis,
       },
       {
         id: 'arch-design',
-        alt: 'system architecture design',
+        alt: i18nLabels.home.systemDesign.toLowerCase(),
         path: 'images/system-design.png',
-        title: 'System Architecture Design',
+        title: i18nLabels.home.systemDesign,
       },
       {
         id: 'front-end',
-        alt: 'front-end development',
+        alt: i18nLabels.home.frontEndDevelopment.toLowerCase(),
         path: 'images/front-end.png',
-        title: 'Front-End Development',
+        title: i18nLabels.home.frontEndDevelopment,
       },
       {
         id: 'ci',
-        alt: 'development workflow & ci/cd',
+        alt: i18nLabels.home.continuousIntegration.toLocaleLowerCase(),
         path: 'images/continuous-integration.png',
-        title: 'Development Workflow & CI/CD',
+        title: i18nLabels.home.continuousIntegration,
       },
       {
         id: 'diag',
-        alt: 'vehicle diagnostics & autosar',
+        alt: i18nLabels.home.vehicleDiagnostics.toLocaleLowerCase(),
         path: 'images/vehicle-diagnostics.png',
-        title: 'Vehicle Diagnostics & Autosar',
+        title: i18nLabels.home.vehicleDiagnostics,
       },
     ],
     interval: 6000,
@@ -115,6 +117,6 @@ export class Home implements OnInit {
 
   protected carouselClickedHandler(event: CarouselOutputData) {
     const location = `${this.className}.carouselClickedHandler()`;
-    Logger.info(`${location} id=${event.id}`);
+    this.logger.info(`${location} id=${event.id}`);
   }
 }

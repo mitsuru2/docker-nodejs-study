@@ -13,6 +13,7 @@ export class AppManager {
 
   // 依存サービス
   private location = inject(Location);
+  private logger = inject(Logger);
 
   // 依存トークン
   private activeLocale = inject(LOCALE_ID);
@@ -28,7 +29,7 @@ export class AppManager {
   // 生成・消滅
   //
   constructor() {
-    Logger.debug(`New ${this.className}()`);
+    this.logger.debug(`New ${this.className}()`);
   }
 
   //----------------------------------------------------------------------------
@@ -36,26 +37,17 @@ export class AppManager {
   //
   initialize = async () => {
     const location = `${this.className}.initialize()`;
-    Logger.debug(`${location}`);
-    Logger.info(
+    this.logger.debug(`${location}`);
+    this.logger.info(
       `${location} Angular active locale: ${this.activeLocale}, Browser language: ${this.navigator.language}`,
     );
 
-    // ロケール自動変更はブラウザ動作時のみ実施。
+    // ダミー処理 (ブラウザでの動作確認用。サーバー側ではスキップしてレスポンス速度を優先)
     if (isPlatformBrowser(this.platformId)) {
-      // ブラウザのデフォルト言語を基に自動判定
-      if (this.navigator.language.startsWith('ja')) {
-        this.switchLocale('jaJP');
-      } else {
-        this.switchLocale('enGB');
-      }
+      await sleep(2000);
+      // 初期化フラグ設定
+      this.isInit.set(true);
     }
-
-    // ダミー処理
-    await sleep(2000);
-
-    // 初期化フラグ設定
-    this.isInit.set(true);
   };
 
   //----------------------------------------------------------------------------
@@ -71,7 +63,7 @@ export class AppManager {
     // 現在のロケールと同じなら何もしない。
     const targetLocale = appLocales[locale].locale;
     if (this.activeLocale === targetLocale) {
-      Logger.info(`${location} Same locale is input. Do nothing.`);
+      this.logger.info(`${location} Same locale is input. Do nothing.`);
       return;
     }
 
@@ -87,7 +79,7 @@ export class AppManager {
         newPath = `/${targetLocale}/${newPath}`;
       }
     }
-    Logger.debug(`${location} curPath=${curPath}, newPath=${newPath}`);
+    this.logger.debug(`${location} curPath=${curPath}, newPath=${newPath}`);
 
     // 新しいパスに遷移
     // JavaScriptの入替を伴うリロードなのでRouterでのページ遷移ではなく

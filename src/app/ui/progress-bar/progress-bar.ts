@@ -49,6 +49,9 @@ export class ProgressBar implements AfterViewInit {
   @ViewChild('container') containerRef!: ElementRef;
   @ViewChild('label') labelRef!: ElementRef;
 
+  // 依存サービス
+  private logger = inject(Logger);
+
   //----------------------------------------------------------------------------
   // 生成・消滅
   //
@@ -72,7 +75,7 @@ export class ProgressBar implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    Logger.debug(`${this.className}.ngAfterViewInit()`);
+    this.logger.debug(`${this.className}.ngAfterViewInit()`);
     this.updateDom(this.currentValue);
   }
 

@@ -1,8 +1,8 @@
-<div class="viewport">
+<div class="viewport" [style.opacity]="isImageLoaded() ? 1 : 0">
   <div
     class="track"
     [style.--p-image-offset]="imageOffset()"
-    [style.transition]="isTransitioning ? 'transform 0.5s ease-out' : 'none'"
+    [style.transition]="isTransitioning ? 'transform 0.7s ease-in-out' : 'none'"
     (transitionend)="onTransitionEnd()"
   >
     @for (item of displayItems(); track $index) {

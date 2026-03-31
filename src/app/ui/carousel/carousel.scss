@@ -2,6 +2,7 @@
   overflow: hidden;
   position: relative;
   width: var(--p-custom-carousel-width);
+  transition: opacity 0.3s ease-in; /* スムーズな表示のために追加 */
 }
 
 .track {

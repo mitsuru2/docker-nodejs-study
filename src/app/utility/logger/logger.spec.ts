@@ -16,7 +16,7 @@ describe('Logger', () => {
   it('should log error message', () => {
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-    Logger.error('Test error message');
+    service.error('Test error message');
 
     const logMessage = consoleSpy.mock.calls[0][0];
     expect(logMessage).toMatch(
@@ -28,7 +28,7 @@ describe('Logger', () => {
   it('should log warning message', () => {
     const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
-    Logger.warn('Test warning message');
+    service.warn('Test warning message');
 
     const logMessage = consoleSpy.mock.calls[0][0];
     expect(logMessage).toMatch(
@@ -40,7 +40,7 @@ describe('Logger', () => {
   it('should log info message', () => {
     const consoleSpy = vi.spyOn(console, 'info').mockImplementation(() => {});
 
-    Logger.info('Test info message');
+    service.info('Test info message');
 
     const logMessage = consoleSpy.mock.calls[0][0];
     expect(logMessage).toMatch(
@@ -52,7 +52,7 @@ describe('Logger', () => {
   it('should log debug message', () => {
     const consoleSpy = vi.spyOn(console, 'debug').mockImplementation(() => {});
 
-    Logger.debug('Test info message');
+    service.debug('Test info message');
 
     const logMessage = consoleSpy.mock.calls[0][0];
     expect(logMessage).toMatch(
@@ -64,7 +64,7 @@ describe('Logger', () => {
   it('should log trace message', () => {
     const consoleSpy = vi.spyOn(console, 'trace').mockImplementation(() => {});
 
-    Logger.trace('Test info message');
+    service.trace('Test info message');
 
     const logMessage = consoleSpy.mock.calls[0][0];
     expect(logMessage).toMatch(

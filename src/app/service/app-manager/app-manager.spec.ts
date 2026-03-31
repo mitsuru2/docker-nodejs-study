@@ -17,6 +17,13 @@ describe('AppManager', () => {
   const mockLocation = {
     path: () => '/en-GB/dashboard',
   };
+  const mockLogger = {
+    info: () => {},
+    debug: () => {},
+    error: () => {},
+    warn: () => {},
+    trace: () => {},
+  };
 
   beforeEach(() => {
     // タイマーを擬似化 (sleep関数の内部で使用されているsetTimeoutを制御)
@@ -28,6 +35,7 @@ describe('AppManager', () => {
         { provide: LOCALE_ID, useValue: 'en-GB' },
         { provide: WINDOW, useValue: mockWindow },
         { provide: Location, useValue: mockLocation },
+        { provide: Logger, useValue: mockLogger },
       ],
     });
     service = TestBed.inject(AppManager);
@@ -73,7 +81,7 @@ describe('AppManager', () => {
     });
 
     it('enGBを指定したとき、Do nothingがログに出力されること', () => {
-      const spy = vi.spyOn(Logger, 'info');
+      const spy = vi.spyOn(mockLogger, 'info');
       service.switchLocale('enGB');
       expect(spy).toHaveBeenCalledWith(expect.stringContaining('Do nothing.'));
     });

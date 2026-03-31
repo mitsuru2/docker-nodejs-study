@@ -39,7 +39,9 @@
             "styles": ["src/styles.scss"],
             "server": "src/main.server.ts",
             "outputMode": "server",
-            "security": {},
+            "security": {
+              "allowedHosts": ["localhost"]
+            },
             "ssr": {
               "entry": "src/server.ts"
             },
@@ -83,6 +85,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.ui-catalog.ts"
+                },
+                {
+                  "replace": "src/app/app.routes.server.ts",
+                  "with": "src/app/sub-module/ui-catalog/ui-catalog.routes.server.ts"
                 }
               ]
             },

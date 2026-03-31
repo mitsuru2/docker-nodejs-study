@@ -42,6 +42,7 @@ export class AppShell implements OnInit {
   private app = inject(AppManager);
   private bpObserver = inject(BreakpointObserver);
   private destroyRef = inject(DestroyRef);
+  private logger = inject(Logger);
 
   // 出力イベント
   @Output() clicked = new EventEmitter<AppShellOutputData>();
@@ -49,16 +50,16 @@ export class AppShell implements OnInit {
   // メニュー
   protected readonly menuItems: MenuItem[] = [
     {
-      label: 'Home',
+      label: this.labels.common.home,
       icon: PrimeIcons.HOME,
       routerLink: '/' + PagePath.Home,
     },
     {
-      label: 'Skills',
+      label: this.labels.common.skills,
       icon: PrimeIcons.WRENCH,
     },
     {
-      label: 'Career',
+      label: this.labels.common.career,
       icon: PrimeIcons.BRIEFCASE,
     },
   ];
@@ -103,7 +104,7 @@ export class AppShell implements OnInit {
   // 言語変更イベント
   //
   protected localeChanged(locale: LocaleData) {
-    Logger.debug(`${this.className}.localeChanged() locale=${locale.id}`);
+    this.logger.debug(`${this.className}.localeChanged() locale=${locale.id}`);
     this.app.switchLocale(locale.id);
   }
 }

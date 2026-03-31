@@ -19,12 +19,13 @@ export class App implements OnInit {
   private readonly router = inject(Router);
   private readonly appRef = inject(ApplicationRef);
   private readonly app = inject(AppManager);
+  private readonly logger = inject(Logger);
 
   //----------------------------------------------------------------------------
   // 生成・消滅
   //
   constructor() {
-    Logger.debug(`New ${this.className}()`);
+    this.logger.debug(`New ${this.className}()`);
 
     // ルーターイベントの監視開始。
     // コンポーネントではなく、システム全体の初期化に関するものなので、コンストラクタで初期化。
@@ -35,7 +36,7 @@ export class App implements OnInit {
   }
 
   ngOnInit(): void {
-    Logger.debug(`${this.className}.ngOnInit()`);
+    this.logger.debug(`${this.className}.ngOnInit()`);
     this.app.initialize(); // 非同期の初期化処理を開始。ngOnInitは完了を待たずに終了。
   }
 
@@ -66,7 +67,7 @@ export class App implements OnInit {
     // ルーターイベントの購読
     // Appコンポーネントはアプリの生存期間中ずっと生きているのでunsubscribe()不要。
     observable.subscribe((event) => {
-      Logger.info(`Router > ${event.toString()}`);
+      this.logger.info(`Router > ${event.toString()}`);
     });
   }
 
@@ -78,7 +79,7 @@ export class App implements OnInit {
         takeUntilDestroyed(), // コンポーネント破棄時にクリーンアップ
       )
       .subscribe(() => {
-        Logger.info(`AppRef > Hydration complete.`);
+        this.logger.info(`AppRef > Hydration complete.`);
       });
   }
 }

@@ -48,12 +48,14 @@ export class Carousel implements OnInit {
   protected readonly showOverlay = computed(() => this.config().showOverlay ?? false);
   private requestAnimationRefId: number | null = null;
   protected isImageLoaded = signal(false); // 画像読み込み完了フラグ
+  protected loadedImageCount = signal(0); // 新しいシグナル：読み込み済み画像の数
 
   // DOMエレメント
   @ViewChildren('imgElement') imageElements!: QueryList<ElementRef<HTMLImageElement>>;
 
   // 依存サービス
   private destroyRef = inject(DestroyRef);
+  private logger = inject(Logger);
 
   // 出力イベント
   @Output() clicked = new EventEmitter<CarouselOutputData>();
@@ -62,7 +64,7 @@ export class Carousel implements OnInit {
   // ライフサイクル
   //
   ngOnInit(): void {
-    Logger.debug(`${this.className}.ngOnInit()`);
+    this.logger.debug(`${this.className}.ngOnInit()`);
     this.currentIndex.set(this.config().images.length);
     this.startAutoPlay();
   }
@@ -98,10 +100,10 @@ export class Carousel implements OnInit {
   // 現在のインデックスの画像が「中央」に来るようにtranslateXを計算
   private calcImageOffsetX(currentIndex: number): string {
     const location = `${this.className}.calcImageOffsetX()`;
-    Logger.debug(`${location} index=${currentIndex}`);
+    this.logger.debug(`${location} index=${currentIndex}`);
 
     if (!this.imageElements || this.imageElements.length === 0) {
-      Logger.warn(`${location} imageElements is null`);
+      this.logger.warn(`${location} imageElements is null`);
       return '0';
     }
 
@@ -109,14 +111,14 @@ export class Carousel implements OnInit {
     const targetImg = images[currentIndex]?.nativeElement;
 
     if (!targetImg) {
-      Logger.error(`${location} targetImg is null`);
+      this.logger.error(`${location} targetImg is null`);
       return '0';
     }
 
     // 最終的なオフセット量はCSS側で計算。
     // 計算に必要な対象画像のオフセットをここで計算。
     const offsetExpr = `${targetImg.offsetLeft + targetImg.offsetWidth / 2}px`;
-    Logger.debug(`${location} offsetExpr=${offsetExpr}`);
+    this.logger.debug(`${location} offsetExpr=${offsetExpr}`);
     return offsetExpr;
   }
 
@@ -130,14 +132,14 @@ export class Carousel implements OnInit {
     if (this.currentIndex() >= count * 2) {
       this.isTransitioning = false;
       this.currentIndex.update((index) => index - count);
-      Logger.debug(`${location} index:${oldIndex} --> ${this.currentIndex()}`);
+      this.logger.debug(`${location} index:${oldIndex} --> ${this.currentIndex()}`);
     }
     // displayImagesの1つ目の画像配列のゾーンに入ったら
     // アニメーションを切って最後の画像にインデックスを戻す。
     else if (this.currentIndex() < count) {
       this.isTransitioning = false;
       this.currentIndex.update((index) => index + count);
-      Logger.debug(`${location} index:${oldIndex} --> ${this.currentIndex()}`);
+      this.logger.debug(`${location} index:${oldIndex} --> ${this.currentIndex()}`);
     }
   }
 
@@ -147,19 +149,28 @@ export class Carousel implements OnInit {
    * ここではtranslateXのスタイルを再計算している。画像準備完了のタイミングでオフセット初期値を設定するため。
    */
   refresh() {
-    // 画像読み込み完了フラグをセット
-    this.isImageLoaded.set(true);
+    const location = `${this.className}.refresh()`;
+    this.logger.debug(`${location}`);
 
-    // すでに次フレームでリフレッシュ予定の場合は何もしない。
-    if (this.requestAnimationRefId !== null) {
-      return;
+    this.loadedImageCount.update((count) => count + 1); // 読み込み済み画像をカウントアップ
+
+    // 全ての画像が読み込まれたら初期オフセットを計算し、カルーセルを表示可能にする
+    if (this.loadedImageCount() === this.displayItems().length) {
+      this.isImageLoaded.set(true); // 全ての画像が読み込み完了
+
+      // すでに次フレームでリフレッシュ予定の場合は何もしない。
+      if (this.requestAnimationRefId !== null) {
+        cancelAnimationFrame(this.requestAnimationRefId);
+        this.requestAnimationRefId = null;
+      }
+
+      // アニメーションフレームを要求してオフセット計算を予約
+      this.requestAnimationRefId = requestAnimationFrame(() => {
+        this.requestAnimationRefId = null;
+        this.imageOffset.set(this.calcImageOffsetX(this.currentIndex()));
+        this.logger.debug(`${location} All images loaded. Initial offset calculated.`);
+      });
     }
-
-    // アニメーションフレームを要求してオフセット計算を予約
-    this.requestAnimationRefId = requestAnimationFrame(() => {
-      this.requestAnimationRefId = null;
-      this.imageOffset.set(this.calcImageOffsetX(this.currentIndex()));
-    });
   }
 
   //----------------------------------------------------------------------------
@@ -171,7 +182,7 @@ export class Carousel implements OnInit {
    */
   protected dotClickHandler(index: number) {
     const location = `${this.className}.dotClickHandler()`;
-    Logger.debug(`${location} index=${index}`);
+    this.logger.debug(`${location} index=${index}`);
 
     this.currentIndex.set(index + this.imageNum());
   }
@@ -181,7 +192,7 @@ export class Carousel implements OnInit {
   //
   protected imageClickHandler(id: string) {
     const location = `${this.className}.imageClickHandler()`;
-    Logger.debug(`${location} id=${id}`);
+    this.logger.debug(`${location} id=${id}`);
 
     this.clicked.emit({ id });
   }

@@ -10,14 +10,15 @@ export class DomManager {
   // 依存サービス
   private renderer: Renderer2;
   private factory = inject(RendererFactory2);
+  private logger = inject(Logger);
 
   constructor() {
-    Logger.debug(`New ${this.className}()`);
+    this.logger.debug(`New ${this.className}()`);
     this.renderer = this.factory.createRenderer(null, null);
   }
 
   setAttribute(element: HTMLElement, name: string, value: string) {
-    Logger.debug(`${this.className}.setAttribute() name=${name}, value=${value}`);
+    this.logger.debug(`${this.className}.setAttribute() name=${name}, value=${value}`);
     if (element && name) {
       this.renderer.setAttribute(element, name, value);
     }

@@ -5,7 +5,6 @@ import { appLocales, LocaleData } from '../../../model/locale';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { map, merge } from 'rxjs';
 import { MessageService } from 'primeng/api';
-import { Logger } from '../../../utility/logger/logger';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
@@ -58,7 +57,6 @@ export class TestLocaleSelect {
 
     merge(...changes$).subscribe(({ index, value }) => {
       const message = `index=${index}, locale=${value.locale}`;
-      Logger.debug(message);
       this.messageService.add({ severity: 'info', summary: 'info', detail: message });
     });
   }
