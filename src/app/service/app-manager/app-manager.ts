@@ -35,7 +35,7 @@ export class AppManager {
   //----------------------------------------------------------------------------
   // システム初期化処理
   //
-  initialize = async () => {
+  async initialize() {
     const location = `${this.className}.initialize()`;
     this.logger.debug(`${location}`);
     this.logger.info(
@@ -48,7 +48,7 @@ export class AppManager {
       // 初期化フラグ設定
       this.isInit.set(true);
     }
-  };
+  }
 
   //----------------------------------------------------------------------------
   // 言語設定

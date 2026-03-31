@@ -67,18 +67,13 @@ export class AppShell implements OnInit {
   // 言語選択
   protected locale = computed(() => appLocales[this.app.localeId()]);
   protected localeSelect: LocaleSelectConfigData = { type: 'language' };
-  protected readonly localeMenuItems: MenuItem[] = [
-    {
-      label: appLocales.jaJP.languageName,
-      id: appLocales.jaJP.id,
-      command: () => this.localeChanged(appLocales.jaJP),
-    },
-    {
-      label: appLocales.enGB.languageName,
-      id: appLocales.enGB.id,
-      command: () => this.localeChanged(appLocales.enGB),
-    },
-  ];
+  protected readonly localeMenuItems: MenuItem[] = Object.values(appLocales).map(
+    (data): MenuItem => ({
+      label: data.languageName,
+      id: data.id,
+      command: () => this.localeChanged(data),
+    }),
+  );
 
   // フッター
   protected readonly firstYear = 2026;
