@@ -1,63 +1,113 @@
-# DockerNodejsStudy
+# docker-nodejs-study
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
+Angular (SSR) + Docker の学習用リポジトリです。
 
-## Development server
+## 概要
 
-To start a local development server, run:
+- Angular 21 + TypeScript
+- SSR (server output mode) / Express
+- i18n（en-GB / ja）
+- PrimeNG / PrimeIcons
+- Dockerfile / Dev Container 対応
+- Vitest（依存あり）
 
-```bash
-ng serve
-```
+## 必要要件
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Node.js（リポジトリの `packageManager` に合わせて npm 11 系推奨）
+- Docker（Dockerfile を利用する場合）
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## セットアップ
 
 ```bash
-ng generate --help
+npm ci
 ```
 
-## Building
-
-To build the project run:
+## 開発サーバー起動
 
 ```bash
-ng build
+npm run start
+# http://localhost:4200/
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 日本語構成で起動
 
-## Running unit tests
+```bash
+npm run start-ja
+# http://localhost:4200/
+```
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## ビルド
+
+SSR を含めてローカライズビルドします。
+
+```bash
+npm run build
+```
+
+ビルド成果物は `dist/` に出力され、SSR サーバーのエントリは以下です。
+
+- `dist/docker-nodejs-study/server/server.mjs`
+
+## SSR サーバー起動（ビルド後）
+
+```bash
+npm run serve:ssr:docker-nodejs-study
+```
+
+## UI カタログ
+
+```bash
+npm run catalog
+```
+
+## テスト / リント
 
 ```bash
 npm run test
+npm run lint
 ```
 
-**References:**
+## i18n
 
-- **Angular + Vitest Guide:** https://dev.to/olayeancarh/testing-angular-21-components-with-vitest-a-complete-guide-8l2
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+メッセージ抽出（XLIFF）は以下です。
 
 ```bash
-ng e2e
+npm run i18n
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Docker
 
-## Additional Resources
+### 1) イメージビルド
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+docker build -t docker-nodejs-study .
+```
+
+### 2) 起動
+
+SSR サーバーを起動します（`Dockerfile` の runtime ステージ）。
+
+```bash
+docker run --rm -p 4200:4200 docker-nodejs-study
+```
+
+> 注: 現在の `Dockerfile` は build ステージではソースをコピーせず、マウント前提のコメントが含まれています。
+> 運用方法に合わせて `COPY . .` の扱いを調整してください。
+
+## Dev Container
+
+`.devcontainer/devcontainer.json` で Dockerfile（build ステージ）を利用する構成になっています。
+
+## スクリプト
+
+`script/` 配下に、新規ページ/機能/サービス等の雛形生成用スクリプトがあります。
+
+- `npm run new-page`
+- `npm run new-feature`
+- `npm run new-service`
+- `npm run new-ui`
+- `npm run new-utility`
+
+## ライセンス
+
+[LICENSE](./LICENSE)
