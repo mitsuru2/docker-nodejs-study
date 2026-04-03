@@ -12,7 +12,7 @@
 
     <div class="card-container">
       @for (card of cardContents; track $index) {
-        <app-card-with-button [config]="card.card">
+        <app-card-with-button [id]="card.id" [config]="card.card" class="test">
           <p class="catch-copy">{{ card.catchCopy }}</p>
           @for (m of card.messages; track $index) {
             <p>{{ m }}</p>

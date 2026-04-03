@@ -28,6 +28,7 @@
     max-width: var(--p-custom-carousel-image-max-width);
     height: var(--p-custom-carousel-image-height);
     object-fit: cover;
+    cursor: var(--p-custom-carousel-image-cursor);
   }
 
   .image-title-overlay {

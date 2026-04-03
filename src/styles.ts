@@ -101,6 +101,7 @@ export const DesignTokens = {
             fontSize: 'small',
             fontWeight: 'normal',
           },
+          cursor: 'auto',
         },
         overlay: {
           backgroundLeft: 'var(--p-custom-gradient-white-transparent-hori)',

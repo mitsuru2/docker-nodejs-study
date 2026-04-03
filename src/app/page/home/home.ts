@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, DestroyRef, DOCUMENT, inject, OnInit, signal } from '@angular/core';
 import { AppManager } from '../../service/app-manager/app-manager';
 import { Splash } from '../../feature/splash/splash';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
@@ -19,6 +19,7 @@ import { PrimeIcons } from 'primeng/api';
 import { SkillMenuItem } from './home.interface';
 
 interface CardContentData {
+  id: string;
   catchCopy: string;
   messages: string[];
   card: CardWithButtonConfigData;
@@ -39,6 +40,9 @@ export class Home implements OnInit {
   private bpObserver = inject(BreakpointObserver);
   private destroyRef = inject(DestroyRef);
   private logger = inject(Logger);
+
+  // 依存トークン
+  private document = inject(DOCUMENT);
 
   // スプラッシュ制御パラメータ
   protected initProgress = computed(() => {
@@ -105,6 +109,7 @@ export class Home implements OnInit {
   } as const;
   protected readonly cardContents: CardContentData[] = [
     {
+      id: `card-${SkillMenuItem.diag}`,
       catchCopy: i18nLabels.skills.diag.subTitle,
       messages: [i18nLabels.skills.diag.description],
       card: {
@@ -113,6 +118,7 @@ export class Home implements OnInit {
       },
     },
     {
+      id: `card-${SkillMenuItem.frontEnd}`,
       catchCopy: i18nLabels.skills.frontEnd.subTitle,
       messages: [i18nLabels.skills.frontEnd.description],
       card: {
@@ -121,6 +127,7 @@ export class Home implements OnInit {
       },
     },
     {
+      id: `card-${SkillMenuItem.ci}`,
       catchCopy: i18nLabels.skills.ci.subTitle,
       messages: [i18nLabels.skills.ci.description],
       card: {
@@ -129,6 +136,7 @@ export class Home implements OnInit {
       },
     },
     {
+      id: `card-${SkillMenuItem.systemDesign}`,
       catchCopy: i18nLabels.skills.systemDesign.subTitle,
       messages: [i18nLabels.skills.systemDesign.description],
       card: {
@@ -137,6 +145,7 @@ export class Home implements OnInit {
       },
     },
     {
+      id: `card-${SkillMenuItem.userReq}`,
       catchCopy: i18nLabels.skills.userReq.subTitle,
       messages: [i18nLabels.skills.userReq.description],
       card: {
@@ -181,5 +190,19 @@ export class Home implements OnInit {
   protected carouselClickedHandler(event: CarouselOutputData) {
     const location = `${this.className}.carouselClickedHandler()`;
     this.logger.info(`${location} id=${event.id}`);
+
+    // クリックされた画像に対応するカードエレメント取得
+    const element = this.document.getElementById(`card-${event.id}`);
+    if (!element) {
+      this.logger.error(`${location} card is null`);
+      return;
+    }
+
+    // 取得したカードエレメントまで移動
+    element.scrollIntoView({ behavior: 'smooth' });
+
+    // 強調アニメーションスタイルを適用。アニメーション終了後に削除。
+    element.classList.add('selected-card');
+    setTimeout(() => element.classList.remove('selected-card'), 2000);
   }
 }

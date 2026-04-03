@@ -30,19 +30,7 @@
   --p-custom-carousel-image-overlay-font-size: normal;
   --p-custom-carousel-image-overlay-font-weight: bold;
   --p-custom-carousel-track-gap: 1px;
-}
-
-.fade-in {
-  animation: 1s appear;
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  --p-custom-carousel-image-cursor: pointer;
 }
 
 .card-container {
@@ -59,6 +47,28 @@
 
   .catch-copy {
     font-weight: bold;
+  }
+}
+
+/* 変数に「色」という型を定義する */
+@property --p-card-background {
+  syntax: '<color>';
+  initial-value: transparent;
+  inherits: true;
+}
+.selected-card {
+  animation: highlight 2s ease-out;
+}
+
+@keyframes highlight {
+  0% {
+    --p-card-background: transparent;
+  }
+  20% {
+    --p-card-background: var(--p-primary-100);
+  }
+  100% {
+    --p-card-background: transparent;
   }
 }
 
