@@ -1,5 +1,3 @@
-import { CardWithButtonConfigData } from '../../ui/card-with-button/card-with-button.interface';
-
 export const SkillMenuItem = {
   userReq: 'user-req',
   systemDesign: 'system-design',
