@@ -11,10 +11,22 @@ import { CarouselConfigData, CarouselOutputData } from '../../ui/carousel/carous
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DesignTokens } from '../../../styles';
 import { i18nLabels } from '../../../locale/_i18n_';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { CardModule } from 'primeng/card';
+import { CardWithButton } from '../../ui/card-with-button/card-with-button';
+import { CardWithButtonConfigData } from '../../ui/card-with-button/card-with-button.interface';
+import { PrimeIcons } from 'primeng/api';
+import { SkillMenuItem } from './home.interface';
+
+interface CardContentData {
+  catchCopy: string;
+  messages: string[];
+  card: CardWithButtonConfigData;
+}
 
 @Component({
   selector: 'app-home',
-  imports: [Splash, AppShell, Carousel],
+  imports: [Splash, AppShell, Carousel, AnimateOnScrollModule, CardModule, CardWithButton],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -42,38 +54,41 @@ export class Home implements OnInit {
   // ホーム画面制御パラメータ
   protected isMobile = signal(false);
 
+  // GUIテキスト
+  protected readonly labels = i18nLabels;
+
   // トップ画像カルーセル
   protected readonly carouselPC: CarouselConfigData = {
     images: [
       {
-        id: 'user-req',
-        alt: i18nLabels.home.requirementAnalysis.toLowerCase(),
-        path: 'images/requirement.png',
-        title: i18nLabels.home.requirementAnalysis,
-      },
-      {
-        id: 'arch-design',
-        alt: i18nLabels.home.systemDesign.toLowerCase(),
-        path: 'images/system-design.png',
-        title: i18nLabels.home.systemDesign,
-      },
-      {
-        id: 'front-end',
-        alt: i18nLabels.home.frontEndDevelopment.toLowerCase(),
-        path: 'images/front-end.png',
-        title: i18nLabels.home.frontEndDevelopment,
-      },
-      {
-        id: 'ci',
-        alt: i18nLabels.home.continuousIntegration.toLocaleLowerCase(),
-        path: 'images/continuous-integration.png',
-        title: i18nLabels.home.continuousIntegration,
-      },
-      {
-        id: 'diag',
-        alt: i18nLabels.home.vehicleDiagnostics.toLocaleLowerCase(),
+        id: SkillMenuItem.diag,
+        alt: i18nLabels.skills.diag.title.toLocaleLowerCase(),
         path: 'images/vehicle-diagnostics.png',
-        title: i18nLabels.home.vehicleDiagnostics,
+        title: i18nLabels.skills.diag.title,
+      },
+      {
+        id: SkillMenuItem.frontEnd,
+        alt: i18nLabels.skills.frontEnd.title.toLowerCase(),
+        path: 'images/front-end.png',
+        title: i18nLabels.skills.frontEnd.title,
+      },
+      {
+        id: SkillMenuItem.ci,
+        alt: i18nLabels.skills.ci.title.toLocaleLowerCase(),
+        path: 'images/continuous-integration.png',
+        title: i18nLabels.skills.ci.title,
+      },
+      {
+        id: SkillMenuItem.systemDesign,
+        alt: i18nLabels.skills.ci.title.toLowerCase(),
+        path: 'images/system-design.png',
+        title: i18nLabels.skills.ci.title,
+      },
+      {
+        id: SkillMenuItem.userReq,
+        alt: i18nLabels.skills.userReq.title.toLowerCase(),
+        path: 'images/requirement.png',
+        title: i18nLabels.skills.userReq.title,
       },
     ],
     interval: 6000,
@@ -82,6 +97,54 @@ export class Home implements OnInit {
   };
   protected readonly carouselMobile = { ...this.carouselPC, showDots: false, showOverlay: false };
   protected carousel = computed(() => (this.isMobile() ? this.carouselMobile : this.carouselPC));
+
+  // 本文カード
+  private readonly detailButton = {
+    label: i18nLabels.common.detail,
+    icon: PrimeIcons.SEARCH_PLUS,
+  } as const;
+  protected readonly cardContents: CardContentData[] = [
+    {
+      catchCopy: i18nLabels.skills.diag.subTitle,
+      messages: [i18nLabels.skills.diag.description],
+      card: {
+        title: i18nLabels.skills.diag.title,
+        button: { ...this.detailButton, id: SkillMenuItem.diag },
+      },
+    },
+    {
+      catchCopy: i18nLabels.skills.frontEnd.subTitle,
+      messages: [i18nLabels.skills.frontEnd.description],
+      card: {
+        title: i18nLabels.skills.frontEnd.title,
+        button: { ...this.detailButton, id: SkillMenuItem.frontEnd },
+      },
+    },
+    {
+      catchCopy: i18nLabels.skills.ci.subTitle,
+      messages: [i18nLabels.skills.ci.description],
+      card: {
+        title: i18nLabels.skills.ci.title,
+        button: { ...this.detailButton, id: SkillMenuItem.ci },
+      },
+    },
+    {
+      catchCopy: i18nLabels.skills.systemDesign.subTitle,
+      messages: [i18nLabels.skills.systemDesign.description],
+      card: {
+        title: i18nLabels.skills.systemDesign.title,
+        button: { ...this.detailButton, id: SkillMenuItem.systemDesign },
+      },
+    },
+    {
+      catchCopy: i18nLabels.skills.userReq.subTitle,
+      messages: [i18nLabels.skills.userReq.description],
+      card: {
+        title: i18nLabels.skills.userReq.title,
+        button: { ...this.detailButton, id: SkillMenuItem.userReq },
+      },
+    },
+  ];
 
   //----------------------------------------------------------------------------
   // ライフサイクル

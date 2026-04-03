@@ -1,0 +1,15 @@
+<div class="container">
+  @for (test of testCases; track $index) {
+    <div>
+      <h3>{{ test.title }}</h3>
+      <app-card-with-button
+        [class]="test.id"
+        [config]="test.config"
+        (clicked)="clickedHandler($event)"
+      >
+        <p>{{ dummyContent }}</p>
+      </app-card-with-button>
+    </div>
+  }
+</div>
+<p-toast></p-toast>

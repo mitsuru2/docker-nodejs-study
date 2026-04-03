@@ -30,6 +30,7 @@ export const DesignTokens = {
         s: '0.5rem',
         m: '1rem',
         l: '2rem',
+        xl: '4rem',
       },
       font: {
         size: '16px',
@@ -76,6 +77,16 @@ export const DesignTokens = {
       },
     },
     custom: {
+      cardWithButton: {
+        root: {
+          border: '1px solid var(--p-surface-200)',
+          borderRadius: '10px',
+          shadow: '',
+        },
+        divider: {
+          background: 'var(--p-custom-gradient-blue-to-purple-vert)',
+        },
+      },
       carousel: {
         root: {
           width: '300px',

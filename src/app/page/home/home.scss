@@ -32,6 +32,36 @@
   --p-custom-carousel-track-gap: 1px;
 }
 
+.fade-in {
+  animation: 1s appear;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card-container {
+  margin: var(--p-custom-margin-l) auto;
+  max-width: 1000px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-custom-margin-l);
+
+  p {
+    text-align: left;
+  }
+
+  .catch-copy {
+    font-weight: bold;
+  }
+}
+
 //------------------------------------------------------------------------------
 // モバイルレイアウト
 //
@@ -43,5 +73,9 @@
     --p-custom-carousel-image-overlay-font-size: small;
     --p-custom-carousel-image-overlay-font-weight: bold;
     --p-custom-carousel-track-gap: 0;
+  }
+
+  .card-container {
+    padding: 0 var(--p-custom-margin-m);
   }
 }

@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.card {
+  border: 1px solid var(--p-surface-200);
+}
+
+.container {
+  display: flex;
+  gap: var(--p-custom-margin-m);
+  align-items: center;
+}
+
+.message-area {
+  flex: 1;
+}
+
+.divider {
+  width: 1px;
+  flex-shrink: 0;
+  align-self: stretch;
+  background: var(--p-custom-card-with-button-divider-background);
+}

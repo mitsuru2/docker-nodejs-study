@@ -9,6 +9,16 @@
       [config]="carousel()"
       (clicked)="carouselClickedHandler($event)"
     ></app-carousel>
-    <div>home works!</div>
+
+    <div class="card-container">
+      @for (card of cardContents; track $index) {
+        <app-card-with-button [config]="card.card">
+          <p class="catch-copy">{{ card.catchCopy }}</p>
+          @for (m of card.messages; track $index) {
+            <p>{{ m }}</p>
+          }
+        </app-card-with-button>
+      }
+    </div>
   </app-app-shell>
 }

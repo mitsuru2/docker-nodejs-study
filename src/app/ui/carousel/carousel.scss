@@ -1,7 +1,7 @@
 .viewport {
   overflow: hidden;
   position: relative;
-  width: var(--p-custom-carousel-width);
+  width: 100%;
   transition: opacity 0.3s ease-in; /* スムーズな表示のために追加 */
 }
 

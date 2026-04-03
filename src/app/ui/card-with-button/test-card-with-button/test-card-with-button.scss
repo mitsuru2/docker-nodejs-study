@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p-custom-margin-m);
+}
+
+.t3 {
+  width: 500px;
+}
+
+.t4 {
+  width: 800px;
+  font-size: x-small;
+}
