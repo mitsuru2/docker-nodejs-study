@@ -47,10 +47,11 @@ USER root
 # Mark that the container listen on following ports.
 # DON'T FORGET to specify -p options when running the container to map these ports to your host machine.
 # 4200: Angular development server port.
-EXPOSE 4200
+EXPOSE 4200 4000
 
 # Build the application. 
-CMD ["npm", "run", "build"]
+# CMD ["npm", "run", "build"]
+CMD ["sleep", "infinity"]
 
 # Start the application. (disabled)
 # Added --host 0.0.0.0 to allow access from outside the container.

@@ -1,0 +1,37 @@
+# プロジェクト名
+name: docker-nodejs-study
+
+services:
+  # Angular開発用コンテナ
+  app:
+    container_name: angular-app # コンテナ名
+    mem_limit: 2GB
+    build:
+      context: .. # Dockerfileが親フォルダにあるから
+      dockerfile: Dockerfile # 既存のDockerfileを指定
+      target: build # マルチステージのbuildを使用
+    volumes:
+      - ..:/app:cached # ルート全体を/appにバインド (キャッシュ有効)
+      - node_modules_data:/app/node_modules # node_modulesを名前付きvolumeにマウント
+
+  # Cosmos DB Emulator (Linux版)
+  cosmosdb:
+    image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:latest
+    container_name: cosmosdb-emulator # コンテナ名
+    mem_limit: 3GB # エミュレータはメモリを消費するため制限推奨
+    ports:
+      - '8081:8081' # エミュレータ本体
+      - '10250-10255:10250-10255' # Read/Writeアクセス用
+    environment:
+      # 大規模に使用しないので少なくていい。
+      - AZURE_COSMOS_EMULATOR_PARTITION_COUNT=1
+      # データは保持するように設定。消去が必要な場合は以下のコマンドでボリュームごと消去して再起動する。
+      # docker compose down -v && docker compose up -d
+      - AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE=true
+    volumes:
+      - cosmos_data:/var/lib/cosmosdb
+
+volumes:
+  # 名前付きボリューム。ラベル定義だけでOK。
+  node_modules_data:
+  cosmos_data:

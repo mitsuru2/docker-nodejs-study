@@ -2,13 +2,9 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
 {
   "name": "Existing Dockerfile",
-  "build": {
-    // Sets the run context to one level up instead of the .devcontainer folder.
-    "context": "..",
-    // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-    "dockerfile": "../Dockerfile",
-    "target": "build"
-  },
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/app",
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
@@ -23,18 +19,19 @@
   // "customizations": {},
   "customizations": {
     "vscode": {
-      "extensions": ["Angular.ng-template", "google.geminicodeassist", "esbenp.prettier-vscode"]
+      "extensions": [
+        "Angular.ng-template",
+        "google.geminicodeassist",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-cosmosdb"
+      ]
     }
   },
 
   // Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
   "remoteUser": "node",
 
-  // Use a named volume for node_modules to improve I/O performance and prevent 
-  // overwriting the container's library with the host's folder.
-  "mounts": [
-    "type=volume,source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules"
-  ],
   // Ensure the 'node' user has ownership of the mounted volume before installing packages.
-  "postCreateCommand": "sudo chown node node_modules && npm ci"
+  // Install TLS/SSL certificate for CosmosDB.
+  "postCreateCommand": "bash .devcontainer/post-create.sh"
 }
