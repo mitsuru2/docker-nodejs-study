@@ -29,11 +29,17 @@ RUN echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/passwd-sudo-rules \
 # '/app' is a common convention, but you can choose any directory name you prefer.
 WORKDIR /app
 
+# Change owner of the workspace to enable processing at Dev Container.
+# --> Refer to .devcontainer/devcontainer.json.
+RUN chown -R node:node /app
+
 # Copy package.json and package-lock.json to the working directory, and install packages.
 # DON'T use 'npm install' to prevent installing unintended latest versions of packages
 # as Angular has very sensitive version dependencies.
-COPY package*.json ./
+COPY --chown=node:node package*.json ./
+USER node
 RUN npm ci
+USER root
 
 # DON'T copy the source code to the image because it's be mounted when the container running.
 # COPY . .

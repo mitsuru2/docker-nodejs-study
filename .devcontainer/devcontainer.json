@@ -28,5 +28,13 @@
   },
 
   // Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
-  "remoteUser": "node"
+  "remoteUser": "node",
+
+  // Use a named volume for node_modules to improve I/O performance and prevent 
+  // overwriting the container's library with the host's folder.
+  "mounts": [
+    "type=volume,source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules"
+  ],
+  // Ensure the 'node' user has ownership of the mounted volume before installing packages.
+  "postCreateCommand": "sudo chown node node_modules && npm ci"
 }
