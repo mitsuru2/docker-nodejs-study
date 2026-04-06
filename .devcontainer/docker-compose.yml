@@ -13,6 +13,9 @@ services:
     volumes:
       - ..:/app:cached # ルート全体を/appにバインド (キャッシュ有効)
       - node_modules_data:/app/node_modules # node_modulesを名前付きvolumeにマウント
+    environment:
+      - COSMOS_ENDPOINT=https://cosmosdb-emulator:8081
+      - COSMOS_KEY=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
 
   # Cosmos DB Emulator (Linux版)
   cosmosdb:

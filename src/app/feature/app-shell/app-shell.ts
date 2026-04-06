@@ -56,7 +56,29 @@ export class AppShell implements OnInit {
     },
     {
       label: this.labels.common.skills,
-      icon: PrimeIcons.WRENCH,
+      icon: PrimeIcons.BOOK,
+      items: [
+        {
+          label: this.labels.skills.diag.title,
+          icon: PrimeIcons.CAR,
+        },
+        {
+          label: this.labels.skills.frontEnd.title,
+          icon: PrimeIcons.PALETTE,
+        },
+        {
+          label: this.labels.skills.ci.title,
+          icon: PrimeIcons.SYNC,
+        },
+        {
+          label: this.labels.skills.systemDesign.title,
+          icon: PrimeIcons.SITEMAP,
+        },
+        {
+          label: this.labels.skills.userReq.title,
+          icon: PrimeIcons.COMMENTS,
+        },
+      ],
     },
     {
       label: this.labels.common.career,

@@ -10,8 +10,8 @@
   "projects": {
     "docker-nodejs-study": {
       "i18n": {
-        "sourceLocale": "en-GB",
-        "locales": { "ja": "src/locale/messages.ja.xlf" }
+        "sourceLocale": "ja",
+        "locales": { "en-GB": "src/locale/messages.en.xlf" }
       },
       "projectType": "application",
       "schematics": {
@@ -33,7 +33,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "ignore": ["debug/**"]
               }
             ],
             "styles": ["src/styles.scss"],
@@ -71,6 +72,12 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.development.ts"
+                }
+              ],
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "public"
                 }
               ]
             },
@@ -127,13 +134,13 @@
               "buildTarget": "docker-nodejs-study:build:production"
             },
             "development": {
-              "buildTarget": "docker-nodejs-study:build:development,en-GB"
+              "buildTarget": "docker-nodejs-study:build:development,ja-JP"
             },
             "ui-catalog": {
               "buildTarget": "docker-nodejs-study:build:ui-catalog"
             },
-            "ja-JP": {
-              "buildTarget": "docker-nodejs-study:build:development,ja-JP"
+            "en-GB": {
+              "buildTarget": "docker-nodejs-study:build:development,en-GB"
             }
           },
           "defaultConfiguration": "development"

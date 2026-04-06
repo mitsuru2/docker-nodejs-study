@@ -6,7 +6,7 @@
 
 - **フレームワーク**: [@angular/localize](https://angular.dev/guide/i18n)
 - **ファイル形式**: XLF (`.xlf`)
-- **ソースロケール**: `en-GB` (イギリス英語)
+- **ソースロケール**: `ja` (日本語)
 
 ## 翻訳ルール
 
@@ -17,7 +17,7 @@
 **例:**
 
 ```html
-<h1 i18n="@@home.welcome_message">Welcome</h1>
+<h1 i18n="@@home.welcome_message">ようこそ</h1>
 ```
 
 ## 運用フロー

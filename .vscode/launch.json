@@ -3,16 +3,22 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Chrome (4200)",
+      "name": "Angular Debug (4200)",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:4200/"
     },
     {
-      "name": "Chrome (4000)",
+      "name": "Angular Server (4000)",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:4000/"
+    },
+    {
+      "name": "Cosmos DB (8081)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "https://localhost:8081/_explorer/index.html"
     }
   ]
 }

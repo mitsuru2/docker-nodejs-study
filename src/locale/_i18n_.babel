@@ -373,11 +373,11 @@
 			<name>main</name>
 			<translation_urls>
 				<translation_url>
-					<path>messages.xlf</path>
+					<path>messages.en.xlf</path>
 					<language>en-GB</language>
 				</translation_url>
 				<translation_url>
-					<path>messages.ja.xlf</path>
+					<path>messages.xlf</path>
 					<language>ja-JP</language>
 				</translation_url>
 			</translation_urls>
@@ -396,7 +396,7 @@
 		<machine_translation_formality>default</machine_translation_formality>
 		<machine_translation_context/>
 	</editor_configuration>
-	<primary_language>en-GB</primary_language>
+	<primary_language>ja-JP</primary_language>
 	<configuration>
 		<format>xliff-1.2</format>
 	</configuration>
