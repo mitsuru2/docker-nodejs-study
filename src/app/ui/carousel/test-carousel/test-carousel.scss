@@ -10,6 +10,10 @@
   --p-custom-carousel-image-max-width: 300px;
   --p-custom-carousel-image-height: 200px;
 }
+.crsl1-box,
+.crsl5-box {
+  width: 300px;
+}
 .crsl2,
 .crsl4 {
   --p-custom-carousel-width: 500px;
@@ -17,9 +21,16 @@
   --p-custom-carousel-image-height: 200px;
   --p-custom-carousel-track-gap: 10px;
 }
+.crsl2-box,
+.crsl4-box {
+  width: 500px;
+}
 .crsl3 {
   --p-custom-carousel-width: 40vw;
   --p-custom-carousel-image-height: 200px;
+}
+.crsl3-box {
+  width: 40vw;
 }
 
 .crsl4 {

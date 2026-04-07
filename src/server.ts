@@ -6,11 +6,25 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import { CosmosClient, Database } from '@azure/cosmos';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
+
+// Azure Cosmos DB
+// 環境変数はサーバーで設定。ローカルではdocker-compose.ymlで指定。
+const endpoint = process.env['COSMOS_ENDPOINT'];
+const key = process.env['COSMOS_KEY'];
+const dbName = process.env['COSMOS_DB'];
+if (!endpoint || !key || !dbName) {
+  throw new Error(
+    'Environment variables for Cosmos DB is not found. Please check server configuration or docker-compose.yml.',
+  );
+}
+const db: Database = new CosmosClient({ endpoint, key }).database(dbName);
+const allowedContainerNames = ['articles'];
 
 /**
  * Example Express Rest API endpoints can be defined here.
@@ -23,6 +37,44 @@ const angularApp = new AngularNodeAppEngine();
  * });
  * ```
  */
+
+/**
+ * CosmosDBからのデータ取得
+ * https://learn.microsoft.com/ja-jp/azure/developer/javascript/what-is-azure-for-javascript-development?view=azure-node-latest
+ * https://learn.microsoft.com/ja-jp/cosmos-db/query/overview
+ */
+app.get('/db/:container/:category', async (req, res) => {
+  try {
+    const { container, category } = req.params;
+
+    // コンテナ名チェック
+    if (!allowedContainerNames.includes(container)) {
+      res.status(400).json({ error: 'Invalid container name' });
+      return;
+    }
+
+    // コンテナ取得
+    const containerEntity = db.container(container);
+
+    // クエリ実行
+    // カテゴリ一致かつisPublishedがtrueのものを取得。
+    const { resources } = await containerEntity.items
+      .query({
+        query: 'SELECT * FROM c WHERE c.category = @cat AND c.isPublished = true',
+        parameters: [{ name: '@cat', value: category }],
+      })
+      .fetchAll();
+
+    res.json(resources);
+  } catch (error) {
+    console.error('Cosmos DB Error:', error);
+    if (error instanceof Error) {
+      res.status(500).json({ error: 'Internal Server Error', message: error.message });
+    } else {
+      res.status(500).json({ error: 'Internal Server Error', message: 'Unknown error.' });
+    }
+  }
+});
 
 /**
  * 追加エンドポイント: ChromeのDevTools起因で発生するエラーを抑制するため。

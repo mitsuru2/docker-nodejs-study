@@ -5,7 +5,7 @@ services:
   # Angular開発用コンテナ
   app:
     container_name: angular-app # コンテナ名
-    mem_limit: 2GB
+    mem_limit: 3GB
     build:
       context: .. # Dockerfileが親フォルダにあるから
       dockerfile: Dockerfile # 既存のDockerfileを指定
@@ -16,6 +16,7 @@ services:
     environment:
       - COSMOS_ENDPOINT=https://cosmosdb-emulator:8081
       - COSMOS_KEY=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
+      - COSMOS_DB=my-portfolio-dev
 
   # Cosmos DB Emulator (Linux版)
   cosmosdb:
@@ -30,11 +31,11 @@ services:
       - AZURE_COSMOS_EMULATOR_PARTITION_COUNT=1
       # データは保持するように設定。消去が必要な場合は以下のコマンドでボリュームごと消去して再起動する。
       # docker compose down -v && docker compose up -d
-      - AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE=true
-    volumes:
-      - cosmos_data:/var/lib/cosmosdb
+    #   - AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE=true
+    # volumes:
+    #   - cosmos_data:/tmp/cosmos
 
 volumes:
   # 名前付きボリューム。ラベル定義だけでOK。
   node_modules_data:
-  cosmos_data:
+  # cosmos_data:

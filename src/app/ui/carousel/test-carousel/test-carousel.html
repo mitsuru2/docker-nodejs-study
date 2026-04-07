@@ -2,11 +2,13 @@
   @for (test of testCases; track $index) {
     <div>
       <h3>{{ test.title }}</h3>
-      <app-carousel
-        [class]="test.id"
-        [config]="test.config"
-        (clicked)="clickHandler($event)"
-      ></app-carousel>
+      <div [class]="test.id + '-box'">
+        <app-carousel
+          [class]="test.id"
+          [config]="test.config"
+          (clicked)="clickHandler($event)"
+        ></app-carousel>
+      </div>
     </div>
   }
 </div>

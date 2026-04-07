@@ -1,12 +1,18 @@
 export interface MessageData {
   ja: string;
-  en: string;
+  en?: string;
 }
 
 export interface PropertyData {
-  category?: string;
+  category?: MessageData;
   label: MessageData;
   value: string | number | null;
+}
+
+export interface ImageData {
+  path: string;
+  caption?: string;
+  alt?: string;
 }
 
 export const ArticleCategory = {
@@ -28,9 +34,10 @@ export interface ArticleData {
   title?: MessageData;
   subTitle?: MessageData;
   contents?: MessageData[];
+  note?: MessageData[];
   displayOrder?: number; // 小さいほうが先。ソートに使用するプロパティはpropertiesの外に出す。
   date?: string; // ISO形式。'2025-01-02'
   properties?: PropertyData[];
-  images?: string[]; // Azure Blob Storage上の画像パス。デバッグ時は/public/debug/フォルダの画像を指定。
+  images?: ImageData[]; // Azure Blob Storage上の画像パス。デバッグ時は/public/debug/フォルダの画像を指定。
   isPublished: boolean; // true: 公開。false: 下書き/非公開。
 }
