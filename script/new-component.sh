@@ -77,7 +77,7 @@ case "$COMPO_TYPE" in
         npx ng generate component "$COMPO_TYPE/$COMPO_NAME/$TEST_COMPO_NAME" --skip-tests=true
     ;;
     page)
-        npx ng generate component "$COMPO_TYPE/$COMPO_NAME" --skip-tests=false
+        npx ng generate component "$COMPO_TYPE/$COMPO_NAME" --skip-tests=true
     ;;
 esac
 echo ""

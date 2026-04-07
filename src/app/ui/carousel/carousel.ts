@@ -100,7 +100,7 @@ export class Carousel implements OnInit {
   // 現在のインデックスの画像が「中央」に来るようにtranslateXを計算
   private calcImageOffsetX(currentIndex: number): string {
     const location = `${this.className}.calcImageOffsetX()`;
-    this.logger.debug(`${location} index=${currentIndex}`);
+    // this.logger.debug(`${location} index=${currentIndex}`);
 
     if (!this.imageElements || this.imageElements.length === 0) {
       this.logger.warn(`${location} imageElements is null`);
@@ -118,7 +118,7 @@ export class Carousel implements OnInit {
     // 最終的なオフセット量はCSS側で計算。
     // 計算に必要な対象画像のオフセットをここで計算。
     const offsetExpr = `${targetImg.offsetLeft + targetImg.offsetWidth / 2}px`;
-    this.logger.debug(`${location} offsetExpr=${offsetExpr}`);
+    // this.logger.debug(`${location} offsetExpr=${offsetExpr}`);
     return offsetExpr;
   }
 
@@ -168,7 +168,7 @@ export class Carousel implements OnInit {
       this.requestAnimationRefId = requestAnimationFrame(() => {
         this.requestAnimationRefId = null;
         this.imageOffset.set(this.calcImageOffsetX(this.currentIndex()));
-        this.logger.debug(`${location} All images loaded. Initial offset calculated.`);
+        this.logger.info(`${location} All images loaded. Initial offset calculated.`);
       });
     }
   }

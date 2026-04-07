@@ -1,30 +1,31 @@
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { Database } from './database';
+import { DatabaseManager } from './database-manager';
 import { Logger } from '../../utility/logger/logger';
 import { environment } from '../../../environments/environment';
 import { ArticleData } from '../../model/db-data';
 import { vi } from 'vitest';
 
-describe('Database', () => {
-  let service: Database;
+describe('DatabaseManager', () => {
+  let service: DatabaseManager;
   let httpMock: HttpTestingController;
 
   const loggerMock = {
     debug: vi.fn(),
+    info: vi.fn(),
   };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        Database,
+        DatabaseManager,
         provideHttpClient(),
         provideHttpClientTesting(),
         { provide: Logger, useValue: loggerMock },
       ],
     });
-    service = TestBed.inject(Database);
+    service = TestBed.inject(DatabaseManager);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
@@ -34,7 +35,7 @@ describe('Database', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
-    expect(loggerMock.debug).toHaveBeenCalledWith('New Database()');
+    expect(loggerMock.debug).toHaveBeenCalledWith('New DatabaseManager()');
   });
 
   it('should fetch article data via GET request', () => {
@@ -46,9 +47,13 @@ describe('Database', () => {
     const container = 'articles';
     const partitionKey = 'front-end';
 
-    service.readData(container, partitionKey).subscribe((data) => {
+    service.getData(container, partitionKey).subscribe((data) => {
       expect(data).toEqual(mockArticle);
     });
+
+    expect(loggerMock.info).toHaveBeenCalledWith(
+      `DatabaseManager.getData() url=${environment.apiUrl}/db/${container}/${partitionKey}`,
+    );
 
     const req = httpMock.expectOne(`${environment.apiUrl}/db/${container}/${partitionKey}`);
     expect(req.request.method).toBe('GET');

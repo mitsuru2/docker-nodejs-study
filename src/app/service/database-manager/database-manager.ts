@@ -8,8 +8,8 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class Database {
-  private readonly className = 'Database';
+export class DatabaseManager {
+  private readonly className = 'DatabaseManager';
   private readonly env = environment;
 
   // 依存サービス
@@ -20,8 +20,10 @@ export class Database {
     this.logger.debug(`New ${this.className}()`);
   }
 
-  readData(container: string, partitionKey: string): Observable<ArticleData> {
+  getData<T>(container: string, partitionKey: string): Observable<T> {
+    const location = `${this.className}.getData()`;
     const url = `${this.env.apiUrl}/db/${container}/${partitionKey}`;
-    return this.http.get<ArticleData>(url);
+    this.logger.info(`${location} url=${url}`);
+    return this.http.get<T>(url);
   }
 }

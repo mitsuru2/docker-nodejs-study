@@ -14,9 +14,13 @@ import { i18nLabels } from '../../../locale/_i18n_';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { CardModule } from 'primeng/card';
 import { CardWithButton } from '../../ui/card-with-button/card-with-button';
-import { CardWithButtonConfigData } from '../../ui/card-with-button/card-with-button.interface';
+import {
+  CardWithButtonConfigData,
+  CardWithButtonOutputData,
+} from '../../ui/card-with-button/card-with-button.interface';
 import { PrimeIcons } from 'primeng/api';
 import { SkillMenuItem } from './home.interface';
+import { PagePath } from '../../model/page-path';
 
 interface CardContentData {
   id: string;
@@ -187,6 +191,9 @@ export class Home implements OnInit {
       });
   }
 
+  //----------------------------------------------------------------------------
+  // カルーセル
+  //
   protected carouselClickedHandler(event: CarouselOutputData) {
     const location = `${this.className}.carouselClickedHandler()`;
     this.logger.info(`${location} id=${event.id}`);
@@ -204,5 +211,19 @@ export class Home implements OnInit {
     // 強調アニメーションスタイルを適用。アニメーション終了後に削除。
     element.classList.add('selected-card');
     setTimeout(() => element.classList.remove('selected-card'), 2000);
+  }
+
+  //----------------------------------------------------------------------------
+  // カード
+  //
+  protected cardClickedHandler(event: CardWithButtonOutputData) {
+    const location = `${this.className}.cardClickedHandler()`;
+    this.logger.info(`${location} id=${event.id}`);
+
+    if (event.id === SkillMenuItem.frontEnd) {
+      this.router.navigate(['/' + PagePath.FrontEnd]);
+    } else {
+      this.logger.warn(`${location} Not implementd. id=${event.id}`);
+    }
   }
 }

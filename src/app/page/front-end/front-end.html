@@ -1,0 +1,12 @@
+<app-app-shell>
+  <p>front-end works!</p>
+
+  @for (article of articles(); track $index) {
+    @if (article.title) {
+      <p>Title: {{ article.title.ja }}</p>
+    }
+    @if (article.subTitle) {
+      <p>Sub-title: {{ article.subTitle.ja }}</p>
+    }
+  }
+</app-app-shell>

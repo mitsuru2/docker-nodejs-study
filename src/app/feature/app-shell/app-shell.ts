@@ -65,6 +65,7 @@ export class AppShell implements OnInit {
         {
           label: this.labels.skills.frontEnd.title,
           icon: PrimeIcons.PALETTE,
+          routerLink: '/' + PagePath.FrontEnd,
         },
         {
           label: this.labels.skills.ci.title,
