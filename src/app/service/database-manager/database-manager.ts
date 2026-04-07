@@ -2,7 +2,6 @@ import { inject, Injectable } from '@angular/core';
 import { Logger } from '../../utility/logger/logger';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ArticleData } from '../../model/db-data';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
