@@ -16,7 +16,8 @@
     "start-server": "npm run build && node dist/docker-nodejs-study/server/server.mjs",
     "catalog": "ng run docker-nodejs-study:serve:ui-catalog",
     "lint": "ng lint",
-    "i18n": "ng extract-i18n --output-path src/locale"
+    "i18n": "ng extract-i18n --output-path src/locale",
+    "seed-db": "node ./.devcontainer/seed-cosmos.mjs"
   },
   "private": true,
   "packageManager": "npm@11.9.0",

@@ -1,12 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { DomManager } from './dom-manager';
 import { Renderer2, RendererFactory2 } from '@angular/core';
+import { Logger } from '../../utility/logger/logger';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 describe('DomManager', () => {
   let service: DomManager;
   let rendererMock: Renderer2;
   let rendererFactoryMock: RendererFactory2;
+
+  const loggerMock = {
+    debug: vi.fn(),
+  };
 
   beforeEach(() => {
     // Renderer2 のモック作成
@@ -20,7 +25,11 @@ describe('DomManager', () => {
     } as unknown as RendererFactory2;
 
     TestBed.configureTestingModule({
-      providers: [DomManager, { provide: RendererFactory2, useValue: rendererFactoryMock }],
+      providers: [
+        DomManager,
+        { provide: RendererFactory2, useValue: rendererFactoryMock },
+        { provide: Logger, useValue: loggerMock },
+      ],
     });
 
     service = TestBed.inject(DomManager);
@@ -28,6 +37,7 @@ describe('DomManager', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+    expect(loggerMock.debug).toHaveBeenCalledWith('New DomManager()');
   });
 
   describe('setAttribute', () => {

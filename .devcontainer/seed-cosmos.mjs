@@ -1,5 +1,4 @@
 import { CosmosClient } from '@azure/cosmos';
-import { randomUUID } from 'crypto';
 
 // 証明書エラーを無視する設定（開発時のみ）
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -28,7 +27,7 @@ async function runSeeder() {
 
       const items = [
         {
-          id: randomUUID(),
+          id: '4c5f49ee-28c2-4a32-8b53-388ee7400478',
           category: 'front-end',
           title: {
             ja: 'Angularを軸とした、高度なUI/UXとモダンな開発の実現',
@@ -47,7 +46,7 @@ async function runSeeder() {
           isPublished: true,
         },
         {
-          id: randomUUID(),
+          id: '3c760fe1-cb17-4c06-af9e-b33cedd648b0',
           category: 'front-end',
           subTitle: { ja: 'PrimeNGのデザイントークンを用いた一貫性のあるUI開発' },
           contents: [
@@ -61,7 +60,7 @@ async function runSeeder() {
           isPublished: true,
         },
         {
-          id: randomUUID(),
+          id: '6344a74f-11ce-4dbb-8332-7caac9653513',
           category: 'front-end',
           subTitle: { ja: 'UXを向上させるリッチなカスタムUIの実装' },
           contents: [
@@ -72,7 +71,7 @@ async function runSeeder() {
           isPublished: true,
         },
         {
-          id: randomUUID(),
+          id: '77960d8c-a0f2-4b26-bf39-6b3f4379733a',
           category: 'front-end',
           subTitle: { ja: 'プログラミング言語/フレームワーク' },
           contents: [

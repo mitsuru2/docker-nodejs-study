@@ -22,8 +22,8 @@ describe('Timestamp', () => {
     const text1 = '2025-09-05T19:18:20.456Z';
     const value1 = convTimestampTextToValue(text1);
     const text2 = new Date(value1).toISOString();
-    console.log(`value1: ${value1}`);
-    console.log(`text2: ${text2}`);
+    // console.log(`value1: ${value1}`);
+    // console.log(`text2: ${text2}`);
     expect(text2).toEqual(text1);
   });
 
