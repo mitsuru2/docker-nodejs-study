@@ -13,7 +13,7 @@
     "new-feature": "./script/new-feature.sh",
     "new-utility": "./script/new-utility.sh",
     "new-service": "./script/new-service.sh",
-    "start-ssr": "npm run build && node dist/docker-nodejs-study/server/server.mjs",
+    "start-server": "npm run build && node dist/docker-nodejs-study/server/server.mjs",
     "catalog": "ng run docker-nodejs-study:serve:ui-catalog",
     "lint": "ng lint",
     "i18n": "ng extract-i18n --output-path src/locale"

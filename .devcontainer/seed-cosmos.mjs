@@ -44,6 +44,7 @@ async function runSeeder() {
               en: 'Capable of implementing SSR/SSG or desktop apps using Tauri, depending on the use cases and characteristics of the application.',
             },
           ],
+          isPublished: true,
         },
         {
           id: randomUUID(),
@@ -57,6 +58,7 @@ async function runSeeder() {
               ja: 'GUIライブラリによる開発スピードの最大化を図りつつ、独自のデザインシステムやブランドアイデンティティとの完璧な両立を実現します。',
             },
           ],
+          isPublished: true,
         },
         {
           id: randomUUID(),
@@ -67,6 +69,7 @@ async function runSeeder() {
               ja: '標準ライブラリでは補えない細かな意匠やインタラクションを、CSSアニメーションを用いて実現します。グラデーション等の視覚効果を効果的に取り入れ、ユーザーの目を引くモダンで洗練されたフロントエンド開発を得意としています。',
             },
           ],
+          isPublished: true,
         },
         {
           id: randomUUID(),
@@ -77,6 +80,7 @@ async function runSeeder() {
               ja: 'Angular, PrimeNG, HTML, CSS/SCSS, TypeScript, JavaScript, ApexCharts, Tuari, Azure, Node.js',
             },
           ],
+          isPublished: true,
         },
       ];
 
