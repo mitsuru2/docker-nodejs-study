@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  debugLanguage: null,
+  apiUrl: 'https://localhost:4200', // TODO: 暫定値。決定後に修正
 };

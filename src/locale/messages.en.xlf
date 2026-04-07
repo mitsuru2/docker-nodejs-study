@@ -42,6 +42,126 @@
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="skills.diag.title" datatype="html">
+        <source>車両診断 &amp; AUTOSAR</source>
+        <target>Vehicle Diagnostics &amp; AUTOSAR</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.diag.subTitle" datatype="html">
+        <source>10年にわたる経験。車両診断技術のスペシャリスト</source>
+        <target>A specialist with 10 years of experience in vehicle diagnostic technology.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.diag.description" datatype="html">
+        <source>複数OEMにおける車両診断開発の10年以上の知見。AUTOSAR BSW/MCALのコンフィグレーションから通信プロトコルの実装まで、高い信頼性が求められる車載ドメインの要求に確実に応えます。</source>
+        <target>With over a decade of expertise in diagnostic development for multiple OEMs, I deliver reliable solutions in the high-stakes automotive domain - from AUTOSAR BSW/MCAL configuration to communication protocol implementation.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.frontEnd.title" datatype="html">
+        <source>フロントエンド開発</source>
+        <target>Frontend Development</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.frontEnd.subTitle" datatype="html">
+        <source>Angularを軸とした、高度なUI/UXとモダンな開発の実現</source>
+        <target>Achieving Advanced UI/UX and Modern Development with Angular.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.frontEnd.description" datatype="html">
+        <source>Angularリードエンジニアとして3年以上の実績。GUIライブラリにない独自の表現やアニメーションも開発可能です。Tauriを用いたデスクトップアプリの開発実績もございます。</source>
+        <target>With over 3 years of experience as an Angular Lead Engineer, I specialize in crafting custom UI components and animations beyond standard libraries. I also have a proven track record in building desktop applications using Tauri.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.ci.title" datatype="html">
+        <source>ワークフロー開発 &amp; CI/CD</source>
+        <target>Workflow Development &amp; CI/CD</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.ci.subTitle" datatype="html">
+        <source>「止まらない開発」を支える、フルスクラッチの自動化基盤構築</source>
+        <target>Building custom automation foundations for &quot;Uninterrupted Development.&quot;</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.ci.description" datatype="html">
+        <source>Docker/GitHub/Azureを活用したビルド・テストの自動化。既存の外部システムと連携した複雑なワークフローの構築から、開発チーム全体の生産性を向上させる開発環境の整備まで一任いただけます。</source>
+        <target>I specialize in automating build and test processes using Docker, GitHub, and Azure. From architecting complex workflows to optimizing development environments, I empower teams to maximize their productivity.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.systemDesign.title" datatype="html">
+        <source>システムアーキテクチャー設計</source>
+        <target>System Architecture Design</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.systemDesign.subTitle" datatype="html">
+        <source>組み込みからWebアプリまで、堅牢性と保守性を両立する設計</source>
+        <target>Reliable, maintainable designs from embedded systems to web applications.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.systemDesign.description" datatype="html">
+        <source>車載ECUシステムから中規模Webアプリまで、コンプライアンス要件 (セキュリティ・法規制) を厳守しつつ、長期間の運用に耐えうる拡張性の高い構造を定義します。</source>
+        <target>I define scalable architectures that balance long-term operational stability with strict compliance (security and regulations); from automotive ECU systems to mid-sized web applications.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.userReq.title" datatype="html">
+        <source>要求分析 &amp; ソリューション提案</source>
+        <target>Requirements Analysis &amp; Solution Proposal</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.userReq.subTitle" datatype="html">
+        <source>ビジネス要求を形にする、上流工程からの伴走型開発</source>
+        <target>Collaborative development from the upstream phase to bring business requirements to life.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.userReq.description" datatype="html">
+        <source>要件定義やロードマップ策定等の上流工程において、新規システム立ち上げを含む豊富な経験があります。プロダクトの背景や目的を深く理解した上で、技術的な実現可能性とビジネス要求をバランスよく調整し、プロジェクトを円滑に推進します。</source>
+        <target>I have extensive experience in upstream processes, including requirements definition, roadmap planning, and new system launches. By deeply understanding the product context and objectives, I balance technical feasibility with business needs to ensure smooth project execution.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

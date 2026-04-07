@@ -32,15 +32,19 @@ npx ng generate service "service/$SERVICE_NAME/$SERVICE_NAME"
 SERVICE_DIR="${SCRIPT_DIR}/../src/app/service/$SERVICE_NAME"
 "$SCRIPT_DIR/insert-text.sh" "$SERVICE_DIR/$SERVICE_NAME.ts" \
   "import { Injectable } from '@angular/core';" \
-  "import { Logger } from '../../utility/logger/logger';" \
-  false
+  "import { inject, Injectable } from '@angular/core';
+import { Logger } from '../../utility/logger/logger';" \
+  true
 "$SCRIPT_DIR/insert-text.sh" "$SERVICE_DIR/$SERVICE_NAME.ts" \
   "export class ${CLASS_NAME} {}" \
   "export class ${CLASS_NAME} {
   private readonly className = '${CLASS_NAME}';
 
+  // 依存サービス
+  private logger = inject(Logger);
+
   constructor() {
-    Logger.debug(\`New \${this.className}()\`);
+    this.logger.debug(\`New \${this.className}()\`);
   }
 }" \
   true

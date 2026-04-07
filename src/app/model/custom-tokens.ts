@@ -1,4 +1,4 @@
-import { inject, InjectionToken, PLATFORM_ID } from '@angular/core';
+import { inject, InjectionToken, LOCALE_ID, PLATFORM_ID } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -16,20 +16,22 @@ export const WINDOW = new InjectionToken<Window | null>('Window', {
 export const NAVIGATOR = new InjectionToken<Navigator>('Navigator', {
   factory: () => {
     const platformId = inject(PLATFORM_ID);
+    const locale = inject(LOCALE_ID);
 
     // Server
     if (!isPlatformBrowser(platformId)) {
       return {
-        language: 'en-GB',
-        languages: ['en-GB'],
+        language: locale,
+        languages: [locale],
       } as unknown as Navigator;
     }
 
     // Client
-    if (!environment.production && environment.debugLanguage) {
+    if (!environment.production) {
       return {
-        language: environment.debugLanguage,
-        languages: [environment.debugLanguage],
+        ...navigator,
+        language: locale,
+        languages: [locale],
       } as unknown as Navigator;
     } else {
       return navigator;

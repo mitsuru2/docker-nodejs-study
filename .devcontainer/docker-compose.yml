@@ -10,11 +10,13 @@ services:
       context: .. # Dockerfileが親フォルダにあるから
       dockerfile: Dockerfile # 既存のDockerfileを指定
       target: build # マルチステージのbuildを使用
+    depends_on:
+      - cosmosdb
     volumes:
       - ..:/app:cached # ルート全体を/appにバインド (キャッシュ有効)
       - node_modules_data:/app/node_modules # node_modulesを名前付きvolumeにマウント
     environment:
-      - COSMOS_ENDPOINT=https://cosmosdb-emulator:8081
+      - COSMOS_ENDPOINT=https://cosmosdb:8081
       - COSMOS_KEY=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
       - COSMOS_DB=my-portfolio-dev
       - NODE_TLS_REJECT_UNAUTHORIZED=0
@@ -30,13 +32,7 @@ services:
     environment:
       # 大規模に使用しないので少なくていい。
       - AZURE_COSMOS_EMULATOR_PARTITION_COUNT=1
-      # データは保持するように設定。消去が必要な場合は以下のコマンドでボリュームごと消去して再起動する。
-      # docker compose down -v && docker compose up -d
-    #   - AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE=true
-    # volumes:
-    #   - cosmos_data:/tmp/cosmos
 
 volumes:
   # 名前付きボリューム。ラベル定義だけでOK。
   node_modules_data:
-  # cosmos_data:

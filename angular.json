@@ -91,7 +91,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.ui-catalog.ts"
+                  "with": "src/environments/environment.development.ts"
                 },
                 {
                   "replace": "src/app/app.routes.server.ts",
@@ -101,23 +101,11 @@
             },
             "en-GB": {
               "localize": ["en-GB"],
-              "baseHref": "/en-GB/",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.en-GB.ts"
-                }
-              ]
+              "baseHref": "/en-GB/"
             },
             "ja-JP": {
               "localize": ["ja"],
-              "baseHref": "/ja/",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.ja-JP.ts"
-                }
-              ]
+              "baseHref": "/ja/"
             }
           },
           "defaultConfiguration": "production"
