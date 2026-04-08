@@ -16,7 +16,7 @@
     },
     {
       "name": "Cosmos DB (8081)",
-      "type": "chrome",
+      "type": "msedge",
       "request": "launch",
       "url": "https://localhost:8081/_explorer/index.html"
     }

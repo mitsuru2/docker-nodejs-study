@@ -3,7 +3,7 @@ import { Logger } from '../../utility/logger/logger';
 import { AppShell } from '../../feature/app-shell/app-shell';
 import { ArticleData } from '../../model/db-data';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { DatabaseManager } from '../../service/database-manager/database-manager';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-front-end',
@@ -16,8 +16,9 @@ export class FrontEnd {
 
   // 依存サービス
   private logger = inject(Logger);
-  private db = inject(DatabaseManager);
+  private http = inject(HttpClient);
 
   // 表示データ
-  protected articles = toSignal(this.db.getData<ArticleData[]>('articles', 'front-end'));
+  private readonly jsonPath = '/data/articles-front-end.json';
+  protected articles = toSignal(this.http.get<ArticleData[]>(this.jsonPath), { initialValue: [] });
 }

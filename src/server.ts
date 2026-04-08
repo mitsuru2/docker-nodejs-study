@@ -43,9 +43,9 @@ const allowedContainerNames = ['articles'];
  * https://learn.microsoft.com/ja-jp/azure/developer/javascript/what-is-azure-for-javascript-development?view=azure-node-latest
  * https://learn.microsoft.com/ja-jp/cosmos-db/query/overview
  */
-app.get('/db/:container/:category', async (req, res) => {
+app.get('/db/:container/:pk', async (req, res) => {
   try {
-    const { container, category } = req.params;
+    const { container, pk } = req.params;
 
     // コンテナ名チェック
     if (!allowedContainerNames.includes(container)) {
@@ -60,8 +60,8 @@ app.get('/db/:container/:category', async (req, res) => {
     // カテゴリ一致かつisPublishedがtrueのものを取得。
     const { resources } = await containerEntity.items
       .query({
-        query: 'SELECT * FROM c WHERE c.category = @cat AND c.isPublished = true',
-        parameters: [{ name: '@cat', value: category }],
+        query: 'SELECT * FROM c WHERE c.pk = @pk AND c.isPublished = true',
+        parameters: [{ name: '@pk', value: pk }],
       })
       .fetchAll();
 

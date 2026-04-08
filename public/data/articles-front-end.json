@@ -1,0 +1,83 @@
+[
+  {
+    "id": "4c5f49ee-28c2-4a32-8b53-388ee7400478",
+    "pk": "front-end",
+    "title": {
+      "ja": "Angularを軸とした、高度なUI/UXとモダンな開発の実現",
+      "en": "Delivering advanced UI/UX and modern development by Angular."
+    },
+    "contents": [
+      {
+        "ja": "Angularリードエンジニアとして3年以上の実務経験。画面作成だけでなく、フロントエンド全体の設計から環境構築までお任せいただけます。",
+        "en": "Over 3 years of experience as an Angular Lead Engineer. Beyond UI development, you can entrust me with everything from frontend architecture design to environment setup."
+      },
+      {
+        "ja": "アプリのユースケースや特性に応じてSSR/SSG対応やTauriによるデスクトップアプリケーション化も対応可能です。",
+        "en": "Capable of implementing SSR/SSG or desktop apps using Tauri, depending on the use cases and characteristics of the application."
+      }
+    ],
+    "isPublished": true,
+    "_rid": "0xMCAKzg5zYBAAAAAAAAAA==",
+    "_self": "dbs/0xMCAA==/colls/0xMCAKzg5zY=/docs/0xMCAKzg5zYBAAAAAAAAAA==/",
+    "_etag": "\"00000000-0000-0000-c730-ecaa140501dc\"",
+    "_attachments": "attachments/",
+    "_ts": 1775636585
+  },
+  {
+    "id": "3c760fe1-cb17-4c06-af9e-b33cedd648b0",
+    "pk": "front-end",
+    "subTitle": {
+      "ja": "PrimeNGのデザイントークンを用いた一貫性のあるUI開発"
+    },
+    "contents": [
+      {
+        "ja": "PrimeNGのアーキテクチャに基づき、デザイントークンを活用した柔軟で保守性の高いスタイリングを実装。CSS変数の制御により、テーマのカスタマイズや共通のカラーパレット・タイポグラフィの効率的な一元管理が可能です。"
+      },
+      {
+        "ja": "GUIライブラリによる開発スピードの最大化を図りつつ、独自のデザインシステムやブランドアイデンティティとの完璧な両立を実現します。"
+      }
+    ],
+    "isPublished": true,
+    "_rid": "0xMCAKzg5zYCAAAAAAAAAA==",
+    "_self": "dbs/0xMCAA==/colls/0xMCAKzg5zY=/docs/0xMCAKzg5zYCAAAAAAAAAA==/",
+    "_etag": "\"00000000-0000-0000-c730-ecac940501dc\"",
+    "_attachments": "attachments/",
+    "_ts": 1775636585
+  },
+  {
+    "id": "6344a74f-11ce-4dbb-8332-7caac9653513",
+    "pk": "front-end",
+    "subTitle": {
+      "ja": "UXを向上させるリッチなカスタムUIの実装"
+    },
+    "contents": [
+      {
+        "ja": "標準ライブラリでは補えない細かな意匠やインタラクションを、CSSアニメーションを用いて実現します。グラデーション等の視覚効果を効果的に取り入れ、ユーザーの目を引くモダンで洗練されたフロントエンド開発を得意としています。"
+      }
+    ],
+    "isPublished": true,
+    "_rid": "0xMCAKzg5zYDAAAAAAAAAA==",
+    "_self": "dbs/0xMCAA==/colls/0xMCAKzg5zY=/docs/0xMCAKzg5zYDAAAAAAAAAA==/",
+    "_etag": "\"00000000-0000-0000-c730-ecafb00501dc\"",
+    "_attachments": "attachments/",
+    "_ts": 1775636585
+  },
+  {
+    "id": "77960d8c-a0f2-4b26-bf39-6b3f4379733a",
+    "pk": "front-end",
+    "subTitle": {
+      "ja": "プログラミング言語/フレームワーク"
+    },
+    "contents": [
+      {
+        "ja": "Angular, PrimeNG, HTML, CSS/SCSS, TypeScript, JavaScript, ApexCharts, Tuari, Azure, Node.js"
+      }
+    ],
+    "isPublished": true,
+    "_rid": "0xMCAKzg5zYEAAAAAAAAAA==",
+    "_self": "dbs/0xMCAA==/colls/0xMCAKzg5zY=/docs/0xMCAKzg5zYEAAAAAAAAAA==/",
+    "_etag": "\"00000000-0000-0000-c730-ecb22c0501dc\"",
+    "_attachments": "attachments/",
+    "_ts": 1775636585
+  }
+]

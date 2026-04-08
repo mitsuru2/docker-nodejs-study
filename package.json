@@ -6,6 +6,7 @@
     "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 ng serve",
     "start-en": "NODE_TLS_REJECT_UNAUTHORIZED=0 ng serve --configuration=en-GB",
     "build": "rm -rf dist && ng build --localize",
+    "build2": "start-server-and-test start-server http://localhost:4000 'rm -rf dist && ng build --localize'",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "new-page": "./script/new-page.sh",
@@ -13,11 +14,12 @@
     "new-feature": "./script/new-feature.sh",
     "new-utility": "./script/new-utility.sh",
     "new-service": "./script/new-service.sh",
-    "start-server": "npm run build && NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/docker-nodejs-study/server/server.mjs",
+    "start-server": "NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/docker-nodejs-study/server/server.mjs",
     "catalog": "ng run docker-nodejs-study:serve:ui-catalog",
     "lint": "ng lint",
     "i18n": "ng extract-i18n --output-path src/locale",
-    "seed-db": "node ./.devcontainer/seed-cosmos.mjs"
+    "seed": "node ./.devcontainer/seed-cosmos.mjs",
+    "prebuild": "NODE_TLS_REJECT_UNAUTHORIZED=0 node ./script/export-db.mjs"
   },
   "private": true,
   "packageManager": "npm@11.9.0",
@@ -52,6 +54,7 @@
     "eslint": "^10.0.3",
     "jsdom": "^28.0.0",
     "prettier": "^3.8.1",
+    "start-server-and-test": "^3.0.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "8.56.1",
     "vitest": "^4.0.8"

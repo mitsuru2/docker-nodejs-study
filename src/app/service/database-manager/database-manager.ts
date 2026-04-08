@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Logger } from '../../utility/logger/logger';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -23,6 +23,13 @@ export class DatabaseManager {
     const location = `${this.className}.getData()`;
     const url = `${this.env.apiUrl}/db/${container}/${partitionKey}`;
     this.logger.info(`${location} url=${url}`);
-    return this.http.get<T>(url);
+    return this.http.get<T>(url).pipe(
+      catchError((error) => {
+        this.logger.error(
+          `${location} Failed to fetch data from ${url}. status=${error.status}, message=${error.message}`,
+        );
+        return throwError(() => error);
+      }),
+    );
   }
 }

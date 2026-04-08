@@ -18,7 +18,14 @@ import { CustomPreset } from '../styles';
 import { Logger } from './utility/logger/logger';
 import { isPlatformBrowser } from '@angular/common';
 import { MessageService } from 'primeng/api';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HttpInterceptorFn } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+
+// HTTPリクエストのログだし。
+export const debugInterceptor: HttpInterceptorFn = (req, next) => {
+  console.log(`[HTTP Request] URL: ${req.url}`);
+  return next(req);
+};
 
 export const commonConfig: ApplicationConfig = {
   providers: [
@@ -49,7 +56,7 @@ export const commonConfig: ApplicationConfig = {
       }
     }),
     MessageService,
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([debugInterceptor])),
   ],
 };
 

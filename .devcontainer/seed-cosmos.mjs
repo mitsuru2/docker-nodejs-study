@@ -22,13 +22,13 @@ async function runSeeder() {
       const { database } = await client.databases.createIfNotExists({ id: databaseId });
       const { container } = await database.containers.createIfNotExists({
         id: containerId,
-        partitionKey: '/category',
+        partitionKey: '/pk',
       });
 
       const items = [
         {
           id: '4c5f49ee-28c2-4a32-8b53-388ee7400478',
-          category: 'front-end',
+          pk: 'front-end',
           title: {
             ja: 'Angularを軸とした、高度なUI/UXとモダンな開発の実現',
             en: 'Delivering advanced UI/UX and modern development by Angular.',
@@ -47,7 +47,7 @@ async function runSeeder() {
         },
         {
           id: '3c760fe1-cb17-4c06-af9e-b33cedd648b0',
-          category: 'front-end',
+          pk: 'front-end',
           subTitle: { ja: 'PrimeNGのデザイントークンを用いた一貫性のあるUI開発' },
           contents: [
             {
@@ -61,7 +61,7 @@ async function runSeeder() {
         },
         {
           id: '6344a74f-11ce-4dbb-8332-7caac9653513',
-          category: 'front-end',
+          pk: 'front-end',
           subTitle: { ja: 'UXを向上させるリッチなカスタムUIの実装' },
           contents: [
             {
@@ -72,7 +72,7 @@ async function runSeeder() {
         },
         {
           id: '77960d8c-a0f2-4b26-bf39-6b3f4379733a',
-          category: 'front-end',
+          pk: 'front-end',
           subTitle: { ja: 'プログラミング言語/フレームワーク' },
           contents: [
             {
