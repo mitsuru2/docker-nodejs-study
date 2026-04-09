@@ -1,0 +1,41 @@
+@for (article of displayArticles(); track $index) {
+  @if (article.titleImage) {
+    <div class="title-image">
+      <img [src]="article.titleImage.path" [alt]="article.titleImage.alt" />
+    </div>
+  }
+  @if (article.title) {
+    <h2>{{ article.title | localize }}</h2>
+  }
+  @if (article.subTitle) {
+    <h3>{{ article.subTitle | localize }}</h3>
+  }
+  @for (message of article.contents; track $index) {
+    <p>{{ message | localize }}</p>
+  }
+  @if (article.images) {
+    <div class="images-track">
+      @for (image of article.images; track $index) {
+        <p-image
+          [src]="image.path"
+          [alt]="image.alt"
+          [preview]="true"
+          [height]="thumbHeight()"
+          [width]="thumbWidth()"
+        >
+          <ng-template #indicator>
+            <i class="pi pi-search"></i>
+          </ng-template>
+          <ng-template #preview>
+            <div class="preview-image">
+              <img [src]="image.path" [alt]="image.alt" />
+              @if (image.caption) {
+                <div class="caption">{{ image.caption | localize }}</div>
+              }
+            </div>
+          </ng-template>
+        </p-image>
+      }
+    </div>
+  }
+}

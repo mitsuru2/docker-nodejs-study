@@ -4,10 +4,13 @@ import { AppShell } from '../../feature/app-shell/app-shell';
 import { ArticleData } from '../../model/db-data';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { HttpClient } from '@angular/common/http';
+import { ImageModule } from 'primeng/image';
+import { DesignTokens } from '../../../styles';
+import { Article } from '../../feature/article/article';
 
 @Component({
   selector: 'app-front-end',
-  imports: [AppShell],
+  imports: [AppShell, ImageModule, Article],
   templateUrl: './front-end.html',
   styleUrl: './front-end.scss',
 })
@@ -21,4 +24,7 @@ export class FrontEnd {
   // 表示データ
   private readonly jsonPath = '/data/articles-front-end.json';
   protected articles = toSignal(this.http.get<ArticleData[]>(this.jsonPath), { initialValue: [] });
+
+  // スタイル設定変数
+  protected thumbHeight = DesignTokens.semantic.custom.article.image.height;
 }

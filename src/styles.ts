@@ -16,6 +16,8 @@ export const DesignTokens = {
       gradient: {
         blueToPurpleHori:
           'linear-gradient(to right, var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 100%)',
+        blueToPurpleHori20:
+          'linear-gradient(to right, rgb(from var(--p-custom-color-bright-blue) r g b / 0.20) 0%, rgb(from var(--p-custom-color-bright-purple) r g b / 0.20) 100%)',
         blueToPurpleVert:
           'linear-gradient(to bottom, var(--p-custom-color-bright-blue) 0%, var(--p-custom-color-bright-purple) 100%)',
         blueToPurpleCircular:
@@ -77,6 +79,17 @@ export const DesignTokens = {
       },
     },
     custom: {
+      article: {
+        image: {
+          height: '180px',
+          width: '180px',
+        },
+        caption: {
+          fontColor: 'var(--p-custom-font-color)',
+          fontSize: 'small',
+          fontWeight: 'normal',
+        },
+      },
       cardWithButton: {
         root: {
           border: '1px solid var(--p-surface-200)',

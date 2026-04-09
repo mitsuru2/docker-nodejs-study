@@ -16,6 +16,11 @@
         "en": "Capable of implementing SSR/SSG or desktop apps using Tauri, depending on the use cases and characteristics of the application."
       }
     ],
+    "displayOrder": 1,
+    "titleImage": {
+      "path": "debug/front-end_4x1.png",
+      "alt": { "ja": "フロントエンドタイトル画像", "en": "Font end title image." }
+    },
     "isPublished": true,
     "_rid": "0xMCAKzg5zYBAAAAAAAAAA==",
     "_self": "dbs/0xMCAA==/colls/0xMCAKzg5zY=/docs/0xMCAKzg5zYBAAAAAAAAAA==/",
@@ -35,6 +40,13 @@
       },
       {
         "ja": "GUIライブラリによる開発スピードの最大化を図りつつ、独自のデザインシステムやブランドアイデンティティとの完璧な両立を実現します。"
+      }
+    ],
+    "images": [
+      {
+        "path": "debug/primevue-v4-styled-architecture.png",
+        "alt": { "ja": "スタイルアーキテクチャー", "en": "Style architecture" },
+        "caption": { "ja": "PrimeNGスタイルアーキテクチャー", "en": "PrimeNG style architecture" }
       }
     ],
     "isPublished": true,

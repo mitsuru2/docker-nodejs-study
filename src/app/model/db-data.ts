@@ -11,7 +11,7 @@ export interface PropertyData {
 
 export interface ImageData {
   path: string;
-  caption?: string;
+  caption?: MessageData;
   alt?: string;
 }
 
@@ -38,6 +38,7 @@ export interface ArticleData {
   displayOrder?: number; // 小さいほうが先。ソートに使用するプロパティはpropertiesの外に出す。
   date?: string; // ISO形式。'2025-01-02'
   properties?: PropertyData[];
+  titleImage?: ImageData;
   images?: ImageData[]; // Azure Blob Storage上の画像パス。デバッグ時は/public/debug/フォルダの画像を指定。
   isPublished: boolean; // true: 公開。false: 下書き/非公開。
 }

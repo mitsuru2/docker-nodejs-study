@@ -30,6 +30,8 @@
     <div class="content-area">
       @if (selectedId === '') {
         <span>No component selected.</span>
+      } @else if (selectedId === 'article') {
+        <app-test-article></app-test-article>
       } @else if (selectedId === 'card-with-button') {
         <app-test-card-with-button></app-test-card-with-button>
       } @else if (selectedId === 'locale-select') {

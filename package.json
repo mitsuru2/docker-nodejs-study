@@ -14,6 +14,7 @@
     "new-feature": "./script/new-feature.sh",
     "new-utility": "./script/new-utility.sh",
     "new-service": "./script/new-service.sh",
+    "new-pipe": "./script/new-pipe.sh",
     "start-server": "NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/docker-nodejs-study/server/server.mjs",
     "catalog": "ng run docker-nodejs-study:serve:ui-catalog",
     "lint": "ng lint",
