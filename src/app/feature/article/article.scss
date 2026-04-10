@@ -74,3 +74,13 @@ p {
     line-height: 1;
   }
 }
+
+.skeleton-h2 {
+  margin: 1rem 0;
+}
+.skeleton-p {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+  margin-top: 1rem;
+}

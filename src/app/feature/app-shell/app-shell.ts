@@ -61,6 +61,7 @@ export class AppShell implements OnInit {
         {
           label: this.labels.skills.diag.title,
           icon: PrimeIcons.CAR,
+          routerLink: '/' + PagePath.Diag,
         },
         {
           label: this.labels.skills.frontEnd.title,
@@ -70,20 +71,24 @@ export class AppShell implements OnInit {
         {
           label: this.labels.skills.ci.title,
           icon: PrimeIcons.SYNC,
+          routerLink: '/' + PagePath.Ci,
         },
         {
           label: this.labels.skills.systemDesign.title,
           icon: PrimeIcons.SITEMAP,
+          routerLink: '/' + PagePath.SystemDesign,
         },
         {
           label: this.labels.skills.userReq.title,
           icon: PrimeIcons.COMMENTS,
+          routerLink: '/' + PagePath.UserReq,
         },
       ],
     },
     {
       label: this.labels.common.career,
       icon: PrimeIcons.BRIEFCASE,
+      routerLink: '/' + PagePath.Career,
     },
   ];
 

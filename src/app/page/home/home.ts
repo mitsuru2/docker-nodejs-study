@@ -222,6 +222,14 @@ export class Home implements OnInit {
 
     if (event.id === SkillMenuItem.frontEnd) {
       this.router.navigate(['/' + PagePath.FrontEnd]);
+    } else if (event.id === SkillMenuItem.ci) {
+      this.router.navigate(['/' + PagePath.Ci]);
+    } else if (event.id === SkillMenuItem.diag) {
+      this.router.navigate(['/' + PagePath.Diag]);
+    } else if (event.id === SkillMenuItem.systemDesign) {
+      this.router.navigate(['/' + PagePath.SystemDesign]);
+    } else if (event.id === SkillMenuItem.userReq) {
+      this.router.navigate(['/' + PagePath.UserReq]);
     } else {
       this.logger.warn(`${location} Not implementd. id=${event.id}`);
     }

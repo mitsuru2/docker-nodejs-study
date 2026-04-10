@@ -97,6 +97,12 @@
                   "replace": "src/app/app.routes.server.ts",
                   "with": "src/app/sub-module/ui-catalog/ui-catalog.routes.server.ts"
                 }
+              ],
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "public"
+                }
               ]
             },
             "en-GB": {

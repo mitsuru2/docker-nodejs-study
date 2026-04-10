@@ -5,10 +5,11 @@ import { ImageModule } from 'primeng/image';
 import { DesignTokens } from '../../../styles';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-article',
-  imports: [LocalizePipe, ImageModule],
+  imports: [LocalizePipe, ImageModule, SkeletonModule],
   templateUrl: './article.html',
   styleUrl: './article.scss',
 })
@@ -16,12 +17,7 @@ export class Article implements OnInit {
   private readonly className = 'Article';
 
   // 入力パラメータ
-  articles = input.required<ArticleData[]>();
-  protected displayArticles = computed(() => {
-    return [...this.articles()].sort(
-      (a, b) => (a.displayOrder ?? Infinity) - (b.displayOrder ?? Infinity),
-    );
-  });
+  article = input.required<ArticleData | undefined>();
 
   // 依存サービス
   private bpObserver = inject(BreakpointObserver);

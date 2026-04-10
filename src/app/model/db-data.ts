@@ -1,18 +1,20 @@
+export interface DbCommonData {
+  id: string; // 保存時はUUIDを採番。
+  pk: string; // パーティションキー。
+  isPublished: boolean; // true: 公開。false: 下書き/非公開。
+  displayOrder?: number; // 小さいほうが先。ソートに使用するプロパティはpropertiesの外に出す。
+  date?: string; // ISO形式。'2025-01-02'
+}
+
 export interface MessageData {
   ja: string;
   en?: string;
 }
 
-export interface PropertyData {
-  category?: MessageData;
-  label: MessageData;
-  value: string | number | null;
-}
-
 export interface ImageData {
   path: string;
   caption?: MessageData;
-  alt?: string;
+  alt?: MessageData;
 }
 
 export const ArticleCategory = {
@@ -28,17 +30,14 @@ export const ArticleCategory = {
 } as const;
 export type ArticleCategoryType = (typeof ArticleCategory)[keyof typeof ArticleCategory];
 
-export interface ArticleData {
-  id: string; // 保存時はUUIDを採番。
-  category: string; // パーティションキー (PK) 。ArticleCategoryTypeにキャスト。
+export interface ArticleParagraphData {
   title?: MessageData;
   subTitle?: MessageData;
   contents?: MessageData[];
-  note?: MessageData[];
-  displayOrder?: number; // 小さいほうが先。ソートに使用するプロパティはpropertiesの外に出す。
-  date?: string; // ISO形式。'2025-01-02'
-  properties?: PropertyData[];
   titleImage?: ImageData;
-  images?: ImageData[]; // Azure Blob Storage上の画像パス。デバッグ時は/public/debug/フォルダの画像を指定。
-  isPublished: boolean; // true: 公開。false: 下書き/非公開。
+  images?: ImageData[];
+}
+
+export interface ArticleData extends DbCommonData {
+  paragraphs: ArticleParagraphData[];
 }

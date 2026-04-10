@@ -1,0 +1,17 @@
+@use '../../../variables.scss' as v;
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+//------------------------------------------------------------------------------
+// モバイルレイアウト
+//
+@media screen and (max-width: v.$bp-mobile) {
+  .container {
+    width: 100%;
+    margin: 0;
+    padding: 0 var(--p-custom-margin-m);
+  }
+}

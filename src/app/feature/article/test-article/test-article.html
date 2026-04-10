@@ -1,3 +1,15 @@
+<div class="menu">
+  <p-button
+    label="Switch"
+    icon="pi pi-arrow-right-arrow-left"
+    (onClick)="buttonClickedHandler()"
+  ></p-button>
+</div>
+
 <div class="container">
-  <app-article class="article1" [articles]="articles()"></app-article>
+  @if (inputUndefined()) {
+    <app-article class="article1" [article]="undefined"></app-article>
+  } @else {
+    <app-article class="article1" [article]="articles()[0]"></app-article>
+  }
 </div>
