@@ -41,7 +41,7 @@ describe('DatabaseManager', () => {
   it('should fetch article data via GET request', () => {
     const mockArticle: Partial<ArticleData> = {
       id: '4c5f49ee-28c2-4a32-8b53-388ee7400478',
-      category: 'front-end',
+      pk: 'front-end',
       isPublished: true,
     };
     const container = 'articles';
