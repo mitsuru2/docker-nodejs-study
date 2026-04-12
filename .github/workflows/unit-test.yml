@@ -36,7 +36,7 @@ jobs:
       # mainブランチの場合、変更ファイルを調べるためにリポジトリをチェックアウト。
       # メタデータだけでいいのでスパースチェックアウト。
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 2
           sparse-checkout: .
@@ -71,7 +71,7 @@ jobs:
     steps:
       # ソースコードをチェックアウト
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # GHCRへのログイン
       - name: Log in to the Container registry
@@ -108,7 +108,7 @@ jobs:
 
       # テストレポートの保存
       - name: Archive Test Report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always() # テストが失敗しても必ず実行してレポートを保存する
         with:
           name: vitest-junit-results
