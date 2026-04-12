@@ -1,6 +1,6 @@
 <div class="base">
   <div class="header">
-    <h2>My UI Catalog</h2>
+    <h1>My UI Catalog</h1>
     <p-menu #menu [model]="mobileItems" [popup]="true" />
     <p-button
       class="menu-button"
@@ -30,6 +30,8 @@
     <div class="content-area">
       @if (selectedId === '') {
         <span>No component selected.</span>
+      } @else if (selectedId === 'experience') {
+        <app-test-experience></app-test-experience>
       } @else if (selectedId === 'article') {
         <app-test-article></app-test-article>
       } @else if (selectedId === 'card-with-button') {

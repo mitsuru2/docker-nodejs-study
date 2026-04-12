@@ -20,7 +20,7 @@ export class FrontEnd {
   private http = inject(HttpClient);
 
   // 表示データ
-  private readonly jsonPath = '/data/articles-front-end.json';
+  private readonly jsonPath = 'data/articles-front-end.json';
   protected article = toSignal(
     this.http.get<ArticleData[]>(this.jsonPath).pipe(map((res) => res[0])),
     { initialValue: undefined },

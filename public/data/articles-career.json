@@ -1,0 +1,213 @@
+[
+  {
+    "id": "b30722d9-02d7-4d54-8204-1d670a1ca0fd",
+    "pk": "career",
+    "type": "experience",
+    "date": "2026-01-01",
+    "isPublished": true,
+    "role": { "ja": "プロダクトオーナー", "en": "Product Owner" },
+    "company": { "ja": "ボッシュ株式会社 / ETAS株式会社", "en": "Bosch Corporation / ETAS K.K." },
+    "term": { "ja": "2017 - 2026" },
+    "achievements": [
+      {
+        "title": { "ja": "【ビジネス貢献】顧客志向の提案による次世代システムの独占受注" },
+        "contents": [
+          {
+            "ja": "ビジネス制約とシステムアーキテクチャのトレードオフを最適化し、顧客の課題解決に寄り添った堅実な提案を完遂。その信頼関係を基盤として、次世代車両診断システムの独占受注を実現しました。"
+          }
+        ]
+      },
+      {
+        "title": { "ja": "【品質・効率】プラットフォーム活用によるトレーサビリティ体系の構築" },
+        "contents": [
+          {
+            "ja": "最新の開発プロセス認証へのコンプライアンス対応と組織間のレビュー効率改善のため、Confluenceを活用した包括的なトレーサビリティ管理体系を構築。品質担保と業務効率化を両立させました。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b30722d9-02d7-4d54-8204-1d670a1ca0fd",
+    "pk": "career",
+    "type": "experience",
+    "date": "2025-01-01",
+    "isPublished": true,
+    "role": { "ja": "システムアーキテクト", "en": "System Architect" },
+    "company": { "ja": "ボッシュ株式会社 / ETAS株式会社", "en": "Bosch Corporation / ETAS K.K." },
+    "term": { "ja": "2023 - 2026" },
+    "achievements": [
+      {
+        "title": { "ja": "【技術基盤】モダンなフロントエンド環境の構築と技術選定" },
+        "contents": [
+          {
+            "ja": "車両診断システム開発において、拡張性を重視したフレームワーク選定とシステム設計を担当。フロントエンドのコアコンポーネントのプロトタイプおよび開発環境構築を主導し、チームへのスムーズな技術導入を実現しました。"
+          }
+        ]
+      },
+      {
+        "title": { "ja": "【リスク管理】コンプライアンス要件を内包した持続可能な設計" },
+        "contents": [
+          {
+            "ja": "OSSライセンスや輸出管理等の要件を設計段階でプロセスに組み込み、継続的なメンテナンス性と法規制遵守を両立する運用ワークフローを構築。製品の持続可能性を技術面から担保しました。"
+          }
+        ]
+      },
+      {
+        "title": { "ja": "【自動化】エンジニアリング・エクセレンスの追求による開発加速" },
+        "contents": [
+          {
+            "ja": "GitHub ActionsやWebDriverIOを活用し、静的解析・回帰テスト・リリース文書作成の自動化パイプラインを設計。品質を維持しながら開発リードタイムを大幅に短縮するエンジニアリング環境を実現しました。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aec3c502-93db-4db4-8d09-b8927903a0a8",
+    "pk": "career",
+    "type": "experience",
+    "date": "2017-01-01",
+    "isPublished": true,
+    "role": { "ja": "ソフトウェアリードエンジニア", "en": "Software Lead Engineer" },
+    "company": { "ja": "株式会社ＩＨＩ", "en": "IHI Corporation" },
+    "term": { "ja": "2013 - 2017" },
+    "achievements": [
+      {
+        "title": { "ja": "【技術基盤】新規ECU開発におけるAUTOSARアーキテクチャの構築" },
+        "contents": [
+          {
+            "ja": "同社初となるECU開発プロジェクトにおいて、SWアーキテクチャの基本設計を主導。すべてのAUTOSAR BSWおよびMCALのコンフィグレーションを完遂し、製品開発の技術的土台を確立しました。"
+          }
+        ]
+      },
+      {
+        "title": { "ja": "【品質プロセス】A-SPICE Lv.1認証取得を支えた開発プロセス策定" },
+        "contents": [
+          {
+            "ja": "A-SPICE準拠の開発プロセス構築およびドキュメント体系の整備を牽引。実効性の高いワークフローを定着させることで、組織としてのA-SPICE Lv.1認証取得に大きく貢献しました。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aec3c502-93db-4db4-8d09-b8927903a0a8",
+    "pk": "career",
+    "type": "experience",
+    "date": "2012-01-01",
+    "isPublished": true,
+    "role": { "ja": "組込みソフトウェアエンジニア", "en": "Embedded Software Engineer" },
+    "company": {
+      "ja": "ソニーデジタルネットワークアプリケーションズ株式会社",
+      "en": "Sony Digital Network Applications, Inc."
+    },
+    "term": { "ja": "2009 - 2012" },
+    "achievements": [
+      {
+        "title": { "ja": "【設計・最適化】SoC用SDKにおける動画制御システムの開発" },
+        "contents": [
+          {
+            "ja": "デジタルカメラSoC用SDKの開発において、動画撮影・再生機能の設計開発を担当。ハイスピード撮影等、膨大なデータ処理を伴う複数のデータフローを統合する制御ロジックを構築しました。"
+          }
+        ]
+      },
+      {
+        "title": { "ja": "【リソース管理】メモリ制約下での高度なメモリマネジメントの実装" },
+        "contents": [
+          {
+            "ja": "組み込み環境特有の厳しいメモリ制約下において、パフォーマンスを最大化するメモリ最適化を実施。複雑な処理の並列実行とリソース競合の解消を両立させ、システムの安定稼働を実現しました。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ccc07864-98a4-4b7f-aac3-5e9623e6cb01",
+    "pk": "career",
+    "type": "qualification",
+    "date": "2015-09-25",
+    "isPublished": true,
+    "name": {
+      "ja": "自動車機能安全実務者認定 (AFSP-B) ISO 26262:2011",
+      "en": "Automotive Functional Safety Practitioner - Basic (AFSP-B) ISO 26262:2011"
+    },
+    "year": 2015,
+    "issuer": "DNV"
+  },
+  {
+    "id": "074cb091-5542-40cd-be3f-9e496f17fa89",
+    "pk": "career",
+    "type": "qualification",
+    "date": "2019-05-13",
+    "isPublished": true,
+    "name": {
+      "ja": "TOEIC L&R テスト 780点",
+      "en": "TOEIC L&R Test Score: 780"
+    },
+    "year": 2019,
+    "issuer": "国際ビジネスコミュニケーション協会"
+  },
+  {
+    "id": "eee09321-5e63-44cd-ac6f-7febd57e9369",
+    "pk": "career",
+    "type": "qualification",
+    "date": "2015-06-19",
+    "isPublished": true,
+    "name": {
+      "ja": "情報処理技術者試験 応用情報技術者試験 合格",
+      "en": "Applied Information Technology Engineer Examination - Certified"
+    },
+    "year": 2015,
+    "issuer": "経済産業省 (IPA実施)"
+  },
+  {
+    "id": "38a93b6c-072b-4031-8d10-ececda009098",
+    "pk": "career",
+    "type": "qualification",
+    "date": "2017-03-28",
+    "isPublished": true,
+    "name": {
+      "ja": "JSTQB認定テスト技術者資格 Foundation Level",
+      "en": "JSTQB Certified Tester Foundation Level"
+    },
+    "year": 2017,
+    "issuer": "JSTQB (Japan Software Testing Qualifications Board)"
+  },
+  {
+    "id": "0f7320bd-90dd-4139-adee-076cafe5bf5e",
+    "pk": "career",
+    "type": "award",
+    "date": "2007-09-30",
+    "isPublished": true,
+    "name": {
+      "ja": "国際学生対抗バーチャルリアリティコンテスト 未来観客賞受賞",
+      "en": "International collegiate Virtual Reality Contest Audience Choice Award"
+    },
+    "year": 2007
+  },
+  {
+    "id": "690ccd37-8748-409b-8cb7-84e8d42ef4c0",
+    "pk": "career",
+    "type": "award",
+    "date": "2015-03-01",
+    "isPublished": true,
+    "name": {
+      "ja": "株式会社ＩＨＩ 技術開発本部 功労表彰 団体一級",
+      "en": "IHI Corporation, Corporate Research and Development Div.: Distinguished Service Award (Group Category, First Class)"
+    },
+    "year": 2015
+  },
+  {
+    "id": "c0e6bdfe-302f-4e8c-9b4b-167cf36dd5b7",
+    "pk": "career",
+    "type": "award",
+    "date": "2025-01-01",
+    "isPublished": true,
+    "name": {
+      "ja": "Robert Bosch GmbH グローバルセールス＆マーケティングアワードにて『THE PORTFOLIO SHAPER』受賞",
+      "en": "Robert Bosch GmbH, THE PORTFOLIO SHAPER at Global Sales & Marketing Award"
+    },
+    "year": 2025
+  }
+]

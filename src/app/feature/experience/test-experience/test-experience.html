@@ -1,0 +1,15 @@
+<div class="menu">
+  <p-button
+    label="Switch"
+    icon="pi pi-arrow-right-arrow-left"
+    (onClick)="buttonClickedHandler()"
+  ></p-button>
+</div>
+
+<div class="container">
+  @if (inputUndefined()) {
+    <app-experience class="article1" [experience]="undefined"></app-experience>
+  } @else {
+    <app-experience class="article1" [experience]="data()"></app-experience>
+  }
+</div>

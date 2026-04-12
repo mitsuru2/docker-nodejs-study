@@ -1,1 +1,36 @@
-<p>career works!</p>
+<app-app-shell>
+  <div class="container">
+    <div class="title-image">
+      <img [src]="titleImage" [alt]="labels.common.career" />
+    </div>
+
+    <!-- 職務経歴 -->
+    <h2>{{ labels.career.experience }}</h2>
+    <div class="experience-track">
+      @for (experience of experiences(); track $index) {
+        <app-experience [experience]="experience"></app-experience>
+      }
+    </div>
+
+    <!-- 資格一覧 -->
+    <h2 class="margin">{{ labels.career.qualification }}</h2>
+    <ul>
+      @for (qualification of qualifications(); track $index) {
+        <li>{{ qualification.name | localize }}</li>
+      }
+    </ul>
+
+    <!-- 表彰歴 -->
+    <h2 class="margin">{{ labels.career.award }}</h2>
+    <ul>
+      @for (award of awards(); track $index) {
+        <li>
+          <span>{{ award.name | localize }}</span>
+          @if (award.year) {
+            <span> ({{ award.year }})</span>
+          }
+        </li>
+      }
+    </ul>
+  </div>
+</app-app-shell>

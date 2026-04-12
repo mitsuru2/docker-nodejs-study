@@ -3,7 +3,7 @@
   <h1>{{ labels.common.title }}</h1>
 
   <!-- 右側 -->
-  <div class="right-side">
+  <div class="right-side no-print">
     <p-menubar [model]="menuItems" breakpoint="200px"></p-menubar>
     @if (!isMobile()) {
       <app-locale-select

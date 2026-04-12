@@ -1,0 +1,28 @@
+@let data = experience();
+
+@if (data) {
+  <div class="title-container">
+    <h3>{{ data.role | localize }}</h3>
+    <div class="company">
+      <span>{{ data.company | localize }}</span> | <span>{{ data.term | localize }}</span>
+    </div>
+  </div>
+  @for (achievement of data.achievements; track $index) {
+    <h4>{{ achievement.title | localize }}</h4>
+    @for (desc of achievement.contents; track $index) {
+      <p>{{ desc | localize }}</p>
+    }
+  }
+} @else {
+  <p-skeleton height="2rem" class="skeleton-h2" />
+  <div class="skeleton-p">
+    <p-skeleton height="1rem" />
+    <p-skeleton height="1rem" />
+    <p-skeleton height="1rem" width="50%" />
+  </div>
+  <div class="skeleton-p">
+    <p-skeleton height="1rem" />
+    <p-skeleton height="1rem" />
+    <p-skeleton height="1rem" width="50%" />
+  </div>
+}

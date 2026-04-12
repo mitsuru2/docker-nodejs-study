@@ -24,7 +24,7 @@ import { PagePath } from '../../model/page-path';
 
 interface CardContentData {
   id: string;
-  catchCopy: string;
+  catchCopy?: string;
   messages: string[];
   card: CardWithButtonConfigData;
 }
@@ -88,15 +88,21 @@ export class Home implements OnInit {
       },
       {
         id: SkillMenuItem.systemDesign,
-        alt: i18nLabels.skills.ci.title.toLowerCase(),
+        alt: i18nLabels.skills.systemDesign.title.toLowerCase(),
         path: 'images/system-design.png',
-        title: i18nLabels.skills.ci.title,
+        title: i18nLabels.skills.systemDesign.title,
       },
       {
         id: SkillMenuItem.userReq,
         alt: i18nLabels.skills.userReq.title.toLowerCase(),
         path: 'images/requirement.png',
         title: i18nLabels.skills.userReq.title,
+      },
+      {
+        id: PagePath.Career,
+        alt: i18nLabels.common.career.toLocaleLowerCase(),
+        path: 'images/career.png',
+        title: i18nLabels.common.career,
       },
     ],
     interval: 6000,
@@ -155,6 +161,14 @@ export class Home implements OnInit {
       card: {
         title: i18nLabels.skills.userReq.title,
         button: { ...this.detailButton, id: SkillMenuItem.userReq },
+      },
+    },
+    {
+      id: `card-${PagePath.Career}`,
+      messages: [i18nLabels.career.brief],
+      card: {
+        title: i18nLabels.career.experience,
+        button: { ...this.detailButton, id: PagePath.Career },
       },
     },
   ];
@@ -230,6 +244,8 @@ export class Home implements OnInit {
       this.router.navigate(['/' + PagePath.SystemDesign]);
     } else if (event.id === SkillMenuItem.userReq) {
       this.router.navigate(['/' + PagePath.UserReq]);
+    } else if (event.id === PagePath.Career) {
+      this.router.navigate(['/' + PagePath.Career]);
     } else {
       this.logger.warn(`${location} Not implementd. id=${event.id}`);
     }

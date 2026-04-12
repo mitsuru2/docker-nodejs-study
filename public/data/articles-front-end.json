@@ -2,6 +2,7 @@
   {
     "id": "4c5f49ee-28c2-4a32-8b53-388ee7400478",
     "pk": "front-end",
+    "type": "article",
     "isPublished": true,
     "paragraphs": [
       {
@@ -20,7 +21,7 @@
           }
         ],
         "titleImage": {
-          "path": "debug/front-end_4x1.png",
+          "path": "images/front-end_4x1.png",
           "alt": { "ja": "フロントエンドタイトル画像", "en": "Font end title image." }
         }
       },
@@ -38,7 +39,7 @@
         ],
         "images": [
           {
-            "path": "debug/primevue-v4-styled-architecture.png",
+            "path": "images/primevue-v4-styled-architecture.png",
             "alt": { "ja": "スタイルアーキテクチャー", "en": "Style architecture" },
             "caption": {
               "ja": "PrimeNGスタイルアーキテクチャー",

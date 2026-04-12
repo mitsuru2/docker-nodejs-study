@@ -33,4 +33,10 @@ export const i18nLabels = {
       description: $localize`:@@skills.userReq.description:要件定義やロードマップ策定等の上流工程において、新規システム立ち上げを含む豊富な経験があります。プロダクトの背景や目的を深く理解した上で、技術的な実現可能性とビジネス要求をバランスよく調整し、プロジェクトを円滑に推進します。`,
     },
   },
+  career: {
+    experience: $localize`:@@common.experience:職務経歴`,
+    qualification: $localize`:@@common.qualification:資格`,
+    award: $localize`:@@common.award:表彰歴`,
+    brief: $localize`:@@career.description:2009年から現在に至るまでの職務経歴と、主な担当業務について。`,
+  },
 } as const;

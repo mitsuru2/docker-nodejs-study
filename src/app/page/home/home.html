@@ -17,7 +17,9 @@
           [config]="card.card"
           (clicked)="cardClickedHandler($event)"
         >
-          <p class="catch-copy">{{ card.catchCopy }}</p>
+          @if (card.catchCopy) {
+            <p class="catch-copy">{{ card.catchCopy }}</p>
+          }
           @for (m of card.messages; track $index) {
             <p>{{ m }}</p>
           }

@@ -19,7 +19,7 @@ export class UserReq {
   private http = inject(HttpClient);
 
   // 表示データ
-  private readonly jsonPath = '/data/articles-user-req.json';
+  private readonly jsonPath = 'data/articles-user-req.json';
   protected article = toSignal(
     this.http.get<ArticleData[]>(this.jsonPath).pipe(map((res) => res[0])),
     { initialValue: undefined },

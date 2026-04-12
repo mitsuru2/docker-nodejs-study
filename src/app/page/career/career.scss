@@ -1,0 +1,60 @@
+@use '../../../variables.scss' as v;
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.title-image {
+  width: 100%;
+  margin-bottom: var(--p-custom-margin-m);
+  position: relative;
+  display: block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--p-custom-gradient-blue-to-purple-hori20);
+    pointer-events: none;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.experience-track {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--p-custom-margin-l);
+}
+
+.margin {
+  margin-top: var(--p-custom-margin-xl);
+}
+
+//------------------------------------------------------------------------------
+// モバイルレイアウト
+//
+@media screen and (max-width: v.$bp-mobile) {
+  .container {
+    width: 100%;
+    margin: 0;
+    padding: 0 var(--p-custom-margin-m);
+  }
+}
+
+//------------------------------------------------------------------------------
+// 印刷レイアウト
+//
+@media print {
+  .title-image::after {
+    display: none;
+  }
+}

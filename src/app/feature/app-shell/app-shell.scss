@@ -66,6 +66,7 @@ app-locale-select {
   font-size: small;
   font-family: var(--p-custom-font-sans-serif);
 
+  margin-top: var(--p-custom-margin-l);
   padding: var(--p-custom-margin-s) 0;
   text-align: center;
 }
@@ -84,6 +85,23 @@ app-locale-select {
   .main {
     margin: 0;
     text-align: center;
+  }
+
+  .footer {
+    font-size: x-small;
+  }
+}
+
+//------------------------------------------------------------------------------
+// Print
+//
+@media print {
+  .header {
+    padding: 0;
+  }
+
+  .main {
+    margin: 0;
   }
 
   .footer {

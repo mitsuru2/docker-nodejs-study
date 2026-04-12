@@ -19,7 +19,7 @@ export class Ci {
   private http = inject(HttpClient);
 
   // 表示データ
-  private readonly jsonPath = '/data/articles-ci.json';
+  private readonly jsonPath = 'data/articles-ci.json';
   protected article = toSignal(
     this.http.get<ArticleData[]>(this.jsonPath).pipe(map((res) => res[0])),
     { initialValue: undefined },

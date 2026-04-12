@@ -1,11 +1,3 @@
-@mixin gradient-underline {
-  background-image: var(--p-custom-gradient-blue-to-purple-hori);
-  background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  padding-bottom: 2px;
-}
-
 :host {
   display: block;
   width: 100%;
@@ -33,10 +25,6 @@
     height: auto;
     display: block;
   }
-}
-
-h2 {
-  @include gradient-underline;
 }
 
 h3 {

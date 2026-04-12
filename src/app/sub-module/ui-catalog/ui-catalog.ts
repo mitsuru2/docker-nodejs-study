@@ -5,6 +5,7 @@ import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 import { PresentationalComponentType, UiCatalogItemData } from './ui-catalog.interface';
+import { TestExperience } from '../../feature/experience/test-experience/test-experience';
 import { TestArticle } from '../../feature/article/test-article/test-article';
 import { TestCardWithButton } from '../../ui/card-with-button/test-card-with-button/test-card-with-button';
 import { TestLocaleSelect } from '../../ui/locale-select/test-locale-select/test-locale-select';
@@ -19,6 +20,7 @@ import { TestCircularImage } from '../../ui/circular-image/test-circular-image/t
 @Component({
   selector: 'app-root', // index.htmlを共通としているためセレクタを修正。
   imports: [
+    TestExperience,
     TestArticle,
     TestCardWithButton,
     TestLocaleSelect,
@@ -47,6 +49,7 @@ export class UiCatalog {
 
   // UIパーツリスト
   protected readonly items: UiCatalogItemData[] = [
+    { type: PresentationalComponentType.Feature, name: 'Experience', id: 'experience' },
     { type: PresentationalComponentType.Feature, name: 'Article', id: 'article' },
     { type: PresentationalComponentType.UI, name: 'Card With Button', id: 'card-with-button' },
     { type: PresentationalComponentType.UI, name: 'Locale Select', id: 'locale-select' },

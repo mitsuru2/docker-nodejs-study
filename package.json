@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 ng serve",
-    "start-en": "NODE_TLS_REJECT_UNAUTHORIZED=0 ng serve --configuration=en-GB",
+    "start": "ng serve",
+    "start-en": "ng serve --configuration=en-GB",
     "build": "rm -rf dist && ng build --localize",
     "build2": "start-server-and-test start-server http://localhost:4000 'rm -rf dist && ng build --localize'",
     "watch": "ng build --watch --configuration development",
@@ -15,12 +15,11 @@
     "new-utility": "./script/new-utility.sh",
     "new-service": "./script/new-service.sh",
     "new-pipe": "./script/new-pipe.sh",
-    "start-server": "NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/docker-nodejs-study/server/server.mjs",
+    "server": "node dist/docker-nodejs-study/server/server.mjs",
     "catalog": "ng run docker-nodejs-study:serve:ui-catalog",
     "lint": "ng lint",
     "i18n": "ng extract-i18n --output-path src/locale",
-    "seed": "node ./.devcontainer/seed-cosmos.mjs",
-    "prebuild": "NODE_TLS_REJECT_UNAUTHORIZED=0 node ./script/export-db.mjs"
+    "seed": "node ./.devcontainer/seed-cosmos.mjs"
   },
   "private": true,
   "packageManager": "npm@11.9.0",
