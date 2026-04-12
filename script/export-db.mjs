@@ -17,9 +17,10 @@ const db = new CosmosClient({ endpoint, key }).database(dbName);
 const targetItems = [{ container: 'articles', pk: 'front-end' }];
 
 // 出力フォルダのパス作成
+// EXPORT_OUTPUT_DIR 環境変数で上書き可能。未設定時は ../public/data をデフォルトとする。
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const outputDir = path.join(__dirname, '../public/data');
+const outputDir = process.env['EXPORT_OUTPUT_DIR'] ?? path.join(__dirname, '../public/data');
 
 // フェッチ処理
 async function getData(containerName, partitionKey) {
@@ -43,24 +44,24 @@ async function getData(containerName, partitionKey) {
   }
 }
 
-// ファイル保存処理
+// ファイル保存処理（アトミック書き込み: 一時ファイルに書いてからリネーム）
 function saveJson(outputPath, data) {
-  try {
-    // 保存先のディレクトリ作成
-    const dir = path.dirname(outputPath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-
-    // ファイル保存
-    fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
-    console.log(`JSON saved to ${outputPath}`);
-  } catch (error) {
-    console.error('Error saving JSON:', error);
+  // 保存先のディレクトリ作成
+  const dir = path.dirname(outputPath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
   }
+
+  // 一時ファイルに書き込んでからリネームすることで、
+  // 書き込み途中の不完全なファイルが残らないようにする。
+  const tmpPath = `${outputPath}.tmp`;
+  fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2));
+  fs.renameSync(tmpPath, outputPath);
+  console.log(`JSON saved to ${outputPath}`);
 }
 
 // メイン処理
+let hasError = false;
 for (const item of targetItems) {
   const { container, pk } = item;
   const data = await getData(container, pk);
@@ -70,5 +71,10 @@ for (const item of targetItems) {
     saveJson(filePath, data);
   } else {
     console.warn(`Data fetch failed for container: ${container}, pk: ${pk}`);
+    hasError = true;
   }
+}
+
+if (hasError) {
+  process.exit(1);
 }

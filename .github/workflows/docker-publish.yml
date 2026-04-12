@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       # 1. GHCRへのログイン（GITHUB_TOKENを使用）
       - name: Log in to the Container registry

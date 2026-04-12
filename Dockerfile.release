@@ -1,0 +1,17 @@
+# syntax=docker/dockerfile:1
+# Production release image.
+# The Angular app is built in GitHub Actions before this Dockerfile is invoked,
+# so only the pre-built dist/ directory needs to be copied into the runtime image.
+
+FROM node:24-trixie-slim AS runtime
+WORKDIR /app
+
+# Copy package.json and package-lock.json, then install production dependencies only.
+COPY package*.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+
+# Copy the pre-built Angular SSR application.
+COPY dist ./dist
+
+# Launch SSR server by Node.js
+CMD ["node", "dist/docker-nodejs-study/server/server.mjs"]
