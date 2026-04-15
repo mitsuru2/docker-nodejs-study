@@ -1,7 +1,7 @@
 [
   {
     "id": "4c5f49ee-28c2-4a32-8b53-388ee7400478",
-    "pk": "front-end",
+    "pk": "ci",
     "type": "article",
     "isPublished": true,
     "paragraphs": [
@@ -12,12 +12,12 @@
         },
         "contents": [
           {
-            "ja": "Angularリードエンジニアとして3年以上の実務経験。画面作成だけでなく、フロントエンド全体の設計から環境構築までお任せいただけます。",
-            "en": "Over 3 years of experience as an Angular Lead Engineer. Beyond UI development, you can entrust me with everything from frontend architecture design to environment setup."
+            "ja": "Angularリードエンジニアとして、フロントエンド全体の設計を含む幅広い実務経験を有しております。",
+            "en": "As an Angular Lead Engineer, I have extensive hands-on experience including overall frontend architecture."
           },
           {
-            "ja": "アプリのユースケースや特性に応じてSSR/SSG対応やTauriによるデスクトップアプリケーション化も対応可能です。",
-            "en": "Capable of implementing SSR/SSG or desktop apps using Tauri, depending on the use cases and characteristics of the application."
+            "ja": "単なる画面実装にとどまらず、プロジェクトの優先順位 (表示速度、保守性、開発コスト) に基づき、SSR/SSGの選定やTauriによるデスクトップアプリケーション化、国際化 (i18n) 対応など、複数の選択肢の中から将来の保守までを考慮した最適なアプローチを提案いたします。",
+            "en": "Beyond simple UI implementation, I propose the optimal approach—considering future maintenance—by selecting from various options like SSR/SSG, Tauri for desktop apps, and i18n, based on project priorities such as performance, maintainability, and cost."
           }
         ],
         "titleImage": {
@@ -27,14 +27,21 @@
       },
       {
         "subTitle": {
-          "ja": "PrimeNGのデザイントークンを用いた一貫性のあるUI開発"
+          "ja": "フレームワークの性能を最大限活用したコンポーネント設計",
+          "en": "Component Design Maximizing Framework Performance"
         },
         "contents": [
           {
-            "ja": "PrimeNGのアーキテクチャに基づき、デザイントークンを活用した柔軟で保守性の高いスタイリングを実装。CSS変数の制御により、テーマのカスタマイズや共通のカラーパレット・タイポグラフィの効率的な一元管理が可能です。"
+            "ja": "PrimeNGのアーキテクチャを深く理解し、デザイントークンを活用した柔軟で保守性の高いスタイリングを実装します。",
+            "en": "I implement flexible, maintainable styling using design tokens based on a deep understanding of PrimeNG's architecture."
           },
           {
-            "ja": "GUIライブラリによる開発スピードの最大化を図りつつ、独自のデザインシステムやブランドアイデンティティとの完璧な両立を実現します。"
+            "ja": "<b>効率と独自性の両立:</b> GUIライブラリによる開発スピードの最大化を図りつつ、CSS変数を制御することで、ブランドアイデンティティを損なわない独自のデザインシステムへと昇華させます。",
+            "en": "<b>Balancing Efficiency and Originality:</b> While maximizing speed with GUI libraries, I refine them into unique design systems using CSS variables to preserve brand identity."
+          },
+          {
+            "ja": "<b>長期的な保守性:</b> テーマの一元管理やタイポグラフィの共通化により、将来的な仕様変更に強い基盤を構築します。",
+            "en": "<b>Long-term Maintainability:</b> By unifying themes and typography, I build a robust foundation against future specification changes."
           }
         ],
         "images": [
@@ -43,18 +50,41 @@
             "alt": { "ja": "スタイルアーキテクチャー", "en": "Style architecture" },
             "caption": {
               "ja": "PrimeNGスタイルアーキテクチャー",
-              "en": "PrimeNG style architecture"
+              "en": "PrimeNG Style Architecture"
             }
           }
         ]
       },
       {
         "subTitle": {
-          "ja": "UXを向上させるリッチなカスタムUIの実装"
+          "ja": "UXを向上させる高度なリアクティブ・プログラミングと意匠",
+          "en": "Advanced Reactive Programming and Design for Better UX"
         },
         "contents": [
           {
-            "ja": "標準ライブラリでは補えない細かな意匠やインタラクションを、CSSアニメーションを用いて実現します。グラデーション等の視覚効果を効果的に取り入れ、ユーザーの目を引くモダンで洗練されたフロントエンド開発を得意としています。"
+            "ja": "GUIライブラリの枠にとらわれず、お客様の思い描くユーザー体験を形にします。",
+            "en": "Transforming your vision into reality by looking beyond the limits of GUI libraries."
+          },
+          {
+            "ja": "<b>RxJS / Signalsによる状態制御:</b> 複雑なデータストリームをRxJSで最適に制御し、Signalsを用いた高効率な変更検知を組み合わせることで、滑らかでストレスのない操作感を提供します。",
+            "en": "<b>State Control with RxJS / Signals:</b> By optimizing complex data streams with RxJS and using the high-efficiency change detection of Signals, I deliver a smooth, stress-free user experience."
+          },
+          {
+            "ja": "<b>CSSによる高度な表現力:</b> アニメーションやグラデーションのほか様々なレイアウト手法を駆使。印刷対応やアクセシビリティ (a11y) にも配慮し、すべてのユーザーにとって「使い心地の良い」UIを構築します。",
+            "en": "<b>Advanced Expression with CSS:</b> Utilizing animations, gradients, and diverse layout techniques, I build \"comfortable\" UIs for all users—while ensuring full support for print styles and accessibility (a11y)."
+          }
+        ],
+        "images": [
+          {
+            "path": "images/custom-progress-bar.png",
+            "alt": {
+              "ja": "カスタムプログレスバー サンプル",
+              "en": "Sample image of the custom progress bar."
+            },
+            "caption": {
+              "ja": "グラデーションとテキストアニメーションを取り入れたカスタムプログレスバー",
+              "en": "Custom Progress Bar with Gradients and Text Animations"
+            }
           }
         ]
       },
@@ -62,9 +92,22 @@
         "subTitle": {
           "ja": "プログラミング言語/フレームワーク"
         },
-        "contents": [
+        "list": [
           {
-            "ja": "Angular, PrimeNG, HTML, CSS/SCSS, TypeScript, JavaScript, ApexCharts, Tuari, Azure, Node.js"
+            "ja": "<b>コア:</b> Angular (Signal/RxJS), TypeScript, JavaScript",
+            "en": "<b>Core:</b> Angular (Signal/RxJS), TypeScript, JavaScript"
+          },
+          {
+            "ja": "<b>フレームワーク:</b> PrimeNG, CSS/SCSS (Modern CSS features), HTML (living standard)",
+            "en": "<b>UI Frameworks:</b> PrimeNG, CSS/SCSS (Modern CSS features), HTML (living standard)"
+          },
+          {
+            "ja": "<b>プラットフォーム/ツール:</b> Node.js, Vite, Vitest, ESLint, Tauri (Desktop App)",
+            "en": "<b>Platform & Tools:</b> Node.js, Vite, Vitest, ESLint, Tauri (Desktop App)"
+          },
+          {
+            "ja": "<b>その他:</b> ApexCharts, XLIFF (i18n)",
+            "en": "<b>Visualization & Others:</b> ApexCharts, XLIFF (i18n)"
           }
         ]
       }

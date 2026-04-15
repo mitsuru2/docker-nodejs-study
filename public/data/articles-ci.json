@@ -12,12 +12,11 @@
         },
         "contents": [
           {
-            "ja": "Angularリードエンジニアとして3年以上の実務経験。画面作成だけでなく、フロントエンド全体の設計から環境構築までお任せいただけます。",
+            "ja": "Angularリードエンジニアとして、大規模プロダクトからプロトタイプ開発まで幅広い実務経験を有しています。",
             "en": "Over 3 years of experience as an Angular Lead Engineer. Beyond UI development, you can entrust me with everything from frontend architecture design to environment setup."
           },
           {
-            "ja": "アプリのユースケースや特性に応じてSSR/SSG対応やTauriによるデスクトップアプリケーション化も対応可能です。",
-            "en": "Capable of implementing SSR/SSG or desktop apps using Tauri, depending on the use cases and characteristics of the application."
+            "ja": "単なる画面実装にとどまらず、プロジェクトの優先順位 (表示速度、保守性、開発コスト) に基づき、SSR/SSGの選定やTauriによるデスクトップアプリケーション化、国際化 (i18n) 対応など、フロントエンド全体のアーキテクチャ設計から最適なアプローチを提案いたします。"
           }
         ],
         "titleImage": {
@@ -27,14 +26,17 @@
       },
       {
         "subTitle": {
-          "ja": "PrimeNGのデザイントークンを用いた一貫性のあるUI開発"
+          "ja": "ビジネス価値を最大化するコンポーネント設計"
         },
         "contents": [
           {
-            "ja": "PrimeNGのアーキテクチャに基づき、デザイントークンを活用した柔軟で保守性の高いスタイリングを実装。CSS変数の制御により、テーマのカスタマイズや共通のカラーパレット・タイポグラフィの効率的な一元管理が可能です。"
+            "ja": "PrimeNGのアーキテクチャを深く理解し、デザイントークンを活用した柔軟で保守性の高いスタイリングを実装します。"
           },
           {
-            "ja": "GUIライブラリによる開発スピードの最大化を図りつつ、独自のデザインシステムやブランドアイデンティティとの完璧な両立を実現します。"
+            "ja": "<b>効率と独自性の両立:</b> GUIライブラリによる開発スピードの最大化を図りつつ、CSS変数を制御することで、ブランドアイデンティティを損なわない独自のデザインシステムへと昇華させます。"
+          },
+          {
+            "ja": "<b>長期的な保守性:</b> テーマの一元管理やタイポグラフィの共通化により、将来的な仕様変更に強い基盤を構築します。"
           }
         ],
         "images": [
@@ -54,7 +56,7 @@
         },
         "contents": [
           {
-            "ja": "標準ライブラリでは補えない細かな意匠やインタラクションを、CSSアニメーションを用いて実現します。グラデーション等の視覚効果を効果的に取り入れ、ユーザーの目を引くモダンで洗練されたフロントエンド開発を得意としています。"
+            "ja": "標準ライブラリでは補えない細かな意匠やインタラクションを、最新CSS機能を用いて実現します。アニメーションやグラデーション等の視覚効果を効果的に取り入れ、ユーザーの目を引く魅力的なフロントエンド開発に貢献します。"
           }
         ]
       },
@@ -64,7 +66,7 @@
         },
         "contents": [
           {
-            "ja": "Angular, PrimeNG, HTML, CSS/SCSS, TypeScript, JavaScript, ApexCharts, Tuari, Azure, Node.js"
+            "ja": "Angular, PrimeNG, HTML, CSS/SCSS, TypeScript, JavaScript, RxJS, XLIFF, ApexCharts, Tuari, Azure, Node.js"
           }
         ]
       }

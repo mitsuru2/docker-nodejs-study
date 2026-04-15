@@ -52,7 +52,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="skills.diag.description" datatype="html">
-        <source>複数OEMにおける車両診断開発の10年以上の知見。AUTOSAR BSW/MCALのコンフィグレーションから通信プロトコルの実装まで、高い信頼性が求められる車載ドメインの要求に確実に応えます。</source>
+        <source>車両診断領域においてECUと診断システム両方での知見を有しております。高い信頼性が求められる車載ドメインの要求に確実に応えます。</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
           <context context-type="linenumber">13</context>
@@ -73,7 +73,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="skills.frontEnd.description" datatype="html">
-        <source>Angularリードエンジニアとして3年以上の実績。GUIライブラリにない独自の表現やアニメーションも開発可能です。Tauriを用いたデスクトップアプリの開発実績もございます。</source>
+        <source>Angularリードエンジニアとして、フロントエンド全体の設計を含む幅広い実務経験を有しております。アプリの特性に応じた最適なアプローチを提案いたします。</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
           <context context-type="linenumber">18</context>
@@ -94,7 +94,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="skills.ci.description" datatype="html">
-        <source>Docker/GitHub/Azureを活用したビルド・テストの自動化。既存の外部システムと連携した複雑なワークフローの構築から、開発チーム全体の生産性を向上させる開発環境の整備まで一任いただけます。</source>
+        <source>Docker/GitHub/Azureを活用したビルド・テストの自動化。開発チーム全体の生産性を向上させる開発環境の整備まで一任いただけます。</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
           <context context-type="linenumber">23</context>
@@ -136,10 +136,38 @@
         </context-group>
       </trans-unit>
       <trans-unit id="skills.userReq.description" datatype="html">
-        <source>要件定義やロードマップ策定等の上流工程において、新規システム立ち上げを含む豊富な経験があります。プロダクトの背景や目的を深く理解した上で、技術的な実現可能性とビジネス要求をバランスよく調整し、プロジェクトを円滑に推進します。</source>
+        <source>要件定義やロードマップ策定等の上流工程において、新規システム立ち上げを含む豊富な経験があります。ビジネス要求と技術制約をバランスよく調整し、プロジェクトを円滑に推進します。</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
           <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="common.experience" datatype="html">
+        <source>職務経歴</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="common.qualification" datatype="html">
+        <source>資格</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="common.award" datatype="html">
+        <source>表彰歴</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="career.description" datatype="html">
+        <source>2009年から現在に至るまでの職務経歴と、主な担当業務について。</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
     </body>

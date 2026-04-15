@@ -14,7 +14,14 @@
       <h3>{{ paragraph.subTitle | localize }}</h3>
     }
     @for (message of paragraph.contents; track $index) {
-      <p>{{ message | localize }}</p>
+      <p [innerHTML]="message | localize"></p>
+    }
+    @if (paragraph.list && paragraph.list.length > 0) {
+      <ul>
+        @for (item of paragraph.list; track $index) {
+          <li [innerHTML]="item | localize"></li>
+        }
+      </ul>
     }
     @if (paragraph.images) {
       <div class="images-track">

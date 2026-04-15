@@ -37,6 +37,7 @@ export interface ArticleParagraphData {
   title?: MessageData;
   subTitle?: MessageData;
   contents?: MessageData[];
+  list?: MessageData[];
   titleImage?: ImageData;
   images?: ImageData[];
 }
