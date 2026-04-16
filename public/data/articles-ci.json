@@ -7,66 +7,100 @@
     "paragraphs": [
       {
         "title": {
-          "ja": "Angularを軸とした、高度なUI/UXとモダンな開発の実現",
-          "en": "Delivering advanced UI/UX and modern development by Angular."
+          "ja": "開発体験 (DX) を加速させる、堅牢で自動化されたエンジニアリング基盤の構築",
+          "en": "Building Robust, Automated Foundations to Accelerate Developer Experience (DX)"
         },
         "contents": [
           {
-            "ja": "Angularリードエンジニアとして、大規模プロダクトからプロトタイプ開発まで幅広い実務経験を有しています。",
-            "en": "Over 3 years of experience as an Angular Lead Engineer. Beyond UI development, you can entrust me with everything from frontend architecture design to environment setup."
+            "ja": "開発チームが環境構築やアップデート、コンプライアンス対応に煩わされることなく、純粋に「価値創造」に集中できる環境を構築します。",
+            "en": "I build environments where development teams can focus purely on \"creating value\" without the friction of environment setup, updates, or compliance."
           },
           {
-            "ja": "単なる画面実装にとどまらず、プロジェクトの優先順位 (表示速度、保守性、開発コスト) に基づき、SSR/SSGの選定やTauriによるデスクトップアプリケーション化、国際化 (i18n) 対応など、フロントエンド全体のアーキテクチャ設計から最適なアプローチを提案いたします。"
+            "ja": "Docker、GitHub Actions、Azureを統合し、開発の初期段階から品質とセキュリティを内包 (Shift-Left) させる基盤を提供します。",
+            "en": "By integrating Docker, GitHub Actions, and Azure, I provide a foundation that embeds quality and security from the earliest stages of development (Shift-Left)."
           }
         ],
         "titleImage": {
-          "path": "debug/front-end_4x1.png",
-          "alt": { "ja": "フロントエンドタイトル画像", "en": "Font end title image." }
-        }
-      },
-      {
-        "subTitle": {
-          "ja": "ビジネス価値を最大化するコンポーネント設計"
+          "path": "images/continuous-integration_4x1.png",
+          "alt": { "ja": "CI/CDタイトル画像", "en": "CI/CD title image." }
         },
-        "contents": [
-          {
-            "ja": "PrimeNGのアーキテクチャを深く理解し、デザイントークンを活用した柔軟で保守性の高いスタイリングを実装します。"
-          },
-          {
-            "ja": "<b>効率と独自性の両立:</b> GUIライブラリによる開発スピードの最大化を図りつつ、CSS変数を制御することで、ブランドアイデンティティを損なわない独自のデザインシステムへと昇華させます。"
-          },
-          {
-            "ja": "<b>長期的な保守性:</b> テーマの一元管理やタイポグラフィの共通化により、将来的な仕様変更に強い基盤を構築します。"
-          }
-        ],
         "images": [
           {
-            "path": "debug/primevue-v4-styled-architecture.png",
-            "alt": { "ja": "スタイルアーキテクチャー", "en": "Style architecture" },
-            "caption": {
-              "ja": "PrimeNGスタイルアーキテクチャー",
-              "en": "PrimeNG style architecture"
-            }
+            "path": "images/cicd-overview.png",
+            "alt": { "ja": "CI/CD環境概要", "en": "CI/CD environment overview" },
+            "caption": { "ja": "CI/CD環境概要", "en": "CI/CD environment overview" }
+          },
+          {
+            "path": "images/deploy-workflow.png",
+            "alt": { "ja": "デプロイワークフローサンプル", "en": "Deploy workflow sample" },
+            "caption": { "ja": "デプロイワークフローサンプル", "en": "Deploy workflow sample" }
           }
         ]
       },
       {
         "subTitle": {
-          "ja": "UXを向上させるリッチなカスタムUIの実装"
+          "ja": "【環境構築】開発者の思考を止めない「Zero Setup」環境の提供",
+          "en": "【Environment Setup】 Providing a \"Zero Setup\" Environment for Uninterrupted Focus"
         },
         "contents": [
           {
-            "ja": "標準ライブラリでは補えない細かな意匠やインタラクションを、最新CSS機能を用いて実現します。アニメーションやグラデーション等の視覚効果を効果的に取り入れ、ユーザーの目を引く魅力的なフロントエンド開発に貢献します。"
+            "ja": "DockerとArtifactoryを組み合わせた、ポータブルかつ開発チームによる保守作業が不要な開発環境をフルスクラッチで開発いたします。",
+            "en": "I develop full-scratch, portable development environments combining Docker and Artifactory that eliminate the need for manual maintenance by the team."
+          },
+          {
+            "ja": "<b>Zero Setup:</b> 開発環境やライブラリを集約して一括管理することで、個々の開発メンバーがセットアップや環境維持に割く工数を極限まで削減します。VS CodeからDockerコンテナを起動するだけで即座に開発が開始できます。また、PCの環境差異による「私の環境では動く」問題を根本から解消します。",
+            "en": "<b>Zero Setup:</b> By centralizing environment and library management, I minimize the time individual members spend on setup. Development starts instantly by launching a Docker container via VS Code, fundamentally resolving \"it works on my machine\" issues caused by local environment differences."
+          },
+          {
+            "ja": "<b>継続的アップデート:</b> 開発環境の更新もリポジトリ経由で自動配信。開発を止めることなく、常に最新のセキュリティを適用した開発環境を維持することが可能になります。",
+            "en": "<b>Continuous Updates:</b> Environment updates are automatically distributed via the repository. This allows the team to maintain a development environment with the latest security patches without interrupting their work."
+          },
+          {
+            "ja": "<b>Azureエコシステムの統合:</b> DB、ストレージ、Key Vault (証明書管理) のサービスを連携し、サービス開発の基盤を構築します。エミュレーターを併用することで、開発機のリソース状況とクラウドコストのバランスを最適化した開発環境の提案が可能です。",
+            "en": "<b>Azure Ecosystem Integration:</b> I build service foundations by integrating DB, Storage, and Key Vault. By incorporating emulators, I propose environments that optimize the balance between local resources and cloud costs."
           }
         ]
       },
       {
         "subTitle": {
-          "ja": "プログラミング言語/フレームワーク"
+          "ja": "【品質自動化】フィードバックループを高速化するCIパイプライン",
+          "en": "【Quality Automation】 CI Pipelines that Accelerate the Feedback Loop"
         },
         "contents": [
           {
-            "ja": "Angular, PrimeNG, HTML, CSS/SCSS, TypeScript, JavaScript, RxJS, XLIFF, ApexCharts, Tuari, Azure, Node.js"
+            "ja": "GitHub Actionsを中心としたワークフロー機能を活用することで、開発スピードとプロセス強化の両面で貢献します。",
+            "en": "By leveraging GitHub Actions-centered workflows, I enhance both development speed and process integrity."
+          },
+          {
+            "ja": "<b>開発プロセスとの統合:</b> 開発プロセスをシステムに統合することで、テストの実施漏れや未承認のコードの混入をゼロにします。また、テスト結果をActionsの画面上で一目で把握できるカスタムレポートを構築し、エラーの早期特定を支援します。",
+            "en": "<b>Integration with Development Processes:</b> By embedding the development process into the system, I eliminate missed tests and unapproved code merging. Additionally, I build custom reports that allow test results to be understood at a glance within GitHub Actions, supporting the early identification of errors."
+          },
+          {
+            "ja": "<b>E2Eテストの実装:</b> WebDriverIOを用いた回帰テスト環境を構築可能です。手動テストの負担を軽減し、デグレードの未然防止に貢献します。",
+            "en": "<b>E2E Test Implementation:</b> I can establish regression testing environments using WebDriverIO. This reduces the cost of manual testing and contributes to the prevention of regressions before they reach production."
+          }
+        ]
+      },
+      {
+        "subTitle": {
+          "ja": "テクニカルスタック",
+          "en": "Technical Stack"
+        },
+        "list": [
+          {
+            "ja": "<b>インフラストラクチャー:</b> Docker, Azure (DB, Storage, Container Apps, Key Vault, DB Emulator)",
+            "en": "<b>Infrastructure:</b> Docker, Azure (DB, Storage, Container Apps, Key Vault, DB Emulator)"
+          },
+          {
+            "ja": "<b>CI/CD:</b> GitHub Actions, GitHub Container Repository, Artifactory"
+          },
+          {
+            "ja": "<b>テスト:</b> WebDriverIO (E2E), Vitest, ESLint",
+            "en": "<b>Testing:</b> WebDriverIO (E2E), Vitest, ESLint"
+          },
+          {
+            "ja": "<b>スクリプト:</b> Bash, PowerShell, JavaScript (mjs)",
+            "en": "<b>Scripting:</b> Bash, PowerShell, JavaScript (mjs)"
           }
         ]
       }

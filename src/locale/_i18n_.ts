@@ -19,7 +19,7 @@ export const i18nLabels = {
     },
     ci: {
       title: $localize`:@@skills.ci.title:ワークフロー開発 & CI/CD`,
-      subTitle: $localize`:@@skills.ci.subTitle:「止まらない開発」を支える、フルスクラッチの自動化基盤構築`,
+      subTitle: $localize`:@@skills.ci.subTitle:開発体験 (DX) を加速させる、堅牢で自動化されたエンジニアリング基盤の構築`,
       description: $localize`:@@skills.ci.description:Docker/GitHub/Azureを活用したビルド・テストの自動化。開発チーム全体の生産性を向上させる開発環境の整備まで一任いただけます。`,
     },
     systemDesign: {

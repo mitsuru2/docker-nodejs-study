@@ -90,7 +90,8 @@
       },
       {
         "subTitle": {
-          "ja": "プログラミング言語/フレームワーク"
+          "ja": "テクニカルスタック",
+          "en": "Technical Stack"
         },
         "list": [
           {
