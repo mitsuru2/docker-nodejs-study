@@ -39,8 +39,8 @@
       },
       {
         "subTitle": {
-          "ja": "【環境構築】開発者の思考を止めない「Zero Setup」環境の提供",
-          "en": "【Environment Setup】 Providing a \"Zero Setup\" Environment for Uninterrupted Focus"
+          "ja": "開発者の思考を止めない「Zero Setup」環境の提供",
+          "en": "Providing a \"Zero Setup\" Environment for Uninterrupted Focus"
         },
         "contents": [
           {
@@ -64,7 +64,7 @@
       {
         "subTitle": {
           "ja": "【品質自動化】フィードバックループを高速化するCIパイプライン",
-          "en": "【Quality Automation】 CI Pipelines that Accelerate the Feedback Loop"
+          "en": "QUALITY AUTOMATION | CI Pipelines that Accelerate the Feedback Loop"
         },
         "contents": [
           {

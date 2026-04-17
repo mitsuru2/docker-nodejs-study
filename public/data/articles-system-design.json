@@ -7,80 +7,82 @@
     "paragraphs": [
       {
         "title": {
-          "ja": "Angularを軸とした、高度なUI/UXとモダンな開発の実現",
-          "en": "Delivering advanced UI/UX and modern development by Angular."
+          "ja": "自動車業界基準の長期運用を見据えた持続可能なシステムアーキテクチャ設計",
+          "en": "Sustainable System Architecture for Long-Term Operations"
         },
         "contents": [
           {
-            "ja": "Angularリードエンジニアとして3年以上の実務経験。画面作成だけでなく、フロントエンド全体の設計から環境構築までお任せいただけます。",
-            "en": "Over 3 years of experience as an Angular Lead Engineer. Beyond UI development, you can entrust me with everything from frontend architecture design to environment setup."
-          },
-          {
-            "ja": "アプリのユースケースや特性に応じてSSR/SSG対応やTauriによるデスクトップアプリケーション化も対応可能です。",
-            "en": "Capable of implementing SSR/SSG or desktop apps using Tauri, depending on the use cases and characteristics of the application."
+            "ja": "組込みシステム・デスクトップアプリケーション・中規模ウェブシステムなど、幅広くシステムの設計に携わってきました。高信頼・長期運用が求められる自動車業界で培った経験を活かし、最適なアーキテクチャーを提案いたします。",
+            "en": "I have designed a wide range of systems, including embedded systems, desktop applications, and mid-scale web systems. Leveraging my experience in the automotive industry, where high reliability and long-term maintenance are required, I propose optimal architectures tailored to your needs."
           }
         ],
         "titleImage": {
-          "path": "debug/front-end_4x1.png",
-          "alt": { "ja": "フロントエンドタイトル画像", "en": "Font end title image." }
+          "path": "images/system-design_4x1.png",
+          "alt": { "ja": "システム設計タイトル画像", "en": "System design title image." }
         }
       },
       {
         "subTitle": {
-          "ja": "【ガバナンス】テクニカル・コンプライアンスの実務経験",
-          "en": "### これはシステム設計に移す ###"
+          "ja": "ライフサイクル全体を見据えたトータルデザイン",
+          "en": "Total Design with a Full Lifecycle Perspective"
+        },
+        "contents": [
+          {
+            "ja": "既存のデータやソフトウェア資産を活かしつつ、保守プロセスまでを見据えた「運用に強い」アーキテクチャを提案します。",
+            "en": "I propose \"operations-oriented\" architectures that leverage existing data and software assets while streamlining long-term maintenance processes."
+          },
+          {
+            "ja": "<b>ライフサイクル全体の考慮:</b> 開発のしやすさ (DX) を考慮した軽量な開発環境や、クラウドランニングコストを抑えたプリビルド設計、サービスを止めないデプロイワークフローなど、基本を押さえつつアプリ要件に応じた設計が可能です。",
+            "en": "<b>Lifecycle Considerations:</b> I design tailored solutions that balance core fundamentals with specific application needs. For example, lightweight environments to improve Developer Experience (DX), pre-built designs that reduce cloud running costs, and deployment workflows that ensure zero downtime."
+          },
+          {
+            "ja": "<b>法規制への適応:</b> 明文化された法規要件に加え、OSSライセンスやデータ移動に関する課題も考慮し、コンプライアンスリスクを回避した設計を提案します。",
+            "en": "<b>Regulatory Adaptation:</b> Adding to the explicitly defined requirements, I propose designs that mitigate compliance risks by addressing complex challenges related to OSS licensing and cross-border data transfers."
+          }
+        ]
+      },
+      {
+        "subTitle": {
+          "ja": "ECUシステム設計および開発プロセス支援",
+          "en": "ECU System Design & Development Process Support"
+        },
+        "contents": [
+          {
+            "ja": "<b>AUTOSAR導入と実装:</b> AUTOSAR Classicを用いたBSW/MCALのコンフィグレーションや、診断・リプログラミング機能を含めたシステム設計を担当可能です。",
+            "en": "<b>AUTOSAR Adoption & Implementation:</b> I can handle BSW/MCAL configuration using AUTOSAR Classic, as well as system design including diagnostics and reprogramming functions."
+          },
+          {
+            "ja": "<b>国際基準の開発プロセス構築を強力に支援:</b> 組織初のECU開発プロジェクトにおいて、A-SPICE認証対応をゼロから対応した経験があります。長年のキャリアを通じて機能安全やサイバーセキュリティ法規への対応も携わってきましたので、プロジェクトのニーズに応じた柔軟な提案が可能です。",
+            "en": "<b>Strong Support for Global Standard Development Processes:</b> I have experience leading A-SPICE compliance from scratch for an organization's first ECU project. Throughout my career, I have also worked on Functional Safety and Cybersecurity regulations. I can provide flexible proposals tailored to your project's specific needs."
+          }
+        ]
+      },
+      {
+        "subTitle": {
+          "ja": "テクニカル・コンプライアンスの実務経験",
+          "en": "Practical Experience in Technical Compliance"
         },
         "contents": [
           {
             "ja": "<b>輸出管理対応:</b> 外為法該非判定における項目別対比表の作成や、米国再輸出規制 (デミニマス規制) におけるソフトウェア価値算定の実務経験があります。設計・ライブラリ選定段階での評価を通じて、規制基準への抵触を未然に回避するアーキテクチャ設計を支援します。",
-            "en": ""
+            "en": "<b>Export Control Compliance:</b> Experienced in preparing item-by-item comparison tables for FEFTA classifications and conducting software valuation for U.S. de minimis re-export rules. I support architectural designs that prevent regulatory breaches by evaluating designs and library selections early on."
           },
           {
             "ja": "<b>OSSライセンス管理および脆弱性対応:</b> SBOMに基づくOSSライセンスの評価や、検出された脆弱性 (CVE) の製品への影響有無の評価、顧客へのレポート作成までお任せいただけます。",
-            "en": ""
+            "en": "<b>OSS License Management & Vulnerability Handling:</b> I provide end-to-end support, from SBOM-based license audits to assessing the impact of detected vulnerabilities (CVEs) on products and preparing formal reports for clients."
           }
         ]
       },
       {
-        "subTitle": {
-          "ja": "PrimeNGのデザイントークンを用いた一貫性のあるUI開発"
-        },
-        "contents": [
+        "subTitle": { "ja": "テクニカルスタック", "en": "Technical Stack" },
+        "list": [
           {
-            "ja": "PrimeNGのアーキテクチャに基づき、デザイントークンを活用した柔軟で保守性の高いスタイリングを実装。CSS変数の制御により、テーマのカスタマイズや共通のカラーパレット・タイポグラフィの効率的な一元管理が可能です。"
+            "ja": "<b>方法論:</b> データ指向設計, 戦略的責務集約, 階層化アーキテクチャー, Pure Function設計",
+            "en": "<b>Methodologies:</b> Data-oriented Architecture, Strategic Encapsulation, Layered Architecture, Pure Function Desgin"
           },
           {
-            "ja": "GUIライブラリによる開発スピードの最大化を図りつつ、独自のデザインシステムやブランドアイデンティティとの完璧な両立を実現します。"
-          }
-        ],
-        "images": [
-          {
-            "path": "debug/primevue-v4-styled-architecture.png",
-            "alt": { "ja": "スタイルアーキテクチャー", "en": "Style architecture" },
-            "caption": {
-              "ja": "PrimeNGスタイルアーキテクチャー",
-              "en": "PrimeNG style architecture"
-            }
-          }
-        ]
-      },
-      {
-        "subTitle": {
-          "ja": "UXを向上させるリッチなカスタムUIの実装"
-        },
-        "contents": [
-          {
-            "ja": "標準ライブラリでは補えない細かな意匠やインタラクションを、CSSアニメーションを用いて実現します。グラデーション等の視覚効果を効果的に取り入れ、ユーザーの目を引くモダンで洗練されたフロントエンド開発を得意としています。"
-          }
-        ]
-      },
-      {
-        "subTitle": {
-          "ja": "プログラミング言語/フレームワーク"
-        },
-        "contents": [
-          {
-            "ja": "Angular, PrimeNG, HTML, CSS/SCSS, TypeScript, JavaScript, ApexCharts, Tuari, Azure, Node.js"
+            "ja": "<b>コンプライアンス:</b> ソフトウェア該非判定, デミニミス規制対応, SBOM管理, CVEトリアージ",
+            "en": "<b>Compliance:</b> Export Control, De-minimis, SBOM Management, CVE Triage"
           }
         ]
       }
