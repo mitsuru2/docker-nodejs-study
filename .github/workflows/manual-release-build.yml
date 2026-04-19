@@ -55,10 +55,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            COSMOS_ENDPOINT=${{ vars.COSMOS_ENDPOINT }}
-            COSMOS_DB=${{ vars.COSMOS_DB }}
-            COSMOS_KEY=${{ secrets.COSMOS_KEY }}
 
       # 6. エクスポートしたデータをアーティファクトとして保存（トレーサビリティ）
       - name: Upload exported data as artifact

@@ -15,16 +15,24 @@ const angularApp = new AngularNodeAppEngine();
 
 // Azure Cosmos DB
 // 環境変数はサーバーで設定。ローカルではdocker-compose.ymlで指定。
-const endpoint = process.env['COSMOS_ENDPOINT'];
-const key = process.env['COSMOS_KEY'];
-const dbName = process.env['COSMOS_DB'];
-if (!endpoint || !key || !dbName) {
-  throw new Error(
-    'Environment variables for Cosmos DB is not found. Please check server configuration or docker-compose.yml.',
-  );
-}
-const db: Database = new CosmosClient({ endpoint, key }).database(dbName);
+// ビルド実行時にインスタンス化することでビルド時の環境変数設定を不要とする。
+let _db: Database | null = null;
 const allowedContainerNames = ['articles'];
+function getDatabase(): Database {
+  if (_db) return _db;
+
+  const endpoint = process.env['COSMOS_ENDPOINT'];
+  const key = process.env['COSMOS_KEY'];
+  const dbName = process.env['COSMOS_DB'];
+  if (!endpoint || !key || !dbName) {
+    throw new Error(
+      'Environment variables for Cosmos DB is not found. Please check server configuration or docker-compose.yml.',
+    );
+  }
+
+  _db = new CosmosClient({ endpoint, key }).database(dbName);
+  return _db;
+}
 
 /**
  * Example Express Rest API endpoints can be defined here.
@@ -54,6 +62,7 @@ app.get('/db/:container/:pk', async (req, res) => {
     }
 
     // コンテナ取得
+    const db = getDatabase();
     const containerEntity = db.container(container);
 
     // クエリ実行
