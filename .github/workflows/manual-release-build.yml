@@ -20,9 +20,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      # 2. Dockerのセットアップ
+      # 2. Docker　Buildkitのセットアップ
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       # 3. GHCRへのログイン
       - name: Log in to the Container registry
