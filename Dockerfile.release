@@ -1,17 +1,51 @@
 # syntax=docker/dockerfile:1
-# Production release image.
-# The Angular app is built in GitHub Actions before this Dockerfile is invoked,
-# so only the pre-built dist/ directory needs to be copied into the runtime image.
 
+# Production release image (multi-stage).
+# - Build Angular SSR app inside the image to avoid relying on dist/ from the host
+#   (and to avoid .dockerignore excluding dist).
+# - The runtime image contains only production dependencies and built artifacts.
+
+# ---- STAGE 1: build ----
+FROM node:24-trixie AS build
+
+# Install OS-level dependencies (kept consistent with Dockerfile).
+RUN apt-get update && apt-get install -y 
+    git \
+    sudo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Enable sudo command to user 'node' w/o password.
+RUN echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/passwd-sudo-rules \
+    && mkdir -p /etc/sudoers.d \
+    && echo "node ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/node \
+    && chmod 0440 /etc/sudoers.d/node
+
+WORKDIR /app
+RUN chown -R node:node /app
+
+# Install deps (including devDeps) to build Angular.
+COPY --chown=node:node package*.json ./
+USER node
+RUN npm ci
+
+# Copy source and build.
+COPY --chown=node:node . .
+
+# Build Angular SSR output to dist/
+RUN npm run build
+
+# ---- STAGE 2: runtime ----
 FROM node:24-trixie-slim AS runtime
 WORKDIR /app
 
-# Copy package.json and package-lock.json, then install production dependencies only.
+ENV NODE_ENV=production
+
+# Install production dependencies only.
 COPY package*.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 
-# Copy the pre-built Angular SSR application.
-COPY dist ./dist
+# Copy built artifacts from build stage.
+COPY --from=build /app/dist ./dist
 
 # Launch SSR server by Node.js
 CMD ["node", "dist/docker-nodejs-study/server/server.mjs"]
