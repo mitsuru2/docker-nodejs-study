@@ -46,9 +46,9 @@ jobs:
       # 6. Angular SSR アプリをビルド（エクスポートした JSON が assets として取り込まれる）
       - name: Build Angular app
         env:
-          COSMOS_ENDPOINT: ${{ secrets.COSMOS_ENDPOINT }}
+          COSMOS_ENDPOINT: ${{ vars.COSMOS_ENDPOINT }}
           COSMOS_KEY: ${{ secrets.COSMOS_KEY }}
-          COSMOS_DB: ${{ secrets.COSMOS_DB }}
+          COSMOS_DB: ${{ vars.COSMOS_DB }}
         run: npm run build
 
       # 7. GHCRへのログイン
