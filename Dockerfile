@@ -58,18 +58,4 @@ CMD ["sleep", "infinity"]
 # CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
 
 # ---- STAGE 2: runtime ----
-FROM node:24-trixie-slim AS runtime
-WORKDIR /app
-
-# Copy package.json and package-lock.json to the working directory, and install packages.
-# Here, it installs only production dependencies.
-COPY package*.json ./
-RUN npm ci --omit=dev && npm cache clean --force
-
-# Copy all files under 'dist' folder.
-COPY --from=build /app/dist ./dist
-
-# Launch SSR server by Node.js
-CMD ["node", "dist/docker-nodejs-study/server/server.mjs"]
-
-
+# Stage 2 is separated into Dockerfile.release as the build environment is different.

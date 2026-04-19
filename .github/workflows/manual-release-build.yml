@@ -31,12 +31,12 @@ jobs:
         run: npm ci
 
       # 4. Cosmos DB からデータをエクスポート
-      - name: Export data from Cosmos DB
-        env:
-          COSMOS_ENDPOINT: ${{ secrets.COSMOS_ENDPOINT }}
-          COSMOS_KEY: ${{ secrets.COSMOS_KEY }}
-          COSMOS_DB: ${{ secrets.COSMOS_DB }}
-        run: node script/export-db.mjs
+      # - name: Export data from Cosmos DB
+      #   env:
+      #     COSMOS_ENDPOINT: ${{ secrets.COSMOS_ENDPOINT }}
+      #     COSMOS_KEY: ${{ secrets.COSMOS_KEY }}
+      #     COSMOS_DB: ${{ secrets.COSMOS_DB }}
+      #   run: node script/export-db.mjs
 
       # 5. ビルドメタデータ (_build.json) を生成
       - name: Generate build metadata
