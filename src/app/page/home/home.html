@@ -2,29 +2,29 @@
   <app-splash class="splash" animate.leave="fade-out" [progress]="initProgress()"></app-splash>
 }
 
-@if (showMain()) {
-  <app-app-shell>
+<app-app-shell [style.display]="showMain() ? 'block' : 'none'">
+  @if (showMain()) {
     <app-carousel
       class="carousel"
       [config]="carousel()"
       (clicked)="carouselClickedHandler($event)"
     ></app-carousel>
+  }
 
-    <div class="card-container">
-      @for (card of cardContents; track $index) {
-        <app-card-with-button
-          [id]="card.id"
-          [config]="card.card"
-          (clicked)="cardClickedHandler($event)"
-        >
-          @if (card.catchCopy) {
-            <p class="catch-copy">{{ card.catchCopy }}</p>
-          }
-          @for (m of card.messages; track $index) {
-            <p>{{ m }}</p>
-          }
-        </app-card-with-button>
-      }
-    </div>
-  </app-app-shell>
-}
+  <div class="card-container">
+    @for (card of cardContents; track $index) {
+      <app-card-with-button
+        [id]="card.id"
+        [config]="card.card"
+        (clicked)="cardClickedHandler($event)"
+      >
+        @if (card.catchCopy) {
+          <p class="catch-copy">{{ card.catchCopy }}</p>
+        }
+        @for (m of card.messages; track $index) {
+          <p>{{ m }}</p>
+        }
+      </app-card-with-button>
+    }
+  </div>
+</app-app-shell>

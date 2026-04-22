@@ -13,6 +13,8 @@
   --p-select-sm-padding-y: var(--p-custom-locale-select-padding-y);
   --p-select-option-padding: var(--p-custom-locale-select-padding-y)
     var(--p-custom-locale-select-padding-x);
+
+  height: var(--p-custom-locale-select-height);
 }
 
 .option-item {

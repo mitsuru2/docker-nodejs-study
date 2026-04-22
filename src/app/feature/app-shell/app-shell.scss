@@ -37,6 +37,8 @@ app-locale-select {
   --p-custom-locale-select-font-weight: bold;
   --p-custom-locale-select-padding-y: var(--p-custom-margin-xs);
   --p-custom-locale-select-padding-x: var(--p-custom-margin-s);
+  --p-select-shadow: none;
+  --p-custom-locale-select-height: 26px;
 }
 
 .locale-button {

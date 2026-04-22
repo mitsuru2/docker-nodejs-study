@@ -126,6 +126,9 @@ export const DesignTokens = {
         background: 'var(--p-custom-gradient-blue-to-purple-circular)',
       },
       localeSelect: {
+        root: {
+          height: 'auto',
+        },
         flag: {
           height: '1.1em', // 文字サイズに追従
         },

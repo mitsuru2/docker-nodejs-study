@@ -44,7 +44,7 @@ export class AppManager {
 
     // ダミー処理 (ブラウザでの動作確認用。サーバー側ではスキップしてレスポンス速度を優先)
     if (isPlatformBrowser(this.platformId)) {
-      await sleep(500);
+      await sleep(200);
       // 初期化フラグ設定
       this.isInit.set(true);
     }
