@@ -7,64 +7,87 @@
     "paragraphs": [
       {
         "title": {
-          "ja": "Angularを軸とした、高度なUI/UXとモダンな開発の実現",
-          "en": "Delivering advanced UI/UX and modern development by Angular."
+          "ja": "車両診断・車載ネットワーク: 10年の経験に基づく高度な専門性",
+          "en": "Vehicle Diagnostics & In-Vehicle Networks: 10 Years of Deep Expertise"
         },
         "contents": [
           {
-            "ja": "Angularリードエンジニアとして3年以上の実務経験。画面作成だけでなく、フロントエンド全体の設計から環境構築までお任せいただけます。",
-            "en": "Over 3 years of experience as an Angular Lead Engineer. Beyond UI development, you can entrust me with everything from frontend architecture design to environment setup."
+            "ja": "車両診断の分野において、ECU側と診断システム側の双方でのべ10年にわたるの設計開発経験を有しています。",
+            "en": "I have over 10 years of cumulative experience in designing and developing vehicle diagnostics, covering both ECU-side and diagnostic system-side implementations."
           },
           {
-            "ja": "アプリのユースケースや特性に応じてSSR/SSG対応やTauriによるデスクトップアプリケーション化も対応可能です。",
-            "en": "Capable of implementing SSR/SSG or desktop apps using Tauri, depending on the use cases and characteristics of the application."
+            "ja": "標準のUDSプロトコルへの深い理解はもちろん、OEM固有プロトコルへの適合や次世代診断規格であるSOVDまで、ドメイン全体をカバーする技術力を提供します。",
+            "en": "Beyond a profound understanding of standard UDS protocols, I offer comprehensive technical expertise across the entire domain - from adapting to OEM-specific protocols to implementing next-generation standards like SOVD."
           }
         ],
         "titleImage": {
-          "path": "debug/front-end_4x1.png",
-          "alt": { "ja": "フロントエンドタイトル画像", "en": "Font end title image." }
+          "path": "images/vehicle-diagnostics_4x1.png",
+          "alt": { "ja": "車両診断タイトル画像", "en": "Vehicle diagnostics title image." }
         }
       },
       {
         "subTitle": {
-          "ja": "PrimeNGのデザイントークンを用いた一貫性のあるUI開発"
+          "ja": "【診断プロトコル】標準規格からOEM独自仕様、次世代SOVDまで",
+          "en": "Diagnostic Protocols: ISO Standards, OEM Specifics, and Next-Gen SOVD"
         },
         "contents": [
           {
-            "ja": "PrimeNGのアーキテクチャに基づき、デザイントークンを活用した柔軟で保守性の高いスタイリングを実装。CSS変数の制御により、テーマのカスタマイズや共通のカラーパレット・タイポグラフィの効率的な一元管理が可能です。"
+            "ja": "UDS (ISO 14229) はもちろん、K-Lineを用いたレガシープロトコル、さらに次世代のSOVD (Service-Oriented Vehicle Diagnostics) まで対応可能です。",
+            "en": "I support everything from UDS (ISO 14229) and legacy K-Line protocols to the next-generation SOVD (Service-Oriented Vehicle Diagnostics)."
           },
           {
-            "ja": "GUIライブラリによる開発スピードの最大化を図りつつ、独自のデザインシステムやブランドアイデンティティとの完璧な両立を実現します。"
-          }
-        ],
-        "images": [
-          {
-            "path": "debug/primevue-v4-styled-architecture.png",
-            "alt": { "ja": "スタイルアーキテクチャー", "en": "Style architecture" },
-            "caption": {
-              "ja": "PrimeNGスタイルアーキテクチャー",
-              "en": "PrimeNG style architecture"
-            }
+            "ja": "日系および欧州OEM両方での開発経験を有しております。DTC管理、診断パラメータ操作、ファンクションテスト、リプログラミング等、複雑なデータ/シーケンス設計について、仕様から提案可能です。",
+            "en": "With development experience for both Japanese and European OEMs, I can propose and design complex data structures and sequences - including DTC management, DID control, functional testing, and reprogramming - starting from the specification phase."
           }
         ]
       },
       {
         "subTitle": {
-          "ja": "UXを向上させるリッチなカスタムUIの実装"
+          "ja": "通信バス (CAN/K-Line) とハードウェア (VCI) への深い知見",
+          "en": "Deep Insight into Communication Buses (CAN/K-Line) and Hardware (VCI)"
         },
         "contents": [
           {
-            "ja": "標準ライブラリでは補えない細かな意匠やインタラクションを、CSSアニメーションを用いて実現します。グラデーション等の視覚効果を効果的に取り入れ、ユーザーの目を引くモダンで洗練されたフロントエンド開発を得意としています。"
+            "ja": "<b>車載ネットワーク:</b> CAN、K-Lineでの通信について通信手順やCOMパラメーターのセットアップをはじめ、通信アドレスの動的制御など特殊な要件の開発実績もございます。",
+            "en": "<b>In-Vehicle Networks:</b> My track record includes CAN and K-Line communication setup, from procedures and COM parameter tuning to specialized requirements like dynamic address control."
+          },
+          {
+            "ja": "<b>VCI (Vehicle Communication Interface):</b> Bosch製VCIに関する長年の開発・運用実績を有し、デバイス特性を最大限に引き出す設計が可能です。他社製VCIの評価用ソフトウェア開発経験もありますので、汎用性重視の提案も可能です。",
+            "en": "<b>VCI (Vehicle Communication Interface):</b> With years of experience developing and operating Bosch VCIs, I design systems that maximize device performance. I also have experience developing evaluation software for other VCI brands, enabling me to offer versatile, vendor-neutral solutions."
           }
         ]
       },
       {
         "subTitle": {
-          "ja": "プログラミング言語/フレームワーク"
+          "ja": "低レイヤー技術への理解に基づく高度な不具合調査",
+          "en": "Advanced Troubleshooting Rooted in Low-Level Technical Expertise"
         },
         "contents": [
           {
-            "ja": "Angular, PrimeNG, HTML, CSS/SCSS, TypeScript, JavaScript, ApexCharts, Tuari, Azure, Node.js"
+            "ja": "開発中不具合だけでなく、市場トラブルや他社システムを含めた問題の調査等も対応可能です。低レイヤーの解析技術を駆使して解決に導きます。",
+            "en": "I handle everything from development-phase bugs to field issues and cross-system integration problems. My approach leverages low-level analysis to drive definitive resolutions."
+          },
+          {
+            "ja": "<b>低レイヤー解析:</b> CAN/K-lineの通信ログやD-PDU APIレベルのログ調査、組み込み環境で問題になりがちなOS処理に起因する問題も含めた多面的な調査が可能です。",
+            "en": "<b>Low-Level Analysis:</b> I provide multi-faceted investigations, including CAN/K-line traffic analysis, D-PDU API log auditing, and diagnosing OS-level processing issues common in embedded environments."
+          },
+          {
+            "ja": "<b>トラブルシューティング実績:</b> 開発元不明のレガシーツールにおいて、実行プロセスをハックしてアセンブラとメモリレベルでの調査を行い原因を特定しました。運用による回避策を提案しOEM側での損害を防止しました。",
+            "en": "<b>Proven Troubleshooting:<b> In one instance involving a legacy tool with no documentation, I successfully identified the root cause by hacking the execution process to analyze it at the assembler and memory level. This allowed me to propose an operational workaround that prevented significant financial loss for the OEM."
+          }
+        ]
+      },
+      {
+        "subTitle": { "ja": "テクニカルスタック", "en": "Technical Stack" },
+        "list": [
+          {
+            "ja": "<b>診断プロトコル:</b> UDS, SOVD, D-PDU API, J2534 Pass-thru"
+          },
+          {
+            "ja": "<b>ネットワーク:</b> CAN, K-Line, TCP/IP, HTTP"
+          },
+          {
+            "ja": "<b>VCI (Vehicle Communication Interface):</b> Bosch製VCI (MTS系, KTS系), DENSO製VCI (DT系)"
           }
         ]
       }

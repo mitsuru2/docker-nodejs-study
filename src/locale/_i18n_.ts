@@ -8,7 +8,7 @@ export const i18nLabels = {
   },
   skills: {
     diag: {
-      title: $localize`:@@skills.diag.title:車両診断 & AUTOSAR`,
+      title: $localize`:@@skills.diag.title:車両診断 & 車載ネットワーク`,
       subTitle: $localize`:@@skills.diag.subTitle:10年にわたる経験。車両診断技術のスペシャリスト`,
       description: $localize`:@@skills.diag.description:車両診断領域においてECUと診断システム両方での知見を有しております。高い信頼性が求められる車載ドメインの要求に確実に応えます。`,
     },

@@ -12,7 +12,8 @@
       "name": "Angular Server (4000)",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:4000/"
+      "url": "http://localhost:4000/",
+      "runtimeArgs": ["--incognito"]
     },
     {
       "name": "Cosmos DB (8081)",
