@@ -66,7 +66,7 @@ jobs:
 
       # DockerイメージのビルドとACRへのプッシュ
       - name: Deploy to ACA
-        uses: azure/container-apps-deploy-action@v2
+        uses: azure/container-apps-deploy-action@v1
         with:
           containerAppName: ${{ vars.AZURE_CONTAINER_APP_NAME }}
           resourceGroup: ${{ vars.AZURE_RG_NAME }}
