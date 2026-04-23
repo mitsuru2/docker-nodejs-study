@@ -42,7 +42,8 @@ jobs:
       - name: Build Docker image
         id: build
         run: |
-          IMAGE_NAME=${{ vars.AZURE_ACR_NAME}}.azurecr.io/app-runtime:sha-${{ github.sha }}
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          IMAGE_NAME=${{ vars.AZURE_ACR_NAME}}.azurecr.io/app-runtime:sha-$SHORT_SHA
           docker build -f Dockerfile.release -t $IMAGE_NAME .
           docker push $IMAGE_NAME
           echo "image_name=$IMAGE_NAME" >> $GITHUB_OUTPUT
