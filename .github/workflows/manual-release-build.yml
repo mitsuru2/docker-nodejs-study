@@ -52,12 +52,12 @@ jobs:
       # ACRにログイン
       - name: ACR login
         run: |
-          az acr login --name ${{ variables.AZURE_ACR_NAME }}
+          az acr login --name ${{ vars.AZURE_ACR_NAME }}
 
       # DockerイメージのビルドとACRへのプッシュ
       - name: Build Docker image
         run: |
-          IMAGE_NAME=${{ variables.AZURE_ACR_NAME}}.azurecr.io/app-runtime:sha-${{ github.sha }}
+          IMAGE_NAME=${{ vars.AZURE_ACR_NAME}}.azurecr.io/app-runtime:sha-${{ github.sha }}
           docker build -f Dockerfile.release -t $IMAGE_NAME .
           docker push $IMAGE_NAME
 
