@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
+      id-token: write # for Azure login
 
     steps:
       # ソースコードをチェックアウト
