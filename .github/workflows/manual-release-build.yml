@@ -8,8 +8,10 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  release:
+  build-docker-image:
     runs-on: ubuntu-latest
+    outputs:
+      image_name: ${{ steps.build.outputs.image_name }}
     permissions:
       contents: read
       id-token: write # for Azure login
@@ -22,24 +24,6 @@ jobs:
       # Docker　Buildkitのセットアップ
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
-
-      # 3. GHCRへのログイン
-      # - name: Log in to the Container registry
-      #   uses: docker/login-action@v4
-      #   with:
-      #     registry: ${{ env.REGISTRY }}
-      #     username: ${{ github.actor }}
-      #     password: ${{ secrets.GITHUB_TOKEN }}
-
-      # Docker イメージのタグを生成（コミット SHA + オプションでタグ）
-      # - name: Extract metadata (tags, labels) for Docker
-      #   id: meta
-      #   uses: docker/metadata-action@v6
-      #   with:
-      #     images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-      #     tags: |
-      #       type=ref,event=tag
-      #       type=sha,prefix=sha-
 
       # Azureにログイン
       - name: Azure login
@@ -56,25 +40,33 @@ jobs:
 
       # DockerイメージのビルドとACRへのプッシュ
       - name: Build Docker image
+        id: build
         run: |
           IMAGE_NAME=${{ vars.AZURE_ACR_NAME}}.azurecr.io/app-runtime:sha-${{ github.sha }}
           docker build -f Dockerfile.release -t $IMAGE_NAME .
           docker push $IMAGE_NAME
+          echo "image_name=$IMAGE_NAME" >> $GITHUB_OUTPUT
 
-      # 5. Docker イメージをビルドしてプッシュ
-      # - name: Build and push Docker image
-      #   uses: docker/build-push-action@v7
-      #   with:
-      #     context: .
-      #     file: Dockerfile.release
-      #     push: true
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     labels: ${{ steps.meta.outputs.labels }}
+  deploy-container-app:
+    runs-on: ubuntu-latest
+    needs: build-docker-image
+    permissions:
+      contents: read
+      id-token: write # for Azure login
 
-      # 6. エクスポートしたデータをアーティファクトとして保存（トレーサビリティ）
-      # - name: Upload exported data as artifact
-      #   uses: actions/upload-artifact@v6
-      #   with:
-      #     name: cosmos-export-${{ github.sha }}
-      #     path: public/data/
-      #     retention-days: 90
+    steps:
+      # Azureにログイン
+      - name: Azure login
+        uses: azure/login@v3
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # DockerイメージのビルドとACRへのプッシュ
+      - name: Deploy to ACA
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          containerAppName: ${{ vars.AZURE_CONTAINER_APP_NAME }}
+          resourceGroup: ${{ vars.AZURE_RG_NAME }}
+          imageToDeploy: ${{ needs.build-docker-image.outputs.image_name }}
