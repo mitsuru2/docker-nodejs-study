@@ -20,11 +20,22 @@ import { isPlatformBrowser } from '@angular/common';
 import { MessageService } from 'primeng/api';
 import { HttpInterceptorFn } from '@angular/common/http';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { buildMetadata } from '../_build';
 
 // HTTPリクエストのログだし。
 export const debugInterceptor: HttpInterceptorFn = (req, next) => {
   console.log(`[HTTP Request] URL: ${req.url}`);
   return next(req);
+};
+
+// JSONデータのロードでタイムスタンプを付与 (キャッシュトラブル回避)
+export const cacheBusterInterceptor: HttpInterceptorFn = (req, next) => {
+  if (req.url.match(/data\/.*\.json/)) {
+    const modReq = req.clone({ setParams: { v: buildMetadata.timestamp } });
+    return next(modReq);
+  } else {
+    return next(req);
+  }
 };
 
 export const commonConfig: ApplicationConfig = {
@@ -56,7 +67,7 @@ export const commonConfig: ApplicationConfig = {
       }
     }),
     MessageService,
-    provideHttpClient(withFetch(), withInterceptors([debugInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([cacheBusterInterceptor, debugInterceptor])),
   ],
 };
 

@@ -6,7 +6,6 @@
     "start": "ng serve",
     "start-en": "ng serve --configuration=en-GB",
     "build": "node ./script/generate-build-metadata.mjs && rm -rf dist && ng build --localize",
-    "build2": "start-server-and-test start-server http://localhost:4000 'rm -rf dist && ng build --localize'",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "new-page": "./script/new-page.sh",

@@ -7,7 +7,7 @@ import fs from 'fs';
 // EXPORT_OUTPUT_DIR 環境変数で上書き可能。未設定時は ../public/data をデフォルトとする。
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const outputDir = process.env['EXPORT_OUTPUT_DIR'] ?? path.join(__dirname, '../public/data');
+const outputDir = process.env['EXPORT_OUTPUT_DIR'] ?? path.join(__dirname, '../src');
 
 // Git 情報の取得
 function getGitSha() {
@@ -38,7 +38,7 @@ function getGitTag() {
 const metadata = {
   gitSha: getGitSha(),
   gitTag: getGitTag(),
-  exportedAt: new Date().toISOString(),
+  timestamp: new Date().toISOString(),
 };
 
 // 出力ディレクトリ作成
@@ -47,10 +47,11 @@ if (!fs.existsSync(outputDir)) {
 }
 
 // アトミック書き込み
-const outputPath = path.join(outputDir, '_build.json');
+const outputPath = path.join(outputDir, '_build.ts');
 const tmpPath = `${outputPath}.tmp`;
-fs.writeFileSync(tmpPath, JSON.stringify(metadata, null, 2));
+const fileContent = `export const buildMetadata = ${JSON.stringify(metadata, null, 2)} as const;\n`;
+fs.writeFileSync(tmpPath, fileContent);
 fs.renameSync(tmpPath, outputPath);
 
 console.log(`Build metadata saved to ${outputPath}`);
-console.log(JSON.stringify(metadata, null, 2));
+console.log(fileContent);

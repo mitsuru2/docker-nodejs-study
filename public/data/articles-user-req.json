@@ -1,70 +1,115 @@
 [
   {
-    "id": "4c5f49ee-28c2-4a32-8b53-388ee7400478",
+    "id": "814107fb-005a-4cc3-be08-eb0c4da27194",
     "pk": "user-req",
     "type": "article",
     "isPublished": true,
     "paragraphs": [
       {
         "title": {
-          "ja": "Angularを軸とした、高度なUI/UXとモダンな開発の実現",
-          "en": "Delivering advanced UI/UX and modern development by Angular."
+          "ja": "要求分析・ソリューション提案：技術的視点による確実なビジネス実装",
+          "en": "Requirements Analysis & Solutions: Reliable Implementation Through a Technical Lens"
         },
         "contents": [
           {
-            "ja": "Angularリードエンジニアとして3年以上の実務経験。画面作成だけでなく、フロントエンド全体の設計から環境構築までお任せいただけます。",
-            "en": "Over 3 years of experience as an Angular Lead Engineer. Beyond UI development, you can entrust me with everything from frontend architecture design to environment setup."
+            "ja": "ビジネス上の曖昧な要求を、実装可能な技術仕様へと翻訳し、製品のライフサイクルを見据えた最適なソリューションを提案します。",
+            "en": "I translate ambiguous business requirements into actionable technical specifications, proposing optimal solutions that account for the entire product lifecycle."
           },
           {
-            "ja": "アプリのユースケースや特性に応じてSSR/SSG対応やTauriによるデスクトップアプリケーション化も対応可能です。",
-            "en": "Capable of implementing SSR/SSG or desktop apps using Tauri, depending on the use cases and characteristics of the application."
+            "ja": "単なるドキュメント作成に留まらず、将来の保守性や開発スピードを最大化するための「エンジニアリング視点の上流工程」を伴走型で提供します。",
+            "en": "Moving beyond mere documentation, I provide hands-on support for \"engineering-driven upstream processes\" designed to maximize future maintainability and development velocity."
           }
         ],
         "titleImage": {
-          "path": "debug/front-end_4x1.png",
-          "alt": { "ja": "フロントエンドタイトル画像", "en": "Font end title image." }
+          "path": "images/requirement_4x1.png",
+          "alt": { "ja": "要件定義タイトル画像", "en": "User requirement title image." }
         }
       },
       {
         "subTitle": {
-          "ja": "PrimeNGのデザイントークンを用いた一貫性のあるUI開発"
+          "ja": "不透明な要求からの仕様検討とロードマップ策定",
+          "en": "Defining Specifications and Roadmaps from Ambiguous Requirements"
         },
         "contents": [
           {
-            "ja": "PrimeNGのアーキテクチャに基づき、デザイントークンを活用した柔軟で保守性の高いスタイリングを実装。CSS変数の制御により、テーマのカスタマイズや共通のカラーパレット・タイポグラフィの効率的な一元管理が可能です。"
+            "ja": "明確な仕様書が存在しない初期段階のプロジェクトにおいても、ヒアリングを通じてビジネス課題を抽出し、具体的なシステム仕様へと落とし込みます。",
+            "en": "Even in early-stage projects lacking clear documentation, I extract core business challenges through stakeholder interviews and translate them into concrete system specifications."
           },
           {
-            "ja": "GUIライブラリによる開発スピードの最大化を図りつつ、独自のデザインシステムやブランドアイデンティティとの完璧な両立を実現します。"
+            "ja": "<b>技術的裏付けのある提案:</b> 既存資産の有効活用や最新技術の導入、実現難易度を考慮したフェーズ分けなど、地に足のついたロードマップを策定します。",
+            "en": "<b>Technically Grounded Proposals:</b> I develop realistic roadmaps that balance the effective use of existing assets with the adoption of modern technologies, while phasing tasks based on implementation complexity."
+          },
+          {
+            "ja": "<b>フェーズド開発の提案:</b> ロードマップの策定支援を行い、MVP (最小機能製品) の定義から将来的な拡張性を見据えた段階的な開発アプローチを立案します。",
+            "en": "<b>Phased Development Strategy:</b> I assist in roadmap planning by defining the MVP (Minimum Viable Product) and designing a step-by-step development approach that ensures long-term scalability."
+          }
+        ]
+      },
+      {
+        "subTitle": {
+          "ja": "マルチベンダー・多企業間を繋ぐ要求管理エコシステムの構築",
+          "en": "Multivendor Requirements Management Ecosystems"
+        },
+        "contents": [
+          {
+            "ja": "複数の企業やグローバルな開発拠点が混在するプロジェクトにおいて、情報の断絶を防ぐための要件管理基盤の構築・運用を支援します。",
+            "en": "I support the development and operation of requirements management infrastructures that prevent information silos in projects involving multiple companies or global development sites."
+          },
+          {
+            "ja": "<b>シームレスな連携:</b> 顧客向け窓口と内部開発・要求ドキュメントを密に連携させたトレーサビリティ体系を構築。CR (変更要求), SRS (要求仕様書), 開発チケットとが紐付けられることで、変更管理の正確性とレビュー効率を飛躍的に向上させます。",
+            "en": "<b>Seamless Collaboration:</b> I establish traceability frameworks that tightly link client-facing desks with internal development and requirement documentation. By connecting Change Requests (CR), Software Requirement Specifications (SRS), and development tickets, I dramatically improve change management accuracy and review efficiency."
           }
         ],
         "images": [
           {
-            "path": "debug/primevue-v4-styled-architecture.png",
-            "alt": { "ja": "スタイルアーキテクチャー", "en": "Style architecture" },
-            "caption": {
-              "ja": "PrimeNGスタイルアーキテクチャー",
-              "en": "PrimeNG style architecture"
-            }
+            "path": "images/srs-management.png",
+            "alt": { "ja": "SRS管理システム概念図", "en": "SRS management system concept diagram" },
+            "caption": { "ja": "SRS管理システム概念図", "en": "SRS Management System Concept" }
           }
         ]
       },
       {
         "subTitle": {
-          "ja": "UXを向上させるリッチなカスタムUIの実装"
+          "ja": "グローバルスタンダードと多様な開発プロセスへの理解",
+          "en": "Global Standards and Diverse Development Process Expertise"
         },
         "contents": [
           {
-            "ja": "標準ライブラリでは補えない細かな意匠やインタラクションを、CSSアニメーションを用いて実現します。グラデーション等の視覚効果を効果的に取り入れ、ユーザーの目を引くモダンで洗練されたフロントエンド開発を得意としています。"
+            "ja": "日系・外資系双方のグローバル企業における開発参画経験を活かし、組織の文化やフェーズに合わせて柔軟に対応いたします。",
+            "en": "Drawing on my experience with both Japanese and foreign global enterprises, I adapt flexibly to your organization's unique culture and project phase."
+          },
+          {
+            "ja": "<b>ハイブリッドな知見:</b> 大規模組織における伝統的なV字モデルや、SAFe等のフレームワークを用いたアジャイル開発などの知見をプロジェクトの特性に応じて使い分けることが可能です。",
+            "en": "<b>Hybrid Knowledge:</b> I can leverage diverse methodologies—from traditional V-Model processes in large organizations to Agile frameworks like SAFe—applying the right approach based on the project's characteristics."
+          },
+          {
+            "ja": "<b>コンサルテーション:</b> エンジニアとして開発を主導しつつ、チームが直面する上流工程のボトルネックに対し、アーキテクトの視点から具体的な改善策をアドバイスします。",
+            "en": "<b>Consultation:</b> While leading development as an engineer, I provide architect-level advice and concrete solutions to resolve bottlenecks in upstream processes."
+          },
+          {
+            "ja": "<b>ドキュメント・ガバナンス:</b> 各種トレーサビリティツール (DOORS, microTRACER等) を用いた厳格なコンプライアンス対応の実務も対応可能です。",
+            "en": "<b>Document Governance:</b> I am well-versed in strict compliance and traceability management using industry-standard tools such as DOORS and microTRACER."
           }
         ]
       },
       {
-        "subTitle": {
-          "ja": "プログラミング言語/フレームワーク"
-        },
-        "contents": [
+        "subTitle": { "ja": "テクニカルスタック", "en": "Technical Stack" },
+        "list": [
           {
-            "ja": "Angular, PrimeNG, HTML, CSS/SCSS, TypeScript, JavaScript, ApexCharts, Tuari, Azure, Node.js"
+            "ja": "<b>メソドロジー:</b> アクティブリスニング, ギャップ分析",
+            "en": "<b>Methodologies:</b> Active Listening, Gap Analysis"
+          },
+          {
+            "ja": "<b>開発プロセス:</b> Automotive-SPICE, SAFe (Scaled Agile Framework), V-Model",
+            "en": "<b>Process & Frameworks:</b> Automotive-SPICE, SAFe (Scaled Agile Framework), V-Model"
+          },
+          {
+            "ja": "<b>要求管理:</b> Jira, Confluence, DOORS, microTRACER, GitHub Issues",
+            "en": "<b>Requirement Management:</b> Jira, Confluence, DOORS, microTRACER, GitHub Issues"
+          },
+          {
+            "ja": "<b>モデリング & ビジュアライゼーション:</b> Mermaid, Visio, Enterprise Architect, MS Office",
+            "en": "<b>Modeling & Visualization:</b> Mermaid, Visio, Enterprise Architect, MS Office"
           }
         ]
       }

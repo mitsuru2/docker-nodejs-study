@@ -148,7 +148,7 @@
       </trans-unit>
       <trans-unit id="skills.userReq.subTitle" datatype="html">
         <source>ビジネス要求を形にする、上流工程からの伴走型開発</source>
-        <target>Collaborative development from the upstream phase to bring business requirements to life.</target>
+        <target>Collaborative development from the upstream phase to realize business requirements.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
           <context context-type="linenumber">32</context>
