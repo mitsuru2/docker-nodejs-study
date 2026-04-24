@@ -106,10 +106,11 @@ jobs:
   deploy-release:
     runs-on: ubuntu-latest
     needs: deploy-preview
-    environment: restricted # 承認が必要な環境設定
     permissions:
       contents: read
       id-token: write # for Azure login
+
+    environment: restricted # 承認が必要な環境設定
     # 注意: environment を指定した場合、Azure側の「フェデレーション資格情報」に
     # entity type: Environment, name: restricted の追加設定が必要です。
     # これがないと azure/login ステップで認証エラー（一見シークレット未定義に見える）が発生します。
@@ -131,3 +132,46 @@ jobs:
             --name ${{ vars.AZURE_CONTAINER_APP_NAME }} \
             --resource-group ${{ vars.AZURE_RG_NAME }} \
             --revision-weight latest=100
+
+  deactivate-old-revisions:
+    runs-on: ubuntu-latest
+    needs: deploy-release
+    permissions:
+      contents: read
+      id-token: write # for Azure login
+    steps:
+      # Azureにログイン
+      - name: Azure login
+        uses: azure/login@v3
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # ACAでトラフィックが0%のリビジョンを非アクティブ化する。
+      - name: Deactivate old revisions
+        run: |
+          ACTIVE_REVISIONS=$(az containerapp revision list \
+            --name ${{ vars.AZURE_CONTAINER_APP_NAME }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
+            --query "[?properties.active==\`true\` && properties.trafficWeight==\`0\`].name" -o tsv)
+          for rev in $ACTIVE_REVISIONS; do
+            az containerapp revision deactivate \
+              --name ${{ vars.AZURE_CONTAINER_APP_NAME }} \
+              --resource-group ${{ vars.AZURE_RG_NAME }} \
+              --revision $rev
+          done
+
+      # ジョブサマリーにプレビューURLを表示
+      - name: Print final summary
+        run: |
+          REVISION_NAME="${{ vars.AZURE_CONTAINER_APP_NAME }}--sha-${{ needs.build-docker-image.outputs.short_sha }}"
+          # 新しく作成されたリビジョンの専用FQDNを取得
+          PREVIEW_URL=$(az containerapp revision show \
+            --name ${{ vars.AZURE_CONTAINER_APP_NAME }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
+            --revision $REVISION_NAME \
+            --query "properties.fqdn" -o tsv)
+          echo "### Release Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Application URL:** https://tech-portfolio.victoriousdune-f71bcf6b.japaneast.azurecontainerapps.io" >> $GITHUB_STEP_SUMMARY
+          echo "- **Azure Container Apps:** https://portal.azure.com/#resource/subscriptions/7d7dbdb7-515b-44fe-86a2-dd74e6fddced/resourceGroups/rg-my-tech-portfolio/providers/Microsoft.App/containerApps/my-container-app" >> $GITHUB_STEP_SUMMARY
