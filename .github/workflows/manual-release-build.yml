@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       image_name: ${{ steps.build.outputs.image_name }}
+      short_sha: ${{ steps.build.outputs.short_sha }}
     permissions:
       contents: read
       id-token: write # for Azure login
