@@ -168,6 +168,7 @@ jobs:
       - name: Print final summary
         run: |
           REVISION_NAME="${{ vars.AZURE_CONTAINER_APP_NAME }}--sha-${{ needs.build-docker-image.outputs.short_sha }}"
+          AZURE_LINK="portal.azure.com/#resource/subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ vars.AZURE_RG_NAME }}/providers/Microsoft.App/containerApps/${{ vars.AZURE_CONTAINER_APP_NAME }}"
           # 新しく作成されたリビジョンの専用FQDNを取得
           PREVIEW_URL=$(az containerapp revision show \
             --name ${{ vars.AZURE_CONTAINER_APP_NAME }} \
@@ -176,4 +177,4 @@ jobs:
             --query "properties.fqdn" -o tsv)
           echo "### Release Summary" >> $GITHUB_STEP_SUMMARY
           echo "- **Application URL:** https://tech-portfolio.victoriousdune-f71bcf6b.japaneast.azurecontainerapps.io" >> $GITHUB_STEP_SUMMARY
-          echo "- **Azure Container Apps:** https://portal.azure.com/#resource/subscriptions/7d7dbdb7-515b-44fe-86a2-dd74e6fddced/resourceGroups/rg-my-tech-portfolio/providers/Microsoft.App/containerApps/tech-portfolio" >> $GITHUB_STEP_SUMMARY
+          echo "- **Azure Container Apps:** [View in Azure Portal](${AZURE_LINK})" >> $GITHUB_STEP_SUMMARY
