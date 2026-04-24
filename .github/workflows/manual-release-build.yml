@@ -33,7 +33,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       # ACRにログイン
       - name: ACR login
@@ -67,7 +67,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       # DockerイメージのビルドとACRへのプッシュ
       # (シングルリビジョンの場合。Azure CLIでの制御に変更のため無効化。)
@@ -122,7 +122,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       # トラフィック切り替え
       # https://learn.microsoft.com/ja-jp/cli/azure/containerapp/ingress/traffic?view=azure-cli-latest#az-containerapp-ingress-traffic-set
@@ -148,7 +148,7 @@ jobs:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       # ACAでトラフィックが0%のリビジョンを非アクティブ化する。
       - name: Deactivate old revisions
@@ -168,7 +168,7 @@ jobs:
       - name: Print final summary
         run: |
           REVISION_NAME="${{ vars.AZURE_CONTAINER_APP_NAME }}--sha-${{ needs.build-docker-image.outputs.short_sha }}"
-          AZURE_LINK="portal.azure.com/#resource/subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ vars.AZURE_RG_NAME }}/providers/Microsoft.App/containerApps/${{ vars.AZURE_CONTAINER_APP_NAME }}"
+          AZURE_LINK="portal.azure.com/#resource/subscriptions/${{ vars.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ vars.AZURE_RG_NAME }}/providers/Microsoft.App/containerApps/${{ vars.AZURE_CONTAINER_APP_NAME }}"
           # 新しく作成されたリビジョンの専用FQDNを取得
           PREVIEW_URL=$(az containerapp revision show \
             --name ${{ vars.AZURE_CONTAINER_APP_NAME }} \
