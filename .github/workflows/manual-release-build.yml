@@ -85,7 +85,7 @@ jobs:
             --name ${{ vars.AZURE_CONTAINER_APP_NAME }} \
             --resource-group ${{ vars.AZURE_RG_NAME }} \
             --image ${{ needs.build-docker-image.outputs.image_name }} \
-            --revision-suffix "sha-${{ needs.build-docker-image.outputs.short_sha }}"
+            --revision-suffix sha-${{ needs.build-docker-image.outputs.short_sha }}
 
   # --- JOB: コンテナアプリのデプロイ (リリース) ---
   # 承認後にトラフィックを100%に切り替える
