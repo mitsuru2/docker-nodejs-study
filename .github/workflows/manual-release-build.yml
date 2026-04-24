@@ -88,6 +88,19 @@ jobs:
             --image ${{ needs.build-docker-image.outputs.image_name }} \
             --revision-suffix sha-${{ needs.build-docker-image.outputs.short_sha }}
 
+      # ジョブサマリーにプレビューURLを表示
+      - name: Add preview URL to summary
+        run: |
+          REVISION_NAME="${{ vars.AZURE_CONTAINER_APP_NAME }}--sha-${{ needs.build-docker-image.outputs.short_sha }}"
+          # 新しく作成されたリビジョンの専用FQDNを取得
+          PREVIEW_URL=$(az containerapp revision show \
+            --name ${{ vars.AZURE_CONTAINER_APP_NAME }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
+            --revision $REVISION_NAME \
+            --query "properties.fqdn" -o tsv)
+          echo "### Deployment Preview" >> $GITHUB_STEP_SUMMARY
+          echo "New revision URL: https://$PREVIEW_URL" >> $GITHUB_STEP_SUMMARY
+
   # --- JOB: コンテナアプリのデプロイ (リリース) ---
   # 承認後にトラフィックを100%に切り替える
   deploy-release:
@@ -97,6 +110,9 @@ jobs:
     permissions:
       contents: read
       id-token: write # for Azure login
+    # 注意: environment を指定した場合、Azure側の「フェデレーション資格情報」に
+    # entity type: Environment, name: restricted の追加設定が必要です。
+    # これがないと azure/login ステップで認証エラー（一見シークレット未定義に見える）が発生します。
 
     steps:
       # Azureにログイン
