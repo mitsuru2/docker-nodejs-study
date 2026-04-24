@@ -99,7 +99,7 @@ jobs:
             --revision $REVISION_NAME \
             --query "properties.fqdn" -o tsv)
           echo "### Deployment Preview" >> $GITHUB_STEP_SUMMARY
-          echo "New revision URL: https://$PREVIEW_URL" >> $GITHUB_STEP_SUMMARY
+          echo "- **New revision URL:** https://$PREVIEW_URL" >> $GITHUB_STEP_SUMMARY
 
   # --- JOB: コンテナアプリのデプロイ (リリース) ---
   # 承認後にトラフィックを100%に切り替える
@@ -176,4 +176,4 @@ jobs:
             --query "properties.fqdn" -o tsv)
           echo "### Release Summary" >> $GITHUB_STEP_SUMMARY
           echo "- **Application URL:** https://tech-portfolio.victoriousdune-f71bcf6b.japaneast.azurecontainerapps.io" >> $GITHUB_STEP_SUMMARY
-          echo "- **Azure Container Apps:** https://portal.azure.com/#resource/subscriptions/7d7dbdb7-515b-44fe-86a2-dd74e6fddced/resourceGroups/rg-my-tech-portfolio/providers/Microsoft.App/containerApps/my-container-app" >> $GITHUB_STEP_SUMMARY
+          echo "- **Azure Container Apps:** https://portal.azure.com/#resource/subscriptions/7d7dbdb7-515b-44fe-86a2-dd74e6fddced/resourceGroups/rg-my-tech-portfolio/providers/Microsoft.App/containerApps/tech-portfolio" >> $GITHUB_STEP_SUMMARY
