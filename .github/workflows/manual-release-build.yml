@@ -82,9 +82,9 @@ jobs:
       - name: Deploy to ACA (preview)
         run: |
           az containerapp update \
-            --name {{ vars.AZURE_CONTAINER_APP_NAME }} \
-            --resource-group {{ vars.AZURE_RG_NAME }} \
-            --image {{ needs.build-docker-image.outputs.image_name }} \
+            --name ${{ vars.AZURE_CONTAINER_APP_NAME }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
+            --image ${{ needs.build-docker-image.outputs.image_name }} \
             --revision-suffix "sha-${{ needs.build-docker-image.outputs.short_sha }}"
 
   # --- JOB: コンテナアプリのデプロイ (リリース) ---
