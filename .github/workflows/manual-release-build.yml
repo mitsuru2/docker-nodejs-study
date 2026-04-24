@@ -135,7 +135,9 @@ jobs:
 
   deactivate-old-revisions:
     runs-on: ubuntu-latest
-    needs: deploy-release
+    needs:
+      - build-docker-image
+      - deploy-release
     permissions:
       contents: read
       id-token: write # for Azure login
