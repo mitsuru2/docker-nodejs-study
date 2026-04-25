@@ -76,6 +76,9 @@ export const DesignTokens = {
           900: '{slate.900}',
           950: '{slate.950}',
         },
+        text: {
+          color: '{slate.700}',
+        },
       },
       dark: {
         surface: {
@@ -92,6 +95,9 @@ export const DesignTokens = {
           900: '{slate.800}',
           950: '{slate.900}',
         },
+        text: {
+          color: '{slate.200}',
+        },
       },
     },
     custom: {
@@ -101,7 +107,7 @@ export const DesignTokens = {
           width: '180px',
         },
         caption: {
-          fontColor: 'var(--p-custom-font-color)',
+          fontColor: 'var(--p-text-color)',
           fontSize: 'small',
           fontWeight: 'normal',
         },

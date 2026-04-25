@@ -42,8 +42,8 @@ app-locale-select {
 }
 
 .locale-button {
-  --p-button-outlined-primary-color: var(--p-custom-font-color);
-  --p-button-padding-y: 2px;
+  --p-button-outlined-primary-color: var(--p-text-color);
+  --p-button-padding-y: 3px;
 }
 
 .locale-menu-item {
@@ -91,10 +91,6 @@ app-locale-select {
 
   .footer {
     font-size: x-small;
-  }
-
-  .locale-button {
-    height: 23px;
   }
 }
 
