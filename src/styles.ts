@@ -77,6 +77,22 @@ export const DesignTokens = {
           950: '{slate.950}',
         },
       },
+      dark: {
+        surface: {
+          0: '#ffffff',
+          50: '#ffffff',
+          100: '{slate.50}',
+          200: '{slate.100}',
+          300: '{slate.200}',
+          400: '{slate.300}',
+          500: '{slate.400}',
+          600: '{slate.500}',
+          700: '{slate.600}',
+          800: '{slate.700}',
+          900: '{slate.800}',
+          950: '{slate.900}',
+        },
+      },
     },
     custom: {
       article: {
