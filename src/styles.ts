@@ -107,7 +107,7 @@ export const DesignTokens = {
           width: '180px',
         },
         caption: {
-          fontColor: 'var(--p-text-color)',
+          fontColor: '{slate.700}',
           fontSize: 'small',
           fontWeight: 'normal',
         },
