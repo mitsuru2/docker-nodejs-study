@@ -35,11 +35,36 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-      # Runner IPの取得 (デバッグ用)
-      - name: Check Runner IP
+      # RunnerのパブリックIPを取得してCosmos DBのファイアーウォールを許可
+      - name: Allow Runner IP
         run: |
+          # IPアドレス情報の取得
           runnerIp=$(curl -s https://api.ipify.org)
-          echo "Runner IP: $runnerIp"
+          existingIps=$(az cosmosdb show \
+            --name ${{ vars.AZURE_COSMOS_ACCOUNT}} \
+            --resource-group ${{ vars.AZURE_RG_NAME}} \
+            --query "ipRules[].ipAddressOrRange" \
+            -o tsv | paste -sd "," -)
+          echo "ORIGINAL_IP_LIST=$existingIps" >> $GITHUB_ENV
+
+          # 新しいIPアドレスリストの作成
+          if [ -n "$existingIps" ]; then
+            newIps="$existingIps,$runnerIp"
+          else
+            newIps="$runnerIp"
+          fi
+          echo "runnerIp: $runnerIp"
+          echo "existingIps: $existingIps"
+          echo "newIps: $newIps"
+
+          # Cosmos DBのファイアーウォールを更新
+          az cosmosdb update \
+            --name ${{ vars.AZURE_COSMOS_ACCOUNT }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
+            --ip-range-filter $newIps
+
+          # 設定反映待ち
+          sleep 10
 
       # Cosmos DBにアクセスして articles コンテナの内容をエクスポート
       - name: Export DB contents
@@ -49,6 +74,18 @@ jobs:
         run: |
           npm install @azure/cosmos @azure/identity
           node script/export-db.mjs
+
+      # IPアドレス登録の削除
+      - name: Remove Runner IP
+        if: always()
+        run: |
+          echo "The original IP list: $ORIGINAL_IP_LIST"
+          az cosmosdb update \
+            --name ${{ vars.AZURE_COSMOS_ACCOUNT }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
+            --ip-range-filter $ORIGINAL_IP_LIST
+          # 設定反映待ち
+          sleep 10
 
       # ACRにログイン
       - name: ACR login
