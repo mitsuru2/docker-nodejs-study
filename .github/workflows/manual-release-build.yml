@@ -40,7 +40,7 @@ jobs:
         run: |
           # IPアドレス情報の取得
           runnerIp=$(curl -s https://api.ipify.org)
-          existingIps=$(as cosmosdb show \
+          existingIps=$(az cosmosdb show \
             --name ${{ vars.AZURE_COSMOS_ACCOUNT}} \
             --resource-group ${{ vars.AZURE_RG_NAME}} \
             --query "ipRules[].ipAddressOrRange" \
@@ -54,7 +54,7 @@ jobs:
             newIps="$runnerIp"
           fi
           echo "runnerIp: $runnerIp"
-          echo "existingIps: $existingIps
+          echo "existingIps: $existingIps"
           echo "newIps: $newIps"
 
           # Cosmos DBのファイアーウォールを更新
