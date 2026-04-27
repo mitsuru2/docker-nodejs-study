@@ -21,7 +21,7 @@ let client;
 if (key) {
   client = new CosmosClient({ endpoint, key });
 } else {
-  client = new CosmosClient({ endpoint, credential: new DefaultAzureCredential() });
+  client = new CosmosClient({ endpoint, aadCredentials: new DefaultAzureCredential() });
 }
 const db = client.database(dbName);
 const targetItems = [
