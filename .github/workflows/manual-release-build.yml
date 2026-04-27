@@ -35,6 +35,35 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
+      # RunnerのパブリックIPを取得してCosmos DBのファイアーウォールを許可
+      # sleepは設定変更の反映待ち。
+      - name: Allow Runner IP
+        run: |
+          runnerIp=$(curl -s https://api.ipify.org)
+          az cosmosdb network-rule add \
+            --name ${{ vars.AZURE_COSMOS_ACCOUNT }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
+            --ip-address $runnerIp
+          sleep 30
+
+      # Cosmos DBにアクセスして articles コンテナの内容をエクスポート
+      - name: Export DB contents
+        env:
+          COSMOS_ENDPOINT: ${{ vars.AZURE_COSMOS_ENDPOINT }}
+          COSMOS_DB: ${{ vars.AZURE_COSMOS_DB_NAME }}
+        run: |
+          node script/export-db.mjs
+
+      # IPアドレス登録の削除
+      - name: Remove Runner IP
+        if: always()
+        run: |
+          runnerIp=$(curl -s https://api.ipify.org)
+          az cosmosdb network-rule remove \
+            --name ${{ vars.AZURE_COSMOS_ACCOUNT }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
+            --ip-address $runnerIp
+
       # ACRにログイン
       - name: ACR login
         run: |

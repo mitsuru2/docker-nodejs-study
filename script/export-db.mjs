@@ -1,4 +1,5 @@
 import { CosmosClient } from '@azure/cosmos';
+import { DefaultAzureCredential } from '@azure/identity';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
@@ -6,15 +7,31 @@ import fs from 'fs';
 // Azure Cosmos DB
 // 環境変数はサーバーで設定。ローカルではdocker-compose.ymlで指定。
 const endpoint = process.env['COSMOS_ENDPOINT'];
-const key = process.env['COSMOS_KEY'];
 const dbName = process.env['COSMOS_DB'];
-if (!endpoint || !key || !dbName) {
-  throw new Error(
-    'Environment variables for Cosmos DB is not found. Please check server configuration or docker-compose.yml.',
-  );
+const key = process.env['COSMOS_KEY']; // ローカルエミュレータ使用時専用。
+
+// 環境変数チェック
+if (!endpoint || !dbName) {
+  throw new Error('Required environment variables "COSMOS_ENDPOINT" or "COSMOS_DB" are missing.');
 }
-const db = new CosmosClient({ endpoint, key }).database(dbName);
-const targetItems = [{ container: 'articles', pk: 'front-end' }];
+
+// DBクライアントインスタンス作成
+// COSMOS_KEYが設定されていればそれを使用。デフォルト(設定なし)はOIDCのログイン情報を使用。
+let client;
+if (key) {
+  client = new CosmosClient({ endpoint, key });
+} else {
+  client = new CosmosClient({ endpoint, credential: new DefaultAzureCredential() });
+}
+const db = client.database(dbName);
+const targetItems = [
+  { container: 'articles', pk: 'career' },
+  { container: 'articles', pk: 'ci' },
+  { container: 'articles', pk: 'diag' },
+  { container: 'articles', pk: 'front-end' },
+  { container: 'articles', pk: 'system-design' },
+  { container: 'articles', pk: 'user-req' },
+];
 
 // 出力フォルダのパス作成
 // EXPORT_OUTPUT_DIR 環境変数で上書き可能。未設定時は ../public/data をデフォルトとする。
