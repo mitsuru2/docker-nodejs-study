@@ -96,14 +96,6 @@ jobs:
 
           # Blob Storageから画像データをダウンロード
           # https://learn.microsoft.com/ja-jp/cli/azure/storage/blob?view=azure-cli-latest#az-storage-blob-download-batch
-          # (1) Dryrun
-          az storage blob download-batch \
-            --account-name ${{ vars.AZURE_STORAGE_ACCOUNT }} \
-            --auth-mode login\
-            --source images \
-            --destination public/images
-            --dryrun
-          # (2) 実行
           az storage blob download-batch \
             --account-name ${{ vars.AZURE_STORAGE_ACCOUNT }} \
             --auth-mode login\
