@@ -44,12 +44,19 @@ p {
   column-gap: var(--p-custom-margin-s);
 }
 
+:host ::ng-deep .p-image-rotate-right-button,
+:host ::ng-deep .p-image-rotate-left-button,
+:host ::ng-deep .p-image-zoom-out-button,
+:host ::ng-deep .p-image-zoom-in-button {
+  display: none;
+}
+
 .preview-image {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(from white r g b / 0.8);
+  background-color: white;
 
   img {
     max-width: 90vw;
