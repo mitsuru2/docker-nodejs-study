@@ -2,7 +2,7 @@
   <app-splash class="splash" animate.leave="fade-out" [progress]="initProgress()"></app-splash>
 }
 
-<app-app-shell [style.display]="showMain() ? 'block' : 'none'">
+<app-app-shell [style.display]="showMain() ? 'flex' : 'none'">
   @if (showMain()) {
     <app-carousel
       class="carousel no-print"
