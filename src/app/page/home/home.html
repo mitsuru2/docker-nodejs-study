@@ -5,7 +5,7 @@
 <app-app-shell [style.display]="showMain() ? 'block' : 'none'">
   @if (showMain()) {
     <app-carousel
-      class="carousel"
+      class="carousel no-print"
       [config]="carousel()"
       (clicked)="carouselClickedHandler($event)"
     ></app-carousel>

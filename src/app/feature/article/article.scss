@@ -18,6 +18,10 @@
     height: 100%;
     background: var(--p-custom-gradient-blue-to-purple-hori20);
     pointer-events: none;
+
+    @media print {
+      display: none;
+    }
   }
 
   img {
