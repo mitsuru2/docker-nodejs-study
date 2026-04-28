@@ -4,15 +4,48 @@
 
   <!-- 右側 -->
   <div class="right-side no-print">
-    <p-menubar [model]="menuItems" breakpoint="200px"></p-menubar>
     @if (!isMobile()) {
+      <p-menubar [model]="menuItems" class="menu-bar"></p-menubar>
       <app-locale-select
         [config]="localeSelect"
         [value]="locale()"
         (valueChange)="localeChanged($event)"
       ></app-locale-select>
     } @else {
-      <p-menu #menu [model]="localeMenuItems" [popup]="true">
+      <p-buttongroup>
+        <p-button
+          [label]="menuItems[0].label"
+          [icon]="menuItems[0].icon"
+          [outlined]="true"
+          class="menu-button"
+          (onClick)="menuClicked(menuItems[0].routerLink)"
+        ></p-button>
+        <p-button
+          [label]="menuItems[1].label"
+          [icon]="menuItems[1].icon"
+          [outlined]="true"
+          class="menu-button"
+          (click)="skillMenu.toggle($event)"
+        ></p-button>
+        <p-button
+          [label]="menuItems[2].label"
+          [icon]="menuItems[2].icon"
+          [outlined]="true"
+          class="menu-button"
+          (onClick)="menuClicked(menuItems[2].routerLink)"
+        ></p-button>
+        <p-button
+          [label]="labels.common.language"
+          icon="pi pi-globe"
+          [outlined]="true"
+          class="menu-button"
+          (click)="langMenu.toggle($event)"
+        ></p-button>
+      </p-buttongroup>
+
+      <p-menu #skillMenu [model]="menuItems[1].items" [popup]="true"> </p-menu>
+
+      <p-menu #langMenu [model]="localeMenuItems" [popup]="true">
         <ng-template #item let-item>
           <div class="locale-menu-item">
             <app-country-flag [locale]="item.id" class="country-flag"></app-country-flag>
@@ -23,12 +56,6 @@
           </div>
         </ng-template>
       </p-menu>
-      <p-button
-        icon="pi pi-globe"
-        [outlined]="true"
-        class="locale-button"
-        (click)="menu.toggle($event)"
-      />
     }
   </div>
 </div>

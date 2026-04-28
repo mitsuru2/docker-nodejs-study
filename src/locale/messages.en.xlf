@@ -42,12 +42,20 @@
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="common.language" datatype="html">
+        <source>言語</source>
+        <target>Language</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="skills.diag.title" datatype="html">
         <source>車両診断 &amp; 車載ネットワーク</source>
         <target>Vehicle Diagnostics &amp; Networks</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.diag.subTitle" datatype="html">
@@ -55,7 +63,7 @@
         <target>A specialist with 10 years of experience in vehicle diagnostic technology.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.diag.description" datatype="html">
@@ -63,7 +71,7 @@
         <target>I have expertise in both ECUs and diagnostic systems within the vehicle diagnostics domain. I deliver reliable solutions to meet strict demands on automotive sector.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.frontEnd.title" datatype="html">
@@ -71,7 +79,7 @@
         <target>Frontend Development</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.frontEnd.subTitle" datatype="html">
@@ -79,7 +87,7 @@
         <target>Achieving Advanced UI/UX and Modern Development with Angular.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.frontEnd.description" datatype="html">
@@ -87,7 +95,7 @@
         <target>As an Angular Lead Engineer, I have extensive hands-on experience including overall frontend architecture. I provide the optimal approach tailored to each application's characteristics.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.ci.title" datatype="html">
@@ -95,7 +103,7 @@
         <target>Workflow Development &amp; CI/CD</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.ci.subTitle" datatype="html">
@@ -103,7 +111,7 @@
         <target>Building custom automation foundations for &quot;Uninterrupted Development.&quot;</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.ci.description" datatype="html">
@@ -111,7 +119,7 @@
         <target>I provide end-to-end support for build/test automation and development environment setup to boost team productivity.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.systemDesign.title" datatype="html">
@@ -119,7 +127,7 @@
         <target>System Architecture Design</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.systemDesign.subTitle" datatype="html">
@@ -127,7 +135,7 @@
         <target>Reliable, maintainable designs from embedded systems to web applications.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.systemDesign.description" datatype="html">
@@ -135,7 +143,7 @@
         <target>I define scalable architectures that balance long-term operational stability with strict compliance (security and regulations); from automotive ECU systems to mid-sized web applications.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.userReq.title" datatype="html">
@@ -143,7 +151,7 @@
         <target>Requirements Analysis &amp; Solution Proposal</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.userReq.subTitle" datatype="html">
@@ -151,7 +159,7 @@
         <target>Collaborative development from the upstream phase to realize business requirements.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.userReq.description" datatype="html">
@@ -159,7 +167,7 @@
         <target>I have extensive experience in upstream processes, including requirements definition, roadmap planning, and new system launches. I balance technical restrictions with business needs to ensure smooth project execution.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="common.experience" datatype="html">
@@ -167,7 +175,7 @@
         <target>Experiences</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="common.qualification" datatype="html">
@@ -175,7 +183,7 @@
         <target>Qualifications</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="common.award" datatype="html">
@@ -183,7 +191,7 @@
         <target>Awards</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="career.description" datatype="html">
@@ -191,7 +199,7 @@
         <target>Career history and core responsibilities from 2009 to the present.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
     </body>

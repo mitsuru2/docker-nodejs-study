@@ -5,6 +5,7 @@ export const i18nLabels = {
     skills: $localize`:@@common.skills:スキルセット`,
     career: $localize`:@@common.career:キャリア`,
     detail: $localize`:@@common.detail:詳細`,
+    language: $localize`:@@common.language:言語`,
   },
   skills: {
     diag: {

@@ -21,14 +21,16 @@ import { Logger } from '../../utility/logger/logger';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DesignTokens } from '../../../styles';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Button } from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
+import { ButtonGroupModule } from 'primeng/buttongroup';
 import { MenuModule } from 'primeng/menu';
 import { CountryFlag } from '../../ui/country-flag/country-flag';
 import { i18nLabels } from '../../../locale/_i18n_';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-app-shell',
-  imports: [MenubarModule, LocaleSelect, Button, MenuModule, CountryFlag],
+  imports: [MenubarModule, LocaleSelect, ButtonModule, MenuModule, CountryFlag, ButtonGroupModule],
   templateUrl: './app-shell.html',
   styleUrl: './app-shell.scss',
 })
@@ -43,6 +45,7 @@ export class AppShell implements OnInit {
   private bpObserver = inject(BreakpointObserver);
   private destroyRef = inject(DestroyRef);
   private logger = inject(Logger);
+  private router = inject(Router);
 
   // 出力イベント
   @Output() clicked = new EventEmitter<AppShellOutputData>();
@@ -129,5 +132,14 @@ export class AppShell implements OnInit {
   protected localeChanged(locale: LocaleData) {
     this.logger.debug(`${this.className}.localeChanged() locale=${locale.id}`);
     this.app.switchLocale(locale.id);
+  }
+
+  //----------------------------------------------------------------------------
+  // ボタンクリックイベント (for mobile)
+  //
+  protected menuClicked(link: string) {
+    if (link) {
+      this.router.navigate([link]);
+    }
   }
 }

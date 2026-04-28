@@ -25,7 +25,7 @@
   }
 }
 
-p-menubar {
+.menu-bar {
   --p-menubar-gap: 0;
   --p-menubar-padding: 0;
   --p-menubar-base-item-padding: 4px 8px;
@@ -41,9 +41,14 @@ app-locale-select {
   --p-custom-locale-select-height: 26px;
 }
 
-.locale-button {
+.menu-button {
   --p-button-outlined-primary-color: var(--p-text-color);
   --p-button-padding-y: 3px;
+
+  // アイコンの色だけ変更。p-menuに合わせる。
+  ::ng-deep .p-button-icon {
+    color: var(--p-surface-400);
+  }
 }
 
 .locale-menu-item {
@@ -53,8 +58,14 @@ app-locale-select {
 }
 
 .country-flag {
-  height: 1em;
+  height: 11px;
   border: 1px solid var(--p-surface-200);
+}
+
+// ！！！要注意！！！
+// PrimeNGで動的に付与されるID。HTML構成が変わったら確認すること。
+:host ::ng-deep #pn_id_2 {
+  left: 0; // できるだけ左に寄せようとするが親要素からは外れられないため、結果として親要素基準で右揃えとなる。
 }
 
 .main {
@@ -76,7 +87,7 @@ app-locale-select {
 //------------------------------------------------------------------------------
 // Mobile screeen
 //
-@media screen and (max-width: v.$bp-mobile) {
+@include v.mobile {
   .header {
     display: flex;
     flex-direction: column;
