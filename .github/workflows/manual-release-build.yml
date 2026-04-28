@@ -87,6 +87,29 @@ jobs:
       #     # 設定反映待ち
       #     sleep 10
 
+      # Blob Storageから画像データをダウンロード
+      - name: Download all images
+        run: |
+          # imagesフォルダ直下の画像削除
+          find public/images/ -maxdepth 1 -type f -print
+          find public/images/ -maxdepth 1 -type f -delete
+
+          # Blob Storageから画像データをダウンロード
+          # https://learn.microsoft.com/ja-jp/cli/azure/storage/blob?view=azure-cli-latest#az-storage-blob-download-batch
+          # (1) Dryrun
+          az storage blob download-batch \
+            --account-name ${{ vars.AZURE_STORAGE_ACCOUNT }} \
+            --auth-mode login\
+            --source images \
+            --destination public/images
+            --dryrun
+          # (2) 実行
+          az storage blob download-batch \
+            --account-name ${{ vars.AZURE_STORAGE_ACCOUNT }} \
+            --auth-mode login\
+            --source images \
+            --destination public/images
+
       # ACRにログイン
       - name: ACR login
         run: |
