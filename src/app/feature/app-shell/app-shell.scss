@@ -62,9 +62,7 @@ app-locale-select {
   border: 1px solid var(--p-surface-200);
 }
 
-// ！！！要注意！！！
-// PrimeNGで動的に付与されるID。HTML構成が変わったら確認すること。
-:host ::ng-deep #pn_id_2 {
+:host ::ng-deep #lang-menu-body {
   left: 0; // できるだけ左に寄せようとするが親要素からは外れられないため、結果として親要素基準で右揃えとなる。
 }
 

@@ -45,7 +45,7 @@
 
       <p-menu #skillMenu [model]="menuItems[1].items" [popup]="true"> </p-menu>
 
-      <p-menu #langMenu [model]="localeMenuItems" [popup]="true">
+      <p-menu #langMenu [model]="localeMenuItems" [popup]="true" id="lang-menu-body">
         <ng-template #item let-item>
           <div class="locale-menu-item">
             <app-country-flag [locale]="item.id" class="country-flag"></app-country-flag>
