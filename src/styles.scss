@@ -10,6 +10,15 @@ body {
   font-family: var(--p-custom-font-sans-serif);
   font-size: var(--p-custom-font-size);
   color: var(--p-text-color);
+
+  @include v.mobile {
+    font-size: 12px;
+  }
+
+  @media print {
+    font-size: 10pt;
+    margin: 1.5cm 0.5cm;
+  }
 }
 
 h1 {
@@ -17,6 +26,10 @@ h1 {
   letter-spacing: 0.04em;
   margin: 0;
   font-size: var(--p-custom-font-size-h1);
+
+  @include v.mobile {
+    font-size: var(--p-custom-font-mobile-size-h1);
+  }
 }
 
 @mixin gradient-underline {
@@ -43,6 +56,17 @@ h3 {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+
+  @media print {
+    background: none !important;
+    /* 文字の形での切り抜きを解除 */
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+
+    /* 透明にしていた文字色を「黒」または「本来の色」に戻す */
+    -webkit-text-fill-color: currentcolor !important;
+    color: inherit !important; /* または inherit */
+  }
 }
 
 h3,
@@ -61,25 +85,9 @@ p-menubar {
 }
 
 /**
- * Mobil font config.
- */
-@media screen and (max-width: v.$bp-mobile) {
-  html,
-  body {
-    font-size: 12px;
-  }
-}
-
-/**
  * Print config.
  */
 @media print {
-  html,
-  body {
-    font-size: 10pt;
-    margin: 1.5cm 0.5cm;
-  }
-
   /* 印刷に不要な要素（ナビゲーション、ボタン、サイドバーなど）を消す */
   .no-print {
     display: none !important;
@@ -91,16 +99,5 @@ p-menubar {
     margin: 0;
     padding: 0;
     color: #000; /* 読みやすくするために文字を真っ黒にする */
-  }
-
-  h3 {
-    background: none !important;
-    /* 文字の形での切り抜きを解除 */
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-
-    /* 透明にしていた文字色を「黒」または「本来の色」に戻す */
-    -webkit-text-fill-color: currentcolor !important;
-    color: inherit !important; /* または inherit */
   }
 }

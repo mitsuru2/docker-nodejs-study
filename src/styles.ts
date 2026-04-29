@@ -40,6 +40,9 @@ export const DesignTokens = {
         color: '#495057',
         serif: "'Century', 'Times New Roman', Times, serif",
         sansSerif: "'Noto Sans JP', 'Arial', 'Helvetica', 'sans-serif'",
+        mobile: {
+          sizeH1: '16px',
+        },
       },
       bp: {
         mobile: '768px',
