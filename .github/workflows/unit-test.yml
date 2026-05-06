@@ -93,7 +93,7 @@ jobs:
 
       # テストレポートの表示
       - name: Test Report
-        uses: dorny/test-reporter@v2
+        uses: dorny/test-reporter@v3
         if: always() # テストが失敗しても必ず実行してレポートを出す
         with:
           name: Vitest Unit Test Results
