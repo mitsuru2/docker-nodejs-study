@@ -4,6 +4,7 @@
 .flag {
   display: block;
   object-fit: contain;
-  width: 100%;
+  aspect-ratio: 4/3;
+  width: auto;
   height: 100%;
 }
