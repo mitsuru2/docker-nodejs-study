@@ -18,8 +18,7 @@ const angularApp = new AngularNodeAppEngine({
     'x-forwarded-prefix',
     'x-forwarded-for',
     'x-forwarded-client-cert',
-    'x-forwarded-email',
-    'x-forwarded-groups',
+    'x-forwarded-tlsversion',
   ],
 });
 
