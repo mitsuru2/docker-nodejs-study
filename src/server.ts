@@ -52,6 +52,14 @@ function getDatabase(): Database {
 app.set('trust proxy', 1);
 
 /**
+ * ヘルスチェック (robots933456.txt) のOKを返す。
+ * allowHostsでの対応だとIPが変わる可能性があるため、ここで処理。
+ */
+app.get('/robots933456.txt', (_req, res) => {
+  res.status(200).send('');
+});
+
+/**
  * CosmosDBからのデータ取得
  * https://learn.microsoft.com/ja-jp/azure/developer/javascript/what-is-azure-for-javascript-development?view=azure-node-latest
  * https://learn.microsoft.com/ja-jp/cosmos-db/query/overview
@@ -113,10 +121,7 @@ app.use(
  */
 app.use((req, res, next) => {
   angularApp
-    .handle(req, {
-      // Azure App Serviceからのプロキシヘッダーを信頼する
-      trustProxyHeaders: true,
-    })
+    .handle(req)
     .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
 });

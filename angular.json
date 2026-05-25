@@ -41,12 +41,7 @@
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
-              "allowedHosts": [
-                "localhost",
-                "*.azurecontainerapps.io",
-                "*.azurewebsites.net",
-                "169.254.129.2:4000"
-              ]
+              "allowedHosts": ["localhost", "*.azurecontainerapps.io", "*.azurewebsites.net"]
             },
             "ssr": {
               "entry": "src/server.ts"
