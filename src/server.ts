@@ -11,7 +11,17 @@ import { CosmosClient, Database } from '@azure/cosmos';
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+const angularApp = new AngularNodeAppEngine({
+  trustProxyHeaders: [
+    'x-forwarded-proto',
+    'x-forwarded-host',
+    'x-forwarded-prefix',
+    'x-forwarded-for',
+    'x-forwarded-client-cert',
+    'x-forwarded-email',
+    'x-forwarded-groups',
+  ],
+});
 
 // Azure Cosmos DB
 // 環境変数はサーバーで設定。ローカルではdocker-compose.ymlで指定。
