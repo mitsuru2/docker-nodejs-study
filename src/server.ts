@@ -47,6 +47,11 @@ function getDatabase(): Database {
  */
 
 /**
+ * Azure App Serviceのリバースプロキシへの対応
+ */
+app.set('trust proxy', 1);
+
+/**
  * CosmosDBからのデータ取得
  * https://learn.microsoft.com/ja-jp/azure/developer/javascript/what-is-azure-for-javascript-development?view=azure-node-latest
  * https://learn.microsoft.com/ja-jp/cosmos-db/query/overview
@@ -108,7 +113,10 @@ app.use(
  */
 app.use((req, res, next) => {
   angularApp
-    .handle(req)
+    .handle(req, {
+      // Azure App Serviceからのプロキシヘッダーを信頼する
+      trustProxyHeaders: true,
+    })
     .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
 });
