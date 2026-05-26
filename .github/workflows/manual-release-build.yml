@@ -143,7 +143,8 @@ jobs:
           npm ci
           npm run build
           cp -r src/swa/. dist/docker-nodejs-study/browser/
-          ls -R dist/docker-nodejs-study/browser/
+          sudo apt-get update && sudo apt-get install -y tree
+          tree dist/docker-nodejs-study/browser/
 
       # 静的ウェブアプリのデプロイ
       - name: Deploy SWA
