@@ -12,16 +12,6 @@
   ],
   "navigationFallback": {
     "rewrite": "/ja/index.html",
-    "exclude": [
-      "**/*.html",
-      "**/*.js",
-      "**/*.css",
-      "**/*.jpg",
-      "**/*.png",
-      "**/*.gif",
-      "**/*.svg",
-      "**/*.ico",
-      "**/*.json"
-    ]
+    "exclude": ["*.html", "*.js", "*.css", "*.jpg", "*.png", "*.gif", "*.svg", "*.ico", "*.json"]
   }
 }
