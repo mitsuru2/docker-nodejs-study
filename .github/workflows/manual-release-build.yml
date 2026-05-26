@@ -8,9 +8,60 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
+  # --- JOB: アセットの準備 (DB/画像) ---
+  prepare-assets:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # for Azure login
+    steps:
+      # ソースコードをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # Azureにログイン
+      - name: Azure login
+        uses: azure/login@v3
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      # Cosmos DBにアクセスして articles コンテナの内容をエクスポート
+      - name: Export DB contents
+        env:
+          COSMOS_ENDPOINT: ${{ vars.AZURE_COSMOS_ENDPOINT }}
+          COSMOS_DB: ${{ vars.AZURE_COSMOS_DB_NAME }}
+        run: |
+          npm install @azure/cosmos @azure/identity
+          node script/export-db.mjs
+
+      # Blob Storageから画像データをダウンロード
+      - name: Download all images
+        run: |
+          # imagesフォルダ直下の画像削除
+          find public/images/ -maxdepth 1 -type f -print
+          find public/images/ -maxdepth 1 -type f -delete
+
+          # Blob Storageから画像データをダウンロード
+          az storage blob download-batch \
+            --account-name ${{ vars.AZURE_STORAGE_ACCOUNT }} \
+            --auth-mode login \
+            --source images \
+            --destination public/images
+
+      # 準備したアセットをアーティファクトとしてアップロード
+      - name: Upload prepared assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-assets
+          path: |
+            public/
+
   # --- JOB: Dockerイメージのビルド ---
   build-docker-image:
     runs-on: ubuntu-latest
+    needs: prepare-assets
     outputs:
       image_name: ${{ steps.build.outputs.image_name }}
       short_sha: ${{ steps.build.outputs.short_sha }}
@@ -23,84 +74,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      # 前のジョブで準備したアセットをダウンロード
+      - name: Download assets
+        uses: actions/download-artifact@v4
+        with:
+          name: build-assets
+
       # Docker　Buildkitのセットアップ
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
 
       # Azureにログイン
+      # (ACRへのログインに必要なため、このジョブでもログインが必要です)
       - name: Azure login
         uses: azure/login@v3
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
-
-      # RunnerのパブリックIPを取得してCosmos DBのファイアーウォールを許可
-      # - name: Allow Runner IP
-      #   run: |
-      #     # IPアドレス情報の取得
-      #     runnerIp=$(curl -s https://api.ipify.org)
-      #     existingIps=$(az cosmosdb show \
-      #       --name ${{ vars.AZURE_COSMOS_ACCOUNT}} \
-      #       --resource-group ${{ vars.AZURE_RG_NAME}} \
-      #       --query "ipRules[].ipAddressOrRange" \
-      #       -o tsv | paste -sd "," -)
-      #     echo "ORIGINAL_IP_LIST=$existingIps" >> $GITHUB_ENV
-
-      #     # 新しいIPアドレスリストの作成
-      #     if [ -n "$existingIps" ]; then
-      #       newIps="$existingIps,$runnerIp"
-      #     else
-      #       newIps="$runnerIp"
-      #     fi
-      #     echo "runnerIp: $runnerIp"
-      #     echo "existingIps: $existingIps"
-      #     echo "newIps: $newIps"
-
-      #     # Cosmos DBのファイアーウォールを更新
-      #     az cosmosdb update \
-      #       --name ${{ vars.AZURE_COSMOS_ACCOUNT }} \
-      #       --resource-group ${{ vars.AZURE_RG_NAME }} \
-      #       --ip-range-filter $newIps
-
-      #     # 設定反映待ち
-      #     sleep 10
-
-      # Cosmos DBにアクセスして articles コンテナの内容をエクスポート
-      - name: Export DB contents
-        env:
-          COSMOS_ENDPOINT: ${{ vars.AZURE_COSMOS_ENDPOINT }}
-          COSMOS_DB: ${{ vars.AZURE_COSMOS_DB_NAME }}
-        run: |
-          npm install @azure/cosmos @azure/identity
-          node script/export-db.mjs
-
-      # IPアドレス登録の削除
-      # - name: Remove Runner IP
-      #   if: always()
-      #   run: |
-      #     echo "The original IP list: $ORIGINAL_IP_LIST"
-      #     az cosmosdb update \
-      #       --name ${{ vars.AZURE_COSMOS_ACCOUNT }} \
-      #       --resource-group ${{ vars.AZURE_RG_NAME }} \
-      #       --ip-range-filter $ORIGINAL_IP_LIST
-      #     # 設定反映待ち
-      #     sleep 10
-
-      # Blob Storageから画像データをダウンロード
-      - name: Download all images
-        run: |
-          # imagesフォルダ直下の画像削除
-          find public/images/ -maxdepth 1 -type f -print
-          find public/images/ -maxdepth 1 -type f -delete
-
-          # Blob Storageから画像データをダウンロード
-          # https://learn.microsoft.com/ja-jp/cli/azure/storage/blob?view=azure-cli-latest#az-storage-blob-download-batch
-          az storage blob download-batch \
-            --account-name ${{ vars.AZURE_STORAGE_ACCOUNT }} \
-            --auth-mode login\
-            --source images \
-            --destination public/images
 
       # ACRにログイン
       - name: ACR login
@@ -117,6 +108,58 @@ jobs:
           docker push $IMAGE_NAME
           echo "image_name=$IMAGE_NAME" >> $GITHUB_OUTPUT
           echo "short_sha=$SHORT_SHA" >> $GITHUB_OUTPUT
+
+  # --- JOB: 静的ウェブアプリのビルド ---
+  build-static-web-app:
+    runs-on: ubuntu-latest
+    needs: prepare-assets
+    permissions:
+      contents: read
+      id-token: write # for Azure login
+
+    steps:
+      # ソースコードをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # 前のジョブで準備したアセットをダウンロード
+      - name: Download assets
+        uses: actions/download-artifact@v4
+        with:
+          name: build-assets
+
+      # Azureにログイン
+      - name: Azure login
+        uses: azure/login@v3
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      # 静的ウェブアプリのビルド
+      - name: Build SWA
+        run: |
+          npm ci
+          npm run build
+
+      # SWAデプロイ時のバリデーションをパスするためにダミーのindex.htmlを追加。
+      # 構成ファイルをコピー。
+      - name:
+        run: |
+          echo "Generate dummy index.html for Azure SWA validation."
+          echo "Redirecting to local site..." > dist/docker-nodejs-study/browser/index.html
+          echo "Copy SWA config file to the root directory."
+          cp staticwebapp.config.json dist/docker-nodejs-study/browser/
+
+      # 静的ウェブアプリのデプロイ
+      - name: Deploy SWA
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          action: 'upload'
+          app_location: '/' # App source code path
+          output_location: 'dist/docker-nodejs-study/browser'
+          skip_app_build: true # Build process shall be completed before dummy index.html generation.
 
   # --- JOB: コンテナアプリのデプロイ (プレビュー) ---
   # ここではデプロイするけど外部からのトラフィックはまだ割り当てない。
