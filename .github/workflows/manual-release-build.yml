@@ -137,24 +137,19 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       # 静的ウェブアプリのビルド
+      # SWA専用ファイルのコピー
       - name: Build SWA
         run: |
           npm ci
           npm run build
-
-      # SWAデプロイ時のバリデーションをパスするためにダミーのindex.htmlを追加。
-      # 構成ファイルをコピー。
-      - name:
-        run: |
-          npm install -g @azure/static-web-apps-cli
-          echo "Generate dummy index.html for Azure SWA validation."
-          echo "Redirecting to local site..." > dist/docker-nodejs-study/browser/index.html
-          echo "Copy SWA config file to the root directory."
-          cp staticwebapp.config.json dist/docker-nodejs-study/browser/
+          cp -r src/swa/. dist/docker-nodejs-study/browser/
 
       # 静的ウェブアプリのデプロイ
       - name: Deploy SWA
         run: |
+          # SWA CLIをインストール
+          npm install -g @azure/static-web-apps-cli
+
           # サービスプリンシパルの権限でトークンを動的取得
           DEPLOYMENT_TOKEN=$(az staticwebapp secrets list \
             --name ${{ vars.AZURE_SWA_NAME}} \
