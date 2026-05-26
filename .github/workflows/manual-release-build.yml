@@ -79,6 +79,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: build-assets
+          path: public/
 
       # Docker　Buildkitのセットアップ
       - name: Set up Docker Buildx
@@ -127,6 +128,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: build-assets
+          path: public/
 
       # Azureにログイン
       - name: Azure login
@@ -160,8 +162,8 @@ jobs:
       # ジョブサマリーにプレビューURLを表示
       - name: Add preview URL to summary
         run: |
-          echo "### Deployment Preview (Static Web Apps)" >> $GITHUB_STEP_SUMMARY
-          echo "- **Preview URL:** https://icy-moss-004312700-preview.eastasia.7.azurestaticapps.net/" >> $GITHUB_STEP_SUMMARY
+          echo "### Static Web Apps (Preview)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Application URL:** https://icy-moss-004312700-preview.eastasia.7.azurestaticapps.net/" >> $GITHUB_STEP_SUMMARY
 
       # ビルドdist/browserフォルダの内容をアーティファクトとしてアップロード
       - name: Upload build assets
@@ -173,7 +175,7 @@ jobs:
 
   # --- JOB: コンテナアプリのデプロイ (プレビュー) ---
   # ここではデプロイするけど外部からのトラフィックはまだ割り当てない。
-  deploy-preview:
+  deploy-aca-preview:
     runs-on: ubuntu-latest
     needs: build-docker-image
     permissions:
@@ -218,21 +220,23 @@ jobs:
             --resource-group ${{ vars.AZURE_RG_NAME }} \
             --revision $REVISION_NAME \
             --query "properties.fqdn" -o tsv)
-          echo "### Deployment Preview (Container Apps)" >> $GITHUB_STEP_SUMMARY
-          echo "- **New revision URL:** https://$PREVIEW_URL" >> $GITHUB_STEP_SUMMARY
+          AZURE_LINK="https://portal.azure.com/#resource/subscriptions/${{ vars.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ vars.AZURE_RG_NAME }}/providers/Microsoft.App/containerApps/${{ vars.AZURE_CONTAINER_APP_NAME }}"
+          echo "### Container Apps (Preview)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Application URL:** https://$PREVIEW_URL" >> $GITHUB_STEP_SUMMARY
+          echo "- **Control Panel:** [View in Azure Portal](${AZURE_LINK})" >> $GITHUB_STEP_SUMMARY
 
   # --- JOB: コンテナアプリのデプロイ (リリース) ---
   # 承認後にトラフィックを100%に切り替える
-  deploy-release:
+  deploy-aca-release:
     runs-on: ubuntu-latest
-    needs: deploy-preview
+    needs: deploy-aca-preview
     permissions:
       contents: read
       id-token: write # for Azure login
 
-    environment: restricted # 承認が必要な環境設定
+    environment: approval # 承認が必要な環境設定
     # 注意: environment を指定した場合、Azure側の「フェデレーション資格情報」に
-    # entity type: Environment, name: restricted の追加設定が必要です。
+    # entity type: Environment, name: approval の追加設定が必要です。
     # これがないと azure/login ステップで認証エラー（一見シークレット未定義に見える）が発生します。
 
     steps:
@@ -253,23 +257,19 @@ jobs:
             --resource-group ${{ vars.AZURE_RG_NAME }} \
             --revision-weight latest=100
 
-  # --- JOB: 古いリビジョンの無効化 ---
-  deactivate-old-revisions:
-    runs-on: ubuntu-latest
-    needs:
-      - build-docker-image
-      - deploy-release
-    permissions:
-      contents: read
-      id-token: write # for Azure login
-    steps:
-      # Azureにログイン
-      - name: Azure login
-        uses: azure/login@v3
-        with:
-          client-id: ${{ vars.AZURE_CLIENT_ID }}
-          tenant-id: ${{ vars.AZURE_TENANT_ID }}
-          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      # ジョブサマリーにURLを表示
+      - name: Print final summary
+        run: |
+          PUBLIC_URL=$(az containerapp show \
+            --name ${{ vars.AZURE_CONTAINER_APP_NAME }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
+            --query "properties.configuration.ingress.fqdn" --output tsv)
+          echo "### Container Apps (Release)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Application URL:** https://$PUBLIC_URL" >> $GITHUB_STEP_SUMMARY
+
+      # トラフィック切り替えの反映と残存リクエストの完了を待機
+      - name: Wait for traffic shift to propagate
+        run: sleep 30
 
       # ACAでトラフィックが0%のリビジョンを非アクティブ化する。
       - name: Deactivate old revisions
@@ -285,31 +285,17 @@ jobs:
               --revision $rev
           done
 
-      # ジョブサマリーにURLを表示
-      - name: Print final summary
-        run: |
-          REVISION_NAME="${{ vars.AZURE_CONTAINER_APP_NAME }}--sha-${{ needs.build-docker-image.outputs.short_sha }}"
-          AZURE_LINK="https://portal.azure.com/#resource/subscriptions/${{ vars.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ vars.AZURE_RG_NAME }}/providers/Microsoft.App/containerApps/${{ vars.AZURE_CONTAINER_APP_NAME }}"
-          # 新しく作成されたリビジョンの専用FQDNを取得
-          PUBLIC_URL=$(az containerapp show \
-            --name ${{ vars.AZURE_CONTAINER_APP_NAME }} \
-            --resource-group ${{ vars.AZURE_RG_NAME }} \
-            --query "properties.configuration.ingress.fqdn" --output tsv)
-          echo "### Release Summary (Container Apps)" >> $GITHUB_STEP_SUMMARY
-          echo "- **Application URL:** https://$PUBLIC_URL" >> $GITHUB_STEP_SUMMARY
-          echo "- **Azure Container Apps:** [View in Azure Portal](${AZURE_LINK})" >> $GITHUB_STEP_SUMMARY
-
   # --- JOB: App Services のリビジョン更新 ---
-  deploy-web-app:
+  deploy-web-app-release:
     runs-on: ubuntu-latest
     needs:
-      - deploy-preview
+      - deploy-aca-preview
       - build-docker-image
     permissions:
       contents: read
       id-token: write # for Azure login
 
-    environment: restricted # 承認が必要な環境設定
+    environment: approval # 承認が必要な環境設定
 
     steps:
       # Azureにログイン
@@ -336,9 +322,9 @@ jobs:
             --name ${{ vars.AZURE_WEBAPP_NAME }} \
             --resource-group ${{ vars.AZURE_RG_NAME }} \
             --query "hostNames[0]" --output tsv)
-          echo "### Release Summary (App Services)" >> $GITHUB_STEP_SUMMARY
+          echo "### App Services (Release)" >> $GITHUB_STEP_SUMMARY
           echo "- **Application URL:** https://$PUBLIC_URL" >> $GITHUB_STEP_SUMMARY
-          echo "- **Azure Apps Services:** [View in Azure Portal](${AZURE_LINK})" >> $GITHUB_STEP_SUMMARY
+          echo "- **Control Panel:** [View in Azure Portal](${AZURE_LINK})" >> $GITHUB_STEP_SUMMARY
 
   # --- JOB: 静的ウェブアプリのデプロイ ---
   deploy-static-web-app:
@@ -349,7 +335,7 @@ jobs:
       contents: read
       id-token: write # for Azure login
 
-    environment: restricted # 承認が必要な環境設定
+    environment: approval # 承認が必要な環境設定
 
     steps:
       # ビルドしたSWAをダウンロード
@@ -357,6 +343,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: dist-swa
+          path: dist/docker-nodejs-study/browser/
 
       # Azureにログイン
       - name: Azure login
@@ -382,4 +369,4 @@ jobs:
       - name: Add preview URL to summary
         run: |
           echo "### Static Web Apps (Release)" >> $GITHUB_STEP_SUMMARY
-          echo "- **Public URL:** https://icy-moss-004312700.eastasia.7.azurestaticapps.net/" >> $GITHUB_STEP_SUMMARY
+          echo "- **Application URL:** https://icy-moss-004312700.eastasia.7.azurestaticapps.net/" >> $GITHUB_STEP_SUMMARY
