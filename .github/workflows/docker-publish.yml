@@ -4,12 +4,12 @@ on:
   # 開発用のDocker環境はDevContainerでビルドされるためイメージをGHCRで管理する必要がなくなった。
   # そのため、Dockerイメージのビルドとプッシュは手動実行のみに変更する。
   workflow_dispatch: # 手動実行のみ
-  # push:
-  #   branches: ['main'] # mainブランチにpushされたら実行
-  #   paths:
-  #     - 'Dockerfile'
-  #     - '.dockerignore'
-  #     - 'package-lock.json'
+  push:
+    branches: ['main'] # mainブランチにpushされたら実行
+    paths:
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'package-lock.json'
 
 env:
   REGISTRY: ghcr.io
