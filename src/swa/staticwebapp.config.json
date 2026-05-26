@@ -1,17 +1,3 @@
 {
-  "trailingSlash": "auto",
-  "routes": [
-    {
-      "route": "/ja/*",
-      "rewrite": "/ja/index.html"
-    },
-    {
-      "route": "/en-GB/*",
-      "rewrite": "/en-GB/index.html"
-    }
-  ],
-  "navigationFallback": {
-    "rewrite": "/ja/index.html",
-    "exclude": ["*.html", "*.js", "*.css", "*.jpg", "*.png", "*.gif", "*.svg", "*.ico", "*.json"]
-  }
+  "trailingSlash": "auto"
 }
