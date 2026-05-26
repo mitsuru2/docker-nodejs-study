@@ -162,8 +162,10 @@ jobs:
       # ジョブサマリーにプレビューURLを表示
       - name: Add preview URL to summary
         run: |
+          AZURE_LINK="https://portal.azure.com/#resource/subscriptions/${{ vars.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ vars.AZURE_RG_NAME }}/providers/Microsoft.Web/staticSites/${{ vars.AZURE_SWA_NAME }}/staticsite"
           echo "### Static Web Apps (Preview)" >> $GITHUB_STEP_SUMMARY
           echo "- **Application URL:** https://icy-moss-004312700-preview.eastasia.7.azurestaticapps.net/" >> $GITHUB_STEP_SUMMARY
+          echo "- **Control Panel:** [View in Azure Portal](${AZURE_LINK})" >> $GITHUB_STEP_SUMMARY
 
       # ビルドdist/browserフォルダの内容をアーティファクトとしてアップロード
       - name: Upload build assets
@@ -369,4 +371,4 @@ jobs:
       - name: Add preview URL to summary
         run: |
           echo "### Static Web Apps (Release)" >> $GITHUB_STEP_SUMMARY
-          echo "- **Application URL:** https://icy-moss-004312700.eastasia.7.azurestaticapps.net/" >> $GITHUB_STEP_SUMMARY
+          echo "- **Application URL:** https://icy-moss-004312700.7.azurestaticapps.net/ja/" >> $GITHUB_STEP_SUMMARY
