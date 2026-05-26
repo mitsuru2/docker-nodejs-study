@@ -3,10 +3,6 @@
   "routes": [
     {
       "route": "/",
-      "rewrite": "/ja/index.html"
-    },
-    {
-      "route": "/",
       "redirect": "/ja/",
       "statusCode": 302,
       "matchCondition": {
@@ -30,6 +26,10 @@
           }
         ]
       }
+    },
+    {
+      "route": "/ja/*",
+      "rewrite": "/ja/index.html"
     },
     {
       "route": "/ja/*",
