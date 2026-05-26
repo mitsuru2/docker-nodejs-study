@@ -13,14 +13,15 @@
   "navigationFallback": {
     "rewrite": "/ja/index.html",
     "exclude": [
-      "/*.bundle.js",
-      "/*.css",
-      "/*.jpg",
-      "/*.png",
-      "/*.gif",
-      "/*.svg",
-      "/*.ico",
-      "/*.woff2"
+      "**/*.html",
+      "**/*.js",
+      "**/*.css",
+      "**/*.jpg",
+      "**/*.png",
+      "**/*.gif",
+      "**/*.svg",
+      "**/*.ico",
+      "**/*.json"
     ]
   }
 }
