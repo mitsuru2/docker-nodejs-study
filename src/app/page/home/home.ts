@@ -1,8 +1,8 @@
-import { Component, computed, DestroyRef, DOCUMENT, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, DOCUMENT, inject, signal } from '@angular/core';
 import { AppManager } from '../../service/app-manager/app-manager';
 import { Splash } from '../../feature/splash/splash';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { delay, filter, tap } from 'rxjs';
+import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { delay, filter, map, tap } from 'rxjs';
 import { AppShell } from '../../feature/app-shell/app-shell';
 import { Router } from '@angular/router';
 import { Logger } from '../../utility/logger/logger';
@@ -35,32 +35,37 @@ interface CardContentData {
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home implements OnInit {
+export class Home {
   private readonly className = 'Home';
 
   // 依存サービス
   private app = inject(AppManager);
   private router = inject(Router);
   private bpObserver = inject(BreakpointObserver);
-  private destroyRef = inject(DestroyRef);
   private logger = inject(Logger);
 
   // 依存トークン
   private document = inject(DOCUMENT);
 
   // スプラッシュ制御パラメータ
+  private loadedImagePaths = signal(new Set<string>());
   protected initProgress = computed(() => {
-    if (this.app.isInit()) {
-      return 100;
-    } else {
-      return 5;
+    // AppManagerの初期化完了、または全画像のロード完了で100%にする
+    let progress = this.loadedImagePaths().size / this.carousel().images.length;
+    if (progress >= 1 && !this.app.isInit()) {
+      progress = 0.99; // AppManagerの初期化が完了するまでは99%で止めておく
     }
+    return Math.floor(progress * 100);
   });
   protected showSplash = signal(!this.app.isInit());
   protected showMain = signal(this.app.isInit());
 
   // ホーム画面制御パラメータ
-  protected isMobile = signal(false);
+  private readonly mobileQuery = `(max-width: ${DesignTokens.primitive.custom.bp.mobile})`;
+  protected isMobile = toSignal(
+    this.bpObserver.observe([this.mobileQuery]).pipe(map((state) => state.matches)),
+    { initialValue: this.bpObserver.isMatched(this.mobileQuery) },
+  );
 
   // GUIテキスト
   protected readonly labels = i18nLabels;
@@ -177,7 +182,7 @@ export class Home implements OnInit {
   // ライフサイクル
   //
   constructor() {
-    // 初期化進捗が100になったら2秒待ってからスプラッシュを非表示にする。
+    // 初期化進捗が100になったら1.2秒待ってからスプラッシュを非表示にする。その後0.6秒待ってからメイン画面を表示する。
     // プログレスバーのアニメーションを完了させるため。
     // effect()と非同期処理との組み合わせはアンチパターンのためObservableで処理。
     toObservable(this.initProgress)
@@ -187,7 +192,7 @@ export class Home implements OnInit {
         tap(() => {
           this.showSplash.set(false);
         }),
-        delay(500),
+        delay(600),
         takeUntilDestroyed(),
       )
       .subscribe(() => {
@@ -195,14 +200,12 @@ export class Home implements OnInit {
       });
   }
 
-  ngOnInit(): void {
-    // ブレークポイント監視 --> isMobileシグナルに反映
-    this.bpObserver
-      .observe([`(max-width: ${DesignTokens.primitive.custom.bp.mobile})`])
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((state) => {
-        this.isMobile.set(state.matches);
-      });
+  /**
+   * ダミー画像の読み込み完了イベントハンドラ
+   */
+  protected onImageLoad(path: string): void {
+    this.logger.info(`${this.className}.onImageLoad() path=${path}`);
+    this.loadedImagePaths.update((set) => (set.has(path) ? set : new Set(set.add(path))));
   }
 
   //----------------------------------------------------------------------------
