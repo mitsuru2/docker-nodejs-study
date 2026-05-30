@@ -17,7 +17,7 @@ export class Splash {
   progress = input.required<number>();
 
   // 制御パラメータ
-  protected readonly imagePath = 'images/hamster_1x1.png';
+  protected readonly imagePath = 'images/hamster_1x1.webp';
   protected readonly imageConfig: CircularImageConfigData = {
     id: 'splash-img',
     path: this.imagePath,

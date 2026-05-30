@@ -23,7 +23,7 @@ export class Career {
   protected labels = i18nLabels;
 
   // 表示データ
-  protected titleImage = 'images/career_4x1.png';
+  protected titleImage = 'images/career_4x1.webp';
   private readonly jsonPath = 'data/articles-career.json';
   private data = toSignal(this.http.get<DbCommonData[]>(this.jsonPath), { initialValue: [] });
   protected experiences = computed(

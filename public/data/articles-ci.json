@@ -21,7 +21,7 @@
           }
         ],
         "titleImage": {
-          "path": "images/continuous-integration_4x1.png",
+          "path": "images/continuous-integration_4x1.webp",
           "alt": { "ja": "CI/CDタイトル画像", "en": "CI/CD title image." }
         },
         "images": [

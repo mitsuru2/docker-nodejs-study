@@ -9,7 +9,7 @@ import { CircularImage } from '../circular-image';
   styleUrl: './test-circular-image.scss',
 })
 export class TestCircularImage {
-  private readonly hamster = 'images/hamster_1x1.png';
+  private readonly hamster = 'images/hamster_1x1.webp';
 
   protected testCases: { title: string; config: CircularImageConfigData }[] = [
     {
