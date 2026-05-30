@@ -1,7 +1,12 @@
 @if (showSplash()) {
   <app-splash class="splash" animate.leave="fade-out" [progress]="initProgress()"></app-splash>
   @for (img of carousel().images; track img.path) {
-    <img [src]="img.path" style="display: none" (load)="onImageLoad(img.path)" />
+    <img
+      [src]="img.path"
+      style="display: none"
+      (load)="onImageLoad(img.path)"
+      alt="Dummy image loading."
+    />
   }
 }
 
