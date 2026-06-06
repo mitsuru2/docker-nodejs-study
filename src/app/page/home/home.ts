@@ -74,6 +74,12 @@ export class Home {
   protected readonly carouselPC: CarouselConfigData = {
     images: [
       {
+        id: PagePath.Career,
+        alt: i18nLabels.common.career.toLocaleLowerCase(),
+        path: 'images/career.webp',
+        title: i18nLabels.common.career,
+      },
+      {
         id: SkillMenuItem.diag,
         alt: i18nLabels.skills.diag.title.toLocaleLowerCase(),
         path: 'images/vehicle-diagnostics.webp',
@@ -103,12 +109,6 @@ export class Home {
         path: 'images/requirement.webp',
         title: i18nLabels.skills.userReq.title,
       },
-      {
-        id: PagePath.Career,
-        alt: i18nLabels.common.career.toLocaleLowerCase(),
-        path: 'images/career.webp',
-        title: i18nLabels.common.career,
-      },
     ],
     interval: 6000,
     showDots: true,
@@ -123,14 +123,6 @@ export class Home {
     icon: PrimeIcons.SEARCH_PLUS,
   } as const;
   protected readonly cardContents: CardContentData[] = [
-    {
-      id: `card-${PagePath.Career}`,
-      messages: [i18nLabels.career.brief],
-      card: {
-        title: i18nLabels.career.experience,
-        button: { ...this.detailButton, id: PagePath.Career },
-      },
-    },
     {
       id: `card-${SkillMenuItem.diag}`,
       catchCopy: i18nLabels.skills.diag.subTitle,
@@ -174,6 +166,14 @@ export class Home {
       card: {
         title: i18nLabels.skills.userReq.title,
         button: { ...this.detailButton, id: SkillMenuItem.userReq },
+      },
+    },
+    {
+      id: `card-${PagePath.Career}`,
+      messages: [i18nLabels.career.brief],
+      card: {
+        title: i18nLabels.career.experience,
+        button: { ...this.detailButton, id: PagePath.Career },
       },
     },
   ];
