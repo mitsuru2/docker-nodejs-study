@@ -67,14 +67,14 @@ export class AppShell implements OnInit {
           routerLink: '/' + PagePath.Diag,
         },
         {
-          label: this.labels.skills.frontEnd.title,
-          icon: PrimeIcons.PALETTE,
-          routerLink: '/' + PagePath.FrontEnd,
-        },
-        {
           label: this.labels.skills.ci.title,
           icon: PrimeIcons.SYNC,
           routerLink: '/' + PagePath.Ci,
+        },
+        {
+          label: this.labels.skills.frontEnd.title,
+          icon: PrimeIcons.PALETTE,
+          routerLink: '/' + PagePath.FrontEnd,
         },
         {
           label: this.labels.skills.systemDesign.title,

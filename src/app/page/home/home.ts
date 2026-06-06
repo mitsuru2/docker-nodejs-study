@@ -80,16 +80,16 @@ export class Home {
         title: i18nLabels.skills.diag.title,
       },
       {
-        id: SkillMenuItem.frontEnd,
-        alt: i18nLabels.skills.frontEnd.title.toLowerCase(),
-        path: 'images/front-end.webp',
-        title: i18nLabels.skills.frontEnd.title,
-      },
-      {
         id: SkillMenuItem.ci,
         alt: i18nLabels.skills.ci.title.toLocaleLowerCase(),
         path: 'images/continuous-integration.webp',
         title: i18nLabels.skills.ci.title,
+      },
+      {
+        id: SkillMenuItem.frontEnd,
+        alt: i18nLabels.skills.frontEnd.title.toLowerCase(),
+        path: 'images/front-end.webp',
+        title: i18nLabels.skills.frontEnd.title,
       },
       {
         id: SkillMenuItem.systemDesign,
@@ -133,21 +133,21 @@ export class Home {
       },
     },
     {
-      id: `card-${SkillMenuItem.frontEnd}`,
-      catchCopy: i18nLabels.skills.frontEnd.subTitle,
-      messages: [i18nLabels.skills.frontEnd.description],
-      card: {
-        title: i18nLabels.skills.frontEnd.title,
-        button: { ...this.detailButton, id: SkillMenuItem.frontEnd },
-      },
-    },
-    {
       id: `card-${SkillMenuItem.ci}`,
       catchCopy: i18nLabels.skills.ci.subTitle,
       messages: [i18nLabels.skills.ci.description],
       card: {
         title: i18nLabels.skills.ci.title,
         button: { ...this.detailButton, id: SkillMenuItem.ci },
+      },
+    },
+    {
+      id: `card-${SkillMenuItem.frontEnd}`,
+      catchCopy: i18nLabels.skills.frontEnd.subTitle,
+      messages: [i18nLabels.skills.frontEnd.description],
+      card: {
+        title: i18nLabels.skills.frontEnd.title,
+        button: { ...this.detailButton, id: SkillMenuItem.frontEnd },
       },
     },
     {
