@@ -124,6 +124,14 @@ export class Home {
   } as const;
   protected readonly cardContents: CardContentData[] = [
     {
+      id: `card-${PagePath.Career}`,
+      messages: [i18nLabels.career.brief],
+      card: {
+        title: i18nLabels.career.experience,
+        button: { ...this.detailButton, id: PagePath.Career },
+      },
+    },
+    {
       id: `card-${SkillMenuItem.diag}`,
       catchCopy: i18nLabels.skills.diag.subTitle,
       messages: [i18nLabels.skills.diag.description],
@@ -166,14 +174,6 @@ export class Home {
       card: {
         title: i18nLabels.skills.userReq.title,
         button: { ...this.detailButton, id: SkillMenuItem.userReq },
-      },
-    },
-    {
-      id: `card-${PagePath.Career}`,
-      messages: [i18nLabels.career.brief],
-      card: {
-        title: i18nLabels.career.experience,
-        button: { ...this.detailButton, id: PagePath.Career },
       },
     },
   ];
