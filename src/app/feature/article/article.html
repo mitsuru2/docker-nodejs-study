@@ -48,6 +48,22 @@
         }
       </div>
     }
+    @for (messageBlock of paragraph.messageBlocks; track $index) {
+      <div class="message-block">
+        <div>
+          <p>
+            @if (messageBlock.type === 'info') {
+              <i class="pi pi-info-circle info-icon"></i>
+            }
+          </p>
+        </div>
+        <div>
+          @for (message of messageBlock.messages; track $index) {
+            <p [innerHTML]="message | localize"></p>
+          }
+        </div>
+      </div>
+    }
   }
 } @else {
   <p-skeleton height="2rem" class="skeleton-h2" />
