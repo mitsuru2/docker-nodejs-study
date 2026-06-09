@@ -16,7 +16,12 @@
     <h2 class="margin">{{ labels.career.qualification }}</h2>
     <ul>
       @for (qualification of qualifications(); track $index) {
-        <li>{{ qualification.name | localize }}</li>
+        <li>
+          <span>{{ qualification.name | localize }}</span>
+          @if (qualification.year) {
+            <span> ({{ qualification.year }})</span>
+          }
+        </li>
       }
     </ul>
 
