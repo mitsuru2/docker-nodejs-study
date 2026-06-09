@@ -48,6 +48,7 @@ p {
   display: flex;
   column-gap: var(--p-custom-margin-m);
   padding-left: var(--p-custom-margin-s);
+  margin-top: var(--p-custom-margin-s);
 
   i {
     color: var(--p-primary-color);
