@@ -79,6 +79,17 @@
             "ja": "<b>E2Eテストの実装:</b> WebDriverIOを用いた回帰テスト環境を構築可能です。手動テストの負担を軽減し、デグレードの未然防止に貢献します。",
             "en": "<b>E2E Test Implementation:</b> I can establish regression testing environments using WebDriverIO. This reduces the cost of manual testing and contributes to the prevention of regressions before they reach production."
           }
+        ],
+        "messageBlocks": [
+          {
+            "type": "info",
+            "messages": [
+              {
+                "ja": "このCIパイプラインは、開発プロセスを自動化し、品質を向上させるために設計されています。",
+                "en": "This CI pipeline is designed to automate the development process and improve quality."
+              }
+            ]
+          }
         ]
       },
       {

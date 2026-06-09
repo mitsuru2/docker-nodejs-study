@@ -14,6 +14,11 @@ export interface MessageData {
   en?: string;
 }
 
+export interface MessageBlockData {
+  type: 'info';
+  messages: MessageData[];
+}
+
 export interface ImageData {
   path: string;
   caption?: MessageData;
@@ -40,6 +45,7 @@ export interface ArticleParagraphData {
   list?: MessageData[];
   titleImage?: ImageData;
   images?: ImageData[];
+  messageBlocks?: MessageBlockData[];
 }
 
 export interface ArticleData extends DbCommonData {

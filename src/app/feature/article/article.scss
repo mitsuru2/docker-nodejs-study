@@ -44,6 +44,21 @@ p {
   column-gap: var(--p-custom-margin-s);
 }
 
+.message-block {
+  display: flex;
+  column-gap: var(--p-custom-margin-m);
+  padding-left: var(--p-custom-margin-s);
+
+  i {
+    color: var(--p-primary-color);
+    font-size: 1.5rem;
+  }
+
+  border-left: 4px solid;
+  border-image: var(--p-custom-gradient-blue-to-purple-vert);
+  border-image-slice: 1;
+}
+
 :host ::ng-deep .p-image-rotate-right-button,
 :host ::ng-deep .p-image-rotate-left-button,
 :host ::ng-deep .p-image-zoom-out-button,
