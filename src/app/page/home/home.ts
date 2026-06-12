@@ -75,9 +75,9 @@ export class Home {
     images: [
       {
         id: PagePath.Career,
-        alt: i18nLabels.common.career.toLocaleLowerCase(),
+        alt: i18nLabels.career.experience.toLocaleLowerCase(),
         path: 'images/career.webp',
-        title: i18nLabels.common.career,
+        title: i18nLabels.career.experience,
       },
       {
         id: SkillMenuItem.diag,
