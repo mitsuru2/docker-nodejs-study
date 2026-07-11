@@ -44,3 +44,7 @@ __screenshots__/
 Thumbs.db
 
 _build.ts
+_license.ts
+
+# Local secrets
+.devcontainer/secrets.env

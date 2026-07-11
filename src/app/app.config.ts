@@ -22,6 +22,7 @@ import { MessageService } from 'primeng/api';
 import { HttpInterceptorFn } from '@angular/common/http';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { buildMetadata } from '../_build';
+import { primeNgLicense } from '../_license';
 
 // HTTPリクエストのログだし。
 export const debugInterceptor: HttpInterceptorFn = (req, next) => {
@@ -57,8 +58,7 @@ export const commonConfig: ApplicationConfig = {
       theme: {
         preset: CustomPreset,
       },
-      license:
-        'eyJpZCI6ImY5MTI3NTkzLTc1ZDgtNDU1OS04NGZiLWFlY2ZkMzM1YmQ0OSIsInByb2R1Y3QiOiJwcmltZXVpIiwidGllciI6ImNvbW11bml0eSIsInR5cGUiOiJkZXYiLCJpYXQiOjE3ODM3NDc3NDUsImV4cCI6MTgxNTI4Mzc0NX0.5O0QLzyF9GotmpyPXH3yc0nCbJ6lViueeHFjC8WEXUlNV-yams-gcLUfDVLr2mMwoPlbjqAZTS_y4IlCFhAbAA',
+      license: primeNgLicense,
     }),
     provideAppInitializer(() => {
       const platformId = inject(PLATFORM_ID);
