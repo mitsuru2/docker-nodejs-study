@@ -50,6 +50,9 @@ export const DesignTokens = {
     },
   },
   semantic: {
+    mask: {
+      background: 'rgba(0, 0, 0, 0.2)',
+    },
     primary: {
       50: '{indigo.50}',
       100: '{indigo.100}',
@@ -106,8 +109,8 @@ export const DesignTokens = {
     custom: {
       article: {
         image: {
-          height: '180px',
-          width: '180px',
+          height: '180',
+          width: '180',
         },
         caption: {
           fontColor: '{slate.700}',

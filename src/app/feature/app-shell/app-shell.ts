@@ -11,6 +11,7 @@ import {
 import { getCurrentYear } from '../../utility/timestamp/timestamp';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem, PrimeIcons } from 'primeng/api';
+import { Home, Book, Briefcase, Globe, Check } from '@primeicons/angular';
 import { AppShellOutputData } from './app-shell.interface';
 import { PagePath } from '../../model/page-path';
 import { LocaleSelect } from '../../ui/locale-select/locale-select';
@@ -30,7 +31,19 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-app-shell',
-  imports: [MenubarModule, LocaleSelect, ButtonModule, MenuModule, CountryFlag, ButtonGroupModule],
+  imports: [
+    MenubarModule,
+    LocaleSelect,
+    ButtonModule,
+    MenuModule,
+    CountryFlag,
+    ButtonGroupModule,
+    Home,
+    Book,
+    Briefcase,
+    Globe,
+    Check,
+  ],
   templateUrl: './app-shell.html',
   styleUrl: './app-shell.scss',
 })

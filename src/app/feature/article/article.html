@@ -26,26 +26,43 @@
     @if (paragraph.images) {
       <div class="images-track">
         @for (image of paragraph.images; track $index) {
-          <p-image
-            [src]="image.path"
-            [alt]="image.alt | localize"
-            [preview]="true"
-            [height]="thumbHeight()"
-            [width]="thumbWidth()"
+          <button
+            type="button"
+            class="thumb-image-btn"
+            (click)="showPictureDialog(image.path, image.caption, image.alt)"
           >
-            <ng-template #indicator>
-              <i class="pi pi-search"></i>
-            </ng-template>
-            <ng-template #preview>
-              <div class="preview-image">
-                <img [src]="image.path" [alt]="image.alt" />
-                @if (image.caption) {
-                  <div class="caption">{{ image.caption | localize }}</div>
-                }
-              </div>
-            </ng-template>
-          </p-image>
+            <img
+              [src]="image.path"
+              [alt]="image.alt | localize"
+              [attr.height]="thumbHeight()"
+              [attr.width]="thumbWidth()"
+              class="thumb-image"
+            />
+          </button>
         }
+      </div>
+    }
+    @if (pictureDialogVisible) {
+      <div
+        class="picture-dialog-bg"
+        role="button"
+        tabindex="0"
+        (click)="onPictureDialogBgClick($event)"
+        (keydown.enter)="hidePictureDialog()"
+        (keydown.escape)="hidePictureDialog()"
+      >
+        <div class="picture-dialog-body">
+          <img
+            [src]="clickedPicturePath"
+            [alt]="(clickedPictureAlt ?? clickedPictureCaption) | localize"
+            class="picture-dialog-image"
+          />
+          @if (clickedPictureCaption) {
+            <div class="picture-dialog-caption">
+              {{ clickedPictureCaption | localize }}
+            </div>
+          }
+        </div>
       </div>
     }
     @for (messageBlock of paragraph.messageBlocks; track $index) {

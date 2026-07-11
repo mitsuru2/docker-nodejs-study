@@ -9,7 +9,7 @@
 }
 
 .header {
-  padding: var(--p-custom-margin-xs) var(--p-custom-margin-m);
+  padding: var(--p-custom-margin-s) var(--p-custom-margin-m);
 
   display: flex;
   justify-content: space-between;
@@ -28,7 +28,9 @@
 .menu-bar {
   --p-menubar-gap: 0;
   --p-menubar-padding: 0;
-  --p-menubar-base-item-padding: 4px 8px;
+  --p-menubar-base-item-padding: 2px 8px;
+  --p-menubar-item-label-font-weight: bold;
+  --p-menubar-item-label-font-size: small;
 }
 
 app-locale-select {

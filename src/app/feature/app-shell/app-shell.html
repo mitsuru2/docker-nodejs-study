@@ -13,34 +13,32 @@
       ></app-locale-select>
     } @else {
       <p-buttongroup>
-        <p-button
-          [label]="menuItems[0].label"
-          [icon]="menuItems[0].icon"
+        <button
+          pButton
           [outlined]="true"
           class="menu-button"
-          (onClick)="menuClicked(menuItems[0].routerLink)"
-        ></p-button>
-        <p-button
-          [label]="menuItems[1].label"
-          [icon]="menuItems[1].icon"
+          (click)="menuClicked(menuItems[0].routerLink)"
+        >
+          <svg data-p-icon="home"></svg>
+          {{ menuItems[0].label }}
+        </button>
+        <button pButton [outlined]="true" class="menu-button" (click)="skillMenu.toggle($event)">
+          <svg data-p-icon="book"></svg>
+          {{ menuItems[1].label }}
+        </button>
+        <button
+          pButton
           [outlined]="true"
           class="menu-button"
-          (click)="skillMenu.toggle($event)"
-        ></p-button>
-        <p-button
-          [label]="menuItems[2].label"
-          [icon]="menuItems[2].icon"
-          [outlined]="true"
-          class="menu-button"
-          (onClick)="menuClicked(menuItems[2].routerLink)"
-        ></p-button>
-        <p-button
-          [label]="labels.common.language"
-          icon="pi pi-globe"
-          [outlined]="true"
-          class="menu-button"
-          (click)="langMenu.toggle($event)"
-        ></p-button>
+          (click)="menuClicked(menuItems[2].routerLink)"
+        >
+          <svg data-p-icon="briefcase"></svg>
+          {{ menuItems[2].label }}
+        </button>
+        <button pButton [outlined]="true" class="menu-button" (click)="langMenu.toggle($event)">
+          <svg data-p-icon="globe"></svg>
+          {{ labels.common.language }}
+        </button>
       </p-buttongroup>
 
       <p-menu #skillMenu [model]="menuItems[1].items" [popup]="true"> </p-menu>
@@ -51,7 +49,7 @@
             <app-country-flag [locale]="item.id" class="country-flag"></app-country-flag>
             <span>{{ item.label }}</span>
             @if (locale().id === item.id) {
-              <i class="pi pi-check"></i>
+              <svg data-p-icon="check"></svg>
             }
           </div>
         </ng-template>
