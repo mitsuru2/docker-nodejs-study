@@ -37,6 +37,9 @@ RUN npm ci
 # Copy source and build.
 COPY . .
 
+# PrimeNG license key (baked into the client bundle at build time).
+ARG PRIMENG_LICENSE_KEY
+ENV PRIMENG_LICENSE_KEY=$PRIMENG_LICENSE_KEY
 
 # Build Angular SSR output to dist/
 RUN npm run build
