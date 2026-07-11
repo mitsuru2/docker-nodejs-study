@@ -15,11 +15,11 @@ export class TestCarousel {
   private readonly className = 'TestCarousel';
 
   private readonly images = [
-    { id: 'requirement', path: 'images/requirement.png', alt: 'requirement analysis' },
-    { id: 'system-design', path: 'images/system-design.png', alt: 'system design' },
-    { id: 'front-end', path: 'images/front-end.png', alt: 'front-end development' },
-    { id: 'ci', path: 'images/continuous-integration.png', alt: 'continuous integration' },
-    { id: 'diag', path: 'images/vehicle-diagnostics.png', alt: 'vehicle diagnostics' },
+    { id: 'requirement', path: 'images/requirement.webp', alt: 'requirement analysis' },
+    { id: 'system-design', path: 'images/system-design.webp', alt: 'system design' },
+    { id: 'front-end', path: 'images/front-end.webp', alt: 'front-end development' },
+    { id: 'ci', path: 'images/continuous-integration.webp', alt: 'continuous integration' },
+    { id: 'diag', path: 'images/vehicle-diagnostics.webp', alt: 'vehicle diagnostics' },
   ];
   private readonly interval = 2000;
 

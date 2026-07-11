@@ -12,7 +12,7 @@ import {
   provideClientHydration,
   withEventReplay,
   withHttpTransferCacheOptions,
-  withNoIncrementalHydration
+  withNoIncrementalHydration,
 } from '@angular/platform-browser';
 import { providePrimeNG } from 'primeng/config';
 import { CustomPreset } from '../styles';
@@ -49,13 +49,16 @@ export const commonConfig: ApplicationConfig = {
       withHttpTransferCacheOptions({
         includePostRequests: false,
         includeHeaders: [],
-      }),, withNoIncrementalHydration()
+      }),
+      withNoIncrementalHydration(),
     ),
     providePrimeNG({
       ripple: true,
       theme: {
         preset: CustomPreset,
       },
+      license:
+        'eyJpZCI6ImY5MTI3NTkzLTc1ZDgtNDU1OS04NGZiLWFlY2ZkMzM1YmQ0OSIsInByb2R1Y3QiOiJwcmltZXVpIiwidGllciI6ImNvbW11bml0eSIsInR5cGUiOiJkZXYiLCJpYXQiOjE3ODM3NDc3NDUsImV4cCI6MTgxNTI4Mzc0NX0.5O0QLzyF9GotmpyPXH3yc0nCbJ6lViueeHFjC8WEXUlNV-yams-gcLUfDVLr2mMwoPlbjqAZTS_y4IlCFhAbAA',
     }),
     provideAppInitializer(() => {
       const platformId = inject(PLATFORM_ID);
