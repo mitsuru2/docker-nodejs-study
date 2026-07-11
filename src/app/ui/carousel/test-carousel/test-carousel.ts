@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CarouselConfigData, CarouselOutputData } from '../carousel.interface';
 import { Carousel } from '../carousel';
 import { MessageService } from 'primeng/api';
@@ -8,7 +8,6 @@ import { ToastModule } from 'primeng/toast';
   selector: 'app-test-carousel',
   imports: [Carousel, ToastModule],
   templateUrl: './test-carousel.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './test-carousel.scss',
 })
 export class TestCarousel {

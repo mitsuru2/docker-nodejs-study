@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ArticleData } from '../../model/db-data';
 import { map } from 'rxjs';
@@ -10,7 +10,6 @@ import { Article } from '../../feature/article/article';
   selector: 'app-ci',
   imports: [AppShell, Article],
   templateUrl: './ci.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './ci.scss',
 })
 export class Ci {

@@ -1,4 +1,4 @@
-import { Component, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CircularImage } from '../../ui/circular-image/circular-image';
 import { CircularImageConfigData } from '../../ui/circular-image/circular-image.interface';
 import { ProgressBar } from '../../ui/progress-bar/progress-bar';
@@ -8,7 +8,6 @@ import { ProgressBarConfigData } from '../../ui/progress-bar/progress-bar.interf
   selector: 'app-splash',
   imports: [CircularImage, ProgressBar],
   templateUrl: './splash.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './splash.scss',
 })
 export class Splash {

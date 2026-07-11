@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ArticleData } from '../../model/db-data';
 import { map } from 'rxjs';
@@ -10,7 +10,6 @@ import { Article } from '../../feature/article/article';
   selector: 'app-system-design',
   imports: [AppShell, Article],
   templateUrl: './system-design.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './system-design.scss',
 })
 export class SystemDesign {

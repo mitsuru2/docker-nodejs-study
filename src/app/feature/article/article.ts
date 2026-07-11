@@ -6,7 +6,6 @@ import {
   input,
   OnInit,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ArticleData } from '../../model/db-data';
 import { LocalizePipe } from '../../pipe/localize/localize-pipe';
@@ -20,7 +19,6 @@ import { SkeletonModule } from 'primeng/skeleton';
   selector: 'app-article',
   imports: [LocalizePipe, ImageModule, SkeletonModule],
   templateUrl: './article.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './article.scss',
 })
 export class Article implements OnInit {

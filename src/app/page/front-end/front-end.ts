@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AppShell } from '../../feature/app-shell/app-shell';
 import { ArticleData } from '../../model/db-data';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -11,7 +11,6 @@ import { map } from 'rxjs';
   selector: 'app-front-end',
   imports: [AppShell, ImageModule, Article],
   templateUrl: './front-end.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './front-end.scss',
 })
 export class FrontEnd {

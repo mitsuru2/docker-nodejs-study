@@ -7,7 +7,6 @@ import {
   OnInit,
   Output,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { getCurrentYear } from '../../utility/timestamp/timestamp';
 import { MenubarModule } from 'primeng/menubar';
@@ -33,7 +32,6 @@ import { Router } from '@angular/router';
   selector: 'app-app-shell',
   imports: [MenubarModule, LocaleSelect, ButtonModule, MenuModule, CountryFlag, ButtonGroupModule],
   templateUrl: './app-shell.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app-shell.scss',
 })
 export class AppShell implements OnInit {

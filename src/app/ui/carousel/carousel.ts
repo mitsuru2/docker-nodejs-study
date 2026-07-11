@@ -12,7 +12,6 @@ import {
   QueryList,
   signal,
   ViewChildren,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CarouselConfigData, CarouselOutputData } from './carousel.interface';
 import { Logger } from '../../utility/logger/logger';
@@ -21,7 +20,6 @@ import { Logger } from '../../utility/logger/logger';
   selector: 'app-carousel',
   imports: [],
   templateUrl: './carousel.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './carousel.scss',
 })
 export class Carousel implements OnInit {

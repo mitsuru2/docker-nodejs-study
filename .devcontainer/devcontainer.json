@@ -21,10 +21,13 @@
     "vscode": {
       "extensions": [
         "Angular.ng-template",
-        "google.geminicodeassist",
         "esbenp.prettier-vscode",
-        "ms-azuretools.vscode-cosmosdb"
+        "ms-azuretools.vscode-cosmosdb",
+        "anthropic.claude-code"
       ]
+    },
+    "settings": {
+      "editor.formatOnSave": true
     }
   },
 
@@ -33,5 +36,8 @@
 
   // Ensure the 'node' user has ownership of the mounted volume before installing packages.
   // Install TLS/SSL certificate for CosmosDB.
-  "postCreateCommand": "bash .devcontainer/post-create.sh"
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+
+  // Add the Azure volumes to the container to keep credentials persistent.
+  "mounts": ["source=claude,target=/home/node/.claude,type=volume"]
 }

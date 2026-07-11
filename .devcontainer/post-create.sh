@@ -4,6 +4,10 @@ set -e # エラーが発生したらスクリプト終了。
 # 所有権の変更
 sudo chown node node_modules
 
+# Claude Codeログイン
+sudo mkdir -p /home/node/.claude
+sudo chown -R node:node /home/node/.claude
+
 # 証明書の取得とインストール
 # echo "Waiting for Cosmos DB Emulator..."
 # until curl --fail --insecure ${COSMOS_ENDPOINT}/_explorer/emulator.pem > /tmp/emulator.crt 2>/dev/null; do

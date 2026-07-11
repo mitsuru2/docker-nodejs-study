@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { ProgressBarConfigData } from '../progress-bar.interface';
 import { ProgressBar } from '../progress-bar';
 
@@ -6,7 +6,6 @@ import { ProgressBar } from '../progress-bar';
   selector: 'app-test-progress-bar',
   imports: [ProgressBar],
   templateUrl: './test-progress-bar.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './test-progress-bar.scss',
 })
 export class TestProgressBar implements OnInit, OnDestroy {

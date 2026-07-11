@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, computed, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { AwardData, DbCommonData, ExperienceData, QualificationData } from '../../model/db-data';
 import { i18nLabels } from '../../../locale/_i18n_';
@@ -11,7 +11,6 @@ import { AppShell } from '../../feature/app-shell/app-shell';
   selector: 'app-career',
   imports: [Experience, LocalizePipe, AppShell],
   templateUrl: './career.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './career.scss',
 })
 export class Career {
