@@ -1,10 +1,11 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, ChangeDetectionStrategy } from '@angular/core';
 import { CircularImageConfigData } from './circular-image.interface';
 
 @Component({
   selector: 'app-circular-image',
   imports: [],
   templateUrl: './circular-image.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './circular-image.scss',
 })
 export class CircularImage {

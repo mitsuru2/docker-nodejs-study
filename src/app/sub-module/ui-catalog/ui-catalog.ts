@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccordionModule } from 'primeng/accordion';
 import { FormsModule } from '@angular/forms';
 import { MenuModule } from 'primeng/menu';
@@ -37,6 +37,7 @@ import { TestCircularImage } from '../../ui/circular-image/test-circular-image/t
     AccordionModule,
   ],
   templateUrl: './ui-catalog.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './ui-catalog.scss',
 })
 export class UiCatalog {

@@ -1,4 +1,11 @@
-import { Component, computed, EventEmitter, input, Output } from '@angular/core';
+import {
+  Component,
+  computed,
+  EventEmitter,
+  input,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CardWithButtonConfigData, CardWithButtonOutputData } from './card-with-button.interface';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -8,6 +15,7 @@ import { ToastModule } from 'primeng/toast';
   selector: 'app-card-with-button',
   imports: [CardModule, ButtonModule, ToastModule],
   templateUrl: './card-with-button.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './card-with-button.scss',
 })
 export class CardWithButton {

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { ExperienceData } from '../../model/db-data';
 import { LocalizePipe } from '../../pipe/localize/localize-pipe';
 import { SkeletonModule } from 'primeng/skeleton';
@@ -7,6 +7,7 @@ import { SkeletonModule } from 'primeng/skeleton';
   selector: 'app-experience',
   imports: [LocalizePipe, SkeletonModule],
   templateUrl: './experience.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './experience.scss',
 })
 export class Experience {

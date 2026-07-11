@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { AppShell } from '../app-shell';
 import { AppShellOutputData } from '../app-shell.interface';
 import { MessageService } from 'primeng/api';
@@ -8,6 +8,7 @@ import { ToastModule } from 'primeng/toast';
   selector: 'app-test-app-shell',
   imports: [AppShell, ToastModule],
   templateUrl: './test-app-shell.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './test-app-shell.scss',
 })
 export class TestAppShell {

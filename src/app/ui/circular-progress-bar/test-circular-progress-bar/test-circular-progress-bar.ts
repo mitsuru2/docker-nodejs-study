@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CircularProgressBarConfigData } from '../circular-progress-bar.interface';
 import { CircularProgressBar } from '../circular-progress-bar';
 
@@ -6,6 +6,7 @@ import { CircularProgressBar } from '../circular-progress-bar';
   selector: 'app-test-circular-progress-bar',
   imports: [CircularProgressBar],
   templateUrl: './test-circular-progress-bar.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './test-circular-progress-bar.scss',
 })
 export class TestCircularProgressBar implements OnInit, OnDestroy {

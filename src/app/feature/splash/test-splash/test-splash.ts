@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Splash } from '../splash';
 
 @Component({
   selector: 'app-test-splash',
   imports: [Splash],
   templateUrl: './test-splash.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './test-splash.scss',
 })
 export class TestSplash implements OnInit, OnDestroy {

@@ -1,4 +1,4 @@
-import { Component, computed, input, Signal } from '@angular/core';
+import { Component, computed, input, Signal, ChangeDetectionStrategy } from '@angular/core';
 import { CircularProgressBarConfigData } from './circular-progress-bar.interface';
 import { CircularImage } from '../circular-image/circular-image';
 import { CircularImageConfigData } from '../circular-image/circular-image.interface';
@@ -7,6 +7,7 @@ import { CircularImageConfigData } from '../circular-image/circular-image.interf
   selector: 'app-circular-progress-bar',
   imports: [CircularImage],
   templateUrl: './circular-progress-bar.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './circular-progress-bar.scss',
 })
 export class CircularProgressBar {

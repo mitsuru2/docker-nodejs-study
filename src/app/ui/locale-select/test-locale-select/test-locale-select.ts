@@ -1,4 +1,4 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal, ChangeDetectionStrategy } from '@angular/core';
 import { LocaleSelectConfigData } from '../locale-select.interface';
 import { LocaleSelect } from '../locale-select';
 import { appLocales, LocaleData } from '../../../model/locale';
@@ -11,6 +11,7 @@ import { ToastModule } from 'primeng/toast';
   selector: 'app-test-locale-select',
   imports: [LocaleSelect, ToastModule],
   templateUrl: './test-locale-select.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './test-locale-select.scss',
 })
 export class TestLocaleSelect {

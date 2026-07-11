@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, inject, OnInit } from '@angular/core';
+import { ApplicationRef, Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EventType, Router, RouterOutlet } from '@angular/router';
 import { filter, first } from 'rxjs';
 import { Logger } from './utility/logger/logger';
@@ -10,6 +10,7 @@ import { ScrollTopModule } from 'primeng/scrolltop';
   selector: 'app-root',
   imports: [RouterOutlet, ScrollTopModule],
   templateUrl: './app.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.scss',
 })
 export class App implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Article } from '../article';
 import { HttpClient } from '@angular/common/http';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
   selector: 'app-test-article',
   imports: [Article, ButtonModule],
   templateUrl: './test-article.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './test-article.scss',
 })
 export class TestArticle {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CardWithButtonConfigData, CardWithButtonOutputData } from '../card-with-button.interface';
 import { CardWithButton } from '../card-with-button';
 import { MessageService, PrimeIcons } from 'primeng/api';
@@ -8,6 +8,7 @@ import { ToastModule } from 'primeng/toast';
   selector: 'app-test-card-with-button',
   imports: [CardWithButton, ToastModule],
   templateUrl: './test-card-with-button.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './test-card-with-button.scss',
 })
 export class TestCardWithButton {

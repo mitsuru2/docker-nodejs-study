@@ -1,4 +1,11 @@
-import { Component, computed, DOCUMENT, inject, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  DOCUMENT,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { AppManager } from '../../service/app-manager/app-manager';
 import { Splash } from '../../feature/splash/splash';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
@@ -33,6 +40,7 @@ interface CardContentData {
   selector: 'app-home',
   imports: [Splash, AppShell, Carousel, AnimateOnScrollModule, CardModule, CardWithButton],
   templateUrl: './home.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './home.scss',
 })
 export class Home {

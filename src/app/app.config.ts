@@ -12,6 +12,7 @@ import {
   provideClientHydration,
   withEventReplay,
   withHttpTransferCacheOptions,
+  withNoIncrementalHydration
 } from '@angular/platform-browser';
 import { providePrimeNG } from 'primeng/config';
 import { CustomPreset } from '../styles';
@@ -48,7 +49,7 @@ export const commonConfig: ApplicationConfig = {
       withHttpTransferCacheOptions({
         includePostRequests: false,
         includeHeaders: [],
-      }),
+      }),, withNoIncrementalHydration()
     ),
     providePrimeNG({
       ripple: true,

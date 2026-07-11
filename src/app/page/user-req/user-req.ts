@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ArticleData } from '../../model/db-data';
 import { AppShell } from '../../feature/app-shell/app-shell';
@@ -10,6 +10,7 @@ import { map } from 'rxjs';
   selector: 'app-user-req',
   imports: [AppShell, Article],
   templateUrl: './user-req.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './user-req.scss',
 })
 export class UserReq {

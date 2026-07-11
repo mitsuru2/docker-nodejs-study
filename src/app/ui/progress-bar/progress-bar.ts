@@ -9,6 +9,7 @@ import {
   inject,
   input,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ProgressBarConfigData } from './progress-bar.interface';
 import { Logger } from '../../utility/logger/logger';
@@ -18,6 +19,7 @@ import { Logger } from '../../utility/logger/logger';
   imports: [],
   templateUrl: './progress-bar.html',
   styleUrl: './progress-bar.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     role: 'progressbar',
     '[attr.aria-valuenow]': 'progress()',

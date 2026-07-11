@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CountryFlag } from '../country-flag';
 import { LocaleId } from '../../../model/locale';
 
@@ -6,6 +6,7 @@ import { LocaleId } from '../../../model/locale';
   selector: 'app-test-country-flag',
   imports: [CountryFlag],
   templateUrl: './test-country-flag.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './test-country-flag.scss',
 })
 export class TestCountryFlag {
