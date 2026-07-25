@@ -155,7 +155,7 @@ npm run lint
 
 ## Docker
 
-`Dockerfile`を`main`ブランチにコミットすると自動的にイメージのビルドとGHCRへの登録が行われます。
+`Publish Docker Image (develop)` ワークフロー(`.github/workflows/docker-publish.yml`)を手動実行(workflow_dispatch)すると、Azure Container Registry (ACR) へイメージがビルド・登録されます。
 
 ローカルでの動作確認時は以下のいずれかの方法でビルドしてください。
 

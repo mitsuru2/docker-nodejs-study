@@ -1,59 +1,47 @@
 name: Publish Docker Image (develop)
 
 on:
-  # 開発用のDocker環境はDevContainerでビルドされるためイメージをGHCRで管理する必要がなくなった。
+  # 開発用のDocker環境はDevContainerでビルドされるためイメージを管理する必要がなくなった。
   # そのため、Dockerイメージのビルドとプッシュは手動実行のみに変更する。
   workflow_dispatch: # 手動実行のみ
-  # push:
-  #   branches: ['main'] # mainブランチにpushされたら実行
-  #   paths:
-  #     - 'Dockerfile'
-  #     - '.dockerignore'
-  #     - 'package-lock.json'
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }} # 「ユーザー名/リポジトリ名」が自動で入る
+  IMAGE_NAME: app-dev
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: # GHCRへの書き込み権限を与える
+    permissions:
       contents: read
-      packages: write
+      id-token: write # for Azure login
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      # 0. Docker　Buildkitのセットアップ
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
-
-      # 1. GHCRへのログイン（GITHUB_TOKENを使用）
-      - name: Log in to the Container registry
-        uses: docker/login-action@v4
+      # Azureにログイン
+      - name: Azure login
+        uses: azure/login@v3
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-      # 2. タグの抽出（コミットハッシュやブランチ名など）
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v6
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=ref,event=branch
-            type=sha,prefix=sha-
+      # タグの決定 (ブランチ名 + コミットハッシュ)
+      - name: Resolve image tags
+        id: tags
+        run: |
+          BRANCH_TAG=$(echo "${{ github.ref_name }}" | tr '/' '-')
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          echo "branch_tag=$BRANCH_TAG" >> $GITHUB_OUTPUT
+          echo "sha_tag=sha-$SHORT_SHA" >> $GITHUB_OUTPUT
 
-      # 3. ビルドしてプッシュ！
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v7
-        with:
-          context: .
-          push: true
-          target: build
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+      # ACR Tasksでリモートビルド&プッシュ (Docker-in-Dockerを使わない)
+      - name: Build and push image via ACR Tasks
+        run: |
+          az acr build \
+            --registry ${{ vars.AZURE_ACR_NAME }} \
+            --target build \
+            --image ${{ env.IMAGE_NAME }}:${{ steps.tags.outputs.branch_tag }} \
+            --image ${{ env.IMAGE_NAME }}:${{ steps.tags.outputs.sha_tag }} \
+            .

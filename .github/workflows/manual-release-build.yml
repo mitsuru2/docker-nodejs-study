@@ -3,10 +3,6 @@ name: Manual Release Build
 on:
   workflow_dispatch: # 手動実行のみ
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-
 jobs:
   # --- JOB: アセットの準備 (DB/画像) ---
   prepare-assets:
@@ -81,12 +77,7 @@ jobs:
           name: build-assets
           path: public/
 
-      # Docker　Buildkitのセットアップ
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
-
       # Azureにログイン
-      # (ACRへのログインに必要なため、このジョブでもログインが必要です)
       - name: Azure login
         uses: azure/login@v3
         with:
@@ -94,23 +85,21 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-      # ACRにログイン
-      - name: ACR login
-        run: |
-          az acr login --name ${{ vars.AZURE_ACR_NAME }}
-
-      # DockerイメージのビルドとACRへのプッシュ
-      - name: Build Docker image
+      # ACR Tasksでリモートビルド&プッシュ (Docker-in-Dockerを使わない)。
+      # PRIMENG_LICENSE_KEYは --secret-build-arg でマスクし、ACR Tasksのビルドログに残さない。
+      - name: Build image via ACR Tasks
         id: build
         env:
           PRIMENG_LICENSE_KEY: ${{ secrets.PRIMENG_LICENSE_KEY }}
         run: |
           SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
-          IMAGE_NAME=${{ vars.AZURE_ACR_NAME}}.azurecr.io/app-runtime:sha-$SHORT_SHA
-          docker build -f Dockerfile.release \
-            --build-arg PRIMENG_LICENSE_KEY="$PRIMENG_LICENSE_KEY" \
-            -t $IMAGE_NAME .
-          docker push $IMAGE_NAME
+          IMAGE_NAME=${{ vars.AZURE_ACR_NAME }}.azurecr.io/app-runtime:sha-$SHORT_SHA
+          az acr build \
+            --registry ${{ vars.AZURE_ACR_NAME }} \
+            --file Dockerfile.release \
+            --secret-build-arg PRIMENG_LICENSE_KEY="$PRIMENG_LICENSE_KEY" \
+            --image app-runtime:sha-$SHORT_SHA \
+            .
           echo "image_name=$IMAGE_NAME" >> $GITHUB_OUTPUT
           echo "short_sha=$SHORT_SHA" >> $GITHUB_OUTPUT
 

@@ -3,45 +3,30 @@ name: Lint Check (Angular)
 # プッシュされるたびに実行。除外条件なし。
 on: push
 
-# 環境変数設定
-env:
-  REGISTRY: ghcr.io
-  IMAGE_PATH: ghcr.io/${{ github.repository }}:main
-
 jobs:
   lint:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
     steps:
       # ソースコードをチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      # GHCRへのログイン
-      - name: Log in to the Container registry
-        uses: docker/login-action@v4
+      # Node.jsのセットアップ
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          node-version: 24
+          cache: npm
 
-      # mainタグのイメージを取得。
-      - name: Pull Docker image
-        run: docker pull ${{ env.IMAGE_PATH }}
+      # 依存関係のインストール
+      - name: Install dependencies
+        run: npm ci
 
       # Lintコマンドの実行。
-      # ホストのコードをコンテナ内の作業ディレクトリ(/app)にマウントして実行
-      # チェックアウトしたソースツリーでDockerイメージのnode_modulesが上書きされてしまうのを防止するために
-      # /app/node_modulesに対して匿名ボリュームをマウント。
       - name: Run Lint
-        run: |
-          docker run --rm \
-            --mount type=bind,source=${{ github.workspace }},target=/app \
-            --mount type=volume,target=/app/node_modules \
-            ${{ env.IMAGE_PATH }} \
-            npm run lint -- --format json --output-file eslint-report.json || true
+        run: npm run lint -- --format json --output-file eslint-report.json || true
 
       # 結果のサマリー表示と判定
       - name: Report Lint Results
@@ -59,7 +44,7 @@ jobs:
              echo "" >> $GITHUB_STEP_SUMMARY
              echo "| File | Line | Type | Message |" >> $GITHUB_STEP_SUMMARY
              echo "| --- | --- | --- | --- |" >> $GITHUB_STEP_SUMMARY
-             jq -r '.[] | select(.messages | length > 0) | .filePath as $path | .messages[] | "| " + ($path | sub("/app/"; "")) + " | " + (.line|tostring) + " | " + (if .severity == 2 then "Error" else "Warning" end) + " | " + (.message | gsub("\n"; "<br>")) + " |"' eslint-report.json >> $GITHUB_STEP_SUMMARY
+             jq -r --arg ws "${{ github.workspace }}/" '.[] | select(.messages | length > 0) | .filePath as $path | .messages[] | "| " + ($path | sub($ws; "")) + " | " + (.line|tostring) + " | " + (if .severity == 2 then "Error" else "Warning" end) + " | " + (.message | gsub("\n"; "<br>")) + " |"' eslint-report.json >> $GITHUB_STEP_SUMMARY
           fi
 
           # エラーがある場合はジョブを失敗させる

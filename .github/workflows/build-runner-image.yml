@@ -1,0 +1,45 @@
+name: Build Runner Image (ACI self-hosted runner)
+
+# self-hosted runner (ACI) 自体が使うイメージのため、GitHub-hosted runner上でのみビルドする
+# (鶏卵問題: このイメージが無いとACI runnerが起動できない)。
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'docker/runner/**'
+      - '.github/workflows/build-runner-image.yml'
+  workflow_dispatch: # 手動実行
+
+env:
+  IMAGE_NAME: gha-runner
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # for Azure login
+
+    steps:
+      # ソースコードをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # Azureにログイン
+      - name: Azure login
+        uses: azure/login@v3
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      # ACR Tasksでリモートビルド&プッシュ (Docker-in-Dockerを使わない)
+      - name: Build and push runner image via ACR Tasks
+        run: |
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          az acr build \
+            --registry ${{ vars.AZURE_ACR_NAME }} \
+            --image ${{ env.IMAGE_NAME }}:sha-$SHORT_SHA \
+            --image ${{ env.IMAGE_NAME }}:latest \
+            --file docker/runner/Dockerfile \
+            docker/runner
