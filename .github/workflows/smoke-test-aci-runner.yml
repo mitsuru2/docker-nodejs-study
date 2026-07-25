@@ -1,0 +1,24 @@
+name: Smoke Test (ACI self-hosted runner)
+
+# ACI runner基盤の動作確認専用。webhook受信 -> ACI起動 -> ephemeral登録 -> ジョブ実行 -> 終了 ->
+# Cleanupでの削除、という一連の流れをEnd-to-Endで確認するための使い捨てワークフロー。
+# 検証が終わったら削除する。
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: [self-hosted, aci-runner]
+    steps:
+      - name: Show runner info
+        run: |
+          echo "Hostname: $(hostname)"
+          echo "Node: $(node --version)"
+          echo "Azure CLI: $(az --version | head -1)"
+          whoami
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: List repository files
+        run: ls -la

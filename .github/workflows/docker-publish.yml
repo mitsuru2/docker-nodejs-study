@@ -41,6 +41,7 @@ jobs:
         run: |
           az acr build \
             --registry ${{ vars.AZURE_ACR_NAME }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
             --target build \
             --image ${{ env.IMAGE_NAME }}:${{ steps.tags.outputs.branch_tag }} \
             --image ${{ env.IMAGE_NAME }}:${{ steps.tags.outputs.sha_tag }} \

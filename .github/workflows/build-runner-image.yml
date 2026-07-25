@@ -39,6 +39,7 @@ jobs:
           SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
           az acr build \
             --registry ${{ vars.AZURE_ACR_NAME }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
             --image ${{ env.IMAGE_NAME }}:sha-$SHORT_SHA \
             --image ${{ env.IMAGE_NAME }}:latest \
             --file docker/runner/Dockerfile \

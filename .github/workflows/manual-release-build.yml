@@ -96,6 +96,7 @@ jobs:
           IMAGE_NAME=${{ vars.AZURE_ACR_NAME }}.azurecr.io/app-runtime:sha-$SHORT_SHA
           az acr build \
             --registry ${{ vars.AZURE_ACR_NAME }} \
+            --resource-group ${{ vars.AZURE_RG_NAME }} \
             --file Dockerfile.release \
             --secret-build-arg PRIMENG_LICENSE_KEY="$PRIMENG_LICENSE_KEY" \
             --image app-runtime:sha-$SHORT_SHA \
