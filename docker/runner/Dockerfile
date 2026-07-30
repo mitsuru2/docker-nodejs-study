@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
 
 # Self-hosted GitHub Actions runner image, executed on Azure Container Instances (ACI).
-# Built and pushed to ACR by .github/workflows/build-runner-image.yml (on GitHub-hosted runner,
-# since this image cannot be used to build itself).
+# Built and pushed to ACR manually via docker/runner/build.sh (`az acr build` / ACR Tasks),
+# since this image cannot be used to build itself.
 #
 # Node.js / Angular CLI are baked in directly so that lint/test jobs run `npm ci && npm run lint|test`
 # without Docker-in-Docker (ACI does not support privileged containers).

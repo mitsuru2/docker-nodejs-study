@@ -16,6 +16,10 @@ RUN apt-get update && apt-get install -y \
     sudo \
     && rm -rf /var/lib/apt/lists/*
 
+# Azure CLIのインストール。
+# https://learn.microsoft.com/ja-jp/cli/azure/install-azure-cli-linux?view=azure-cli-latest&pivots=apt
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+
 # Enable sudo command to user 'node' w/o password.
 # mkdir -p: Create all intermediate directories at once.
 # /etc/sudoers.d: Directory to store configurations for each super user.
