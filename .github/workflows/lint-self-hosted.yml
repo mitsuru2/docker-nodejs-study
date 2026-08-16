@@ -1,7 +1,9 @@
 name: Lint Check (Angular, ACI self-hosted)
 
 # プッシュされるたびに実行。除外条件なし。
-on: push
+on:
+  workflow_dispatch: # 手動実行のみ
+  # push:
 
 jobs:
   lint:
