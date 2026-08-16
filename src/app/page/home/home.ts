@@ -86,6 +86,18 @@ export class Home {
         title: i18nLabels.skills.diag.title,
       },
       {
+        id: SkillMenuItem.userReq,
+        alt: i18nLabels.skills.userReq.title.toLowerCase(),
+        path: 'images/requirement.webp',
+        title: i18nLabels.skills.userReq.title,
+      },
+      {
+        id: SkillMenuItem.systemDesign,
+        alt: i18nLabels.skills.systemDesign.title.toLowerCase(),
+        path: 'images/system-design.webp',
+        title: i18nLabels.skills.systemDesign.title,
+      },
+      {
         id: SkillMenuItem.ci,
         alt: i18nLabels.skills.ci.title.toLocaleLowerCase(),
         path: 'images/continuous-integration.webp',
@@ -97,20 +109,8 @@ export class Home {
         path: 'images/front-end.webp',
         title: i18nLabels.skills.frontEnd.title,
       },
-      {
-        id: SkillMenuItem.systemDesign,
-        alt: i18nLabels.skills.systemDesign.title.toLowerCase(),
-        path: 'images/system-design.webp',
-        title: i18nLabels.skills.systemDesign.title,
-      },
-      {
-        id: SkillMenuItem.userReq,
-        alt: i18nLabels.skills.userReq.title.toLowerCase(),
-        path: 'images/requirement.webp',
-        title: i18nLabels.skills.userReq.title,
-      },
     ],
-    interval: 6000,
+    interval: 5000,
     showDots: true,
     showOverlay: true,
   };
@@ -133,6 +133,24 @@ export class Home {
       },
     },
     {
+      id: `card-${SkillMenuItem.userReq}`,
+      catchCopy: i18nLabels.skills.userReq.subTitle,
+      messages: [i18nLabels.skills.userReq.description],
+      card: {
+        title: i18nLabels.skills.userReq.title,
+        button: { ...this.detailButton, id: SkillMenuItem.userReq },
+      },
+    },
+    {
+      id: `card-${SkillMenuItem.systemDesign}`,
+      catchCopy: i18nLabels.skills.systemDesign.subTitle,
+      messages: [i18nLabels.skills.systemDesign.description],
+      card: {
+        title: i18nLabels.skills.systemDesign.title,
+        button: { ...this.detailButton, id: SkillMenuItem.systemDesign },
+      },
+    },
+    {
       id: `card-${SkillMenuItem.ci}`,
       catchCopy: i18nLabels.skills.ci.subTitle,
       messages: [i18nLabels.skills.ci.description],
@@ -148,24 +166,6 @@ export class Home {
       card: {
         title: i18nLabels.skills.frontEnd.title,
         button: { ...this.detailButton, id: SkillMenuItem.frontEnd },
-      },
-    },
-    {
-      id: `card-${SkillMenuItem.systemDesign}`,
-      catchCopy: i18nLabels.skills.systemDesign.subTitle,
-      messages: [i18nLabels.skills.systemDesign.description],
-      card: {
-        title: i18nLabels.skills.systemDesign.title,
-        button: { ...this.detailButton, id: SkillMenuItem.systemDesign },
-      },
-    },
-    {
-      id: `card-${SkillMenuItem.userReq}`,
-      catchCopy: i18nLabels.skills.userReq.subTitle,
-      messages: [i18nLabels.skills.userReq.description],
-      card: {
-        title: i18nLabels.skills.userReq.title,
-        button: { ...this.detailButton, id: SkillMenuItem.userReq },
       },
     },
     {
