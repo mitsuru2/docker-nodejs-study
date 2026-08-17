@@ -20,17 +20,17 @@
   }
 
   <div class="card-container">
-    @for (card of cardContents; track $index) {
+    @for (card of cardContents(); track $index) {
       <app-card-with-button
         [id]="card.id"
         [config]="card.card"
         (clicked)="cardClickedHandler($event)"
       >
         @if (card.catchCopy) {
-          <p class="catch-copy">{{ card.catchCopy }}</p>
+          <p class="catch-copy">{{ card.catchCopy | localize }}</p>
         }
         @for (m of card.messages; track $index) {
-          <p>{{ m }}</p>
+          <p>{{ m | localize }}</p>
         }
       </app-card-with-button>
     }

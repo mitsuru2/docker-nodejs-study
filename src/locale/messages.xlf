@@ -51,130 +51,53 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="skills.diag.subTitle" datatype="html">
-        <source>10年にわたる経験。車両診断技術のスペシャリスト</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="skills.diag.description" datatype="html">
-        <source>車両診断領域においてECUと診断システム両方での知見を有しております。高い信頼性が求められる車載ドメインの要求に確実に応えます。</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="skills.frontEnd.title" datatype="html">
         <source>フロントエンド開発</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="skills.frontEnd.subTitle" datatype="html">
-        <source>Angularを軸とした、高度なUI/UXとモダンな開発の実現</source>
+      <trans-unit id="skills.ci.title" datatype="html">
+        <source>プロセス自動化 &amp; CI/CD</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="skills.frontEnd.description" datatype="html">
-        <source>Angularリードエンジニアとして、フロントエンド全体の設計を含む幅広い実務経験を有しております。アプリの特性に応じた最適なアプローチを提案いたします。</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="skills.ci.title" datatype="html">
-        <source>ワークフロー開発 &amp; CI/CD</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="skills.ci.subTitle" datatype="html">
-        <source>開発体験 (DX) を加速させる、堅牢で自動化されたエンジニアリング基盤の構築</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="skills.ci.description" datatype="html">
-        <source>Docker/GitHub/Azureを活用したビルド・テストの自動化。開発チーム全体の生産性を向上させる開発環境の整備まで一任いただけます。</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="skills.systemDesign.title" datatype="html">
-        <source>システムアーキテクチャー設計</source>
+        <source>システム設計</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">27</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="skills.systemDesign.subTitle" datatype="html">
-        <source>組み込みからWebアプリまで、堅牢性と保守性を両立する設計</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="skills.systemDesign.description" datatype="html">
-        <source>車載ECUシステムから中規模Webアプリまで、コンプライアンス要件 (セキュリティ・法規制) を厳守しつつ、長期間の運用に耐えうる拡張性の高い構造を定義します。</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.userReq.title" datatype="html">
-        <source>要求分析 &amp; ソリューション提案</source>
+        <source>課題分析 &amp; ソリューション提案</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">32</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="skills.userReq.subTitle" datatype="html">
-        <source>ビジネス要求を形にする、上流工程からの伴走型開発</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">33</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="skills.userReq.description" datatype="html">
-        <source>要件定義やロードマップ策定等の上流工程において、新規システム立ち上げを含む豊富な経験があります。ビジネス要求と技術制約をバランスよく調整し、プロジェクトを円滑に推進します。</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="common.experience" datatype="html">
         <source>職務経歴</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="common.qualification" datatype="html">
         <source>資格</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="common.award" datatype="html">
         <source>表彰歴</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">40</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="career.description" datatype="html">
-        <source>2009年から現在に至るまでの職務経歴と、主な担当業務について。</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
     </body>

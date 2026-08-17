@@ -1,4 +1,5 @@
 import { Component, computed, DOCUMENT, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { AppManager } from '../../service/app-manager/app-manager';
 import { Splash } from '../../feature/splash/splash';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
@@ -21,17 +22,27 @@ import {
 import { PrimeIcons } from 'primeng/api';
 import { SkillMenuItem } from './home.interface';
 import { PagePath } from '../../model/page-path';
+import { CardLeadData, MessageData } from '../../model/db-data';
+import { LocalizePipe } from '../../pipe/localize/localize-pipe';
 
 interface CardContentData {
   id: string;
-  catchCopy?: string;
-  messages: string[];
+  catchCopy?: MessageData;
+  messages: MessageData[];
   card: CardWithButtonConfigData;
 }
 
 @Component({
   selector: 'app-home',
-  imports: [Splash, AppShell, Carousel, AnimateOnScrollModule, CardModule, CardWithButton],
+  imports: [
+    Splash,
+    AppShell,
+    Carousel,
+    AnimateOnScrollModule,
+    CardModule,
+    CardWithButton,
+    LocalizePipe,
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -43,6 +54,7 @@ export class Home {
   private router = inject(Router);
   private bpObserver = inject(BreakpointObserver);
   private logger = inject(Logger);
+  private http = inject(HttpClient);
 
   // 依存トークン
   private document = inject(DOCUMENT);
@@ -122,61 +134,69 @@ export class Home {
     label: i18nLabels.common.detail,
     icon: PrimeIcons.SEARCH_PLUS,
   } as const;
-  protected readonly cardContents: CardContentData[] = [
-    {
-      id: `card-${SkillMenuItem.diag}`,
-      catchCopy: i18nLabels.skills.diag.subTitle,
-      messages: [i18nLabels.skills.diag.description],
-      card: {
-        title: i18nLabels.skills.diag.title,
-        button: { ...this.detailButton, id: SkillMenuItem.diag },
+  private readonly cardLeadJsonPath = 'data/home-cards.json';
+  private cardLeads = toSignal(this.http.get<CardLeadData[]>(this.cardLeadJsonPath), {
+    initialValue: [],
+  });
+  protected cardContents = computed<CardContentData[]>(() => {
+    const leads = this.cardLeads();
+    const findLead = (pk: string) => leads.find((l) => l.pk === pk);
+    return [
+      {
+        id: `card-${SkillMenuItem.diag}`,
+        catchCopy: findLead(SkillMenuItem.diag)?.catchCopy,
+        messages: findLead(SkillMenuItem.diag)?.messages ?? [],
+        card: {
+          title: i18nLabels.skills.diag.title,
+          button: { ...this.detailButton, id: SkillMenuItem.diag },
+        },
       },
-    },
-    {
-      id: `card-${SkillMenuItem.userReq}`,
-      catchCopy: i18nLabels.skills.userReq.subTitle,
-      messages: [i18nLabels.skills.userReq.description],
-      card: {
-        title: i18nLabels.skills.userReq.title,
-        button: { ...this.detailButton, id: SkillMenuItem.userReq },
+      {
+        id: `card-${SkillMenuItem.userReq}`,
+        catchCopy: findLead(SkillMenuItem.userReq)?.catchCopy,
+        messages: findLead(SkillMenuItem.userReq)?.messages ?? [],
+        card: {
+          title: i18nLabels.skills.userReq.title,
+          button: { ...this.detailButton, id: SkillMenuItem.userReq },
+        },
       },
-    },
-    {
-      id: `card-${SkillMenuItem.systemDesign}`,
-      catchCopy: i18nLabels.skills.systemDesign.subTitle,
-      messages: [i18nLabels.skills.systemDesign.description],
-      card: {
-        title: i18nLabels.skills.systemDesign.title,
-        button: { ...this.detailButton, id: SkillMenuItem.systemDesign },
+      {
+        id: `card-${SkillMenuItem.systemDesign}`,
+        catchCopy: findLead(SkillMenuItem.systemDesign)?.catchCopy,
+        messages: findLead(SkillMenuItem.systemDesign)?.messages ?? [],
+        card: {
+          title: i18nLabels.skills.systemDesign.title,
+          button: { ...this.detailButton, id: SkillMenuItem.systemDesign },
+        },
       },
-    },
-    {
-      id: `card-${SkillMenuItem.ci}`,
-      catchCopy: i18nLabels.skills.ci.subTitle,
-      messages: [i18nLabels.skills.ci.description],
-      card: {
-        title: i18nLabels.skills.ci.title,
-        button: { ...this.detailButton, id: SkillMenuItem.ci },
+      {
+        id: `card-${SkillMenuItem.ci}`,
+        catchCopy: findLead(SkillMenuItem.ci)?.catchCopy,
+        messages: findLead(SkillMenuItem.ci)?.messages ?? [],
+        card: {
+          title: i18nLabels.skills.ci.title,
+          button: { ...this.detailButton, id: SkillMenuItem.ci },
+        },
       },
-    },
-    {
-      id: `card-${SkillMenuItem.frontEnd}`,
-      catchCopy: i18nLabels.skills.frontEnd.subTitle,
-      messages: [i18nLabels.skills.frontEnd.description],
-      card: {
-        title: i18nLabels.skills.frontEnd.title,
-        button: { ...this.detailButton, id: SkillMenuItem.frontEnd },
+      {
+        id: `card-${SkillMenuItem.frontEnd}`,
+        catchCopy: findLead(SkillMenuItem.frontEnd)?.catchCopy,
+        messages: findLead(SkillMenuItem.frontEnd)?.messages ?? [],
+        card: {
+          title: i18nLabels.skills.frontEnd.title,
+          button: { ...this.detailButton, id: SkillMenuItem.frontEnd },
+        },
       },
-    },
-    {
-      id: `card-${PagePath.Career}`,
-      messages: [i18nLabels.career.brief],
-      card: {
-        title: i18nLabels.career.experience,
-        button: { ...this.detailButton, id: PagePath.Career },
+      {
+        id: `card-${PagePath.Career}`,
+        messages: findLead(PagePath.Career)?.messages ?? [],
+        card: {
+          title: i18nLabels.career.experience,
+          button: { ...this.detailButton, id: PagePath.Career },
+        },
       },
-    },
-  ];
+    ];
+  });
 
   //----------------------------------------------------------------------------
   // ライフサイクル

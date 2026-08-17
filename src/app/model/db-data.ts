@@ -1,4 +1,4 @@
-export type DbDataType = 'article' | 'experience' | 'qualification' | 'award';
+export type DbDataType = 'article' | 'experience' | 'qualification' | 'award' | 'card-lead';
 
 export interface DbCommonData {
   id: string; // 保存時はUUIDを採番。
@@ -80,4 +80,10 @@ export interface AwardData extends DbCommonData {
   year: number;
   notes: MessageData[];
   issuer?: string;
+}
+
+export interface CardLeadData extends DbCommonData {
+  type: 'card-lead';
+  catchCopy?: MessageData;
+  messages: MessageData[];
 }

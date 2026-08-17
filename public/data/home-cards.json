@@ -1,0 +1,94 @@
+[
+  {
+    "id": "7629ddab-0693-427f-96f7-2070c8f0da90",
+    "pk": "diag",
+    "type": "card-lead",
+    "isPublished": true,
+    "catchCopy": {
+      "ja": "10年にわたる経験。車両診断技術のスペシャリスト",
+      "en": "A specialist with 10 years of experience in vehicle diagnostic technology."
+    },
+    "messages": [
+      {
+        "ja": "車両診断領域においてECUと診断システム両方での知見を有しております。高い信頼性が求められる車載ドメインの要求に確実に応えます。",
+        "en": "I have expertise in both ECUs and diagnostic systems within the vehicle diagnostics domain. I deliver reliable solutions to meet strict demands on automotive sector."
+      }
+    ]
+  },
+  {
+    "id": "55b2879d-5cb9-4543-9d57-ceaa31c82b66",
+    "pk": "user-req",
+    "type": "card-lead",
+    "isPublished": true,
+    "catchCopy": {
+      "ja": "ビジネス要求を形にする、上流工程からの伴走型開発",
+      "en": "Collaborative development from the upstream phase to realize business requirements."
+    },
+    "messages": [
+      {
+        "ja": "要件定義やロードマップ策定等の上流工程において、新規システム立ち上げを含む豊富な経験があります。ビジネス要求と技術制約をバランスよく調整し、プロジェクトを円滑に推進します。",
+        "en": "I have extensive experience in upstream processes, including requirements definition, roadmap planning, and new system launches. I balance technical restrictions with business needs to ensure smooth project execution."
+      }
+    ]
+  },
+  {
+    "id": "05992c0f-140c-4844-b00d-6eb15b28451b",
+    "pk": "system-design",
+    "type": "card-lead",
+    "isPublished": true,
+    "catchCopy": {
+      "ja": "組み込みからWebアプリまで、堅牢性と保守性を両立する設計",
+      "en": "Reliable, maintainable designs from embedded systems to web applications."
+    },
+    "messages": [
+      {
+        "ja": "車載ECUシステムから中規模Webアプリまで、コンプライアンス要件 (セキュリティ・法規制) を厳守しつつ、長期間の運用に耐えうる拡張性の高い構造を定義します。",
+        "en": "I define scalable architectures that balance long-term operational stability with strict compliance (security and regulations); from automotive ECU systems to mid-sized web applications."
+      }
+    ]
+  },
+  {
+    "id": "14de6ff0-5efa-4845-9e83-e570a7c2c908",
+    "pk": "ci",
+    "type": "card-lead",
+    "isPublished": true,
+    "catchCopy": {
+      "ja": "開発体験 (DX) を加速させる、堅牢で自動化されたエンジニアリング基盤の構築",
+      "en": "Building custom automation foundations for \"Uninterrupted Development.\""
+    },
+    "messages": [
+      {
+        "ja": "Docker/GitHub/Azureを活用したビルド・テストの自動化。開発チーム全体の生産性を向上させる開発環境の整備まで一任いただけます。",
+        "en": "I provide end-to-end support for build/test automation and development environment setup to boost team productivity."
+      }
+    ]
+  },
+  {
+    "id": "16e86b8d-af16-477b-8a31-d202e9e91399",
+    "pk": "front-end",
+    "type": "card-lead",
+    "isPublished": true,
+    "catchCopy": {
+      "ja": "Angularを軸とした、高度なUI/UXとモダンな開発の実現",
+      "en": "Achieving Advanced UI/UX and Modern Development with Angular."
+    },
+    "messages": [
+      {
+        "ja": "Angularリードエンジニアとして、フロントエンド全体の設計を含む幅広い実務経験を有しております。アプリの特性に応じた最適なアプローチを提案いたします。",
+        "en": "As an Angular Lead Engineer, I have extensive hands-on experience including overall frontend architecture. I provide the optimal approach tailored to each application's characteristics."
+      }
+    ]
+  },
+  {
+    "id": "50795017-cf08-48c8-af8d-e26f740bf9ab",
+    "pk": "career",
+    "type": "card-lead",
+    "isPublished": true,
+    "messages": [
+      {
+        "ja": "2009年から現在に至るまでの職務経歴と、主な担当業務について。",
+        "en": "Career history and core responsibilities from 2009 to the present."
+      }
+    ]
+  }
+]
