@@ -31,6 +31,7 @@ const targetItems = [
   { container: 'articles', pk: 'front-end' },
   { container: 'articles', pk: 'system-design' },
   { container: 'articles', pk: 'user-req' },
+  { container: 'articles', pk: 'home' },
 ];
 
 // 出力フォルダのパス作成
