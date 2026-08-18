@@ -134,7 +134,7 @@ export class Home {
     label: i18nLabels.common.detail,
     icon: PrimeIcons.SEARCH_PLUS,
   } as const;
-  private readonly cardLeadJsonPath = 'data/home-cards.json';
+  private readonly cardLeadJsonPath = 'data/articles-home.json';
   private cardLeads = toSignal(this.http.get<CardLeadData[]>(this.cardLeadJsonPath), {
     initialValue: [],
   });
