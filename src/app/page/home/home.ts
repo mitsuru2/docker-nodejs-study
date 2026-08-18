@@ -140,7 +140,7 @@ export class Home {
   });
   protected cardContents = computed<CardContentData[]>(() => {
     const leads = this.cardLeads();
-    const findLead = (pk: string) => leads.find((l) => l.pk === pk);
+    const findLead = (key: string) => leads.find((l) => l.key === key);
     return [
       {
         id: `card-${SkillMenuItem.diag}`,

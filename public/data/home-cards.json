@@ -1,9 +1,10 @@
 [
   {
     "id": "7629ddab-0693-427f-96f7-2070c8f0da90",
-    "pk": "diag",
+    "pk": "home",
     "type": "card-lead",
     "isPublished": true,
+    "key": "diag",
     "catchCopy": {
       "ja": "10年にわたる経験。車両診断技術のスペシャリスト",
       "en": "A specialist with 10 years of experience in vehicle diagnostic technology."
@@ -17,7 +18,8 @@
   },
   {
     "id": "55b2879d-5cb9-4543-9d57-ceaa31c82b66",
-    "pk": "user-req",
+    "pk": "home",
+    "key": "user-req",
     "type": "card-lead",
     "isPublished": true,
     "catchCopy": {
@@ -33,7 +35,8 @@
   },
   {
     "id": "05992c0f-140c-4844-b00d-6eb15b28451b",
-    "pk": "system-design",
+    "pk": "home",
+    "key": "system-design",
     "type": "card-lead",
     "isPublished": true,
     "catchCopy": {
@@ -49,7 +52,8 @@
   },
   {
     "id": "14de6ff0-5efa-4845-9e83-e570a7c2c908",
-    "pk": "ci",
+    "pk": "home",
+    "key": "ci",
     "type": "card-lead",
     "isPublished": true,
     "catchCopy": {
@@ -65,7 +69,8 @@
   },
   {
     "id": "16e86b8d-af16-477b-8a31-d202e9e91399",
-    "pk": "front-end",
+    "pk": "home",
+    "key": "front-end",
     "type": "card-lead",
     "isPublished": true,
     "catchCopy": {
@@ -81,7 +86,8 @@
   },
   {
     "id": "50795017-cf08-48c8-af8d-e26f740bf9ab",
-    "pk": "career",
+    "pk": "home",
+    "key": "career",
     "type": "card-lead",
     "isPublished": true,
     "messages": [
