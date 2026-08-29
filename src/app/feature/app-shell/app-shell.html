@@ -22,17 +22,17 @@
           <svg data-p-icon="home"></svg>
           {{ menuItems[0].label }}
         </button>
-        <button pButton [outlined]="true" class="menu-button" (click)="skillMenu.toggle($event)">
-          <svg data-p-icon="book"></svg>
-          {{ menuItems[1].label }}
-        </button>
         <button
           pButton
           [outlined]="true"
           class="menu-button"
-          (click)="menuClicked(menuItems[2].routerLink)"
+          (click)="menuClicked(menuItems[1].routerLink)"
         >
           <svg data-p-icon="briefcase"></svg>
+          {{ menuItems[1].label }}
+        </button>
+        <button pButton [outlined]="true" class="menu-button" (click)="skillMenu.toggle($event)">
+          <svg data-p-icon="book"></svg>
           {{ menuItems[2].label }}
         </button>
         <button pButton [outlined]="true" class="menu-button" (click)="langMenu.toggle($event)">
@@ -41,7 +41,7 @@
         </button>
       </p-buttongroup>
 
-      <p-menu #skillMenu [model]="menuItems[1].items" [popup]="true"> </p-menu>
+      <p-menu #skillMenu [model]="menuItems[2].items" [popup]="true"> </p-menu>
 
       <p-menu #langMenu [model]="localeMenuItems" [popup]="true" id="lang-menu-body">
         <ng-template #item let-item>

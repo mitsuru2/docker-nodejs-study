@@ -71,6 +71,11 @@ export class AppShell implements OnInit {
       routerLink: '/' + PagePath.Home,
     },
     {
+      label: this.labels.common.career,
+      icon: PrimeIcons.BRIEFCASE,
+      routerLink: '/' + PagePath.Career,
+    },
+    {
       label: this.labels.common.skills,
       icon: PrimeIcons.BOOK,
       items: [
@@ -100,11 +105,6 @@ export class AppShell implements OnInit {
           routerLink: '/' + PagePath.FrontEnd,
         },
       ],
-    },
-    {
-      label: this.labels.common.career,
-      icon: PrimeIcons.BRIEFCASE,
-      routerLink: '/' + PagePath.Career,
     },
   ];
 

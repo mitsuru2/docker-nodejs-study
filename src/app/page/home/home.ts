@@ -143,6 +143,14 @@ export class Home {
     const findLead = (key: string) => leads.find((l) => l.key === key);
     return [
       {
+        id: `card-${PagePath.Career}`,
+        messages: findLead(PagePath.Career)?.messages ?? [],
+        card: {
+          title: i18nLabels.career.experience,
+          button: { ...this.detailButton, id: PagePath.Career },
+        },
+      },
+      {
         id: `card-${SkillMenuItem.diag}`,
         catchCopy: findLead(SkillMenuItem.diag)?.catchCopy,
         messages: findLead(SkillMenuItem.diag)?.messages ?? [],
@@ -185,14 +193,6 @@ export class Home {
         card: {
           title: i18nLabels.skills.frontEnd.title,
           button: { ...this.detailButton, id: SkillMenuItem.frontEnd },
-        },
-      },
-      {
-        id: `card-${PagePath.Career}`,
-        messages: findLead(PagePath.Career)?.messages ?? [],
-        card: {
-          title: i18nLabels.career.experience,
-          button: { ...this.detailButton, id: PagePath.Career },
         },
       },
     ];
