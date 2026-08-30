@@ -77,9 +77,14 @@ p {
   .picture-dialog-image {
     display: block;
     max-width: 80vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
 
     @include v.mobile {
       max-width: 96vw;
+      max-height: 80vh;
     }
   }
 
