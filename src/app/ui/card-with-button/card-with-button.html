@@ -1,5 +1,5 @@
 <p-card class="card">
-  <div class="container">
+  <div class="container" (click)="clickedHandler(buttonId())">
     <div class="message-area">
       @if (title().length > 0) {
         <h3>{{ title() }}</h3>
@@ -8,9 +8,9 @@
         <ng-content></ng-content>
       </div>
     </div>
-    <div class="divider"></div>
+    <!-- <div class="divider"></div> -->
 
-    <p-button
+    <!-- <p-button
       [id]="buttonId()"
       [label]="buttonLabel()"
       [icon]="buttonIcon()"
@@ -18,7 +18,6 @@
       size="small"
       [rounded]="buttonRounded()"
       [severity]="buttonSeverity()"
-      (click)="clickedHandler(buttonId())"
-    ></p-button>
+    ></p-button> -->
   </div>
 </p-card>

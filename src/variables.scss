@@ -1,7 +1,7 @@
-$bp-mobile: 768px;
+$bp-mobile: 870px;
 
 @mixin mobile {
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 870px) {
     @content;
   }
 }

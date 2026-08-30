@@ -53,6 +53,9 @@ export class AppShell implements OnInit {
   // テキストデータ
   protected labels = i18nLabels;
 
+  // デザイントークン
+  protected designTokens = DesignTokens;
+
   // 依存サービス
   private app = inject(AppManager);
   private bpObserver = inject(BreakpointObserver);

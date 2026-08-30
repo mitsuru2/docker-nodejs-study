@@ -45,7 +45,7 @@ export const DesignTokens = {
         },
       },
       bp: {
-        mobile: '768px',
+        mobile: '870px',
       },
     },
   },

@@ -5,7 +5,11 @@
   <!-- 右側 -->
   <div class="right-side no-print">
     @if (!isMobile()) {
-      <p-menubar [model]="menuItems" class="menu-bar"></p-menubar>
+      <p-menubar
+        [model]="menuItems"
+        [breakpoint]="designTokens.primitive.custom.bp.mobile"
+        class="menu-bar"
+      ></p-menubar>
       <app-locale-select
         [config]="localeSelect"
         [value]="locale()"
