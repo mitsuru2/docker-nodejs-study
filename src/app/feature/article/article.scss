@@ -104,9 +104,8 @@ p {
   padding-left: var(--p-custom-margin-s);
   margin-top: var(--p-custom-margin-m);
 
-  i {
+  .info-icon {
     color: var(--p-primary-color);
-    font-size: 1.5rem;
   }
 
   border-left: 4px solid;

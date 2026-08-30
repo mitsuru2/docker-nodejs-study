@@ -16,6 +16,9 @@ import { TestSplash } from '../../feature/splash/test-splash/test-splash';
 import { TestProgressBar } from '../../ui/progress-bar/test-progress-bar/test-progress-bar';
 import { TestCircularProgressBar } from '../../ui/circular-progress-bar/test-circular-progress-bar/test-circular-progress-bar';
 import { TestCircularImage } from '../../ui/circular-image/test-circular-image/test-circular-image';
+import { Bars } from '@primeicons/angular/bars';
+import { Box } from '@primeicons/angular/box';
+import { ThLarge } from '@primeicons/angular/th-large';
 
 @Component({
   selector: 'app-root', // index.htmlを共通としているためセレクタを修正。
@@ -35,6 +38,9 @@ import { TestCircularImage } from '../../ui/circular-image/test-circular-image/t
     MenuModule,
     FormsModule,
     AccordionModule,
+    Bars,
+    Box,
+    ThLarge,
   ],
   templateUrl: './ui-catalog.html',
   styleUrl: './ui-catalog.scss',

@@ -2,25 +2,28 @@
   <div class="header">
     <h1>My UI Catalog</h1>
     <p-menu #menu [model]="mobileItems" [popup]="true" />
-    <p-button
+    <button
+      pButton
       class="menu-button"
       (click)="menu.toggle($event)"
-      icon="pi pi-bars"
       size="small"
       variant="outlined"
-    />
+      [iconOnly]="true"
+    >
+      <svg data-p-icon="bars"></svg>
+    </button>
   </div>
   <div class="main">
     <div class="menu-area">
       <p-accordion [(value)]="activeValue">
         <p-accordion-panel [value]="ComponentType.UI">
-          <p-accordion-header><i class="pi pi-box"></i>UI</p-accordion-header>
+          <p-accordion-header><svg data-p-icon="box"></svg>UI</p-accordion-header>
           <p-accordion-content>
             <p-menu [model]="uiItems"></p-menu>
           </p-accordion-content>
         </p-accordion-panel>
         <p-accordion-panel [value]="ComponentType.Feature">
-          <p-accordion-header><i class="pi pi-th-large"></i>Features</p-accordion-header>
+          <p-accordion-header><svg data-p-icon="th-large"></svg>Features</p-accordion-header>
           <p-accordion-content>
             <p-menu [model]="featureItems"></p-menu>
           </p-accordion-content>

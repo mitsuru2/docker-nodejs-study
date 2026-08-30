@@ -5,10 +5,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { DbCommonData, ExperienceData } from '../../../model/db-data';
 import { map } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
+import { ArrowRightArrowLeft } from '@primeicons/angular/arrow-right-arrow-left';
 
 @Component({
   selector: 'app-test-experience',
-  imports: [Experience, ButtonModule],
+  imports: [Experience, ButtonModule, ArrowRightArrowLeft],
   templateUrl: './test-experience.html',
   styleUrl: './test-experience.scss',
 })

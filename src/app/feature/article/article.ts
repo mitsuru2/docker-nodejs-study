@@ -7,10 +7,11 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SkeletonModule } from 'primeng/skeleton';
 import { GalleryModule } from 'primeng/gallery';
+import { InfoCircle } from '@primeicons/angular/info-circle';
 
 @Component({
   selector: 'app-article',
-  imports: [LocalizePipe, ImageModule, SkeletonModule, GalleryModule],
+  imports: [LocalizePipe, ImageModule, SkeletonModule, GalleryModule, InfoCircle],
   templateUrl: './article.html',
   styleUrl: './article.scss',
 })
@@ -31,6 +32,7 @@ export class Article implements OnInit {
   protected thumbWidth = computed(() =>
     this.isMobile() ? DesignTokens.semantic.custom.article.image.width : undefined,
   );
+  protected infoIconSize = DesignTokens.primitive.custom.font.sizeNum * 1.5; // 1.5rem;
 
   // レイアウト制御
   protected isMobile = signal(false);

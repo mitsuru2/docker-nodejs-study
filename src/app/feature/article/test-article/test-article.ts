@@ -4,10 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ArticleData } from '../../../model/db-data';
 import { ButtonModule } from 'primeng/button';
+import { ArrowRightArrowLeft } from '@primeicons/angular/arrow-right-arrow-left';
 
 @Component({
   selector: 'app-test-article',
-  imports: [Article, ButtonModule],
+  imports: [Article, ButtonModule, ArrowRightArrowLeft],
   templateUrl: './test-article.html',
   styleUrl: './test-article.scss',
 })

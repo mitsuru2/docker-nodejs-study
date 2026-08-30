@@ -35,6 +35,7 @@ export const DesignTokens = {
         xl: '4rem',
       },
       font: {
+        sizeNum: 16,
         size: '16px',
         sizeH1: '20px',
         color: '#495057',

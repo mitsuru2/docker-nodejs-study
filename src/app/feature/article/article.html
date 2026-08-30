@@ -54,7 +54,7 @@
         <div class="picture-dialog-body">
           <img
             [src]="clickedPicturePath"
-            [alt]="(clickedPictureAlt ?? clickedPictureCaption) | localize"
+            [alt]="clickedPictureAlt ?? clickedPictureCaption | localize"
             class="picture-dialog-image"
           />
           @if (clickedPictureCaption) {
@@ -70,7 +70,7 @@
         <div>
           <p>
             @if (messageBlock.type === 'info') {
-              <i class="pi pi-info-circle info-icon"></i>
+              <svg data-p-icon="info-circle" class="info-icon" [size]="infoIconSize"></svg>
             }
           </p>
         </div>
