@@ -1,5 +1,12 @@
 <p-card class="card">
-  <div class="container" (click)="clickedHandler(buttonId())">
+  <div
+    class="container"
+    role="button"
+    tabindex="0"
+    (click)="clickedHandler(buttonId())"
+    (keydown.enter)="clickedHandler(buttonId())"
+    (keydown.space)="$event.preventDefault(); clickedHandler(buttonId())"
+  >
     <div class="message-area">
       @if (title().length > 0) {
         <h3>{{ title() }}</h3>
