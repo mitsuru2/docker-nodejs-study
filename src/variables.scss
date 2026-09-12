@@ -1,7 +1,8 @@
-$bp-mobile: 870px;
+// src/styles.ts の primitive.custom.bp.mobile と値を合わせる
+$bp-mobile: 970px;
 
 @mixin mobile {
-  @media screen and (max-width: 870px) {
+  @media screen and (max-width: $bp-mobile) {
     @content;
   }
 }
