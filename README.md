@@ -179,6 +179,18 @@ docker build -t docker-nodejs-study .
 - `npm run new-ui`
 - `npm run new-utility`
 
+## Angular アップデート作業
+
+マイナーバージョンの更新なら以下のコマンドを実行するだけ。
+
+```
+npx ng update @angular/cli @angular/core
+```
+
+メジャーバージョンの更新の際は、公式サイトの手順を参照。また、PrimeNGの更新もセットで行うこと。
+
+- https://angular.dev/update-guide
+
 ## ライセンス
 
 [LICENSE](./LICENSE)
