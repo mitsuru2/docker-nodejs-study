@@ -1,6 +1,6 @@
 // src/styles.ts の primitive.custom.bp.mobile と値を合わせる
-$bp-mobile: 970px;
-$bp-narrow: 570px;
+$bp-mobile: 570px;
+$bp-tablet: 970px;
 
 @mixin mobile {
   @media screen and (max-width: $bp-mobile) {
@@ -8,8 +8,8 @@ $bp-narrow: 570px;
   }
 }
 
-@mixin narrow {
-  @media screen and (max-width: $bp-narrow) {
+@mixin tablet {
+  @media screen and (max-width: $bp-tablet) {
     @content;
   }
 }

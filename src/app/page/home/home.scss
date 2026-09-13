@@ -75,17 +75,18 @@
 //------------------------------------------------------------------------------
 // モバイルレイアウト
 //
+@media screen and (max-width: v.$bp-tablet) {
+  .card-container {
+    padding: 0 var(--p-custom-margin-m);
+  }
+}
 @media screen and (max-width: v.$bp-mobile) {
   .carousel {
     --p-custom-carousel-width: 100dvw;
     --p-custom-carousel-image-max-width: 100dvw;
-    --p-custom-carousel-image-height: 360px;
+    --p-custom-carousel-image-height: 300px;
     --p-custom-carousel-image-overlay-font-size: small;
     --p-custom-carousel-image-overlay-font-weight: bold;
     --p-custom-carousel-track-gap: 0;
-  }
-
-  .card-container {
-    padding: 0 var(--p-custom-margin-m);
   }
 }

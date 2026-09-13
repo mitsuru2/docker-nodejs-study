@@ -43,7 +43,7 @@
   padding: var(--p-custom-margin-s) var(--p-custom-margin-m);
 }
 
-@media screen and (max-width: v.$bp-mobile) {
+@media screen and (max-width: v.$bp-tablet) {
   .header {
     display: flex;
     gap: var(--p-custom-margin-s);

@@ -47,8 +47,8 @@ export const DesignTokens = {
       },
       bp: {
         // src/variables.scss の $bp-mobile と値を合わせる
-        mobile: '970px',
-        narrow: '570px',
+        mobile: '570px',
+        tablet: '970px',
       },
     },
   },

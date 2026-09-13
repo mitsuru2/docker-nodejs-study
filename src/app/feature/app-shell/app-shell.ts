@@ -128,7 +128,7 @@ export class AppShell implements OnInit {
 
   // レイアウト制御
   protected isMobile = signal(false);
-  protected isNarrow = signal(false);
+  protected isTablet = signal(false);
 
   //----------------------------------------------------------------------------
   // ライフサイクル
@@ -142,12 +142,12 @@ export class AppShell implements OnInit {
         this.isMobile.set(state.matches);
       });
 
-    // ブレークポイント監視2 --> isNarrowシグナルに反映
+    // ブレークポイント監視2 --> isTabletシグナルに反映
     this.bpObserver
-      .observe([`(max-width: ${DesignTokens.primitive.custom.bp.narrow})`])
+      .observe([`(max-width: ${DesignTokens.primitive.custom.bp.tablet})`])
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((state) => {
-        this.isNarrow.set(state.matches);
+        this.isTablet.set(state.matches);
       });
   }
 

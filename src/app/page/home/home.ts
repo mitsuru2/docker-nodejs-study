@@ -242,12 +242,8 @@ export class Home {
       return;
     }
 
-    // 取得したカードエレメントまで移動
-    element.scrollIntoView({ behavior: 'smooth' });
-
-    // 強調アニメーションスタイルを適用。アニメーション終了後に削除。
-    element.classList.add('selected-card');
-    setTimeout(() => element.classList.remove('selected-card'), 2000);
+    // クリックされた画像に対応するメニューのリンクに遷移する
+    this.cardClickedHandler({ id: event.id });
   }
 
   //----------------------------------------------------------------------------

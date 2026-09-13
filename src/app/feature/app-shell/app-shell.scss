@@ -87,7 +87,7 @@ app-locale-select {
 //------------------------------------------------------------------------------
 // Mobile screeen
 //
-@include v.narrow {
+@include v.mobile {
   h1 {
     text-align: center;
   }
@@ -98,7 +98,7 @@ app-locale-select {
   }
 }
 
-@include v.mobile {
+@include v.tablet {
   .header {
     display: flex;
     flex-direction: column;

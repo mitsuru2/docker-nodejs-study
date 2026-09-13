@@ -11,7 +11,7 @@ body {
   font-size: var(--p-custom-font-size);
   color: var(--p-text-color);
 
-  @include v.mobile {
+  @include v.tablet {
     font-size: 12px;
   }
 
@@ -27,7 +27,7 @@ h1 {
   margin: 0;
   font-size: var(--p-custom-font-size-h1);
 
-  @include v.mobile {
+  @include v.tablet {
     font-size: var(--p-custom-font-mobile-size-h1);
   }
 }

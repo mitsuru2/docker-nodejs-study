@@ -1,6 +1,6 @@
 <div class="header">
   <!-- 左側 -->
-  @if (!isNarrow()) {
+  @if (!isMobile()) {
     <h1>{{ labels.common.title1 }} - {{ labels.common.title2 }}</h1>
   } @else {
     <div>
@@ -11,10 +11,10 @@
 
   <!-- 右側 -->
   <div class="right-side no-print">
-    @if (!isMobile()) {
+    @if (!isTablet()) {
       <p-menubar
         [model]="menuItems"
-        [breakpoint]="designTokens.primitive.custom.bp.mobile"
+        [breakpoint]="designTokens.primitive.custom.bp.tablet"
         class="menu-bar"
       ></p-menubar>
       <app-locale-select
