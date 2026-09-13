@@ -1,6 +1,13 @@
 <div class="header">
   <!-- 左側 -->
-  <h1>{{ labels.common.title }}</h1>
+  @if (!isNarrow()) {
+    <h1>{{ labels.common.title1 }} - {{ labels.common.title2 }}</h1>
+  } @else {
+    <div>
+      <h1>{{ labels.common.title1 }}</h1>
+      <div class="sub-title">- {{ labels.common.title2 }} -</div>
+    </div>
+  }
 
   <!-- 右側 -->
   <div class="right-side no-print">

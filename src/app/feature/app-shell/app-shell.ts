@@ -128,6 +128,7 @@ export class AppShell implements OnInit {
 
   // レイアウト制御
   protected isMobile = signal(false);
+  protected isNarrow = signal(false);
 
   //----------------------------------------------------------------------------
   // ライフサイクル
@@ -139,6 +140,14 @@ export class AppShell implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((state) => {
         this.isMobile.set(state.matches);
+      });
+
+    // ブレークポイント監視2 --> isNarrowシグナルに反映
+    this.bpObserver
+      .observe([`(max-width: ${DesignTokens.primitive.custom.bp.narrow})`])
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((state) => {
+        this.isNarrow.set(state.matches);
       });
   }
 
