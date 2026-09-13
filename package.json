@@ -53,7 +53,7 @@
     "eslint": "^10.0.3",
     "jsdom": "^29.1.1",
     "prettier": "^3.8.1",
-    "primeng": "^22.0.0-rc.1",
+    "primeng": "^22.1.1",
     "start-server-and-test": "^3.0.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.63.0",

@@ -182,12 +182,14 @@ docker build -t docker-nodejs-study .
 ## Angular アップデート作業
 
 マイナーバージョンの更新なら以下のコマンドを実行するだけ。
+また、PrimeNGの更新もセットで行うこと。
 
 ```
 npx ng update @angular/cli @angular/core
+npm install primng@$123.45  // 適切なバージョンに読み替え
 ```
 
-メジャーバージョンの更新の際は、公式サイトの手順を参照。また、PrimeNGの更新もセットで行うこと。
+メジャーバージョンの更新の際は、公式サイトの手順を参照。
 
 - https://angular.dev/update-guide
 
