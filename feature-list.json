@@ -1,10 +1,10 @@
 {
   "features": [
     {
-      "name": "example-feature",
-      "status": "todo",
-      "description": "Replace this entry with a real feature. status must be one of: todo, in_progress, done.",
-      "updatedAt": null
+      "name": "force-light-mode",
+      "status": "done",
+      "description": "Homepage always renders in light mode regardless of the browser/OS prefers-color-scheme setting; PrimeNG darkModeSelector is set to 'none' in src/app/app.config.ts. Fixes Issue #49.",
+      "updatedAt": "2026-09-19"
     }
   ]
 }

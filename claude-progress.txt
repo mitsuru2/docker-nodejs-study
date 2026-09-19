@@ -2,3 +2,26 @@
 #
 # Append one dated entry per Claude Code session summarizing what was done,
 # decisions made, and any unresolved issues. Newest entries at the bottom.
+
+## 2026-09-19: Fix Issue #49 - Disable dark mode support
+
+- Root cause: PrimeNG's `providePrimeNG` theme options defaulted to
+  `darkModeSelector: 'system'`, which applies the CustomPreset's dark
+  color-scheme tokens whenever the browser/OS reports
+  `prefers-color-scheme: dark`. The homepage should always render in
+  light mode regardless of the browser/OS theme setting.
+- Fix: explicitly set `darkModeSelector: 'none'` under
+  `theme.options` in the `providePrimeNG(...)` call in
+  `src/app/app.config.ts`. This config (`commonConfig`) is shared by
+  both the browser and server (SSR) app configs, so the fix applies
+  uniformly.
+- `src/index.html` already declared `<meta name="color-scheme"
+  content="light">`, so native browser chrome (scrollbars, form
+  controls) was already light; the PrimeNG theme tokens were the only
+  remaining dark-mode source.
+- Verified manually with Playwright: loaded the homepage under both
+  `colorScheme: 'dark'` and `colorScheme: 'light'` context emulation.
+  Screenshots are pixel-identical; `getComputedStyle(document.body).colorScheme`
+  reports `"light"` in both cases.
+- `npm test` (30/30) and `npm run build` both pass.
+- No unresolved issues.
