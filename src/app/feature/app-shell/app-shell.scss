@@ -25,6 +25,12 @@
   }
 }
 
+.title-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .menu-bar {
   --p-menubar-gap: 0;
   --p-menubar-padding: 0;

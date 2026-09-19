@@ -27,11 +27,12 @@ import { ButtonGroupModule } from 'primeng/buttongroup';
 import { MenuModule } from 'primeng/menu';
 import { CountryFlag } from '../../ui/country-flag/country-flag';
 import { i18nLabels } from '../../../locale/_i18n_';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-app-shell',
   imports: [
+    RouterLink,
     MenubarModule,
     LocaleSelect,
     ButtonModule,
@@ -65,6 +66,9 @@ export class AppShell implements OnInit {
 
   // 出力イベント
   @Output() clicked = new EventEmitter<AppShellOutputData>();
+
+  // タイトルクリック時の遷移先 (ホーム画面)
+  protected readonly homeLink = '/' + PagePath.Home;
 
   // メニュー
   protected readonly menuItems: MenuItem[] = [

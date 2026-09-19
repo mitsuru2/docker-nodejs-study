@@ -1,13 +1,15 @@
 <div class="header">
   <!-- 左側 -->
-  @if (!isMobile()) {
-    <h1>{{ labels.common.title1 }} - {{ labels.common.title2 }}</h1>
-  } @else {
-    <div>
-      <h1>{{ labels.common.title1 }}</h1>
-      <div class="sub-title">- {{ labels.common.title2 }} -</div>
-    </div>
-  }
+  <a class="title-link" [routerLink]="homeLink" [attr.aria-label]="labels.common.home">
+    @if (!isMobile()) {
+      <h1>{{ labels.common.title1 }} - {{ labels.common.title2 }}</h1>
+    } @else {
+      <div>
+        <h1>{{ labels.common.title1 }}</h1>
+        <div class="sub-title">- {{ labels.common.title2 }} -</div>
+      </div>
+    }
+  </a>
 
   <!-- 右側 -->
   <div class="right-side no-print">
