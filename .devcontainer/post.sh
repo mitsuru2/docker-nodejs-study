@@ -69,8 +69,8 @@ fi
 # sudo update-ca-certificates
 
 # NPMパッケージインストール
-echo "Installing npm packages..."
-npm ci
+# echo "Installing npm packages..."
+# npm ci
 
 # Cosmos DBエミュレーターに初期データを注入
 # node ./.devcontainer/seed-cosmos.mjs

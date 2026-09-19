@@ -86,7 +86,7 @@ npm run build
 .
 ├── .devcontainer/      # Dev Container 設定
 ├── public/             # 公開アセット (画像ファイルなど)
-├── script/             # 開発補助用スクリプト
+├── scripts/             # 開発補助用スクリプト
 ├── src/                # Angular ソースコード
 │   ├── app/            # アプリケーションロジック
 │   |   ├── feature/    # 特定機能用にまとめられたUIブロックコンポーネント
@@ -171,7 +171,7 @@ docker build -t docker-nodejs-study .
 
 ## スクリプト
 
-`script/` 配下に、新規ページ/機能/サービス等の雛形生成用スクリプトがあります。
+`scripts/` 配下に、新規ページ/機能/サービス等の雛形生成用スクリプトがあります。
 
 - `npm run new-page`
 - `npm run new-feature`

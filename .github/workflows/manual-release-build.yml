@@ -30,7 +30,7 @@ jobs:
           COSMOS_DB: ${{ vars.AZURE_COSMOS_DB_NAME }}
         run: |
           npm install @azure/cosmos @azure/identity
-          node script/export-db.mjs
+          node scripts/export-db.mjs
 
       # Blob Storageから画像データをダウンロード
       - name: Download all images

@@ -6,7 +6,7 @@
       "Bash(npx ng *)",
       "Bash(node -e ' *)",
       "Bash(npx tsc *)",
-      "Bash(node /app/script/generate-license.mjs)"
+      "Bash(node /app/scripts/generate-license.mjs)"
     ]
   }
 }

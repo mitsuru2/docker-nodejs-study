@@ -10,10 +10,30 @@ FROM node:24-trixie AS build
 # Install OS-level dependencies.
 # - Git: It should be installed to use git commands in container or via VSCode remote 
 #        development extension.
+# - iptables/ipset/dnsutils/jq: Required by .devcontainer / scripts/init-firewall.sh to
+#            restrict outbound network access to an allowlist (github.com, anthropic.com)
+#            for Claude Code sessions.
+# - gnupg: Required to import the GitHub CLI apt repository signing key below.
+# - zip: Required by scripts/attach-issue-evidence.sh to package GitHub Issue test
+#            evidence before uploading it to Google Drive.# Note: After installing packages, we clean up the apt cache to reduce the image size.
 # Note: After installing packages, we clean up the apt cache to reduce the image size.
 RUN apt-get update && apt-get install -y \
     git \
     sudo \
+    gnupg \
+    iptables \
+    ipset \
+    dnsutils \
+    jq \
+    zip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install GitHub CLI (gh).
+# Official install instructions: https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg -o /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list \
+    && apt-get update && apt-get install -y gh \
     && rm -rf /var/lib/apt/lists/*
 
 # Azure CLIのインストール。
@@ -43,6 +63,15 @@ RUN chown -R node:node /app
 COPY --chown=node:node package*.json ./
 USER node
 RUN npm ci
+
+# Install Playwright's Chromium browser binary and its OS-level dependencies for E2E
+# testing (see playwright.config.ts / e2e/). Only chromium is installed since this is a
+# personal study project (see playwright.config.ts, which only defines a chromium
+# project). This must run as the 'node' user (the devcontainer's remoteUser) so the
+# browser lands in node's cache dir (~/.cache/ms-playwright) where `npx playwright test`
+# looks for it at runtime; '--with-deps' uses the passwordless sudo configured above to
+# apt-get install the required shared libraries (fonts, libnss3, etc.).
+RUN npx playwright install --with-deps chromium
 USER root
 
 # DON'T copy the source code to the image because it's be mounted when the container running.
