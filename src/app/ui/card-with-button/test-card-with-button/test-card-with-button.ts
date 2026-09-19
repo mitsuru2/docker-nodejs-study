@@ -35,7 +35,7 @@ export class TestCardWithButton {
         id: 't2',
         title: 'タイトルあり',
         config: {
-          title: 'Section Title',
+          title: { ja: 'タイトル', en: 'Title' },
           button: {
             id: 'b2',
             label: 'Detail',

@@ -3,10 +3,11 @@ import { CardWithButtonConfigData, CardWithButtonOutputData } from './card-with-
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
+import { LocalizePipe } from '../../pipe/localize/localize-pipe';
 
 @Component({
   selector: 'app-card-with-button',
-  imports: [CardModule, ButtonModule, ToastModule],
+  imports: [CardModule, ButtonModule, ToastModule, LocalizePipe],
   templateUrl: './card-with-button.html',
   styleUrl: './card-with-button.scss',
 })
@@ -20,7 +21,7 @@ export class CardWithButton {
   @Output() clicked = new EventEmitter<CardWithButtonOutputData>();
 
   // 制御パラメータ
-  protected title = computed(() => this.config().title ?? '');
+  protected title = computed(() => this.config().title ?? undefined);
   protected buttonId = computed(() => this.config().button.id);
   protected buttonLabel = computed(() => this.config().button.label ?? '');
   protected buttonIcon = computed(() => this.config().button.icon ?? '');

@@ -14,7 +14,11 @@
         "ja": "車両診断領域においてECUと診断システム両方での知見を有しております。高い信頼性が求められる車載ドメインの要求に確実に応えます。",
         "en": "I have expertise in both ECUs and diagnostic systems within the vehicle diagnostics domain. I deliver reliable solutions to meet strict demands on automotive sector."
       }
-    ]
+    ],
+    "title": {
+      "ja": "車両診断",
+      "en": "Vehicle Diagnostics"
+    }
   },
   {
     "id": "55b2879d-5cb9-4543-9d57-ceaa31c82b66",
@@ -31,7 +35,11 @@
         "ja": "要件定義やロードマップ策定等の上流工程において、新規システム立ち上げを含む豊富な経験があります。ビジネス要求と技術制約をバランスよく調整し、プロジェクトを円滑に推進します。",
         "en": "I have extensive experience in upstream processes, including requirements definition, roadmap planning, and new system launches. I balance technical restrictions with business needs to ensure smooth project execution."
       }
-    ]
+    ],
+    "title": {
+      "ja": "上流工程",
+      "en": "Upstream Process"
+    }
   },
   {
     "id": "05992c0f-140c-4844-b00d-6eb15b28451b",
@@ -48,7 +56,11 @@
         "ja": "車載ECUシステムから中規模Webアプリまで、コンプライアンス要件 (セキュリティ・法規制) を厳守しつつ、長期間の運用に耐えうる拡張性の高い構造を定義します。",
         "en": "I define scalable architectures that balance long-term operational stability with strict compliance (security and regulations); from automotive ECU systems to mid-sized web applications."
       }
-    ]
+    ],
+    "title": {
+      "ja": "システム設計",
+      "en": "System Design"
+    }
   },
   {
     "id": "14de6ff0-5efa-4845-9e83-e570a7c2c908",
@@ -65,7 +77,11 @@
         "ja": "Docker/GitHub/Azureを活用したビルド・テストの自動化。開発チーム全体の生産性を向上させる開発環境の整備まで一任いただけます。",
         "en": "I provide end-to-end support for build/test automation and development environment setup to boost team productivity."
       }
-    ]
+    ],
+    "title": {
+      "ja": "CI/CD基盤構築",
+      "en": "CI/CD Infrastructure"
+    }
   },
   {
     "id": "16e86b8d-af16-477b-8a31-d202e9e91399",
@@ -82,7 +98,11 @@
         "ja": "Angularリードエンジニアとして、フロントエンド全体の設計を含む幅広い実務経験を有しております。アプリの特性に応じた最適なアプローチを提案いたします。",
         "en": "As an Angular Lead Engineer, I have extensive hands-on experience including overall frontend architecture. I provide the optimal approach tailored to each application's characteristics."
       }
-    ]
+    ],
+    "title": {
+      "ja": "フロントエンド開発",
+      "en": "Front-End Development"
+    }
   },
   {
     "id": "50795017-cf08-48c8-af8d-e26f740bf9ab",
@@ -95,6 +115,10 @@
         "ja": "2009年から現在に至るまでの職務経歴と、主な担当業務について。",
         "en": "Career history and core responsibilities from 2009 to the present."
       }
-    ]
+    ],
+    "title": {
+      "ja": "職務経歴",
+      "en": "Career"
+    }
   }
 ]

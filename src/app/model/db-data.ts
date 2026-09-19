@@ -85,6 +85,7 @@ export interface AwardData extends DbCommonData {
 export interface CardLeadData extends DbCommonData {
   type: 'card-lead';
   key: string;
+  title?: MessageData;
   catchCopy?: MessageData;
   messages: MessageData[];
 }

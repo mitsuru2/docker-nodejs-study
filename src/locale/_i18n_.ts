@@ -4,9 +4,10 @@ export const i18nLabels = {
     title2: $localize`:@@common.title2:A Good Software Engineer`,
     home: $localize`:@@common.home:ホーム`,
     skills: $localize`:@@common.skills:スキルセット`,
-    career: $localize`:@@common.career:キャリア`,
+    career: $localize`:@@common.career:職務経歴`,
     detail: $localize`:@@common.detail:詳細`,
     language: $localize`:@@common.language:言語`,
+    expertise: $localize`:@@common.expertise:専門ドメイン`,
   },
   skills: {
     diag: {
@@ -22,7 +23,7 @@ export const i18nLabels = {
       title: $localize`:@@skills.systemDesign.title:システム設計`,
     },
     userReq: {
-      title: $localize`:@@skills.userReq.title:課題分析 & ソリューション提案`,
+      title: $localize`:@@skills.userReq.title:ソリューション提案 & プロジェクトマネジメント`,
     },
   },
   career: {

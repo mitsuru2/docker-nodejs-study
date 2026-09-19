@@ -35,7 +35,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="common.career" datatype="html">
-        <source>キャリア</source>
+        <source>職務経歴</source>
         <target>Career</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
@@ -58,12 +58,20 @@
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="common.expertise" datatype="html">
+        <source>専門ドメイン</source>
+        <target>Expertise</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/_i18n_.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="skills.diag.title" datatype="html">
         <source>車両診断 &amp; 車載ネットワーク</source>
         <target>Vehicle Diagnostics &amp; Networks</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.frontEnd.title" datatype="html">
@@ -71,7 +79,7 @@
         <target>Frontend Development</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.ci.title" datatype="html">
@@ -79,7 +87,7 @@
         <target>Process Automation &amp; CI/CD</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.systemDesign.title" datatype="html">
@@ -87,15 +95,15 @@
         <target>System Architecture Design</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skills.userReq.title" datatype="html">
-        <source>課題分析 &amp; ソリューション提案</source>
-        <target>Requirements Analysis &amp; Solution Proposal</target>
+        <source>ソリューション提案 &amp; プロジェクトマネジメント</source>
+        <target>Solution Proposal &amp; Project Management</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="common.experience" datatype="html">
@@ -103,7 +111,7 @@
         <target>Experiences</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="common.qualification" datatype="html">
@@ -111,7 +119,7 @@
         <target>Qualifications</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="common.award" datatype="html">
@@ -119,7 +127,7 @@
         <target>Awards</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/locale/_i18n_.ts</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
     </body>
