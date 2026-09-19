@@ -1,9 +1,11 @@
 #!/bin/bash
 # scripts/attach-issue-evidence.sh
 #
-# Zip up test-evidence folders for a GitHub Issue fix, upload each zip to a
-# Google Drive folder, and post a single issue comment listing each test
-# case's title with a link to its zip.
+# Zip up test-evidence folders for a GitHub Issue fix, upload each zip into
+# an issue-<number> subfolder of a shared Google Drive folder (creating the
+# subfolder and a github-issue.url shortcut back to the issue on first use),
+# and post a single issue comment listing each test case's title with a
+# link to its zip.
 #
 # Usage:
 #   scripts/attach-issue-evidence.sh <issue-number> <tc-dir1> [<tc-dir2> ...]
@@ -103,6 +105,43 @@ if [ -z "$issue_folder_id" ]; then
   fi
 else
   echo "=== attach-issue-evidence: found existing '$issue_folder_name' subfolder ($issue_folder_id) ==="
+fi
+
+echo "=== attach-issue-evidence: ensuring a GitHub Issue shortcut exists in '$issue_folder_name' ==="
+issue_url="$(gh issue view "$issue_number" --json url -q .url)"
+if [ -z "$issue_url" ]; then
+  echo "FAIL: could not resolve the URL for issue #$issue_number via gh" >&2
+  exit 1
+fi
+
+shortcut_name="github-issue.url"
+escaped_shortcut_name="${shortcut_name//\'/\\\'}"
+shortcut_search_query="name = '${escaped_shortcut_name}' and '${issue_folder_id}' in parents and trashed = false"
+shortcut_search_response="$(curl -fsS --max-time 10 -G \
+  "https://www.googleapis.com/drive/v3/files" \
+  -H "Authorization: Bearer $access_token" \
+  --data-urlencode "q=$shortcut_search_query" \
+  --data-urlencode "fields=files(id,name)")"
+
+shortcut_file_id="$(echo "$shortcut_search_response" | jq -r '.files[0].id // empty')"
+if [ -z "$shortcut_file_id" ]; then
+  echo "=== attach-issue-evidence: creating '$shortcut_name' shortcut in '$issue_folder_name' ==="
+  shortcut_path="$workdir/$shortcut_name"
+  printf '[InternetShortcut]\r\nURL=%s\r\n' "$issue_url" >"$shortcut_path"
+
+  shortcut_upload_response="$(curl -fsS --max-time 30 \
+    "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id" \
+    -H "Authorization: Bearer $access_token" \
+    -F "metadata={\"name\":\"$shortcut_name\",\"parents\":[\"$issue_folder_id\"]};type=application/json;charset=UTF-8" \
+    -F "file=@${shortcut_path};type=application/internet-shortcut")"
+
+  shortcut_file_id="$(echo "$shortcut_upload_response" | jq -r '.id // empty')"
+  if [ -z "$shortcut_file_id" ]; then
+    echo "FAIL: could not create '$shortcut_name' shortcut: $shortcut_upload_response" >&2
+    exit 1
+  fi
+else
+  echo "=== attach-issue-evidence: found existing '$shortcut_name' shortcut ($shortcut_file_id) ==="
 fi
 
 comment_body="$workdir/comment.md"

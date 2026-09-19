@@ -52,3 +52,28 @@
   folder to leave the real Drive folder clean.
 - `npm test` (30/30) and `npm run build` both pass.
 - No unresolved issues.
+
+## 2026-09-19: Fix Issue #51 follow-up - GitHub Issue shortcut file in Drive subfolder
+
+- Additional spec from the issue reporter's follow-up comment on #51:
+  create a shortcut file inside the per-issue Drive subfolder that links
+  back to the GitHub Issue itself (`https://github.com/mitsuru2/docker-nodejs-study/issues/<number>`).
+- Fix: scripts/attach-issue-evidence.sh now resolves the issue's URL via
+  `gh issue view "$issue_number" --json url -q .url`, then finds-or-creates
+  a `github-issue.url` file in the `issue-<number>` subfolder (Windows
+  Internet Shortcut format: `[InternetShortcut]\r\nURL=<issue url>\r\n`,
+  uploaded with contentType `application/internet-shortcut`). Uses the
+  same idempotent find-or-create pattern as the subfolder itself, so
+  reruns for the same issue reuse the existing shortcut instead of
+  creating duplicates.
+- Verified directly against the real Google Drive API in a throwaway
+  script (not the full attach-issue-evidence.sh, to avoid posting a real
+  issue comment while testing): ran the ensure-shortcut logic twice
+  back-to-back, confirmed both runs returned the identical file id
+  (idempotent, no duplicate on rerun), confirmed exactly one
+  `github-issue.url` file existed afterward, downloaded and verified its
+  content matched the expected Internet Shortcut format with the correct
+  issue URL, then deleted the test folder to leave the real Drive folder
+  clean.
+- `npm test` (30/30) and `npm run build` both pass.
+- No unresolved issues.
