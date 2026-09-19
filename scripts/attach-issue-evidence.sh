@@ -76,6 +76,35 @@ if [ -z "$access_token" ]; then
   exit 1
 fi
 
+issue_folder_name="issue-${issue_number}"
+echo "=== attach-issue-evidence: locating '$issue_folder_name' subfolder in Google Drive ==="
+escaped_folder_name="${issue_folder_name//\'/\\\'}"
+search_query="name = '${escaped_folder_name}' and '${GDRIVE_FOLDER_ID}' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false"
+search_response="$(curl -fsS --max-time 10 -G \
+  "https://www.googleapis.com/drive/v3/files" \
+  -H "Authorization: Bearer $access_token" \
+  --data-urlencode "q=$search_query" \
+  --data-urlencode "fields=files(id,name)")"
+
+issue_folder_id="$(echo "$search_response" | jq -r '.files[0].id // empty')"
+if [ -z "$issue_folder_id" ]; then
+  echo "=== attach-issue-evidence: creating '$issue_folder_name' subfolder in Google Drive ==="
+  create_folder_response="$(curl -fsS --max-time 10 \
+    "https://www.googleapis.com/drive/v3/files?fields=id" \
+    -H "Authorization: Bearer $access_token" \
+    -H "Content-Type: application/json" \
+    -d "$(jq -n --arg name "$issue_folder_name" --arg parent "$GDRIVE_FOLDER_ID" \
+      '{name: $name, mimeType: "application/vnd.google-apps.folder", parents: [$parent]}')")"
+
+  issue_folder_id="$(echo "$create_folder_response" | jq -r '.id // empty')"
+  if [ -z "$issue_folder_id" ]; then
+    echo "FAIL: could not create '$issue_folder_name' subfolder: $create_folder_response" >&2
+    exit 1
+  fi
+else
+  echo "=== attach-issue-evidence: found existing '$issue_folder_name' subfolder ($issue_folder_id) ==="
+fi
+
 comment_body="$workdir/comment.md"
 echo "## Test evidence" >"$comment_body"
 echo "" >>"$comment_body"
@@ -88,14 +117,11 @@ for dir in "${tc_dirs[@]}"; do
   echo "=== attach-issue-evidence: zipping $dir -> $name.zip ==="
   (cd "$dir" && zip -r -q "$zip_path" .)
 
-  echo "=== attach-issue-evidence: uploading $name.zip to Google Drive ==="
-  metadata="$(jq -n --arg name "$name.zip" --arg parent "$GDRIVE_FOLDER_ID" \
-    '{name: $name, parents: [$parent]}')"
-
+  echo "=== attach-issue-evidence: uploading $name.zip to Google Drive ($issue_folder_name) ==="
   upload_response="$(curl -fsS --max-time 60 \
     "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id" \
     -H "Authorization: Bearer $access_token" \
-    -F "metadata={\"name\":\"$name.zip\",\"parents\":[\"$GDRIVE_FOLDER_ID\"]};type=application/json;charset=UTF-8" \
+    -F "metadata={\"name\":\"$name.zip\",\"parents\":[\"$issue_folder_id\"]};type=application/json;charset=UTF-8" \
     -F "file=@${zip_path};type=application/zip")"
 
   file_id="$(echo "$upload_response" | jq -r '.id // empty')"

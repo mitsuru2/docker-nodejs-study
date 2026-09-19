@@ -25,3 +25,30 @@
   reports `"light"` in both cases.
 - `npm test` (30/30) and `npm run build` both pass.
 - No unresolved issues.
+
+## 2026-09-19: Fix Issue #51 - Per-issue Google Drive subfolder for test evidence
+
+- Root cause: scripts/attach-issue-evidence.sh uploaded every test-evidence
+  zip directly into the root of the shared GDRIVE_FOLDER_ID, so zips from
+  different issues piled up together in one flat folder with no way to
+  tell which zip belonged to which issue at a glance.
+- Fix: before uploading, the script now looks up (via a Drive API
+  `files.list` query scoped to `'<GDRIVE_FOLDER_ID>' in parents`) a
+  subfolder named `issue-<issue-number>`. If it already exists, its id is
+  reused; otherwise the script creates it with `files.create`
+  (`mimeType: application/vnd.google-apps.folder`, parented under
+  GDRIVE_FOLDER_ID). Every zip for that run is then uploaded with that
+  subfolder as its parent instead of GDRIVE_FOLDER_ID directly.
+- scripts/init-verify-gdrive.sh was left unchanged — it only checks that
+  GDRIVE_* credentials are valid and the Drive API is reachable, it does
+  not touch folder structure.
+- Verified directly against the real Google Drive API in a throwaway
+  script (not the full attach-issue-evidence.sh, to avoid posting a real
+  issue comment while testing): created a test subfolder, confirmed a
+  second lookup call deterministically returns the same folder id
+  (idempotent — reruns for the same issue won't create duplicate
+  subfolders), uploaded a file into it and confirmed the Drive API
+  response's `parents` pointed at the subfolder, then deleted the test
+  folder to leave the real Drive folder clean.
+- `npm test` (30/30) and `npm run build` both pass.
+- No unresolved issues.
