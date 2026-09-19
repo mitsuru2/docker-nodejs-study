@@ -5,6 +5,12 @@
       "status": "done",
       "description": "Homepage always renders in light mode regardless of the browser/OS prefers-color-scheme setting; PrimeNG darkModeSelector is set to 'none' in src/app/app.config.ts. Fixes Issue #49.",
       "updatedAt": "2026-09-19"
+    },
+    {
+      "name": "gdrive-evidence-subfolder",
+      "status": "done",
+      "description": "scripts/attach-issue-evidence.sh uploads test-evidence zips into a per-issue Google Drive subfolder named issue-<number> under GDRIVE_FOLDER_ID (created on first use, reused thereafter) instead of dumping all zips into the shared root folder. Fixes Issue #51. (A follow-up GitHub-Issue shortcut-file feature was added and then retracted by the issue reporter; the shipped behavior is subfolder-only.)",
+      "updatedAt": "2026-09-19"
     }
   ]
 }

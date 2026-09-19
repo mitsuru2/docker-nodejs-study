@@ -25,3 +25,78 @@
   reports `"light"` in both cases.
 - `npm test` (30/30) and `npm run build` both pass.
 - No unresolved issues.
+
+## 2026-09-19: Fix Issue #51 - Per-issue Google Drive subfolder for test evidence
+
+- Root cause: scripts/attach-issue-evidence.sh uploaded every test-evidence
+  zip directly into the root of the shared GDRIVE_FOLDER_ID, so zips from
+  different issues piled up together in one flat folder with no way to
+  tell which zip belonged to which issue at a glance.
+- Fix: before uploading, the script now looks up (via a Drive API
+  `files.list` query scoped to `'<GDRIVE_FOLDER_ID>' in parents`) a
+  subfolder named `issue-<issue-number>`. If it already exists, its id is
+  reused; otherwise the script creates it with `files.create`
+  (`mimeType: application/vnd.google-apps.folder`, parented under
+  GDRIVE_FOLDER_ID). Every zip for that run is then uploaded with that
+  subfolder as its parent instead of GDRIVE_FOLDER_ID directly.
+- scripts/init-verify-gdrive.sh was left unchanged — it only checks that
+  GDRIVE_* credentials are valid and the Drive API is reachable, it does
+  not touch folder structure.
+- Verified directly against the real Google Drive API in a throwaway
+  script (not the full attach-issue-evidence.sh, to avoid posting a real
+  issue comment while testing): created a test subfolder, confirmed a
+  second lookup call deterministically returns the same folder id
+  (idempotent — reruns for the same issue won't create duplicate
+  subfolders), uploaded a file into it and confirmed the Drive API
+  response's `parents` pointed at the subfolder, then deleted the test
+  folder to leave the real Drive folder clean.
+- `npm test` (30/30) and `npm run build` both pass.
+- No unresolved issues.
+
+## 2026-09-19: Fix Issue #51 follow-up - GitHub Issue shortcut file in Drive subfolder
+
+- Additional spec from the issue reporter's follow-up comment on #51:
+  create a shortcut file inside the per-issue Drive subfolder that links
+  back to the GitHub Issue itself (`https://github.com/mitsuru2/docker-nodejs-study/issues/<number>`).
+- Fix: scripts/attach-issue-evidence.sh now resolves the issue's URL via
+  `gh issue view "$issue_number" --json url -q .url`, then finds-or-creates
+  a `github-issue.url` file in the `issue-<number>` subfolder (Windows
+  Internet Shortcut format: `[InternetShortcut]\r\nURL=<issue url>\r\n`,
+  uploaded with contentType `application/internet-shortcut`). Uses the
+  same idempotent find-or-create pattern as the subfolder itself, so
+  reruns for the same issue reuse the existing shortcut instead of
+  creating duplicates.
+- Verified directly against the real Google Drive API in a throwaway
+  script (not the full attach-issue-evidence.sh, to avoid posting a real
+  issue comment while testing): ran the ensure-shortcut logic twice
+  back-to-back, confirmed both runs returned the identical file id
+  (idempotent, no duplicate on rerun), confirmed exactly one
+  `github-issue.url` file existed afterward, downloaded and verified its
+  content matched the expected Internet Shortcut format with the correct
+  issue URL, then deleted the test folder to leave the real Drive folder
+  clean.
+- `npm test` (30/30) and `npm run build` both pass.
+- No unresolved issues.
+
+## 2026-09-19: Fix Issue #51 follow-up - Revert GitHub Issue shortcut file spec
+
+- The issue reporter posted a further follow-up comment on #51 retracting
+  the shortcut-file spec added in the previous commit (0b6156e): "サブフォルダ内に
+  GitHub Issues へのショートカットファイルを作成する仕様を取り消します。最初の修正の状態に戻してください。"
+  (revoke the shortcut-file spec; revert to the state of the first fix).
+- Fix: removed the shortcut-file find-or-create block from
+  scripts/attach-issue-evidence.sh (the `issue_url` lookup via `gh issue
+  view`, and the `github-issue.url` search/create logic). The script's
+  executable logic now matches commit 407a83c exactly (`git diff 407a83c
+  -- scripts/attach-issue-evidence.sh` shows no logic differences, only a
+  minor header-comment wording change describing the subfolder as
+  "created on first use"). Only the issue-<number> Drive subfolder
+  find-or-create + zip-upload behavior remains.
+- Verified directly against the real Google Drive API in a throwaway
+  script: created a test subfolder, uploaded a test zip into it
+  (subfolder + zip-upload path still works), then confirmed no
+  `github-issue.url` file exists in the folder (shortcut feature fully
+  removed), then deleted the test folder to leave the real Drive folder
+  clean.
+- `npm test` (30/30) and `npm run build` both pass.
+- No unresolved issues.
