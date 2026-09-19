@@ -8,56 +8,52 @@ sudo chown node node_modules
 sudo mkdir -p /home/node/.claude
 sudo chown -R node:node /home/node/.claude
 
-# secrets.env の読み込み (npm ci より前に環境変数を反映させる)
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SECRETS_ENV="$SCRIPT_DIR/secrets.env"
-
-if [ -f "$SECRETS_ENV" ]; then
-  echo ""
-  echo "=== secrets.env を読み込み中 ==="
-  set -a
-  source "$SECRETS_ENV"
-  set +a
-
-  # 新しいシェルでも環境変数が使えるように .bashrc に読み込み設定を追加
-  MARKER="# .devcontainer/secrets.env"
-  if ! grep -qF "$MARKER" /home/node/.bashrc 2>/dev/null; then
-    {
-      echo ""
-      echo "$MARKER"
-      echo "set -a"
-      echo "source \"$SECRETS_ENV\""
-      echo "set +a"
-    } >> /home/node/.bashrc
-  fi
+## git のコミット用ユーザー名・メールアドレス設定
+## VS Code の Dev Containers 拡張を使う場合はホストの ~/.gitconfig が自動転送されるが、
+## それ以外の方法でコンテナを起動したセッション (例: VS Code を介さない Claude Code
+## セッション) では転送が効かず未設定になる。secrets.env 経由で明示的に設定することで、
+## どちらの起動経路でも git commit がユーザー名・メール未設定エラーにならないようにする。
+echo ""
+echo "=== git config user.name / user.email ==="
+if [ -z "${GIT_USER_NAME:-}" ] || [ -z "${GIT_USER_EMAIL:-}" ]; then
+  echo "GIT_USER_NAME / GIT_USER_EMAIL が設定されていません。スキップします。"
+  echo "secrets.env に GIT_USER_NAME=... / GIT_USER_EMAIL=... を追加してください。"
 else
-  echo "secrets.env が見つかりません: $SECRETS_ENV"
+  git config --global user.name "$GIT_USER_NAME"
+  git config --global user.email "$GIT_USER_EMAIL"
+  echo "git commit のユーザーを設定しました: $GIT_USER_NAME <$GIT_USER_EMAIL>"
 fi
 
-# variables.env の読み込み (docker/runner/build.sh 用の AZURE_ACR_NAME / AZURE_RG_NAME 等)
-VARIABLES_ENV="$SCRIPT_DIR/variables.env"
-
-if [ -f "$VARIABLES_ENV" ]; then
-  echo ""
-  echo "=== variables.env を読み込み中 ==="
-  set -a
-  source "$VARIABLES_ENV"
-  set +a
-
-  # 新しいシェルでも環境変数が使えるように .bashrc に読み込み設定を追加
-  MARKER="# .devcontainer/variables.env"
-  if ! grep -qF "$MARKER" /home/node/.bashrc 2>/dev/null; then
-    {
-      echo ""
-      echo "$MARKER"
-      echo "set -a"
-      echo "source \"$VARIABLES_ENV\""
-      echo "set +a"
-    } >> /home/node/.bashrc
-  fi
+## GitHub CLI (gh) の認証設定
+## GH_TOKEN (または GITHUB_TOKEN) が secrets.env 経由で環境変数にあれば、
+## gh コマンドはログイン不要でそれを使う。ここでは git 自体 (git push/pull 等) も
+## 同じトークンで認証できるよう、git の credential.helper を gh に向ける。
+echo ""
+echo "=== gh auth setup-git ==="
+if ! command -v gh >/dev/null 2>&1; then
+  echo "gh コマンドが見つかりません。スキップします。"
+elif [ -z "${GH_TOKEN:-}" ] && [ -z "${GITHUB_TOKEN:-}" ]; then
+  echo "GH_TOKEN / GITHUB_TOKEN が設定されていません。スキップします。"
 else
-  echo "variables.env が見つかりません: $VARIABLES_ENV"
+  gh auth setup-git
+  echo "git の credential.helper を gh に設定しました。"
+
+  echo ""
+  echo "=== gh auth status ==="
+  gh auth status
 fi
+
+## node_modules フォルダをリンク
+## Dev Containers 拡張でワークスペースが強制的にずらされるため
+echo ""
+echo "=== make link to node_modules ==="
+if [ -e "${PWD}/node_modules" ]; then
+  echo "node_modules は既に存在するため、リンク作成をスキップしました: ${PWD}/node_modules"
+else
+  ln -sfn /app/node_modules "${PWD}"
+  echo "/app/node_modules をワークスペースにリンクしました。"
+fi
+
 
 # 証明書の取得とインストール
 # echo "Waiting for Cosmos DB Emulator..."
@@ -74,3 +70,12 @@ fi
 
 # Cosmos DBエミュレーターに初期データを注入
 # node ./.devcontainer/seed-cosmos.mjs
+
+## gitのステータスを表示
+echo ""
+echo "=== git fetch --prune ==="
+git fetch --prune
+
+echo ""
+echo "=== git status ==="
+git status
