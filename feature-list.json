@@ -9,7 +9,7 @@
     {
       "name": "gdrive-evidence-subfolder",
       "status": "done",
-      "description": "scripts/attach-issue-evidence.sh uploads test-evidence zips into a per-issue Google Drive subfolder named issue-<number> under GDRIVE_FOLDER_ID (created on first use, reused thereafter) instead of dumping all zips into the shared root folder, and also creates a github-issue.url shortcut file in that subfolder linking back to the GitHub Issue (idempotent, created once). Fixes Issue #51.",
+      "description": "scripts/attach-issue-evidence.sh uploads test-evidence zips into a per-issue Google Drive subfolder named issue-<number> under GDRIVE_FOLDER_ID (created on first use, reused thereafter) instead of dumping all zips into the shared root folder. Fixes Issue #51. (A follow-up GitHub-Issue shortcut-file feature was added and then retracted by the issue reporter; the shipped behavior is subfolder-only.)",
       "updatedAt": "2026-09-19"
     }
   ]
