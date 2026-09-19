@@ -100,3 +100,41 @@
   clean.
 - `npm test` (30/30) and `npm run build` both pass.
 - No unresolved issues.
+
+## 2026-09-19: Fix Issue #54 - Back to home screen by clicking title text
+
+- Feature request: clicking the app-shell title text (`labels.common.title1`
+  / `labels.common.title2`) should navigate back to the home screen, in both
+  PC and mobile layouts, with the mouse cursor changed to a pointer.
+- Fix: wrapped the existing title markup (both the PC single-line `<h1>`
+  and the mobile two-line `<h1>` + `.sub-title` block) in a single `<a
+  class="title-link" [routerLink]="homeLink">` anchor in
+  src/app/feature/app-shell/app-shell.html. Added `RouterLink` to the
+  standalone component's `imports` and a `protected readonly homeLink =
+  '/' + PagePath.Home` field in src/app/feature/app-shell/app-shell.ts.
+  Using a native `<a routerLink>` (rather than a `(click)` handler on a
+  `<div>`) gives keyboard focus/activation and correct link semantics for
+  free, without any extra ARIA wiring.
+- Added `[attr.aria-label]="labels.common.home"` on the anchor so screen
+  readers announce it as the existing "ホーム" (Home) label rather than
+  reading out the full title/subtitle text as a link name.
+- src/app/feature/app-shell/app-shell.scss: added a `.title-link` rule
+  (`color: inherit; text-decoration: none; cursor: pointer;`) so the
+  anchor doesn't pick up default blue/underline link styling while still
+  showing the pointer cursor required by the issue. Left the browser's
+  default focus outline untouched for keyboard-focus visibility.
+- Verified with Playwright against `ng serve` (both a 1280x800 desktop
+  viewport and a 390x844 mobile viewport): starting from `/ja/career`,
+  clicking the title anchor navigates to `/ja/home` in both layouts;
+  `getComputedStyle(...).cursor` on the anchor reports `"pointer"` in
+  both layouts; no console errors. Also ran `@axe-core/playwright`
+  against both viewports before and after the change (diffed against the
+  pre-change baseline) — the only AXE violations present
+  (`landmark-one-main`, `region`, plus a couple of unrelated pre-existing
+  content issues on the career/home pages) already existed before this
+  change (previously anchored on the bare `h1`/`.main`/`.footer`
+  elements); no new violation categories were introduced by wrapping the
+  title in the anchor.
+- `npm test` (30/30), `npm run lint` ("All files pass linting."), and
+  `npm run build` all pass.
+- No unresolved issues.
