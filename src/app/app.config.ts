@@ -57,6 +57,10 @@ export const commonConfig: ApplicationConfig = {
       ripple: true,
       theme: {
         preset: CustomPreset,
+        options: {
+          // ブラウザ/OSのダークモード設定に依らず、常にライトモードで表示する (Issue #49)。
+          darkModeSelector: 'none',
+        },
       },
       license: primeNgLicense,
     }),
