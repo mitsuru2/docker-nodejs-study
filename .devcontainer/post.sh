@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e # エラーが発生したらスクリプト終了。
 
-# 所有権の変更
-sudo chown node node_modules
-
 # Claude Codeログイン
 sudo mkdir -p /home/node/.claude
 sudo chown -R node:node /home/node/.claude
