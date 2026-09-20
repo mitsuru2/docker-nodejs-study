@@ -1,11 +1,9 @@
 <app-app-shell>
   <div class="container">
-    <div class="title-image">
-      <img [src]="titleImage" [alt]="labels.common.career" />
-    </div>
+    <app-article [article]="article()"></app-article>
 
     <!-- 職務経歴 -->
-    <h2>{{ labels.career.experience }}</h2>
+    <!-- <h2>{{ labels.career.experience }}</h2> -->
     <div class="experience-track">
       @for (experience of experiences(); track $index) {
         <app-experience [experience]="experience"></app-experience>

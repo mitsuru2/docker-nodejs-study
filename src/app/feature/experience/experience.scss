@@ -28,7 +28,53 @@
   margin-top: 1rem;
 }
 
-@media screen and (max-width: v.$bp-tablet) {
+$header-column-width: 8rem;
+
+.responsive-table {
+  display: grid;
+  grid-template-columns: $header-column-width minmax(0, 1fr) $header-column-width minmax(0, 1fr);
+
+  // 1pxのgapで枠線を表現。gridにはborder-collapseに相当する機能がないため。
+  background-color: black;
+  border: 1px solid black;
+  gap: 1px;
+
+  margin: 0.6rem 0;
+
+  .cell {
+    background-color: white;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .cell.header {
+    background-color: lavender;
+  }
+
+  // 2列目から最終列まで結合
+  .wide {
+    grid-column: 2 / -1;
+  }
+
+  // セル内の箇条書きのマージン削除
+  ul {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+}
+
+.between {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.achievment {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.3rem;
+}
+
+@media screen and (max-width: v.$bp-mobile) {
   .title-container {
     display: block;
 
@@ -41,6 +87,10 @@
       margin-bottom: 0;
       text-align: left;
     }
+  }
+
+  .responsive-table {
+    grid-template-columns: $header-column-width minmax(0, 1fr);
   }
 }
 

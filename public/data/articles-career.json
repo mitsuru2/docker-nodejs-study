@@ -1,83 +1,123 @@
 [
   {
-    "id": "b30722d9-02d7-4d54-8204-1d670a1ca0fd",
+    "id": "074cb091-5542-40cd-be3f-9e496f17fa89",
     "pk": "career",
-    "type": "experience",
-    "date": "2026-01-01",
+    "type": "article",
     "isPublished": true,
-    "role": { "ja": "プロダクトオーナー", "en": "Product Owner" },
-    "company": { "ja": "ボッシュ株式会社 / ETAS株式会社", "en": "Bosch Corporation / ETAS K.K." },
-    "term": { "ja": "2017 - 2026" },
-    "achievements": [
+    "paragraphs": [
       {
         "title": {
-          "ja": "顧客志向の提案による次世代システムの独占受注",
-          "en": "Securing Exclusive Orders through Client-Centric Proposals"
+          "ja": "職務経歴",
+          "en": "Career History"
+        },
+        "titleImage": {
+          "path": "images/career_4x1.webp",
+          "alt": { "ja": "職務経歴タイトル画像", "en": "Career history title image." }
         },
         "contents": [
           {
-            "ja": "ビジネス制約とシステムアーキテクチャのトレードオフを最適化し、顧客の課題解決に寄り添った堅実な提案を完遂。その信頼関係を基盤として、次世代車両診断システムの独占受注を実現しました。",
-            "en": "Optimized tradeoffs between business constraints and system architecture to deliver robust solutions that truly addressed client challenges. Building on this trust, I successfully secured exclusive orders for next-generation vehicle diagnostic systems."
-          }
-        ]
-      },
-      {
-        "title": {
-          "ja": "プラットフォーム活用によるトレーサビリティ体系の構築",
-          "en": "Establishing Traceability via Platform Integration"
-        },
-        "contents": [
-          {
-            "ja": "最新の開発プロセス認証へのコンプライアンス対応と組織間のレビュー効率改善のため、Confluenceを活用した包括的なトレーサビリティ管理体系を構築。品質担保と業務効率化を両立させました。",
-            "en": "To ensure compliance with the latest development process certifications and improve cross-organizational review efficiency, I built a comprehensive traceability management system using Confluence. This achieved both robust quality assurance and streamlined operations."
+            "ja": "2009年から現在に至るまでの職務経歴と、主な担当業務と実績について以下にまとめます。",
+            "en": "Below is a summary of my work history from 2009 to the present, along with the main responsibilities and achievements for each role."
           }
         ]
       }
-    ]
+    ],
+    "_rid": "0xMCAKzg5zYBAAAAAAAAAA==",
+    "_self": "dbs/0xMCAA==/colls/0xMCAKzg5zY=/docs/0xMCAKzg5zYBAAAAAAAAAA==/",
+    "_etag": "\"00000000-0000-0000-c730-ecaa140501dc\"",
+    "_attachments": "attachments/",
+    "_ts": 1775636585
   },
   {
     "id": "b30722d9-02d7-4d54-8204-1d670a1ca0fd",
     "pk": "career",
     "type": "experience",
-    "date": "2025-01-01",
+    "date": "2026-01-01",
     "isPublished": true,
-    "role": { "ja": "システムアーキテクト", "en": "System Architect" },
-    "company": { "ja": "ボッシュ株式会社 / ETAS株式会社", "en": "Bosch Corporation / ETAS K.K." },
-    "term": { "ja": "2017 - 2026" },
-    "achievements": [
+    "company": {
+      "name": {
+        "ja": "ボッシュ株式会社 / イータス株式会社",
+        "en": "Bosch Corporation / ETAS K.K."
+      },
+      "business": {
+        "ja": "車載組み込みシステム向けの開発・テスト・診断ツールおよびソフトウェア、サイバーセキュリティ関連のソリューションを提供。車両診断システムの開発を担当。",
+        "en": "Provides development, testing, and diagnostic tools and software for automotive embedded systems, as well as cybersecurity-related solutions. I was responsible for developing the vehicle diagnostic system."
+      },
+      "employeeCounts": {
+        "ja": "約2,700名 (連結)",
+        "en": "Around 2,700 (Consolidated)"
+      },
+      "sales": {
+        "ja": "約970億円 (連結)",
+        "en": "Around 540M EUR (Consolidated)"
+      },
+      "note": {
+        "ja": "2024年に事業譲渡によりボッシュからイータスに転籍。業務内容が継続しているためまとめて記載しています。",
+        "en": "Transferred from Bosch to ETAS in 2024 due to a business transfer. Since the work has continued without interruption, it is described together as one entry."
+      }
+    },
+    "term": { "ja": "2017 - Today" },
+    "projects": [
       {
-        "title": {
-          "ja": "モダンなフロントエンド環境の構築と技術選定",
-          "en": "Building Sustainable Frontend Environments and Tech Selection"
+        "name": {
+          "ja": "既存車両診断システムの変更開発プロジェクト",
+          "en": "Change development of vehicle diagnostic system"
         },
-        "contents": [
+        "teamSize": {
+          "ja": "4名",
+          "en": "4 people"
+        },
+        "roles": [
           {
-            "ja": "車両診断システム開発において、フレームワーク選定とCIプロセスを含めた全体設計を担当。フロントエンドのプロトタイプおよび開発環境構築を主導し、開発チームへのスムーズな技術導入を実現しました。",
-            "en": "Responsible for the overall design of vehicle diagnostic systems, including framework selection and CI processes. I led the development of frontend prototypes and environment setup, ensuring smooth technical integration for the development team."
+            "ja": "プロジェクトマネージャー / システムアーキテクト",
+            "en": "Project Manager / System Architect"
           }
-        ]
+        ],
+        "description": {
+          "ja": "日系OEM向け既存車両診断システムの定期更新および機能改善プロジェクト",
+          "en": ""
+        },
+        "achievements": []
       },
       {
-        "title": {
-          "ja": "コンプライアンス要件を内包した持続可能な設計",
-          "en": "Sustainable Design with Legal Compliance"
+        "name": {
+          "ja": "次世代車両診断システム開発プロジェクト",
+          "en": "Next-gen Vehicle Diagnostic system development"
         },
-        "contents": [
-          {
-            "ja": "OSSライセンス管理や輸出管理規制への対応を設計段階で組み込み、継続的なメンテナンス性と法規制遵守を両立する運用ワークフローを構築。製品の持続可能性を技術面から担保しました。",
-            "en": "Incorporated OSS license management and export control regulations into the design phase, establishing operational workflows that balance long-term maintainability with legal compliance. I ensured product sustainability through a robust technical foundation."
-          }
-        ]
-      },
-      {
-        "title": {
-          "ja": "エンジニアリング・エクセレンスの追求による開発の加速",
-          "en": "Accelerating Development through Engineering Excellence"
+        "teamSize": { "ja": "平均約10名", "en": "Around 10 people in average" },
+        "description": {
+          "ja": "新規車両診断システムの日系OEMへの導入PJ。<br>プロダクトオーナー兼システムアーキテクトとして、初期提案からPoCまでを一貫して担当",
+          "en": ""
         },
-        "contents": [
+        "roles": [
+          { "ja": "要件調整, ソリューション提案, プロジェクト管理", "en": "" },
+          { "ja": "仕様作成, システム設計 (CI/CDやクラウドリソース含む)" },
+          { "ja": "開発環境開発, 開発プロセステーラリング, その他開発サポート" }
+        ],
+        "achievements": [
           {
-            "ja": "GitHub ActionsやWebDriverIOを活用し、静的解析・回帰テスト・リリース文書作成の自動化パイプラインを設計。品質を維持しながら開発リードタイムを大幅に短縮するエンジニアリング環境を実現しました。",
-            "en": "Designed automation pipelines using GitHub Actions and WebDriverIO for static analysis, regression testing, and release documentation. This established an engineering environment that significantly reduced lead times while maintaining high quality."
+            "title": {
+              "ja": "顧客志向の提案による次世代システムの独占受注",
+              "en": "Securing Exclusive Orders through Client-Centric Proposals"
+            },
+            "contents": [
+              {
+                "ja": "ビジネス制約とシステムアーキテクチャのトレードオフを最適化し、顧客の課題解決に寄り添った堅実な提案を完遂。その信頼関係を基盤として、次世代車両診断システムの独占受注を実現しました。",
+                "en": "Optimized tradeoffs between business constraints and system architecture to deliver robust solutions that truly addressed client challenges. Building on this trust, I successfully secured exclusive orders for next-generation vehicle diagnostic systems."
+              }
+            ]
+          },
+          {
+            "title": {
+              "ja": "プラットフォーム活用によるトレーサビリティ体系の構築",
+              "en": "Establishing Traceability via Platform Integration"
+            },
+            "contents": [
+              {
+                "ja": "最新の開発プロセス認証へのコンプライアンス対応と組織間のレビュー効率改善のため、Confluenceを活用した包括的なトレーサビリティ管理体系を構築。品質担保と業務効率化を両立させました。",
+                "en": "To ensure compliance with the latest development process certifications and improve cross-organizational review efficiency, I built a comprehensive traceability management system using Confluence. This achieved both robust quality assurance and streamlined operations."
+              }
+            ]
           }
         ]
       }
@@ -89,58 +129,63 @@
     "type": "experience",
     "date": "2017-01-01",
     "isPublished": true,
-    "role": { "ja": "ソフトウェアリードエンジニア", "en": "Software Lead Engineer" },
-    "company": { "ja": "株式会社ＩＨＩ", "en": "IHI Corporation" },
-    "term": { "ja": "2013 - 2017" },
-    "achievements": [
-      {
-        "title": {
-          "ja": "社内初のECU開発におけるAUTOSARアーキテクチャの構築",
-          "en": "Establishing AUTOSAR Architecture for Initial ECU Development"
-        },
-        "contents": [
-          {
-            "ja": "同社初となるECU開発プロジェクトにおいて、SWアーキテクチャの基本設計を主導。すべてのAUTOSAR BSWおよびMCALのコンフィグレーションを完遂し、製品開発の技術的土台を確立しました。",
-            "en": "Led the fundamental software architecture design for the company's first ECU development project. I successfully completed all AUTOSAR BSW and MCAL configurations, establishing the technical foundation for product development."
-          }
-        ]
-      },
-      {
-        "title": {
-          "ja": "A-SPICE Lv.1認証取得を支えた開発プロセス策定",
-          "en": "Establishing Development Processes for A-SPICE Level 1 Certification"
-        },
-        "contents": [
-          {
-            "ja": "A-SPICE準拠の開発プロセス構築およびドキュメント体系の整備を牽引。実効性の高いワークフローを定着させることで、組織としてのA-SPICE Lv.1認証取得に大きく貢献しました。",
-            "en": "Led the construction of A-SPICE compliant development processes and documentation systems. By establishing highly effective workflows, I contributed significantly to the organization achieving A-SPICE Level 1 certification."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "aec3c502-93db-4db4-8d09-b8927903a0a8",
-    "pk": "career",
-    "type": "experience",
-    "date": "2012-01-01",
-    "isPublished": true,
-    "role": { "ja": "組込みソフトウェアエンジニア", "en": "Embedded Software Engineer" },
     "company": {
-      "ja": "ソニーデジタルネットワークアプリケーションズ株式会社",
-      "en": "Sony Digital Network Applications, Inc."
+      "name": { "ja": "株式会社ＩＨＩ", "en": "IHI Corporation" },
+      "business": {
+        "ja": "資源・エネルギー・環境、社会基盤、産業システム・汎用機械、航空・宇宙・防衛の各分野を手がける重工業メーカー。車両用ターボチャージャーのECU開発を担当。",
+        "en": ""
+      },
+      "employeeCounts": {
+        "ja": "約2,700名 (連結)",
+        "en": "Around 2,700 (Consolidated)"
+      },
+      "sales": {
+        "ja": "約970億円 (連結)",
+        "en": "Around 540M EUR"
+      }
     },
-    "term": { "ja": "2009 - 2012" },
-    "achievements": [
+    "term": { "ja": "2013 - 2017" },
+    "projects": [
       {
-        "title": {
-          "ja": "SoC用SDKにおける動画制御システムの開発",
-          "en": "Developing Video Control Systems for SoC SDKs"
+        "name": { "ja": "電動ターボチャージャー開発プロジェクト" },
+        "teamSize": {
+          "ja": "7名",
+          "en": "7 people"
         },
-        "contents": [
+        "roles": [
+          { "ja": "仕様作成, ECUシステム設計" },
+          { "ja": "AUTOSARコンフィグレーション" },
+          { "ja": "試作品生産ライン向けシステム開発" },
+          { "ja": "開発プロセス策定, A-SPICEアセスメント対応" }
+        ],
+        "description": {
+          "ja": "",
+          "en": ""
+        },
+        "achievements": [
           {
-            "ja": "デジタルカメラSoC用SDKの開発において、動画機能の設計開発を担当。厳しいメモリ制約下で、ハイスピード撮影等膨大なデータ処理を伴う複数のデータフローの制御ロジックを開発しました。",
-            "en": "Responsible for the design and development of video features within a digital camera SoC SDK. Under strict memory constraints, I developed control logic to manage multiple data flows for high-speed recording and other tasks involving massive data processing."
+            "title": {
+              "ja": "社内初のECU開発におけるAUTOSARアーキテクチャの構築",
+              "en": "Establishing AUTOSAR Architecture for Initial ECU Development"
+            },
+            "contents": [
+              {
+                "ja": "同社初となるECU開発プロジェクトにおいて、SWアーキテクチャの基本設計を主導。すべてのAUTOSAR BSWおよびMCALのコンフィグレーションを完遂し、製品開発の技術的土台を確立しました。",
+                "en": "Led the fundamental software architecture design for the company's first ECU development project. I successfully completed all AUTOSAR BSW and MCAL configurations, establishing the technical foundation for product development."
+              }
+            ]
+          },
+          {
+            "title": {
+              "ja": "A-SPICE Lv.1認証取得を支えた開発プロセス策定",
+              "en": "Establishing Development Processes for A-SPICE Level 1 Certification"
+            },
+            "contents": [
+              {
+                "ja": "A-SPICE準拠の開発プロセス構築およびドキュメント体系の整備を牽引。実効性の高いワークフローを定着させることで、組織としてのA-SPICE Lv.1認証取得に大きく貢献しました。",
+                "en": "Led the construction of A-SPICE compliant development processes and documentation systems. By establishing highly effective workflows, I contributed significantly to the organization achieving A-SPICE Level 1 certification."
+              }
+            ]
           }
         ]
       }

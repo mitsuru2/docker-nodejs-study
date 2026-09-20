@@ -1,0 +1,266 @@
+[
+  {
+    "id": "b30722d9-02d7-4d54-8204-1d670a1ca0fd",
+    "pk": "career",
+    "type": "experience",
+    "date": "2026-01-01",
+    "isPublished": true,
+    "role": {
+      "ja": "プロダクトオーナー",
+      "en": "Product Owner"
+    },
+    "company": {
+      "ja": "ボッシュ株式会社 / ETAS株式会社",
+      "en": "Bosch Corporation / ETAS K.K."
+    },
+    "term": {
+      "ja": "2017 - 2026"
+    },
+    "achievements": [
+      {
+        "title": {
+          "ja": "顧客志向の提案による次世代システムの独占受注",
+          "en": "Securing Exclusive Orders through Client-Centric Proposals"
+        },
+        "contents": [
+          {
+            "ja": "ビジネス制約とシステムアーキテクチャのトレードオフを最適化し、顧客の課題解決に寄り添った堅実な提案を完遂。その信頼関係を基盤として、次世代車両診断システムの独占受注を実現しました。",
+            "en": "Optimized tradeoffs between business constraints and system architecture to deliver robust solutions that truly addressed client challenges. Building on this trust, I successfully secured exclusive orders for next-generation vehicle diagnostic systems."
+          }
+        ]
+      },
+      {
+        "title": {
+          "ja": "プラットフォーム活用によるトレーサビリティ体系の構築",
+          "en": "Establishing Traceability via Platform Integration"
+        },
+        "contents": [
+          {
+            "ja": "最新の開発プロセス認証へのコンプライアンス対応と組織間のレビュー効率改善のため、Confluenceを活用した包括的なトレーサビリティ管理体系を構築。品質担保と業務効率化を両立させました。",
+            "en": "To ensure compliance with the latest development process certifications and improve cross-organizational review efficiency, I built a comprehensive traceability management system using Confluence. This achieved both robust quality assurance and streamlined operations."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b30722d9-02d7-4d54-8204-1d670a1ca0fd",
+    "pk": "career",
+    "type": "experience",
+    "date": "2025-01-01",
+    "isPublished": true,
+    "role": {
+      "ja": "システムアーキテクト",
+      "en": "System Architect"
+    },
+    "company": {
+      "ja": "ボッシュ株式会社 / ETAS株式会社",
+      "en": "Bosch Corporation / ETAS K.K."
+    },
+    "term": {
+      "ja": "2017 - 2026"
+    },
+    "achievements": [
+      {
+        "title": {
+          "ja": "モダンなフロントエンド環境の構築と技術選定",
+          "en": "Building Sustainable Frontend Environments and Tech Selection"
+        },
+        "contents": [
+          {
+            "ja": "車両診断システム開発において、フレームワーク選定とCIプロセスを含めた全体設計を担当。フロントエンドのプロトタイプおよび開発環境構築を主導し、開発チームへのスムーズな技術導入を実現しました。",
+            "en": "Responsible for the overall design of vehicle diagnostic systems, including framework selection and CI processes. I led the development of frontend prototypes and environment setup, ensuring smooth technical integration for the development team."
+          }
+        ]
+      },
+      {
+        "title": {
+          "ja": "コンプライアンス要件を内包した持続可能な設計",
+          "en": "Sustainable Design with Legal Compliance"
+        },
+        "contents": [
+          {
+            "ja": "OSSライセンス管理や輸出管理規制への対応を設計段階で組み込み、継続的なメンテナンス性と法規制遵守を両立する運用ワークフローを構築。製品の持続可能性を技術面から担保しました。",
+            "en": "Incorporated OSS license management and export control regulations into the design phase, establishing operational workflows that balance long-term maintainability with legal compliance. I ensured product sustainability through a robust technical foundation."
+          }
+        ]
+      },
+      {
+        "title": {
+          "ja": "エンジニアリング・エクセレンスの追求による開発の加速",
+          "en": "Accelerating Development through Engineering Excellence"
+        },
+        "contents": [
+          {
+            "ja": "GitHub ActionsやWebDriverIOを活用し、静的解析・回帰テスト・リリース文書作成の自動化パイプラインを設計。品質を維持しながら開発リードタイムを大幅に短縮するエンジニアリング環境を実現しました。",
+            "en": "Designed automation pipelines using GitHub Actions and WebDriverIO for static analysis, regression testing, and release documentation. This established an engineering environment that significantly reduced lead times while maintaining high quality."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aec3c502-93db-4db4-8d09-b8927903a0a8",
+    "pk": "career",
+    "type": "experience",
+    "date": "2017-01-01",
+    "isPublished": true,
+    "role": {
+      "ja": "ソフトウェアリードエンジニア",
+      "en": "Software Lead Engineer"
+    },
+    "company": {
+      "ja": "株式会社ＩＨＩ",
+      "en": "IHI Corporation"
+    },
+    "term": {
+      "ja": "2013 - 2017"
+    },
+    "achievements": [
+      {
+        "title": {
+          "ja": "社内初のECU開発におけるAUTOSARアーキテクチャの構築",
+          "en": "Establishing AUTOSAR Architecture for Initial ECU Development"
+        },
+        "contents": [
+          {
+            "ja": "同社初となるECU開発プロジェクトにおいて、SWアーキテクチャの基本設計を主導。すべてのAUTOSAR BSWおよびMCALのコンフィグレーションを完遂し、製品開発の技術的土台を確立しました。",
+            "en": "Led the fundamental software architecture design for the company's first ECU development project. I successfully completed all AUTOSAR BSW and MCAL configurations, establishing the technical foundation for product development."
+          }
+        ]
+      },
+      {
+        "title": {
+          "ja": "A-SPICE Lv.1認証取得を支えた開発プロセス策定",
+          "en": "Establishing Development Processes for A-SPICE Level 1 Certification"
+        },
+        "contents": [
+          {
+            "ja": "A-SPICE準拠の開発プロセス構築およびドキュメント体系の整備を牽引。実効性の高いワークフローを定着させることで、組織としてのA-SPICE Lv.1認証取得に大きく貢献しました。",
+            "en": "Led the construction of A-SPICE compliant development processes and documentation systems. By establishing highly effective workflows, I contributed significantly to the organization achieving A-SPICE Level 1 certification."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aec3c502-93db-4db4-8d09-b8927903a0a8",
+    "pk": "career",
+    "type": "experience",
+    "date": "2012-01-01",
+    "isPublished": true,
+    "role": {
+      "ja": "組込みソフトウェアエンジニア",
+      "en": "Embedded Software Engineer"
+    },
+    "company": {
+      "ja": "ソニーデジタルネットワークアプリケーションズ株式会社",
+      "en": "Sony Digital Network Applications, Inc."
+    },
+    "term": {
+      "ja": "2009 - 2012"
+    },
+    "achievements": [
+      {
+        "title": {
+          "ja": "SoC用SDKにおける動画制御システムの開発",
+          "en": "Developing Video Control Systems for SoC SDKs"
+        },
+        "contents": [
+          {
+            "ja": "デジタルカメラSoC用SDKの開発において、動画機能の設計開発を担当。厳しいメモリ制約下で、ハイスピード撮影等膨大なデータ処理を伴う複数のデータフローの制御ロジックを開発しました。",
+            "en": "Responsible for the design and development of video features within a digital camera SoC SDK. Under strict memory constraints, I developed control logic to manage multiple data flows for high-speed recording and other tasks involving massive data processing."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ccc07864-98a4-4b7f-aac3-5e9623e6cb01",
+    "pk": "career",
+    "type": "qualification",
+    "date": "2015-09-25",
+    "isPublished": true,
+    "name": {
+      "ja": "自動車機能安全実務者認定 (AFSP-B) ISO 26262:2011",
+      "en": "Automotive Functional Safety Practitioner - Basic (AFSP-B) ISO 26262:2011"
+    },
+    "year": 2015,
+    "issuer": "DNV"
+  },
+  {
+    "id": "074cb091-5542-40cd-be3f-9e496f17fa89",
+    "pk": "career",
+    "type": "qualification",
+    "date": "2019-05-13",
+    "isPublished": true,
+    "name": {
+      "ja": "TOEIC L&R テスト 780点",
+      "en": "TOEIC L&R Test Score: 780"
+    },
+    "year": 2019,
+    "issuer": "国際ビジネスコミュニケーション協会"
+  },
+  {
+    "id": "eee09321-5e63-44cd-ac6f-7febd57e9369",
+    "pk": "career",
+    "type": "qualification",
+    "date": "2015-06-19",
+    "isPublished": true,
+    "name": {
+      "ja": "情報処理技術者試験 応用情報技術者試験 合格",
+      "en": "Applied Information Technology Engineer Examination - Certified"
+    },
+    "year": 2015,
+    "issuer": "経済産業省 (IPA実施)"
+  },
+  {
+    "id": "38a93b6c-072b-4031-8d10-ececda009098",
+    "pk": "career",
+    "type": "qualification",
+    "date": "2017-03-28",
+    "isPublished": true,
+    "name": {
+      "ja": "JSTQB認定テスト技術者資格 Foundation Level",
+      "en": "JSTQB Certified Tester Foundation Level"
+    },
+    "year": 2017,
+    "issuer": "JSTQB (Japan Software Testing Qualifications Board)"
+  },
+  {
+    "id": "0f7320bd-90dd-4139-adee-076cafe5bf5e",
+    "pk": "career",
+    "type": "award",
+    "date": "2007-09-30",
+    "isPublished": true,
+    "name": {
+      "ja": "国際学生対抗バーチャルリアリティコンテスト 未来観客賞受賞",
+      "en": "International collegiate Virtual Reality Contest Audience Choice Award"
+    },
+    "year": 2007
+  },
+  {
+    "id": "690ccd37-8748-409b-8cb7-84e8d42ef4c0",
+    "pk": "career",
+    "type": "award",
+    "date": "2015-03-01",
+    "isPublished": true,
+    "name": {
+      "ja": "株式会社ＩＨＩ 技術開発本部 功労表彰 団体一級",
+      "en": "IHI Corporation, Corporate Research and Development Div.: Distinguished Contribution Award (Group Category, First Class)"
+    },
+    "year": 2015
+  },
+  {
+    "id": "c0e6bdfe-302f-4e8c-9b4b-167cf36dd5b7",
+    "pk": "career",
+    "type": "award",
+    "date": "2025-01-01",
+    "isPublished": true,
+    "name": {
+      "ja": "Robert Bosch GmbH グローバルセールス＆マーケティングアワードにて『THE PORTFOLIO SHAPER』受賞",
+      "en": "Robert Bosch GmbH, THE PORTFOLIO SHAPER at Global Sales & Marketing Award"
+    },
+    "year": 2025
+  }
+]

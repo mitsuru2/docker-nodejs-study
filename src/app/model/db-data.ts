@@ -58,13 +58,35 @@ export interface AchievementData {
   contents: MessageData[];
 }
 
+export interface CompanyData {
+  name: MessageData;
+  business: MessageData;
+  employeeCounts: MessageData;
+  sales: MessageData;
+  note?: MessageData;
+}
+
+export interface ProjectData {
+  name: MessageData;
+  teamSize: MessageData;
+  roles: MessageData[];
+  description: MessageData;
+  achievements: AchievementData[];
+}
+
+// export interface ExperienceData extends DbCommonData {
+//   type: 'experience';
+//   role: MessageData;
+//   company: MessageData;
+//   term: MessageData;
+//   achievements?: AchievementData[];
+//   images?: ImageData[];
+// }
 export interface ExperienceData extends DbCommonData {
   type: 'experience';
-  role: MessageData;
-  company: MessageData;
+  company: CompanyData;
   term: MessageData;
-  achievements: AchievementData[];
-  images?: ImageData[];
+  projects: ProjectData[];
 }
 
 export interface QualificationData extends DbCommonData {

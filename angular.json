@@ -133,6 +133,9 @@
             "ui-catalog": {
               "buildTarget": "docker-nodejs-study:build:ui-catalog"
             },
+            "ui-catalog-en": {
+              "buildTarget": "docker-nodejs-study:build:ui-catalog,en-GB"
+            },
             "en-GB": {
               "buildTarget": "docker-nodejs-study:build:development,en-GB"
             }
