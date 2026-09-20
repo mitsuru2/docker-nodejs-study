@@ -41,8 +41,7 @@ h1 {
 }
 
 h2,
-h3,
-h4 {
+h3 {
   margin: var(--p-custom-margin-s) 0;
 }
 
@@ -67,6 +66,20 @@ h3 {
     -webkit-text-fill-color: currentcolor !important;
     color: inherit !important; /* または inherit */
   }
+}
+
+h4 {
+  margin-top: var(--p-custom-margin-m);
+  margin-bottom: var(--p-custom-margin-s);
+  margin-left: 0;
+  margin-right: 0;
+
+  padding-left: 8px;
+
+  background-image: var(--p-custom-gradient-blue-to-purple-vert);
+  background-size: 3px 100%;
+  background-repeat: no-repeat;
+  background-position: left;
 }
 
 h3,

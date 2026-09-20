@@ -2,16 +2,60 @@
 
 @if (data) {
   <div class="title-container">
-    <h3>{{ data.role | localize }}</h3>
+    <h3>{{ data.company.name | localize }}</h3>
     <div class="company">
-      <span>{{ data.company | localize }}</span> | <span>{{ data.term | localize }}</span>
+      <span>({{ data.term | localize }})</span>
     </div>
   </div>
-  @for (achievement of data.achievements; track $index) {
-    <h4>{{ achievement.title | localize }}</h4>
-    @for (desc of achievement.contents; track $index) {
-      <p>{{ desc | localize }}</p>
+  <div class="responsive-table">
+    <div class="cell header">{{ labels.common.business }}</div>
+    <div class="cell wide" [innerHTML]="data.company.business | localize"></div>
+    <div class="cell header">{{ labels.common.sales }}</div>
+    <div class="cell">{{ data.company.sales | localize }}</div>
+    <div class="cell header">{{ labels.common.employee }}</div>
+    <div class="cell">{{ data.company.employeeCounts | localize }}</div>
+    @if (data.company.note) {
+      <div class="cell header">{{ labels.common.note }}</div>
+      <div class="cell wide" [innerHTML]="data.company.note | localize"></div>
     }
+  </div>
+  @for (pj of data.projects; track $index) {
+    <h4>{{ pj.name | localize }}</h4>
+    <div class="responsive-table">
+      <!-- 概要 -->
+      <div class="cell header">{{ labels.common.brief }}</div>
+      <div class="cell wide">
+        <div [innerHTML]="pj.description | localize"></div>
+        <div>{{ labels.common.teamSize }}: {{ pj.teamSize | localize }}</div>
+      </div>
+      <!-- 担当工程 -->
+      <div class="cell header">{{ labels.common.responsibility }}</div>
+      <div class="cell wide">
+        <ul>
+          @for (role of pj.roles; track $index) {
+            <li>
+              {{ role | localize }}
+            </li>
+          }
+        </ul>
+      </div>
+      <!-- 実績 -->
+      <div class="cell header">{{ labels.common.achievement }}</div>
+      <div class="cell wide between">
+        @for (achv of pj.achievements; track $index) {
+          <div class="achievment">
+            @if (achv.title) {
+              <div>
+                <b>{{ achv.title | localize }}</b>
+              </div>
+            }
+            @for (content of achv.contents; track $index) {
+              <div [innerHTML]="content | localize"></div>
+            }
+          </div>
+        }
+      </div>
+    </div>
   }
 } @else {
   <p-skeleton height="2rem" class="skeleton-h2" />

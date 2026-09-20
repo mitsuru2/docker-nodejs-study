@@ -8,6 +8,14 @@ export const i18nLabels = {
     detail: $localize`:@@common.detail:詳細`,
     language: $localize`:@@common.language:言語`,
     expertise: $localize`:@@common.expertise:専門ドメイン`,
+    business: $localize`:@@common.business:事業内容`,
+    employee: $localize`:@@common.employee:従業員数`,
+    sales: $localize`:@@common.sales:売上高`,
+    note: $localize`:@@common.note:備考`,
+    brief: $localize`:@@common.brief:概要`,
+    responsibility: $localize`:@@common.responsibility:担当工程`,
+    achievement: $localize`:@@common.achievement:実績`,
+    teamSize: $localize`:@@common.teamSize:開発チーム`,
   },
   skills: {
     diag: {
