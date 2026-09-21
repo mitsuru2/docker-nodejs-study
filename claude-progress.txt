@@ -138,3 +138,38 @@
 - `npm test` (30/30), `npm run lint` ("All files pass linting."), and
   `npm run build` all pass.
 - No unresolved issues.
+
+## 2026-09-21: Fix Issue #57 - Career page responsibility table wrongly centered on mobile/tablet
+
+- Root cause: `src/app/feature/app-shell/app-shell.scss` sets `.main {
+  text-align: center; }` inside the `@include v.tablet` mixin (`max-width:
+  970px`), which also covers the mobile breakpoint (570px) since it's a
+  subset. This app-shell wrapper surrounds all page content, so the
+  centered text-align was inherited by every descendant on tablet/mobile
+  widths — including the normal (non-header) cells of the "responsive
+  table" used on the career page (`src/app/feature/experience`) to show
+  company/project details (事業内容, 売上高, 従業員数, 概要, 担当工程,
+  実績, etc.).
+- Fix: added a scoped override in
+  `src/app/feature/experience/experience.scss`: `.cell:not(.header) {
+  text-align: left; }` inside the existing `.responsive-table` rule
+  block. This only affects non-header cells, leaving header cells'
+  existing (correct, per the issue) centered appearance on tablet/mobile
+  untouched, and has no effect on PC width where `.main` was never
+  centered in the first place (its cells already computed to `left`
+  there).
+- Verified with Playwright against `ng serve` at three viewports (PC
+  1280px, tablet 800px, mobile 390px): read `getComputedStyle(...).textAlign`
+  on the first three header/value cell pairs of the responsibility
+  table. Before the fix, header and normal cells both computed to
+  `center` on tablet/mobile; after the fix, header cells still compute to
+  `center` (tablet/mobile) / `start` (PC, native default), and normal
+  cells now compute to `left` at all three widths. Screenshots taken at
+  all three viewports confirm the visual left alignment. Also ran
+  `@axe-core/playwright` at tablet and mobile widths — the only
+  violations present (`landmark-one-main`, `region`) are the same
+  pre-existing, unrelated ones noted in earlier sessions; no new
+  violation categories were introduced.
+- `npm test` (30/30), `npm run lint` ("All files pass linting."), and
+  `npm run build` all pass.
+- No unresolved issues.
