@@ -25,11 +25,6 @@
     padding: 0 var(--p-custom-margin-m);
   }
 }
-@media screen and (max-width: v.$bp-mobile) {
-  ul {
-    padding-left: 2rem;
-  }
-}
 
 //------------------------------------------------------------------------------
 // 印刷レイアウト

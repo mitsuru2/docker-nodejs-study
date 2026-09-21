@@ -114,3 +114,9 @@ p-menubar {
     color: #000; /* 読みやすくするために文字を真っ黒にする */
   }
 }
+
+ul {
+  @include v.mobile {
+    padding-left: 2rem;
+  }
+}
