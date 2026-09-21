@@ -17,6 +17,12 @@
       "status": "done",
       "description": "Clicking the app-shell title text (labels.common.title1 / title2) navigates back to the home screen in both PC and mobile layouts; the element is a native <a routerLink> with a pointer cursor, so it is keyboard-focusable and screen-reader friendly out of the box. Fixes Issue #54.",
       "updatedAt": "2026-09-19"
+    },
+    {
+      "name": "career-table-mobile-tablet-left-align",
+      "status": "done",
+      "description": "Normal (non-header) cells of the responsibility table on the career page (src/app/feature/experience) render left-aligned on mobile and tablet widths instead of the inherited centered text-align from app-shell's .main wrapper; header cells remain centered as before, and PC view is unchanged. Fixes Issue #57.",
+      "updatedAt": "2026-09-21"
     }
   ]
 }

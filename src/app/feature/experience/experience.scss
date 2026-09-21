@@ -46,6 +46,12 @@ $header-column-width: 8rem;
     padding: 0.3rem 0.6rem;
   }
 
+  // モバイル・タブレット表示では app-shell の .main が text-align: center を
+  // 継承させるため、通常セルのみ左揃えに上書きする（ヘッダーセルは中央揃えのまま）。
+  .cell:not(.header) {
+    text-align: left;
+  }
+
   .cell.header {
     background-color: lavender;
   }
