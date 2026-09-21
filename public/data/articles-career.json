@@ -132,16 +132,16 @@
     "company": {
       "name": { "ja": "株式会社ＩＨＩ", "en": "IHI Corporation" },
       "business": {
-        "ja": "資源・エネルギー・環境、社会基盤、産業システム・汎用機械、航空・宇宙・防衛の各分野を手がける重工業メーカー。車両用ターボチャージャーのECU開発を担当。",
+        "ja": "資源・エネルギー・環境、社会基盤、産業システム・汎用機械、航空・宇宙・防衛の各分野を手がける重工業メーカー。所属部門では車両用ターボチャージャーのECU開発を担当。",
         "en": ""
       },
       "employeeCounts": {
-        "ja": "約2,700名 (連結)",
-        "en": "Around 2,700 (Consolidated)"
+        "ja": "約2万9000人(連結)",
+        "en": "Around 29,000 (Consolidated)"
       },
       "sales": {
-        "ja": "約970億円 (連結)",
-        "en": "Around 540M EUR"
+        "ja": "約1兆5900億円 (連結)",
+        "en": "Around JPY 1.59 trillion (Consolidated)"
       }
     },
     "term": { "ja": "2013 - 2017" },
