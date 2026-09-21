@@ -29,6 +29,7 @@
 }
 
 $header-column-width: 8rem;
+$header-column-width-mobile: auto;
 
 .responsive-table {
   display: grid;
@@ -96,7 +97,7 @@ $header-column-width: 8rem;
   }
 
   .responsive-table {
-    grid-template-columns: $header-column-width minmax(0, 1fr);
+    grid-template-columns: $header-column-width-mobile minmax(0, 1fr);
   }
 }
 
