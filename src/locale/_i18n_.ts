@@ -1,7 +1,7 @@
 export const i18nLabels = {
   common: {
     title1: $localize`:@@common.title1:Mitsuru Takahashi`,
-    title2: $localize`:@@common.title2:A Good Software Engineer`,
+    title2: $localize`:@@common.title2:Software Engineer & Project Manager`,
     home: $localize`:@@common.home:ホーム`,
     skills: $localize`:@@common.skills:スキルセット`,
     career: $localize`:@@common.career:職務経歴`,

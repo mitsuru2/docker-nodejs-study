@@ -2,7 +2,10 @@
   <!-- 左側 -->
   <a class="title-link" [routerLink]="homeLink" [attr.aria-label]="labels.common.home">
     @if (!isMobile()) {
-      <h1>{{ labels.common.title1 }} - {{ labels.common.title2 }}</h1>
+      <h1>
+        {{ labels.common.title1 }}
+        <span class="sub-title">- {{ labels.common.title2 }} -</span>
+      </h1>
     } @else {
       <div>
         <h1>{{ labels.common.title1 }}</h1>
