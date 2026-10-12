@@ -173,3 +173,42 @@
 - `npm test` (30/30), `npm run lint` ("All files pass linting."), and
   `npm run build` all pass.
 - No unresolved issues.
+
+## 2026-10-12: Fix Issue #63 - Print layout issues (page margins, title link, extra whitespace, career table borders)
+
+- Root causes:
+  - `src/styles.scss` applied `@media print { margin: 1.5cm 0.5cm }` inside an
+    `html, body` rule, so the margin was applied twice (113px extra above the
+    header and below the footer), and there was no `@page` rule, so the page
+    margins were the browser default (too small).
+  - The header title is wrapped in an `<a routerLink>`; in Chrome's print
+    preview / PDF output it becomes a link annotation, so the cursor is a
+    pointer and the text can't be selected.
+  - `app-shell` `:host` has `min-height: 100dvh`, which is not wanted for print.
+  - The career page "responsive table" (`src/app/feature/experience`) draws
+    its borders as a black background showing through a 1px grid gap; browsers
+    don't print backgrounds by default, so the inner borders disappeared.
+- Fixes:
+  - `src/styles.scss`: added `@page { margin: 30mm 20mm; }` and set the print
+    margin on html/body to 0.
+  - `src/app/feature/app-shell/app-shell.html/.scss`: the title link now has
+    `no-print`; added a print-only plain `<h1 class="print-title">` (hidden on
+    screen with `display: none`, shown in print with `cursor: text;
+    user-select: text`). In print, `:host { min-height: auto }` and the footer's
+    `padding-bottom: 0`.
+  - `src/app/feature/experience/experience.scss`: in print,
+    `.responsive-table { print-color-adjust: exact }` so the grid-gap borders
+    (and lavender header cells) are printed.
+- Verified with Playwright using print media emulation on all 7 pages (home,
+  career, diag, user-req, system-design, ci, front-end): header top = 0 and
+  space below the footer ≈ 0 (it was 113px on career before the fix);
+  print-title cursor=text and user-select=text; the link is hidden. The PDF
+  from `page.pdf()` has no link annotations (career had 1 before), and its
+  content origin is at left 20.1mm / top 29.9mm. Screenshots confirm the table
+  borders print. Screen layout unchanged (single title). The AXE check
+  (screen + print) shows only the pre-existing `landmark-one-main` / `region`
+  violations.
+- `npm test` (30/30), `npm run lint`, `npm run build` all pass.
+- Unresolved: the margin check used Playwright's PDF output; the real Chrome
+  print dialog was not checked by hand (the dialog's "Margins: Default"
+  setting uses the CSS `@page` margins).

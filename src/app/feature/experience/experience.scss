@@ -102,6 +102,12 @@ $header-column-width-mobile: auto;
 }
 
 @media print {
+  // 罫線は背景色＋gap で表現しているため、印刷時も背景色を出力させる。
+  .responsive-table {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
   .title-container {
     .company {
       font-size: 8pt;

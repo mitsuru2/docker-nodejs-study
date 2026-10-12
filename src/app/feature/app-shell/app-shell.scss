@@ -35,6 +35,10 @@
   font-size: small;
 }
 
+.print-title {
+  display: none;
+}
+
 .menu-bar {
   --p-menubar-gap: 0;
   --p-menubar-padding: 0;
@@ -130,8 +134,19 @@ app-locale-select {
 // Print
 //
 @media print {
+  :host {
+    // 画面高さ基準の最小高さは印刷では不要（フッター下に余白ができるため）。
+    min-height: auto;
+  }
+
   .header {
     padding: 0;
+  }
+
+  .print-title {
+    display: block;
+    cursor: text;
+    user-select: text;
   }
 
   .main {
@@ -140,5 +155,6 @@ app-locale-select {
 
   .footer {
     font-size: x-small;
+    padding-bottom: 0;
   }
 }

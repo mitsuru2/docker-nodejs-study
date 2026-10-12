@@ -17,7 +17,8 @@ body {
 
   @media print {
     font-size: 10pt;
-    margin: 1.5cm 0.5cm;
+    // 余白は @page の用紙設定のみで確保する（html/body 両方に付くと二重になるため）。
+    margin: 0;
   }
 }
 
@@ -100,6 +101,10 @@ p-menubar {
 /**
  * Print config.
  */
+@page {
+  margin: 30mm 20mm;
+}
+
 @media print {
   /* 印刷に不要な要素（ナビゲーション、ボタン、サイドバーなど）を消す */
   .no-print {
