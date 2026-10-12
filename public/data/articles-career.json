@@ -7,17 +7,44 @@
     "paragraphs": [
       {
         "title": {
-          "ja": "職務経歴",
-          "en": "Career History"
+          "ja": "要約",
+          "en": "Summary"
         },
         "titleImage": {
           "path": "images/career_4x1.webp",
-          "alt": { "ja": "職務経歴タイトル画像", "en": "Career history title image." }
+          "alt": {
+            "ja": "タイトル画像",
+            "en": "Title image"
+          }
+        },
+        "list": [
+          {
+            "ja": "車載ドメイン (ECU・車両診断システム) で10年以上の設計開発経験",
+            "en": "10+ years of design and development experience in the automotive domain (ECUs and vehicle diagnostic systems)"
+          },
+          {
+            "ja": "アーキテクトとして新規車両診断システムの立ち上げを主導 (技術選定、CI/CD設計、クラウドリソース設計等)",
+            "en": "Led the launch of a new vehicle diagnostic system as architect (technology selection, CI/CD design, cloud resource design, etc.)"
+          },
+          {
+            "ja": "プロジェクトマネージャーとして直近5年間の納期遅延ゼロ、オープン不具合を着任2年で80%以上削減、次世代システムの指名受注",
+            "en": "As project manager: zero delivery delays over the past five years, open defects cut by over 80% within two years of taking over, and a direct order for the next-generation system"
+          },
+          {
+            "ja": "A-SPICE、機能安全、サイバーセキュリティ、輸出管理など、規格・セキュリティ要件への対応経験",
+            "en": "Experience handling standards and security requirements, including A-SPICE, functional safety, cybersecurity, and export control"
+          }
+        ]
+      },
+      {
+        "title": {
+          "ja": "職務経歴",
+          "en": "Career History"
         },
         "contents": [
           {
-            "ja": "2009年から現在に至るまでの職務経歴と、主な担当業務と実績について以下にまとめます。",
-            "en": "Below is a summary of my work history from 2009 to the present, along with the main responsibilities and achievements for each role."
+            "ja": "2009年から現在までの職務経歴を、各時期の主な担当業務と実績とあわせてまとめています。",
+            "en": "This is a summary of my work history from 2009 to the present, along with the main responsibilities and achievements from each period."
           }
         ]
       }

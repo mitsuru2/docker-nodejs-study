@@ -2,6 +2,10 @@
 
 @if (data) {
   @for (paragraph of data.paragraphs; track $index) {
+    @if ($index > 0) {
+      <!-- 段落間のマージンを追加 -->
+      <div class="paragraph-margin"></div>
+    }
     @if (paragraph.titleImage) {
       <div class="title-image">
         <img [src]="paragraph.titleImage.path" [alt]="paragraph.titleImage.alt | localize" />
