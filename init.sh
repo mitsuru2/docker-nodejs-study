@@ -6,7 +6,8 @@
 #
 #   1. Scaffold feature-list.json / claude-progress.txt if missing, and commit them.
 #   2. Verify the test runner and build command both work.
-#   3. Lock down outbound network access to an allowlist (github.com, anthropic.com).
+#   3. Lock down outbound network access to an allowlist (github.com, anthropic.com,
+#      registry.npmjs.org).
 #   4. Verify git/gh are usable and the user's credentials are valid.
 #   5. Verify access to this repo's GitHub Issues.
 #   6. Verify Google Drive credentials for the test-evidence upload workflow
