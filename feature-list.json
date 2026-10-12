@@ -23,6 +23,12 @@
       "status": "done",
       "description": "Normal (non-header) cells of the responsibility table on the career page (src/app/feature/experience) render left-aligned on mobile and tablet widths instead of the inherited centered text-align from app-shell's .main wrapper; header cells remain centered as before, and PC view is unchanged. Fixes Issue #57.",
       "updatedAt": "2026-09-21"
+    },
+    {
+      "name": "print-layout-fixes",
+      "status": "done",
+      "description": "Print/PDF layout: page margins 30mm top/bottom (20mm left/right) via @page; no extra whitespace above the header or below the footer (the doubled html/body print margin and the min-height are removed); the header title prints as plain selectable text (not a link annotation); the career page responsive-table borders and header backgrounds print via print-color-adjust: exact. Fixes Issue #63.",
+      "updatedAt": "2026-10-12"
     }
   ]
 }

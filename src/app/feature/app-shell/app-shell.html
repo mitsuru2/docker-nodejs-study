@@ -1,6 +1,6 @@
 <div class="header">
   <!-- 左側 -->
-  <a class="title-link" [routerLink]="homeLink" [attr.aria-label]="labels.common.home">
+  <a class="title-link no-print" [routerLink]="homeLink" [attr.aria-label]="labels.common.home">
     @if (!isMobile()) {
       <h1>
         {{ labels.common.title1 }}
@@ -13,6 +13,11 @@
       </div>
     }
   </a>
+  <!-- 印刷用タイトル: リンクにすると PDF 上でリンク注釈になり、テキスト選択できないため -->
+  <h1 class="print-title">
+    {{ labels.common.title1 }}
+    <span class="sub-title">- {{ labels.common.title2 }} -</span>
+  </h1>
 
   <!-- 右側 -->
   <div class="right-side no-print">
