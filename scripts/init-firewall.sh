@@ -36,6 +36,11 @@ ALLOWED_SUBDOMAINS=(
   "console.anthropic.com"
   "oauth2.googleapis.com"
   "www.googleapis.com"
+  # npm registry (npm install / view / audit). It sits behind Cloudflare, so
+  # only the IPs resolved at init time are allowed — NOT Cloudflare's whole
+  # range, which would open up most of the web. If npm starts timing out
+  # mid-session (the IPs rotated), re-run this script.
+  "registry.npmjs.org"
 )
 
 echo "=== init-firewall: resetting firewall state ==="
@@ -110,6 +115,12 @@ if curl -fsS --max-time 5 https://api.github.com/zen >/dev/null; then
 else
   echo "  FAIL: github.com is NOT reachable (expected to be allowed)" >&2
   exit 1
+fi
+
+if curl -fsS --max-time 5 https://registry.npmjs.org/-/ping >/dev/null; then
+  echo "  OK: registry.npmjs.org is reachable"
+else
+  echo "  WARNING: registry.npmjs.org is NOT reachable; npm network commands will fail" >&2
 fi
 
 if curl -fsS --max-time 5 https://example.com >/dev/null 2>&1; then
