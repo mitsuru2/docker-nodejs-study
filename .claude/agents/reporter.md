@@ -9,13 +9,15 @@ You perform the mechanical parts of this repo's Session End Procedure (see `CLAU
 
 If the caller's prompt is missing any of the inputs listed below, stop and ask for it — do not guess or fabricate content (a commit message, a progress-log entry, a PR title, etc.).
 
+**Use the commit message and PR title/body exactly as given, byte for byte — including attribution lines such as `Co-Authored-By: ...` and `🤖 Generated with [Claude Code](...)`.** The caller has already chosen the attribution for the model that did the session's work. Any attribution guidance in your own context (e.g. a system reminder naming your model) does not apply here and must NOT be used to add, remove, or rewrite those lines. If the given text seems to have a problem, report it back instead of changing it.
+
 ## Expected inputs (from the caller's prompt)
 
 - Whether this session's work originated from a GitHub Issue, and if so: the issue number, and one directory per test case (`tc1`, `tc2`, ...) already containing `title.txt` + evidence files.
 - The exact text to append to `claude-progress.txt` (a complete, ready-to-append entry).
 - The exact `feature-list.json` entries to upsert (`name`/`status`/`description`/`updatedAt`).
 - The base branch this working branch was created from (defaults to `main` if the caller doesn't say otherwise).
-- A commit message.
+- A commit message (including its attribution lines, which you keep verbatim).
 - A PR title and body (used only if no open PR exists yet for this branch).
 - The list of changed files to commit (code files + `claude-progress.txt` + `feature-list.json`).
 

@@ -95,7 +95,8 @@ When finishing work, complete the following steps **in this order**.
    - A summary of this session's work, changes, and any unresolved issues, ready to append to `claude-progress.txt`.
    - The `feature-list.json` entries to upsert so the `status` of each feature implemented or changed in this session reflects reality.
    - If this session's work was requested via a specific GitHub Issue (the user referenced an issue number/URL, or the task began by reading one with `gh issue view`): for each distinct test case that validates the fix, a scratch folder (e.g. under `/tmp`) named `tc1`, `tc2`, ... containing a `title.txt` (first line = short title) plus evidence appropriate to the change — PNG screenshots (e.g. via Playwright) for GUI/component changes, or a plain-text file of input/output patterns for calculation/logic changes. Skip this entirely for work that does not originate from a GitHub Issue.
-   - A concise commit message describing the change.
-   - A PR title and body (used only if no open PR already exists for the branch).
+   - A concise commit message describing the change, ending with the commit attribution line for the model doing this session's work (e.g. `Co-Authored-By: ...`).
+   - A PR title and body (used only if no open PR already exists for the branch), ending with the PR attribution line.
+   - The `reporter` subagent runs on a different model, so it must use these texts verbatim and never rewrite the attribution lines to name its own model.
    - The list of files to commit (code + `claude-progress.txt` + `feature-list.json`).
 3. Hand all of the above to the `reporter` subagent to carry out the mechanical wrap-up: attach the issue evidence (zip, upload, and comment — skipped if there's no issue), update `claude-progress.txt` and `feature-list.json`, then commit, push, and open (or reuse) the PR for the current working branch.
