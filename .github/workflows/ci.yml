@@ -9,4 +9,4 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "placeholder: real checks are added in Phase 4"
+      - run: 'echo "placeholder: real checks are added in Phase 4"'
