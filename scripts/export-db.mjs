@@ -5,7 +5,7 @@ import path from 'path';
 import fs from 'fs';
 
 // Azure Cosmos DB
-// 環境変数はサーバーで設定。ローカルではdocker-compose.ymlで指定。
+// 環境変数はサーバーで設定。ローカルでは.devcontainer/secrets.envで指定。
 const endpoint = process.env['COSMOS_ENDPOINT'];
 const dbName = process.env['COSMOS_DB'];
 const key = process.env['COSMOS_KEY']; // ローカルエミュレータ使用時専用。

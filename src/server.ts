@@ -23,7 +23,7 @@ const angularApp = new AngularNodeAppEngine({
 });
 
 // Azure Cosmos DB
-// 環境変数はサーバーで設定。ローカルではdocker-compose.ymlで指定。
+// 環境変数はサーバーで設定。ローカルでは.devcontainer/secrets.envで指定。
 // ビルド実行時にインスタンス化することでビルド時の環境変数設定を不要とする。
 let _db: Database | null = null;
 const allowedContainerNames = ['articles'];
@@ -35,7 +35,7 @@ function getDatabase(): Database {
   const dbName = process.env['COSMOS_DB'];
   if (!endpoint || !key || !dbName) {
     throw new Error(
-      'Environment variables for Cosmos DB is not found. Please check server configuration or docker-compose.yml.',
+      'Environment variables for Cosmos DB is not found. Please check server configuration or .devcontainer/secrets.env.',
     );
   }
 

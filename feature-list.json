@@ -29,6 +29,12 @@
       "status": "done",
       "description": "Print/PDF layout: page margins 30mm top/bottom (20mm left/right) via @page; no extra whitespace above the header or below the footer (the doubled html/body print margin and the min-height are removed); the header title prints as plain selectable text (not a link annotation); the career page responsive-table borders and header backgrounds print via print-color-adjust: exact. Fixes Issue #63.",
       "updatedAt": "2026-10-12"
+    },
+    {
+      "name": "remove-unused-devcontainer-compose",
+      "status": "done",
+      "description": "Removed the unused .devcontainer/docker-compose.yml (devcontainer.json builds the Dockerfile directly since bf114d7) and updated the stale references in src/server.ts, scripts/export-db.mjs and .dockerignore to point to .devcontainer/secrets.env for local Cosmos DB env vars.",
+      "updatedAt": "2026-10-28"
     }
   ]
 }
