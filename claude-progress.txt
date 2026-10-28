@@ -212,3 +212,24 @@
 - Unresolved: the margin check used Playwright's PDF output; the real Chrome
   print dialog was not checked by hand (the dialog's "Margins: Default"
   setting uses the CSS `@page` margins).
+
+## 2026-10-28: Remove unused .devcontainer/docker-compose.yml
+
+- Background: since commit bf114d7 ("Import Claude Code env."),
+  `.devcontainer/devcontainer.json` builds `../Dockerfile` directly via
+  `build` (with `runArgs --env-file .devcontainer/secrets.env`) instead of
+  `dockerComposeFile` + `service: app`, so `.devcontainer/docker-compose.yml`
+  was no longer used. Its Cosmos DB emulator service was already commented out.
+- Changes:
+  - Deleted `.devcontainer/docker-compose.yml`.
+  - `src/server.ts`, `scripts/export-db.mjs`: comments / the Cosmos env-var
+    error message now point to `.devcontainer/secrets.env` instead of
+    `docker-compose.yml`.
+  - `.dockerignore`: removed the stale `docker-compose.yml` entry
+    (`.devcontainer/` is still ignored).
+- `npm test` (30/30) passes.
+- Unresolved: the compose file was the only place that set `COSMOS_ENDPOINT`,
+  `COSMOS_KEY`, `COSMOS_DB` for local development. They are not currently set
+  in the dev container; add them to `.devcontainer/secrets.env` (gitignored,
+  not modified by this session) and rebuild the container if local Cosmos DB
+  access is needed.

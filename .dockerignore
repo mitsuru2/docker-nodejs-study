@@ -28,7 +28,6 @@ Thumbs.db
 # Don't include docker itself.
 Dockerfile
 .dockerignore
-docker-compose.yml
 .devcontainer/
 
 # VSCode configuration files.
