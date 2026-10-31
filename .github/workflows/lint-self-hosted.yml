@@ -13,7 +13,7 @@ jobs:
     steps:
       # ソースコードをチェックアウト
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # 依存関係のインストール
       # (runnerイメージにNode.js 24が同梱されているため、actions/setup-nodeは不要)
