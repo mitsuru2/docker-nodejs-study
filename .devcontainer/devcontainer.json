@@ -28,11 +28,12 @@
   "runArgs": [
     "--cap-add=NET_ADMIN",
     "--cap-add=NET_RAW",
-    "--env-file", "${localEnv:HOME}/.config/devcontainer-secrets/docker-nodejs-study.env"
+    "--env-file",
+    "${localEnv:HOME}/.config/devcontainer-secrets/docker-nodejs-study.env"
     // Required environment variables:
     // - GITHUB_TOKEN: Required for GitHub authentication within the container.
     // - PRIMENG_LICENSE_KEY: Required for PrimeNG components license.
-    // 
+    //
     // How to update:
     // 1. Update the environment file at the specified path with the required secrets.
     // 2. Rebuild the dev container to apply the updated environment variables.
@@ -67,18 +68,14 @@
     "VSCODE_GIT_ASKPASS_EXTRA_ARGS": ""
   },
 
-  // Command to run after the container starts. 
+  // Command to run after the container starts.
   // Initializes the firewall and installs dependencies.
   "postStartCommand": "sudo /usr/local/bin/init-firewall.sh && npm ci",
-  
+
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
-      "extensions": [
-        "github.copilot-chat",
-        "Angular.ng-template",
-        "esbenp.prettier-vscode"
-      ]
+      "extensions": ["github.copilot-chat", "angular.ng-template", "esbenp.prettier-vscode"]
     },
     "settings": {
       // Disable terminal-based Git authentication inside the container.

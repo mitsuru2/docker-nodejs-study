@@ -48,7 +48,7 @@ RUN set -eux; \
 
 # Install OS-level dependencies.
 # - git: Used in the container and by the VS Code remote development extension.
-# - sudo: Only to let user 'node' run the firewall script as root (see below).
+# - sudo: Only to let user 'dev' run the firewall script as root (see below).
 # - iptables/ipset/dnsutils/jq: Required by scripts/init-firewall.sh to restrict
 #   outbound network access to an allowlist.
 # - gnupg: Required to import the GitHub CLI apt repository signing key below.
@@ -100,13 +100,22 @@ RUN npx -y playwright@${PLAYWRIGHT_VERSION} install --with-deps chromium \
 
 
 # Firewall script. It is copied into a root-owned path so the agent cannot edit it,
-# and user 'node' may run only this script via sudo (no general sudo rights: with
+# and user 'dev' may run only this script via sudo (no general sudo rights: with
 # general sudo the agent could rewrite the firewall rules or anything else as root).
 # Run it from devcontainer.json as: sudo /usr/local/bin/init-firewall.sh
 COPY scripts/init-firewall.sh /usr/local/bin/init-firewall.sh
 RUN chmod 0755 /usr/local/bin/init-firewall.sh \
     && echo "${USERNAME} ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > "/etc/sudoers.d/${USERNAME}-firewall" \
     && chmod 0440 "/etc/sudoers.d/${USERNAME}-firewall"
+
+
+# Copilot CLI start script. It is copied into a root-owned path so the agent cannot edit it,
+# and user 'dev' may run only this script via sudo (no general sudo rights: with
+# general sudo the agent could run Copilot with any privileges).
+COPY scripts/start-copilot.sh /usr/local/bin/start-copilot.sh
+RUN chmod 0755 /usr/local/bin/start-copilot.sh \
+    && echo "${USERNAME} ALL=(root) NOPASSWD: /usr/local/bin/start-copilot.sh" > "/etc/sudoers.d/${USERNAME}-start-copilot" \
+    && chmod 0440 "/etc/sudoers.d/${USERNAME}-start-copilot"
 
 
 # Mount points for the named volumes in devcontainer.json (Copilot CLI and gh config).
