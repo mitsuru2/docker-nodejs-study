@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# scripts/dev: Execute input command through the development image.
+# Usage:
+#   scripts/dev <command>
+# Example:
+#   scripts/dev npm ci
+
+# Exit on errors, undefined variables, and failed commands in pipelines.
+set -euo pipefail
+
+# Calls without arguments are not allowed.
+if [ "$#" -eq 0 ]; then
+  echo "usage: scripts/dev <command> [args...]" >&2
+  exit 2
+fi
+
+# If inside the development image (local Dev Container), execute the command directly.
+# `exec` command replaces the current shell with the specified command, so the script does not continue after it.
+if [ "${IN_DEV_IMAGE:-}" = "1" ]; then
+  exec "$@"
+fi
+
+# On the runner (CI / cloud agent), start the development image and execute the command.
+exec docker run --rm \
+  --user "$(id -u):$(id -g)" -e HOME=/tmp \
+  -e PRIMENG_LICENSE_KEY \
+  --network host \
+  -v "$PWD":/app -w /app \
+  app-dev:local "$@"

@@ -22,25 +22,37 @@ fi
 # Apex domains to allow. Edit this list to change what the container may reach.
 ALLOWED_DOMAINS=(
   "github.com"
+  # --- Claude Code (remove after the move to Copilot is complete) ---
   "anthropic.com"
 )
 
-# Subdomains required for github.com / anthropic.com to actually work end-to-end
-# (git over https, gh CLI API calls, release/tarball downloads, Claude API).
+# Subdomains required for GitHub / Copilot / npm to actually work end-to-end.
 ALLOWED_SUBDOMAINS=(
+  # GitHub (git over HTTPS, gh CLI, downloading releases/tarballs)
   "api.github.com"
   "codeload.github.com"
   "objects.githubusercontent.com"
   "raw.githubusercontent.com"
-  "api.anthropic.com"
-  "console.anthropic.com"
-  "oauth2.googleapis.com"
-  "www.googleapis.com"
+
+  # Copilot (Copilot CLI and the Copilot Chat extension for VS Code. 
+  # Copilot Pro uses the individual endpoints)
+  "api.githubcopilot.com"
+  "api.individual.githubcopilot.com"
+  "proxy.individual.githubcopilot.com"
+  "copilot-proxy.githubusercontent.com"
+  "origin-tracker.githubusercontent.com"
+
   # npm registry (npm install / view / audit). It sits behind Cloudflare, so
   # only the IPs resolved at init time are allowed — NOT Cloudflare's whole
   # range, which would open up most of the web. If npm starts timing out
   # mid-session (the IPs rotated), re-run this script.
   "registry.npmjs.org"
+
+  # --- Claude Code (remove after the move to Copilot is complete) ---
+  "api.anthropic.com"
+  "console.anthropic.com"
+  "oauth2.googleapis.com"
+  "www.googleapis.com"
 )
 
 echo "=== init-firewall: resetting firewall state ==="
