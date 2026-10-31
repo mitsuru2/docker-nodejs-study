@@ -1,0 +1,25 @@
+# Prettier は .gitignore の内容も自動で除外する（dist、node_modules、.angular、
+# _build.ts、_license.ts など）。ここには、Git で管理するが整形しないものを書く。
+
+# パッケージマネージャが生成・整形するファイル
+package-lock.json
+package.json
+
+# Angular CLI が整形・管理するファイル
+angular.json
+tsconfig.json
+tsconfig.app.json
+tsconfig.spec.json
+
+# ng extract-i18n が生成する翻訳ファイルと、翻訳ツールのデータ
+src/locale/*.xlf
+src/locale/_i18n_.babel
+
+# 外部から取り込む生成物・ライセンス
+LICENSE
+
+# CI が生成するテストレポート
+test-results.xml
+playwright-report/
+test-results/
+coverage/
