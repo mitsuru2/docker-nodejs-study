@@ -5,7 +5,7 @@
 # - Docker Hub (Node.js): https://hub.docker.com/_/node
 # - Node.js: https://nodejs.org/ja/about/previous-releases
 # - Debian: https://wiki.debian.org/DebianReleases#Current_Debian_Releases_and_repositories
-FROM node:24-trixie AS build
+FROM node:25-trixie AS build
 
 # Install OS-level dependencies.
 # - Git: It should be installed to use git commands in container or via VSCode remote 
@@ -45,7 +45,7 @@ ENV PRIMENG_LICENSE_KEY=$PRIMENG_LICENSE_KEY
 RUN npm run build
 
 # ---- STAGE 2: runtime ----
-FROM node:24-trixie-slim AS runtime
+FROM node:25-trixie-slim AS runtime
 WORKDIR /app
 
 ENV NODE_ENV=production
