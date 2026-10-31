@@ -1,11 +1,18 @@
 # syntax=docker/dockerfile:1
 
-# Use latest LTS version of Node.js on Debian.
+# NOTE: Why was this file split from the Dockerfile?
+# Release image for building and running the application.
+# Keep this separate from the development Dockerfile: development mounts the
+# source tree and runs npm ci in postStartCommand, so sharing build stages adds
+# little value and would couple the development and release environments.
+
+# Base images are pinned by patch version and digest for reproducible builds.
 # You can check the latest versions on the following links:
 # - Docker Hub (Node.js): https://hub.docker.com/_/node
 # - Node.js: https://nodejs.org/ja/about/previous-releases
 # - Debian: https://wiki.debian.org/DebianReleases#Current_Debian_Releases_and_repositories
-FROM node:24-trixie AS build
+# Build stage: install dependencies and compile the Angular SSR application.
+FROM node:24.22.1-trixie@sha256:7e9fb4d8acb6f7b3b824f65bf30c076685861362cd18e1d40f6197e5b411fb71 AS build
 
 # Install OS-level dependencies.
 # - Git: It should be installed to use git commands in container or via VSCode remote 
@@ -45,7 +52,8 @@ ENV PRIMENG_LICENSE_KEY=$PRIMENG_LICENSE_KEY
 RUN npm run build
 
 # ---- STAGE 2: runtime ----
-FROM node:24-trixie-slim AS runtime
+# Minimal production image containing only production dependencies and build output.
+FROM node:24.22.1-trixie-slim@sha256:e863d7892529b38db1474da2bcde052233a51eb60a9ab23bd2c8801e433a7c40 AS runtime
 WORKDIR /app
 
 ENV NODE_ENV=production
