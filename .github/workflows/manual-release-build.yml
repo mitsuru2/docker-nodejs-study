@@ -48,7 +48,7 @@ jobs:
 
       # 準備したアセットをアーティファクトとしてアップロード
       - name: Upload prepared assets
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: build-assets
           path: public/
@@ -165,7 +165,7 @@ jobs:
 
       # ビルドdist/browserフォルダの内容をアーティファクトとしてアップロード
       - name: Upload build assets
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: dist-swa
           path: dist/docker-nodejs-study/browser/
