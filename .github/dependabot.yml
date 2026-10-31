@@ -1,0 +1,43 @@
+version: 2
+
+updates:
+  # ベースイメージ（パッチ版とダイジェストで固定している node イメージ）の更新。
+  # ルートの Dockerfile と Dockerfile.release が対象。
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: chore(docker)
+
+  # サードパーティ Action（コミット SHA で固定）の更新。
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: chore(actions)
+
+  # npm は Version Updates を使わない（open-pull-requests-limit: 0）。
+  # このエントリは Security Updates の対象外パッケージを指定するためだけに置く。
+  # Angular と PrimeNG は互いにバージョンを合わせて手動で更新するため、
+  # 個別の PR を作らせない。
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 0
+    ignore:
+      - dependency-name: '@angular/*'
+      - dependency-name: '@angular-devkit/*'
+      - dependency-name: '@schematics/*'
+      - dependency-name: angular-eslint
+      - dependency-name: primeng
+      - dependency-name: primeicons
+      - dependency-name: '@primeuix/*'
+      - dependency-name: '@primeng/*'
+      # Angular が対応する範囲のバージョンに限定されるため、Angular と一緒に更新する。
+      - dependency-name: typescript
+      - dependency-name: rxjs
+      - dependency-name: zone.js
+      - dependency-name: tslib

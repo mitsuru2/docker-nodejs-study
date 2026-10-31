@@ -1,12 +1,111 @@
 name: ci
+
 on:
   pull_request:
   push:
     branches: [main]
+
+# Dev Container と同じ環境で検査する。Dockerfile からイメージをビルドし、
+# すべての検査を scripts/dev 経由で実行する。ランナー上では scripts/dev が
+# `docker run app-dev:local <コマンド>` を実行するため、各コマンドはビルドした
+# プロジェクトのコンテナの中で動く（ランナー直接の Node.js は使わない）。
+# ジョブ名 `ci` は .github/rulesets/ruleset-main.json で必須チェックとして登録している名前。
 permissions:
   contents: read
+
+env:
+  CACHE_REF: ghcr.io/mitsuru2/docker-nodejs-study-devcontainer:buildcache
+
 jobs:
   ci:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
     steps:
-      - run: 'echo "placeholder: real checks are added in Phase 4"'
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+
+      # キャッシュは読み取り専用。GHCR のビルドキャッシュを更新するのは update-cache ジョブだけ。
+      # ジョブの実行コンテキストでDockerイメージをビルドして、後続のステップでそのイメージを使う。
+      # これにより、ランナー上の環境に依存せずに一貫した開発環境で検査が行える。
+      # Docker イメージをビルドしてキャッシュを利用することで、依存関係のインストールやビルドの高速化も図れる。
+      - name: Build development image
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          file: Dockerfile
+          tags: app-dev:local
+          load: true
+          cache-from: type=registry,ref=${{ env.CACHE_REF }}
+
+      - name: Install dependencies
+        run: scripts/dev npm ci
+
+      - name: Prettier
+        run: scripts/dev npx prettier --check .
+
+      - name: Lint
+        run: scripts/dev npm run lint
+
+      - name: Unit tests
+        run: scripts/dev npm test -- --watch=false --reporters=default --reporters=junit --output-file=test-results.xml
+        env:
+          PRIMENG_LICENSE_KEY: ${{ secrets.PRIMENG_LICENSE_KEY }}
+
+      # ng build はテンプレートの型検査も行う（tsconfig.json の strictTemplates: true）。
+      - name: Build
+        run: scripts/dev npm run build
+        env:
+          PRIMENG_LICENSE_KEY: ${{ secrets.PRIMENG_LICENSE_KEY }}
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## CI results"
+            echo ""
+            echo "Commit: \`${{ github.sha }}\`"
+            if [ -f test-results.xml ]; then
+              tests=$(grep -m1 -o '<testsuites [^>]*' test-results.xml | grep -o ' tests="[0-9]*"' | grep -o '[0-9]*' || echo '?')
+              failures=$(grep -m1 -o '<testsuites [^>]*' test-results.xml | grep -o ' failures="[0-9]*"' | grep -o '[0-9]*' || echo '?')
+              echo ""
+              echo "Unit tests: ${tests} run, ${failures} failed"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: unit-test-results
+          path: test-results.xml
+          if-no-files-found: ignore
+          retention-days: 7
+
+  # Dev Container・CI・cloud agent が使う GHCR のビルドキャッシュを更新する。
+  # main への push のときだけ実行し、作業中のブランチがキャッシュを上書きしないようにする。
+  update-cache:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: ci
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build development image and update cache
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          file: Dockerfile
+          tags: app-dev:local
+          cache-from: type=registry,ref=${{ env.CACHE_REF }}
+          cache-to: type=registry,ref=${{ env.CACHE_REF }},mode=max

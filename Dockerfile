@@ -1,23 +1,60 @@
 # syntax=docker/dockerfile:1
 
-# Use latest LTS version of Node.js on Debian.
+# Development image shared by the Dev Container (local), GitHub Actions CI and
+# Copilot cloud agent. Every environment builds it from this file with buildx and
+# reads the build cache from GHCR, so keep it free of anything that changes often.
+#
+# Base image: Node.js LTS on Debian, pinned by patch version and digest so that the
+# GHCR build cache stays valid and every environment gets the same Node.js / npm.
+# Dependabot (docker ecosystem) opens a PR when a new digest is published.
+# To get the digest: docker buildx imagetools inspect node:<version>-trixie
+# 
 # You can check the latest versions on the following links:
 # - Docker Hub (Node.js): https://hub.docker.com/_/node
 # - Node.js: https://nodejs.org/ja/about/previous-releases
 # - Debian: https://wiki.debian.org/DebianReleases#Current_Debian_Releases_and_repositories
-FROM node:24-trixie AS build
+FROM node:24.22.1-trixie@sha256:7e9fb4d8acb6f7b3b824f65bf30c076685861362cd18e1d40f6197e5b411fb71
+
+
+# Development user. The name is the same in every project regardless of the base
+# image, so devcontainer.json, sudoers and mount paths can be shared as they are.
+# UID/GID stay 1000 to match the default WSL user, so files in the bind-mounted
+# repository keep the same owner inside and outside the container.
+ARG USERNAME=dev
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+
+# Normalize the UID/GID 1000 user to ${USERNAME}, whatever the base image is:
+# - It exists under another name (node: 'node', ubuntu: 'ubuntu') -> rename it and
+#   move its home to /home/${USERNAME}.
+# - It does not exist (python, golang, debian, ...) -> create it.
+# Keep this block first so everything below can refer to ${USERNAME}.
+# Alpine-based images need 'apk add shadow' before this for usermod/groupmod.
+RUN set -eux; \
+    old_group="$(getent group "${USER_GID}" | cut -d: -f1 || true)"; \
+    if [ -z "${old_group}" ]; then \
+        groupadd -g "${USER_GID}" "${USERNAME}"; \
+    elif [ "${old_group}" != "${USERNAME}" ]; then \
+        groupmod -n "${USERNAME}" "${old_group}"; \
+    fi; \
+    old_user="$(getent passwd "${USER_UID}" | cut -d: -f1 || true)"; \
+    if [ -z "${old_user}" ]; then \
+        useradd -m -s /bin/bash -u "${USER_UID}" -g "${USER_GID}" "${USERNAME}"; \
+    elif [ "${old_user}" != "${USERNAME}" ]; then \
+        usermod -l "${USERNAME}" -d "/home/${USERNAME}" -m -g "${USER_GID}" "${old_user}"; \
+    fi
+
 
 # Install OS-level dependencies.
-# - Git: It should be installed to use git commands in container or via VSCode remote 
-#        development extension.
-# - iptables/ipset/dnsutils/jq: Required by .devcontainer / scripts/init-firewall.sh to
-#            restrict outbound network access to an allowlist (github.com, anthropic.com)
-#            for Claude Code sessions.
+# - git: Used in the container and by the VS Code remote development extension.
+# - sudo: Only to let user 'dev' run the firewall script as root (see below).
+# - iptables/ipset/dnsutils/jq: Required by scripts/init-firewall.sh to restrict
+#   outbound network access to an allowlist.
 # - gnupg: Required to import the GitHub CLI apt repository signing key below.
-# - zip: Required by scripts/attach-issue-evidence.sh to package GitHub Issue test
-#            evidence before uploading it to Google Drive.# Note: After installing packages, we clean up the apt cache to reduce the image size.
-# Note: After installing packages, we clean up the apt cache to reduce the image size.
-RUN apt-get update && apt-get install -y \
+# - zip (removed): Test evidence is not packaged here: CI saves reports and E2E
+#   traces as workflow artifacts.
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     sudo \
     gnupg \
@@ -25,70 +62,93 @@ RUN apt-get update && apt-get install -y \
     ipset \
     dnsutils \
     jq \
-    zip \
     && rm -rf /var/lib/apt/lists/*
 
-# Install GitHub CLI (gh).
+
+# Install GitHub CLI (gh). Not version-pinned on purpose: it is only used locally for
+# fetching issues and creating PRs, and does not affect test results.
 # Official install instructions: https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg -o /usr/share/keyrings/githubcli-archive-keyring.gpg \
     && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list \
-    && apt-get update && apt-get install -y gh \
+    && apt-get update && apt-get install -y --no-install-recommends gh \
     && rm -rf /var/lib/apt/lists/*
 
-# Azure CLIのインストール。
-# https://learn.microsoft.com/ja-jp/cli/azure/install-azure-cli-linux?view=azure-cli-latest&pivots=apt
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
-# Enable sudo command to user 'node' w/o password.
-# mkdir -p: Create all intermediate directories at once.
-# /etc/sudoers.d: Directory to store configurations for each super user.
-# 0440: The 'sudo' command ignores files with permissions other than 0440.
-RUN echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/passwd-sudo-rules \
-    && mkdir -p /etc/sudoers.d \
-    && echo "node ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/node \
-    && chmod 0440 /etc/sudoers.d/node
+# Azure CLI is NOT installed here. It is used by a human to try commands while
+# developing workflows, so install it on the WSL host instead. Inside this container
+# its login tokens (~/.azure) would be readable by the agent.
+# 
+# You can install Azure CLI on your WSL host using the following command:
+# $ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+
+# Install Playwright's Chromium and its OS-level dependencies for E2E tests.
+# - Installed as root at build time, so no sudo is needed for '--with-deps'.
+# - Browsers go to a fixed shared path instead of ~/.cache, because CI and cloud agent
+#   run this image with the runner's UID and HOME=/tmp (see scripts/dev).
+# - PLAYWRIGHT_VERSION must match the @playwright/test version in package-lock.json.
+#   A mismatch fails E2E in CI with "Executable doesn't exist", so it cannot go unnoticed.
+#   Update this value in the same PR that updates @playwright/test.
+#   You can get the version from package-lock.json by following command:
+#   $ jq -r '.packages["node_modules/playwright-core"].version' package-lock.json
+ARG PLAYWRIGHT_VERSION=1.63.0
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+RUN npx -y playwright@${PLAYWRIGHT_VERSION} install --with-deps chromium \
+    && chmod -R a+rX /ms-playwright \
+    && rm -rf /root/.npm /var/lib/apt/lists/*
+
+
+# Firewall script. It is copied into a root-owned path so the agent cannot edit it,
+# and user 'dev' may run only this script via sudo (no general sudo rights: with
+# general sudo the agent could rewrite the firewall rules or anything else as root).
+# Run it from devcontainer.json as: sudo /usr/local/bin/init-firewall.sh
+COPY scripts/init-firewall.sh /usr/local/bin/init-firewall.sh
+RUN chmod 0755 /usr/local/bin/init-firewall.sh \
+    && echo "${USERNAME} ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > "/etc/sudoers.d/${USERNAME}-firewall" \
+    && chmod 0440 "/etc/sudoers.d/${USERNAME}-firewall"
+
+
+# Copilot CLI start script. It is copied into a root-owned path so the agent cannot edit it,
+# and user 'dev' may run only this script via sudo (no general sudo rights: with
+# general sudo the agent could run Copilot with any privileges).
+COPY scripts/start-copilot.sh /usr/local/bin/start-copilot.sh
+RUN chmod 0755 /usr/local/bin/start-copilot.sh \
+    && echo "${USERNAME} ALL=(root) NOPASSWD: /usr/local/bin/start-copilot.sh" > "/etc/sudoers.d/${USERNAME}-start-copilot" \
+    && chmod 0440 "/etc/sudoers.d/${USERNAME}-start-copilot"
+
+
+# Mount points for the named volumes in devcontainer.json (Copilot CLI and gh config).
+# They must exist with ${USERNAME} ownership in the image; otherwise Docker creates
+# the volumes owned by root and ${USERNAME} cannot write to them.
+RUN mkdir -p /home/${USERNAME}/.copilot /home/${USERNAME}/.config/gh \
+    && chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/.copilot /home/${USERNAME}/.config
+
+# Shows that it is inside the development image (scripts/dev checks this and runs the command directly)
+ENV IN_DEV_IMAGE=1
 
 # Working directory in the container. This is where your application code will be located.
 # '/app' is a common convention, but you can choose any directory name you prefer.
 WORKDIR /app
+RUN chown ${USERNAME}:${USERNAME} /app
 
-# Change owner of the workspace to enable processing at Dev Container.
-# --> Refer to .devcontainer/devcontainer.json.
-RUN chown -R node:node /app
 
-# Copy package.json and package-lock.json to the working directory, and install packages.
-# DON'T use 'npm install' to prevent installing unintended latest versions of packages
-# as Angular has very sensitive version dependencies.
-COPY --chown=node:node package*.json ./
-USER node
-RUN npm ci
-
-# Install Playwright's Chromium browser binary and its OS-level dependencies for E2E
-# testing (see playwright.config.ts / e2e/). Only chromium is installed since this is a
-# personal study project (see playwright.config.ts, which only defines a chromium
-# project). This must run as the 'node' user (the devcontainer's remoteUser) so the
-# browser lands in node's cache dir (~/.cache/ms-playwright) where `npx playwright test`
-# looks for it at runtime; '--with-deps' uses the passwordless sudo configured above to
-# apt-get install the required shared libraries (fonts, libnss3, etc.).
-RUN npx playwright install --with-deps chromium
-USER root
-
-# DON'T copy the source code to the image because it's be mounted when the container running.
+# DON'T copy the source code or install npm packages into the image.
+# 'npm ci' runs at container start (Dev Container: postStartCommand,
+# CI / cloud agent: scripts/dev npm ci), so dependency updates need no image rebuild.
 # COPY . .
+
+
+USER ${USERNAME}
+
 
 # Mark that the container listen on following ports.
 # DON'T FORGET to specify -p options when running the container to map these ports to your host machine.
 # 4200: Angular development server port.
+# 4000: Angular development server port for SSR (Server-Side Rendering).
 EXPOSE 4200 4000
 
-# Build the application. 
-# CMD ["npm", "run", "build"]
+
+# Default command to keep the container running indefinitely.
 CMD ["sleep", "infinity"]
 
-# Start the application. (disabled)
-# Added --host 0.0.0.0 to allow access from outside the container.
-# CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
-
-# ---- STAGE 2: runtime ----
-# Stage 2 is separated into Dockerfile.release as the build environment is different.
