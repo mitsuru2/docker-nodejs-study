@@ -13,7 +13,7 @@ jobs:
     steps:
       # ソースコードをチェックアウト
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # Azureにログイン
       - name: Azure login
@@ -68,7 +68,7 @@ jobs:
     steps:
       # ソースコードをチェックアウト
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # 前のジョブで準備したアセットをダウンロード
       - name: Download assets
@@ -115,7 +115,7 @@ jobs:
     steps:
       # ソースコードをチェックアウト
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # 前のジョブで準備したアセットをダウンロード
       - name: Download assets
