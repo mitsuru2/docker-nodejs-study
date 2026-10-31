@@ -2,7 +2,7 @@
 # scripts/init-firewall.sh
 #
 # Restrict all outbound network traffic from this container to an allowlist of
-# domains, for use with Claude Code sessions. Everything else is dropped.
+# domains, for use with Copilot Chat sessions. Everything else is dropped.
 #
 # Requires: iptables, ipset, dig (dnsutils), curl, jq — all installed in the Dockerfile.
 # Requires: NET_ADMIN / NET_RAW capabilities — added via .devcontainer/devcontainer.json
@@ -22,8 +22,6 @@ fi
 # Apex domains to allow. Edit this list to change what the container may reach.
 ALLOWED_DOMAINS=(
   "github.com"
-  # --- Claude Code (remove after the move to Copilot is complete) ---
-  "anthropic.com"
 )
 
 # Subdomains required for GitHub / Copilot / npm to actually work end-to-end.
@@ -34,7 +32,7 @@ ALLOWED_SUBDOMAINS=(
   "objects.githubusercontent.com"
   "raw.githubusercontent.com"
 
-  # Copilot (Copilot CLI and the Copilot Chat extension for VS Code. 
+  # Copilot (the Copilot Chat extension for VS Code.
   # Copilot Pro uses the individual endpoints)
   "api.githubcopilot.com"
   "api.individual.githubcopilot.com"
@@ -47,12 +45,6 @@ ALLOWED_SUBDOMAINS=(
   # range, which would open up most of the web. If npm starts timing out
   # mid-session (the IPs rotated), re-run this script.
   "registry.npmjs.org"
-
-  # --- Claude Code (remove after the move to Copilot is complete) ---
-  "api.anthropic.com"
-  "console.anthropic.com"
-  "oauth2.googleapis.com"
-  "www.googleapis.com"
 )
 
 echo "=== init-firewall: resetting firewall state ==="
@@ -99,21 +91,6 @@ if [ -n "$github_meta" ]; then
   done
 else
   echo "  WARNING: could not fetch https://api.github.com/meta, relying on DNS-resolved IPs only" >&2
-fi
-
-# oauth2.googleapis.com / www.googleapis.com sit behind Google's frontend pool,
-# which rotates across many IPs on a short DNS TTL (a few minutes). Pinning
-# whatever single IP happened to resolve at init time goes stale mid-session,
-# so allow Google's whole published frontend range instead (same rationale as
-# the GitHub ranges above).
-echo "=== init-firewall: adding Google's published IP ranges (gstatic.com/ipranges/goog.json) ==="
-goog_ranges="$(curl -fsSL --max-time 10 https://www.gstatic.com/ipranges/goog.json || true)"
-if [ -n "$goog_ranges" ]; then
-  echo "$goog_ranges" | jq -r '.prefixes[].ipv4Prefix // empty' 2>/dev/null | while IFS= read -r cidr; do
-    ipset add allowed-domains "$cidr" 2>/dev/null || true
-  done
-else
-  echo "  WARNING: could not fetch https://www.gstatic.com/ipranges/goog.json, relying on DNS-resolved IPs only" >&2
 fi
 
 echo "=== init-firewall: applying allowlist and default-deny policy ==="

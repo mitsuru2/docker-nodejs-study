@@ -39,12 +39,6 @@
     // 2. Rebuild the dev container to apply the updated environment variables.
   ],
 
-  // Features to add to the dev container. More info: https://containers.dev/features.
-  // - GitHub Copilot CLI: Copilot Agent for local development within the container.
-  "features": {
-    "ghcr.io/devcontainers/features/copilot-cli:1": { "version": "1.0.105" }
-  },
-
   // Container environment variables.
   "containerEnv": {
     // Override Git credential helper settings for the container.
@@ -75,21 +69,38 @@
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
-      "extensions": ["github.copilot-chat", "angular.ng-template", "esbenp.prettier-vscode"]
-    },
-    "settings": {
-      // Disable terminal-based Git authentication inside the container.
-      // Force Git to use the configured credential helper instead of prompting for credentials in the terminal.
-      "git.terminalAuthentication": false,
+      "extensions": ["github.copilot-chat", "angular.ng-template", "esbenp.prettier-vscode"],
+      "settings": {
+        // Disable terminal-based Git authentication inside the container.
+        // Force Git to use the configured credential helper instead of prompting for credentials in the terminal.
+        "git.terminalAuthentication": false,
 
-      // Enable format on save for all supported file types.
-      "editor.formatOnSave": true
+        // Enable format on save for all supported file types.
+        "editor.formatOnSave": true,
+
+        // Copilot Chat approval rules. These are supplementary: `false` asks for approval, it does not forbid.
+        // The real safety layers are the repository-scoped PAT, the firewall and the server-side ruleset.
+        "chat.tools.global.autoApprove": false,
+        "chat.agent.sandbox.enabled": "off",
+
+        // GitHub operations go through the gh command (limited by the PAT), not the account-wide GitHub MCP server.
+        "github.copilot.chat.githubMcpServer.enabled": false,
+
+        // Auto-approve only safe terminal commands.
+        "chat.tools.terminal.autoApprove": {
+          "/^scripts\\/dev\\b/": true,
+          "/^git (status|diff|log|add|commit|switch|checkout)\\b/": true,
+          "/^gh (issue view|pr view|pr checks)\\b/": true,
+          "/--force\\b|\\s-f\\b/": false
+        },
+
+        // Auto-approve fetching only from GitHub and the npm registry.
+        "chat.tools.urls.autoApprove": {
+          "https://github.com/*": true,
+          "https://api.github.com/*": true,
+          "https://registry.npmjs.org/*": true
+        }
+      }
     }
-  },
-
-  // Additional volumes to persist configuration and credentials across container restarts.
-  "mounts": [
-    // Persist Copilot CLI configuration across container lifecycles.
-    "type=volume,source=${devcontainerId}-copilot-cli-config,target=/home/dev/.copilot"
-  ]
+  }
 }
