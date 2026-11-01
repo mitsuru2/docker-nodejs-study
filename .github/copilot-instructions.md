@@ -12,17 +12,26 @@ These instructions apply to both Copilot cloud agent and Copilot Chat in the Dev
 
 - Run project commands through `scripts/dev` so they use the development image shared by local development and CI. Do not install tools directly on a runner or bypass the image. If the image is unavailable, report the blocker instead of changing the environment ad hoc.
 - Run `bash init.sh` to verify the test/build environment and GitHub access: at the start of a local session, and in the cloud only after the readiness check below passes. The Dev Container starts the firewall and runs `npm ci`; in the cloud, run this preflight only after GitHub has prepared the development image and dependencies.
-- Before proposing a pull request, run:
+- Before proposing a pull request, run the checks below that apply to your change (see "Keep sessions fast"):
   - `scripts/dev npx prettier --write .`
   - `scripts/dev npm run lint`
   - `scripts/dev npm test -- --watch=false`
   - `scripts/dev npm run build`
 - Fix failures caused by your changes. Do not hide failures by weakening checks or changing unrelated tests.
 
+## Keep sessions fast
+
+- Run `bash init.sh` at most once per session, in the main agent only. Subagents (commit/PR wrap-up, review, exploration) must not run it, `npm ci`, or the full test/lint/build again; they rely on the main agent's results.
+- `bash init.sh` already runs the full test suite and a production build, so do not repeat them just to confirm the baseline. After your changes, run only what the change affects: Prettier `--check` on changed files, `npm run lint` and `npm test` for `src/` changes, and `npm run build` only when application code, build configuration, or locale files changed. Workflow/docs-only changes need Prettier on the changed files plus any test that covers them.
+- Do the commit/push/PR yourself with `scripts/commit-push-pr.sh`; do not delegate it to a subagent. Write the commit message and PR body (from `.github/pull_request_template.md`) to files under `/tmp` first.
+- Do not create `claude-progress.txt` or `feature-list.json`; GitHub Issues and PRs are the record.
+- Attach issue evidence as inline text in a PR or issue comment. Do not try browser-based uploads or zip attachments.
+- If an `ng` command finishes but the process does not exit, stop it with `kill <PID>` instead of waiting.
+
 ## Issue and pull request workflow
 
 - **Readiness check (cloud agent, before any change):** Read the assigned issue and confirm all of the following: the purpose is clear; every acceptance criterion is verifiable and marked `自動` or `手動`; and the out-of-scope section is filled in. If anything is missing or ambiguous, do not start work: post a comment on the issue listing the specific questions and stop. Run `bash init.sh` and begin changes only after the check passes. For local sessions the user has already scoped the task; ask them directly instead of commenting.
-- Treat each issue's acceptance criteria as the task contract. Add at least one automated test for every criterion marked `自動`. For criteria marked `手動`, put a concrete human verification procedure in the PR and do not claim that a person has completed it.
+- Treat each issue's acceptance criteria as the task contract. Add at least one unit test for every criterion marked `自動` that is met by a change under `src/`. Write unit tests only for changes under `src/`; do not write unit tests for workflows, scripts, Dockerfile, or other non-`src/` files. Verify those criteria with CI results or a human check, and say so in the PR mapping. For criteria marked `手動`, put a concrete human verification procedure in the PR and do not claim that a person has completed it.
 - Fill in the acceptance-criteria/test mapping and existing-test-change sections in the pull request template. Copy every criterion from the issue and explain any existing test changed or removed.
 - CI for the latest pull request commit is the record of automated checks. Copilot-created pull requests may require a person to approve workflow runs; do not describe CI as passed until the run has completed successfully. Agent-reported command output is not CI evidence.
 - A human reviews the diff and verifies manual criteria before merge. Pay particular attention to changes to `.github/workflows/`, tests, agent instructions, `Dockerfile`, `.devcontainer/`, and `scripts/init-firewall.sh`. If the Dockerfile changes, include a local Dev Container rebuild check in the PR for the human reviewer.
