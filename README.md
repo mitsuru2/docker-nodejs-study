@@ -151,9 +151,12 @@ npm run lint
 
 ## AIエージェント開発
 
-Copilot Cloud AgentまたはDev Container内のCopilot Chatで作業する場合も、GitHub Issueを作業の正本とし、成果物はPull Requestで提出します。Copilot向けの共通規約は [.github/copilot-instructions.md](./.github/copilot-instructions.md)、エージェント作業用Issueフォームは [.github/ISSUE_TEMPLATE/agent-task.yml](./.github/ISSUE_TEMPLATE/agent-task.yml) を参照してください。
+Copilot Cloud AgentまたはDev Container内のCopilot Chatで作業する場合も、GitHub Issueを作業の正本とし、成果物はPull Requestで提出します。Copilot向けの共通規約は [.github/copilot-instructions.md](./.github/copilot-instructions.md)、Issueは「不具合報告」「機能追加」フォームで作成し、受け入れ条件には「自動」（テストで判定可能）か「手動」（人の判断が必要）の区分と、対象外の範囲を記載してください。
 
-公開IssueをCopilotに割り当てる前に内容を確認し、受け入れ条件が自動テスト可能か、人による確認が必要かを明確にしてください。CIの最新結果を検証記録として使い、人による確認はPRの手順に沿って実施します。
+- ローカル: Issueを自分にアサインし、Dev Container内でCopilot Chatを起動して `bash init.sh` を実行後、作業ブランチで修正してPRを作成します。
+- クラウド: IssueをCopilotにアサインします。エージェントは着手前に内容の明確さを確認し、不明点があればIssueにコメントして差し戻します。問題なければ `bash init.sh` を実行して修正し、PRを作成します。
+
+CIの最新結果を検証記録として使い、人による確認はPRの手順に沿って実施します。
 
 ## i18n (Internationalization)
 
