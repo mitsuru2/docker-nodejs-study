@@ -22,8 +22,8 @@ jobs:
     # 読み取りのみ。GHCR への書き込み（packages: write）は付けない。
     permissions:
       contents: read
-    env:
-      CACHE_REF: ghcr.io/mitsuru2/docker-nodejs-study-devcontainer:buildcache
+    # Copilot は steps / permissions / runs-on / services / snapshot / timeout-minutes 以外の
+    # ジョブ設定（env など）を無視するため、キャッシュ参照は各ステップに直接書く。
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
@@ -36,7 +36,7 @@ jobs:
           file: Dockerfile
           tags: app-dev:local
           load: true
-          cache-from: type=registry,ref=${{ env.CACHE_REF }}
+          cache-from: type=registry,ref=ghcr.io/mitsuru2/docker-nodejs-study-devcontainer:buildcache
 
       # 依存はイメージに含めず、起動時に導入する（Dockerfile のコメント参照）。
       - name: Install dependencies
