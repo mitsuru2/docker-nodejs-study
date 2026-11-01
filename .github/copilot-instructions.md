@@ -12,12 +12,21 @@ These instructions apply to both Copilot cloud agent and Copilot Chat in the Dev
 
 - Run project commands through `scripts/dev` so they use the development image shared by local development and CI. Do not install tools directly on a runner or bypass the image. If the image is unavailable, report the blocker instead of changing the environment ad hoc.
 - Run `bash init.sh` to verify the test/build environment and GitHub access: at the start of a local session, and in the cloud only after the readiness check below passes. The Dev Container starts the firewall and runs `npm ci`; in the cloud, run this preflight only after GitHub has prepared the development image and dependencies.
-- Before proposing a pull request, run:
+- Before proposing a pull request, run the checks below that apply to your change (see "Keep sessions fast"):
   - `scripts/dev npx prettier --write .`
   - `scripts/dev npm run lint`
   - `scripts/dev npm test -- --watch=false`
   - `scripts/dev npm run build`
 - Fix failures caused by your changes. Do not hide failures by weakening checks or changing unrelated tests.
+
+## Keep sessions fast
+
+- Run `bash init.sh` at most once per session, in the main agent only. Subagents (commit/PR wrap-up, review, exploration) must not run it, `npm ci`, or the full test/lint/build again; they rely on the main agent's results.
+- `bash init.sh` already runs the full test suite and a production build, so do not repeat them just to confirm the baseline. After your changes, run only what the change affects: Prettier `--check` on changed files, `npm run lint` and `npm test` for `src/` changes, and `npm run build` only when application code, build configuration, or locale files changed. Workflow/docs-only changes need Prettier on the changed files plus any test that covers them.
+- Do the commit/push/PR yourself with `scripts/commit-push-pr.sh`; do not delegate it to a subagent. Write the commit message and PR body (from `.github/pull_request_template.md`) to files under `/tmp` first.
+- Do not create `claude-progress.txt` or `feature-list.json`; GitHub Issues and PRs are the record.
+- Attach issue evidence as inline text in a PR or issue comment. Do not try browser-based uploads or zip attachments.
+- If an `ng` command finishes but the process does not exit, stop it with `kill <PID>` instead of waiting.
 
 ## Issue and pull request workflow
 
