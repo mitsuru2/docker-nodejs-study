@@ -233,3 +233,16 @@
   in the dev container; add them to `.devcontainer/secrets.env` (gitignored,
   not modified by this session) and rebuild the container if local Cosmos DB
   access is needed.
+
+## 2026-11-01: Persist Copilot Chat session history across container recreation
+
+- Added the Docker named volume `docker-nodejs-study-vscode-data` to
+  `.devcontainer/devcontainer.json`, mounted at
+  `/home/dev/.vscode-server/data`. VS Code Server user data, including Copilot
+  Chat session history, now survives container recreation and host restarts.
+- Documented the persistence behavior and warned that removing or pruning the
+  named volume also removes the stored data.
+- The existing uncommitted deletion of `.devcontainer/post.sh` was not changed.
+- Validation: Dev Container JSONC parsed successfully, the named-volume mount
+  was verified, `git diff --check` passed, and `npm test` passed (9 files,
+  30 tests).

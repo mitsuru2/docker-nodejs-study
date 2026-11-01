@@ -17,6 +17,9 @@
   "remoteUser": "dev",
   "workspaceFolder": "/app",
   "workspaceMount": "type=bind,source=${localWorkspaceFolder},target=/app",
+  "mounts": [
+    "type=volume,source=docker-nodejs-study-vscode-data,target=/home/dev/.vscode-server/data"
+  ],
 
   // NET_ADMIN/NET_RAW:
   // They are required by scripts/init-firewall.sh (iptables/ipset) to

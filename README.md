@@ -169,6 +169,16 @@ docker build -t docker-nodejs-study .
   - `F1`キー押下。
   - `Dev Containers: Rebuild Container`を実行。
 
+### Copilot Chatのセッション履歴
+
+VS Code Serverのユーザーデータは、Docker named volume
+`docker-nodejs-study-vscode-data`に保存されます。コンテナの再起動・再作成後も
+同じデータを利用するため、Copilot Chatのセッション履歴を維持できます。
+
+このデータはホストのDocker環境内に保存されます。Docker volumeを削除した場合
+（`docker volume prune`を含む）は履歴も削除されるため、削除前に必要なデータを
+バックアップしてください。
+
 ## スクリプト
 
 `scripts/` 配下に、新規ページ/機能/サービス等の雛形生成用スクリプトがあります。

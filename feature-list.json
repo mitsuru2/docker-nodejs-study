@@ -35,6 +35,12 @@
       "status": "done",
       "description": "Removed the unused .devcontainer/docker-compose.yml (devcontainer.json builds the Dockerfile directly since bf114d7) and updated the stale references in src/server.ts, scripts/export-db.mjs and .dockerignore to point to .devcontainer/secrets.env for local Cosmos DB env vars.",
       "updatedAt": "2026-10-28"
+    },
+    {
+      "name": "persistent-copilot-session-history",
+      "status": "done",
+      "description": "Mount VS Code Server user data at /home/dev/.vscode-server/data on the docker-nodejs-study-vscode-data named volume so Copilot Chat session history and other VS Code user data survive container recreation. Documented that pruning/removing the volume deletes the stored data.",
+      "updatedAt": "2026-11-01"
     }
   ]
 }

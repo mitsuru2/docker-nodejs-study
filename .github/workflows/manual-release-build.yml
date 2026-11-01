@@ -6,18 +6,18 @@ on:
 jobs:
   # --- JOB: アセットの準備 (DB/画像) ---
   prepare-assets:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       id-token: write # for Azure login
     steps:
       # ソースコードをチェックアウト
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       # Azureにログイン
       - name: Azure login
-        uses: azure/login@v3
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
@@ -48,7 +48,7 @@ jobs:
 
       # 準備したアセットをアーティファクトとしてアップロード
       - name: Upload prepared assets
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: build-assets
           path: public/
@@ -56,7 +56,7 @@ jobs:
 
   # --- JOB: Dockerイメージのビルド ---
   build-docker-image:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: prepare-assets
     outputs:
       image_name: ${{ steps.build.outputs.image_name }}
@@ -68,18 +68,18 @@ jobs:
     steps:
       # ソースコードをチェックアウト
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       # 前のジョブで準備したアセットをダウンロード
       - name: Download assets
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           name: build-assets
           path: public/
 
       # Azureにログイン
       - name: Azure login
-        uses: azure/login@v3
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
@@ -106,7 +106,7 @@ jobs:
 
   # --- JOB: 静的ウェブアプリのビルド ---
   build-static-web-app:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: prepare-assets
     permissions:
       contents: read
@@ -115,18 +115,18 @@ jobs:
     steps:
       # ソースコードをチェックアウト
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       # 前のジョブで準備したアセットをダウンロード
       - name: Download assets
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           name: build-assets
           path: public/
 
       # Azureにログイン
       - name: Azure login
-        uses: azure/login@v3
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
@@ -165,7 +165,7 @@ jobs:
 
       # ビルドdist/browserフォルダの内容をアーティファクトとしてアップロード
       - name: Upload build assets
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: dist-swa
           path: dist/docker-nodejs-study/browser/
@@ -174,7 +174,7 @@ jobs:
   # --- JOB: コンテナアプリのデプロイ (プレビュー) ---
   # ここではデプロイするけど外部からのトラフィックはまだ割り当てない。
   deploy-aca-preview:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: build-docker-image
     permissions:
       contents: read
@@ -183,7 +183,7 @@ jobs:
     steps:
       # Azureにログイン
       - name: Azure login
-        uses: azure/login@v3
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
@@ -192,7 +192,7 @@ jobs:
       # DockerイメージのビルドとACRへのプッシュ
       # (シングルリビジョンの場合。Azure CLIでの制御に変更のため無効化。)
       # - name: Deploy to ACA
-      #   uses: azure/container-apps-deploy-action@v2
+      #   uses: azure/container-apps-deploy-action@8dff69dac3367c32ceb2690d8f13adbeab462703 # v2
       #   with:
       #     containerAppName: ${{ vars.AZURE_CONTAINER_APP_NAME }}
       #     resourceGroup: ${{ vars.AZURE_RG_NAME }}
@@ -226,7 +226,7 @@ jobs:
   # --- JOB: コンテナアプリのデプロイ (リリース) ---
   # 承認後にトラフィックを100%に切り替える
   deploy-aca-release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: deploy-aca-preview
     permissions:
       contents: read
@@ -240,7 +240,7 @@ jobs:
     steps:
       # Azureにログイン
       - name: Azure login
-        uses: azure/login@v3
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
@@ -286,7 +286,7 @@ jobs:
   # --- JOB: App Services のリビジョン更新 ---
   # 2026-06-06: コスト削減のため、App Servicesへのデプロイは一旦保留にします。
   # deploy-web-app-release:
-  #   runs-on: ubuntu-latest
+  #   runs-on: ubuntu-24.04
   #   needs:
   #     - deploy-aca-preview
   #     - build-docker-image
@@ -299,7 +299,7 @@ jobs:
   #   steps:
   #     # Azureにログイン
   #     - name: Azure login
-  #       uses: azure/login@v3
+  #       uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3
   #       with:
   #         client-id: ${{ vars.AZURE_CLIENT_ID }}
   #         tenant-id: ${{ vars.AZURE_TENANT_ID }}
@@ -307,7 +307,7 @@ jobs:
 
   #     # Web appの更新
   #     - name: Deploy to App Service
-  #       uses: azure/webapps-deploy@v3
+  #       uses: azure/webapps-deploy@02a81bead70021f5284939794bcec79c271ab383 # v3
   #       with:
   #         app-name: ${{ vars.AZURE_WEBAPP_NAME }}
   #         images: ${{ needs.build-docker-image.outputs.image_name }}
@@ -327,7 +327,7 @@ jobs:
 
   # --- JOB: 静的ウェブアプリのデプロイ ---
   deploy-static-web-app:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs:
       - build-static-web-app
     permissions:
@@ -339,14 +339,14 @@ jobs:
     steps:
       # ビルドしたSWAをダウンロード
       - name: Download SWA assets
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           name: dist-swa
           path: dist/docker-nodejs-study/browser/
 
       # Azureにログイン
       - name: Azure login
-        uses: azure/login@v3
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
