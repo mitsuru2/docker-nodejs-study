@@ -1,6 +1,12 @@
 name: Copilot Setup Steps
 
+# Copilot クラウドエージェントは起動時にこのワークフローの `copilot-setup-steps` ジョブを実行して環境を準備する。
+# ジョブ名 `copilot-setup-steps` は Copilot が認識する固定名なので変更しない。
+# ci.yml と同じ手順で開発イメージ app-dev:local をビルドし、依存を導入する。
+# 以降のコマンドは scripts/dev 経由で、このイメージの中で実行される。
+# エージェント用のシークレット PRIMENG_LICENSE_KEY は、リポジトリの Agents secrets に管理者が登録する。
 on:
+  # 手動実行と、このファイルを変更した push / pull_request のときだけ動かして、設定の検証に使う。
   workflow_dispatch:
   push:
     paths:
@@ -13,6 +19,7 @@ jobs:
   copilot-setup-steps:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    # 読み取りのみ。GHCR への書き込み（packages: write）は付けない。
     permissions:
       contents: read
     env:
@@ -21,6 +28,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
 
+      # キャッシュは読み取り専用（cache-from のみ）。キャッシュの更新は ci.yml の update-cache ジョブだけが行う。
       - name: Build development image
         uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
         with:
@@ -30,5 +38,6 @@ jobs:
           load: true
           cache-from: type=registry,ref=${{ env.CACHE_REF }}
 
+      # 依存はイメージに含めず、起動時に導入する（Dockerfile のコメント参照）。
       - name: Install dependencies
         run: scripts/dev npm ci
