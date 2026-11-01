@@ -1,21 +1,14 @@
 #!/bin/bash
 # init.sh
 #
-# Entry point run at the start of a Claude Code session (or manually) to get
-# this container into a known-good state:
+# Preflight for Copilot Chat in the Dev Container or the Copilot cloud agent:
 #
-#   1. Scaffold feature-list.json / claude-progress.txt if missing, and commit them.
-#   2. Verify the test runner and build command both work.
-#   3. Lock down outbound network access to an allowlist (github.com, anthropic.com,
-#      registry.npmjs.org).
-#   4. Verify git/gh are usable and the user's credentials are valid.
-#   5. Verify access to this repo's GitHub Issues.
-#   6. Verify Google Drive credentials for the test-evidence upload workflow
-#      (optional — warns and skips if not yet configured).
+#   1. Verify the test runner and build command.
+#   2. Verify git/gh authentication and access to this repo's Issues.
 #
-# Steps 1-2 run before the network is locked down (step 3) since they don't
-# need network access; steps 4-6 run after, both to confirm the allowlist
-# is actually sufficient and that credentials work under it.
+# The Dev Container's postStartCommand already starts the firewall and runs
+# npm ci. Copilot cloud-agent setup is managed by GitHub; run this preflight
+# only after its development image and dependencies are ready.
 
 set -euo pipefail
 
@@ -23,12 +16,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 steps=(
-  "scripts/init-scaffold-files.sh"
   "scripts/init-verify-build.sh"
-  "scripts/init-firewall.sh"
   "scripts/init-verify-git-auth.sh"
   "scripts/init-verify-github-issues.sh"
-  "scripts/init-verify-gdrive.sh"
 )
 
 for step in "${steps[@]}"; do

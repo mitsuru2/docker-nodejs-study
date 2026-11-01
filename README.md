@@ -149,6 +149,15 @@ npm run test
 npm run lint
 ```
 
+## AIエージェント開発
+
+Copilot Cloud AgentまたはDev Container内のCopilot Chatで作業する場合も、GitHub Issueを作業の正本とし、成果物はPull Requestで提出します。Copilot向けの共通規約は [.github/copilot-instructions.md](./.github/copilot-instructions.md)、Issueは「不具合報告」「機能追加」フォームで作成し、受け入れ条件には「自動」（テストで判定可能）か「手動」（人の判断が必要）の区分と、対象外の範囲を記載してください。
+
+- ローカル: Issueを自分にアサインし、Dev Container内でCopilot Chatを起動して `bash init.sh` を実行後、作業ブランチで修正してPRを作成します。
+- クラウド: IssueをCopilotにアサインします。エージェントは着手前に内容の明確さを確認し、不明点があればIssueにコメントして差し戻します。問題なければ `bash init.sh` を実行して修正し、PRを作成します。
+
+CIの最新結果を検証記録として使い、人による確認はPRの手順に沿って実施します。
+
 ## i18n (Internationalization)
 
 [README.md](./src/locale/README.md)
@@ -168,6 +177,16 @@ docker build -t docker-nodejs-study .
 - VS CodeのDev Containers拡張機能によるビルド
   - `F1`キー押下。
   - `Dev Containers: Rebuild Container`を実行。
+
+### Copilot Chatのセッション履歴
+
+VS Code Serverのユーザーデータは、Docker named volume
+`docker-nodejs-study-vscode-data`に保存されます。コンテナの再起動・再作成後も
+同じデータを利用するため、Copilot Chatのセッション履歴を維持できます。
+
+このデータはホストのDocker環境内に保存されます。Docker volumeを削除した場合
+（`docker volume prune`を含む）は履歴も削除されるため、削除前に必要なデータを
+バックアップしてください。
 
 ## スクリプト
 

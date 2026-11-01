@@ -109,20 +109,9 @@ RUN chmod 0755 /usr/local/bin/init-firewall.sh \
     && chmod 0440 "/etc/sudoers.d/${USERNAME}-firewall"
 
 
-# Copilot CLI start script. It is copied into a root-owned path so the agent cannot edit it,
-# and user 'dev' may run only this script via sudo (no general sudo rights: with
-# general sudo the agent could run Copilot with any privileges).
-COPY scripts/start-copilot.sh /usr/local/bin/start-copilot.sh
-RUN chmod 0755 /usr/local/bin/start-copilot.sh \
-    && echo "${USERNAME} ALL=(root) NOPASSWD: /usr/local/bin/start-copilot.sh" > "/etc/sudoers.d/${USERNAME}-start-copilot" \
-    && chmod 0440 "/etc/sudoers.d/${USERNAME}-start-copilot"
-
-
-# Mount points for the named volumes in devcontainer.json (Copilot CLI and gh config).
-# They must exist with ${USERNAME} ownership in the image; otherwise Docker creates
-# the volumes owned by root and ${USERNAME} cannot write to them.
-RUN mkdir -p /home/${USERNAME}/.copilot /home/${USERNAME}/.config/gh \
-    && chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/.copilot /home/${USERNAME}/.config
+# gh config directory, owned by ${USERNAME} so gh can write to it.
+RUN mkdir -p /home/${USERNAME}/.config/gh \
+    && chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/.config
 
 # Shows that it is inside the development image (scripts/dev checks this and runs the command directly)
 ENV IN_DEV_IMAGE=1

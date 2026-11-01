@@ -1,13 +1,12 @@
 #!/bin/bash
 # scripts/start-work-branch.sh
 #
-# Create (or resume) the dedicated working branch for the current task, per
-# CLAUDE.md's "Working Branch & Pull Requests" rule: work is never committed
-# directly to the base branch.
+# Create (or resume) a local Copilot Chat working branch. Cloud agent branches
+# are managed by GitHub and use the `copilot/` prefix.
 #
 # The branch name is computed mechanically as:
 #
-#   <type>/<issue-number>/claude-code
+#   <type>/<issue-number>/vscode-copilot
 #
 # where:
 #   - <issue-number> is "issue-<n>" when this work is tied to GitHub Issue
@@ -70,7 +69,7 @@ else
   fi
 fi
 
-branch_name="$type/$issue_segment/claude-code"
+branch_name="$type/$issue_segment/vscode-copilot"
 
 if [ "$branch_name" = "main" ] || [ "$branch_name" = "master" ] || [ "$branch_name" = "$base_branch" ]; then
   echo "FAIL: refusing to use '$branch_name' as a working branch name" >&2

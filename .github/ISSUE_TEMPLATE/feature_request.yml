@@ -13,7 +13,17 @@ body:
     id: acceptance-criteria
     attributes:
       label: 受け入れ条件
-      description: 何をもって完了とするか、箇条書きで
+      description: 何をもって完了とするか、チェックリスト形式で。各条件に「自動」（テストで判定可能）か「手動」（人の判断が必要）を明記してください。
+      placeholder: |
+        - [ ] 自動: ...
+        - [ ] 手動: ...
+    validations:
+      required: true
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: 対象外・触れてはいけない範囲
+      description: 変更しない機能・ファイル・制約。特になければ「なし」と記載してください。
     validations:
       required: true
   - type: textarea
