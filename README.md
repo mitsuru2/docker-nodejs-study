@@ -9,6 +9,7 @@ Angular (SSR) + Docker + その他もろもろの学習用リポジトリ。
 - i18n / XLIFF / Babel Edit
 - Dockerfile / Dev Container 対応
 - GitHub Actions
+- GitHub Copilot
 
 ## 開発環境セットアップ
 
