@@ -9,9 +9,9 @@
 #           ("runArgs": ["--cap-add=NET_ADMIN", "--cap-add=NET_RAW"]).
 # Must be run as root (this script re-execs itself with sudo if needed).
 #
-# Rules are applied to the running container's network namespace only; they do
-# NOT persist across container restarts, so this script must be re-run each
-# time the container starts (e.g. from init.sh).
+# Rules apply only to the running container's network namespace and do NOT
+# persist across restarts. The Dev Container runs this script from its
+# postStartCommand.
 
 set -euo pipefail
 
@@ -32,8 +32,7 @@ ALLOWED_SUBDOMAINS=(
   "objects.githubusercontent.com"
   "raw.githubusercontent.com"
 
-  # Copilot (the Copilot Chat extension for VS Code.
-  # Copilot Pro uses the individual endpoints)
+  # VS Code's built-in Copilot Chat (Copilot Pro uses the individual endpoints)
   "api.githubcopilot.com"
   "api.individual.githubcopilot.com"
   "proxy.individual.githubcopilot.com"

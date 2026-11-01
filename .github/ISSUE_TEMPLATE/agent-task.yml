@@ -1,0 +1,47 @@
+name: エージェント向け作業
+description: Copilotに依頼する、範囲と完了条件が明確な作業
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: 目的
+      description: 何を実現するかを1〜2文で記載してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: target
+    attributes:
+      label: 変更対象の見当
+      description: 関連するファイル、機能、画面などを記載してください。特定できない場合は、その旨を書いてください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: 受け入れ条件
+      description: 条件ごとに「自動」（テストで判定可能）または「手動」（人の判断が必要）を明記してください。
+      placeholder: |
+        - [ ] 自動: ...
+        - [ ] 手動: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: 対象外・触れてはいけない範囲
+      description: 変更しない機能、ファイル、制約があれば記載してください。
+      placeholder: |
+        - ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: 補足情報
+      description: 関連Issue、ログ、参考リンクなどがあれば記載してください。
+    validations:
+      required: false

@@ -3,7 +3,7 @@
 #
 # Commit the given files on the current working branch, push it, and ensure
 # an open pull request exists for it — creating one only if none is already
-# open, per CLAUDE.md's "Working Branch & Pull Requests" rule.
+# open. This helper is for local Copilot Chat; GitHub manages cloud-agent PRs.
 #
 # Usage:
 #   scripts/commit-push-pr.sh <base-branch> <commit-message-file> <pr-title> <pr-body-file> <file1> [<file2> ...]

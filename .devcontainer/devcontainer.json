@@ -34,7 +34,7 @@
     "--env-file",
     "${localEnv:HOME}/.config/devcontainer-secrets/docker-nodejs-study.env"
     // Required environment variables:
-    // - GITHUB_TOKEN: Required for GitHub authentication within the container.
+    // - GH_TOKEN: Required for GitHub authentication within the container.
     // - PRIMENG_LICENSE_KEY: Required for PrimeNG components license.
     //
     // How to update:
@@ -72,7 +72,7 @@
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
-      "extensions": ["github.copilot-chat", "angular.ng-template", "esbenp.prettier-vscode"],
+      "extensions": ["angular.ng-template", "esbenp.prettier-vscode"],
       "settings": {
         // Disable terminal-based Git authentication inside the container.
         // Force Git to use the configured credential helper instead of prompting for credentials in the terminal.

@@ -1,8 +1,8 @@
 #!/bin/bash
 # scripts/init-verify-github-issues.sh
 #
-# Confirm gh can actually reach the GitHub Issues API for this repo (not just
-# that auth is valid in general — the token also needs the right scope/access).
+# Confirm gh can reach this repository's Issues API. This uses the local
+# repository-scoped token or the GitHub-managed cloud-agent token, as available.
 
 set -euo pipefail
 
