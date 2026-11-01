@@ -27,10 +27,10 @@ export class Article implements OnInit {
 
   // スタイル設定変数
   protected thumbHeight = computed(() =>
-    this.isMobile() ? undefined : DesignTokens.semantic.custom.article.image.height,
+    this.isMobile() ? undefined : Number(DesignTokens.semantic.custom.article.image.height) * 1.2,
   );
   protected thumbWidth = computed(() =>
-    this.isMobile() ? DesignTokens.semantic.custom.article.image.width : undefined,
+    this.isMobile() ? Number(DesignTokens.semantic.custom.article.image.width) * 1.2 : undefined,
   );
   protected infoIconSize = DesignTokens.primitive.custom.font.sizeNum * 1.5; // 1.5rem;
 
