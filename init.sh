@@ -4,7 +4,7 @@
 # Preflight for Copilot Chat in the Dev Container or the Copilot cloud agent:
 #
 #   1. Verify the test runner and build command.
-#   2. Verify git/gh authentication and access to this repo's Issues.
+#   2. Verify local git/gh access, or use Copilot MCP for cloud-agent access.
 #
 # The Dev Container's postStartCommand already starts the firewall and runs
 # npm ci. Copilot cloud-agent setup is managed by GitHub; run this preflight

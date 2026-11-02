@@ -11,7 +11,7 @@ These instructions apply to both Copilot cloud agent and Copilot Chat in the Dev
 ## Environment and commands
 
 - Run project commands through `scripts/dev` so they use the development image shared by local development and CI. Do not install tools directly on a runner or bypass the image. If the image is unavailable, report the blocker instead of changing the environment ad hoc.
-- Run `bash init.sh` to verify the test/build environment and GitHub access: at the start of a local session, and in the cloud only after the readiness check below passes. The Dev Container starts the firewall and runs `npm ci`; in the cloud, run this preflight only after GitHub has prepared the development image and dependencies.
+- Run `bash init.sh` to verify the test/build environment and GitHub access: at the start of a local session, and in the cloud only after the readiness check below passes. The Dev Container starts the firewall and runs `npm ci`; in the cloud, run this preflight only after GitHub has prepared the development image and dependencies. Local GitHub access is checked with `gh`; cloud-agent GitHub access is handled through Copilot MCP, so the preflight skips `gh` and Issues API checks there.
 - Before proposing a pull request, run the checks below that apply to your change (see "Keep sessions fast"):
   - `scripts/dev npx prettier --write .`
   - `scripts/dev npm run lint`
