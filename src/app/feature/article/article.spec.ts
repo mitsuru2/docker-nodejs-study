@@ -63,7 +63,16 @@ describe('Article thumbnail layout', () => {
     const thumbnails = fixture.nativeElement.querySelectorAll(
       '.thumb-image',
     ) as NodeListOf<HTMLImageElement>;
+    const thumbnailRule = Array.from(document.styleSheets)
+      .flatMap((styleSheet) => Array.from(styleSheet.cssRules))
+      .find(
+        (rule): rule is CSSStyleRule =>
+          rule instanceof CSSStyleRule &&
+          rule.selectorText.includes('.images-track') &&
+          rule.selectorText.includes('.thumb-image'),
+      );
 
+    expect(thumbnailRule?.style.getPropertyValue('height')).toBe('');
     expect(thumbnails[0].getAttribute('height')).toBe('216');
     expect(thumbnails[1].getAttribute('height')).toBe('216');
   });
