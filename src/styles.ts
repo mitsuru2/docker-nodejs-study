@@ -112,8 +112,8 @@ export const DesignTokens = {
     custom: {
       article: {
         image: {
-          height: '180',
-          width: '180',
+          height: '216',
+          width: '216',
         },
         caption: {
           fontColor: '{slate.700}',
