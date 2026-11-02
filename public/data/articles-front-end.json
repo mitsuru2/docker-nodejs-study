@@ -22,7 +22,10 @@
         ],
         "titleImage": {
           "path": "images/front-end_4x1.png",
-          "alt": { "ja": "フロントエンドタイトル画像", "en": "Font end title image." }
+          "alt": {
+            "ja": "フロントエンドタイトル画像",
+            "en": "Font end title image."
+          }
         }
       },
       {
@@ -47,7 +50,43 @@
         "images": [
           {
             "path": "images/primevue-v4-styled-architecture.png",
-            "alt": { "ja": "スタイルアーキテクチャー", "en": "Style architecture" },
+            "alt": {
+              "ja": "スタイルアーキテクチャー 1",
+              "en": "Style architecture 1"
+            },
+            "caption": {
+              "ja": "PrimeNGスタイルアーキテクチャー",
+              "en": "PrimeNG Style Architecture"
+            }
+          },
+          {
+            "path": "images/primevue-v4-styled-architecture.png",
+            "alt": {
+              "ja": "スタイルアーキテクチャー 2",
+              "en": "Style architecture 2"
+            },
+            "caption": {
+              "ja": "PrimeNGスタイルアーキテクチャー",
+              "en": "PrimeNG Style Architecture"
+            }
+          },
+          {
+            "path": "images/primevue-v4-styled-architecture.png",
+            "alt": {
+              "ja": "スタイルアーキテクチャー 3",
+              "en": "Style architecture 3"
+            },
+            "caption": {
+              "ja": "PrimeNGスタイルアーキテクチャー",
+              "en": "PrimeNG Style Architecture"
+            }
+          },
+          {
+            "path": "images/primevue-v4-styled-architecture.png",
+            "alt": {
+              "ja": "スタイルアーキテクチャー 4",
+              "en": "Style architecture 4"
+            },
             "caption": {
               "ja": "PrimeNGスタイルアーキテクチャー",
               "en": "PrimeNG Style Architecture"
