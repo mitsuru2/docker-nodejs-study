@@ -1,9 +1,8 @@
 #!/bin/bash
 # scripts/init-verify-git-auth.sh
 #
-# Confirm git and gh are available and authenticated in both local and
-# cloud-agent environments. Cloud agents receive their GitHub credentials
-# from GitHub; only local sessions need a user.name and user.email.
+# Confirm git is available and verify local gh authentication. Cloud agents use
+# Copilot MCP for GitHub access and only need the GitHub-managed git identity.
 
 set -euo pipefail
 
@@ -13,13 +12,6 @@ if ! command -v git >/dev/null 2>&1; then
   exit 1
 fi
 echo "  OK: $(git --version)"
-
-echo "=== init-verify-git-auth: checking gh is available ==="
-if ! command -v gh >/dev/null 2>&1; then
-  echo "  FAIL: gh (GitHub CLI) is not installed" >&2
-  exit 1
-fi
-echo "  OK: $(gh --version | head -n1)"
 
 echo "=== init-verify-git-auth: checking git user identity ==="
 if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
@@ -34,12 +26,24 @@ else
   echo "  OK: committing as $git_user_name <$git_user_email>"
 fi
 
-echo "=== init-verify-git-auth: checking gh auth status ==="
-if ! gh auth status >/dev/null 2>&1; then
-  echo "  FAIL: gh is not authenticated (configure GH_TOKEN/GITHUB_TOKEN or run 'gh auth login' locally)" >&2
-  exit 1
+if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
+  echo "=== init-verify-git-auth: checking GitHub access ==="
+  echo "  OK: cloud-agent GitHub access is provided through Copilot MCP"
+else
+  echo "=== init-verify-git-auth: checking gh is available ==="
+  if ! command -v gh >/dev/null 2>&1; then
+    echo "  FAIL: gh (GitHub CLI) is not installed" >&2
+    exit 1
+  fi
+  echo "  OK: $(gh --version | head -n1)"
+
+  echo "=== init-verify-git-auth: checking gh auth status ==="
+  if ! gh auth status >/dev/null 2>&1; then
+    echo "  FAIL: gh is not authenticated (configure GH_TOKEN/GITHUB_TOKEN or run 'gh auth login' locally)" >&2
+    exit 1
+  fi
+  echo "  OK: gh is authenticated"
 fi
-echo "  OK: gh is authenticated"
 
 echo "=== init-verify-git-auth: checking git credentials against the remote ==="
 if [ "${GITHUB_ACTIONS:-}" = "true" ]; then

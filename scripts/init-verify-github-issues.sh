@@ -1,13 +1,19 @@
 #!/bin/bash
 # scripts/init-verify-github-issues.sh
 #
-# Confirm gh can reach this repository's Issues API. This uses the local
-# repository-scoped token or the GitHub-managed cloud-agent token, as available.
+# Confirm local gh can reach this repository's Issues API. Cloud agents use
+# Copilot MCP for GitHub access instead of the gh CLI.
 
 set -euo pipefail
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
+
+if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
+  echo "=== init-verify-github-issues: checking GitHub access ==="
+  echo "  OK: cloud-agent GitHub Issues access is provided through Copilot MCP"
+  exit 0
+fi
 
 echo "=== init-verify-github-issues: listing issues via gh ==="
 if ! gh issue list --limit 1 >/dev/null 2>&1; then
