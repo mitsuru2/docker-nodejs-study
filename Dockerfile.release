@@ -53,7 +53,7 @@ RUN npm run build
 
 # ---- STAGE 2: runtime ----
 # Minimal production image containing only production dependencies and build output.
-FROM node:24.22.1-trixie-slim@sha256:e863d7892529b38db1474da2bcde052233a51eb60a9ab23bd2c8801e433a7c40 AS runtime
+FROM node:24.22.1-trixie-slim@sha256:89c5244bc22a9bc3287d89ebc7e49b9cb5bb84cd40e6175ac3421d5a9f68b95a AS runtime
 WORKDIR /app
 
 ENV NODE_ENV=production
