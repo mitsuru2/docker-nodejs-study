@@ -13,7 +13,7 @@
 # - Docker Hub (Node.js): https://hub.docker.com/_/node
 # - Node.js: https://nodejs.org/ja/about/previous-releases
 # - Debian: https://wiki.debian.org/DebianReleases#Current_Debian_Releases_and_repositories
-FROM node:24.22.1-trixie@sha256:7e9fb4d8acb6f7b3b824f65bf30c076685861362cd18e1d40f6197e5b411fb71
+FROM node:26.13.0-trixie@sha256:6d2c7d5d074bf72f81ddc252b4fbb5d625bc028eeda49cb4b8c2ff8eda1ee617
 
 
 # Development user. The name is the same in every project regardless of the base
