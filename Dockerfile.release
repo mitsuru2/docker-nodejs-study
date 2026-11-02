@@ -12,7 +12,7 @@
 # - Node.js: https://nodejs.org/ja/about/previous-releases
 # - Debian: https://wiki.debian.org/DebianReleases#Current_Debian_Releases_and_repositories
 # Build stage: install dependencies and compile the Angular SSR application.
-FROM node:24.22.1-trixie@sha256:7e9fb4d8acb6f7b3b824f65bf30c076685861362cd18e1d40f6197e5b411fb71 AS build
+FROM node:26.13.0-trixie@sha256:6d2c7d5d074bf72f81ddc252b4fbb5d625bc028eeda49cb4b8c2ff8eda1ee617 AS build
 
 # Install OS-level dependencies.
 # - Git: It should be installed to use git commands in container or via VSCode remote 
@@ -53,7 +53,7 @@ RUN npm run build
 
 # ---- STAGE 2: runtime ----
 # Minimal production image containing only production dependencies and build output.
-FROM node:24.22.1-trixie-slim@sha256:89c5244bc22a9bc3287d89ebc7e49b9cb5bb84cd40e6175ac3421d5a9f68b95a AS runtime
+FROM node:26.13.0-trixie-slim@sha256:e4db4c914bf8ad241bd24804fc25d272d89bad97e68cdc8a1414862790a02c39 AS runtime
 WORKDIR /app
 
 ENV NODE_ENV=production
